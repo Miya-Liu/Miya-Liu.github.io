@@ -2,7 +2,7 @@
 <!--
 	Future Imperfect by HTML5 UP	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
-<html>
+<html xmlns:text-align="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Purchase Allocation Research</title>
@@ -63,25 +63,84 @@
             <header>
                 <div class="title">
                     <h2><a href="#">Purchase Allocation Research</a></h2>
-                    <p>The entire experiment results of purchase allocation research.</p>
+                    <p>The entire experiment results of purchase allocation research in paper <br>
+                        <em><b>Best Bang for the Buck: Purchase Allocation Under AccessDependent Pricing Functions.</b></em>
+                    </p>
                 </div>
                 <div class="meta">
-                    <time class="published" datetime="2015-11-01">09/10/2019</time>
+                    <time class="published" datetime="2019-10-12">09/10/2019</time>
                     <a href="#" class="author"><span class="name">Mengya Liu</span></a>
+
+                    <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
                 </div>
             </header>
-            <p>Results of Price Impact in the Setting of Allocation with FlatPF.
+            <p>What is the research
             </p>
-            <span class="image featured"><img src="images/PA/entire_results_flat.png" alt=""></span>
+            <p>What is the following figures <br>
+                <ol>
+                    <li><a href="#p_Flat">Results of Price Impact in the Setting of Allocation with FlatPF.</a></li>
+                    <li><a href="#p_FMPF">Results of Price Impact in the Setting of Allocation with FMPF.</a></li>
+                    <li><a href="#v">Results of Value Impact.</a></li>
+                </ol>
+            </p>
 
-            <p>Results of Price Impact in the Setting of Allocation with FMPF.
+            <p><strong>Experiment Results:</strong></p>
+            <p id="p_Flat">Results of Price Impact in the Setting of Allocation with FlatPF.
+                <span class="image featured" style="text-align: center">
+                    <img src="images/PA/entire_results_flat.png" alt="">
+                    <br><b>Figure 1:</b>
+                </span>
             </p>
-            <span class="image featured"><img src="images/PA/entire_results_freemium.png" alt=""></span>
+
+            <p id="p_FMPF">Results of Price Impact in the Setting of Allocation with FMPF.
+                <span class="image featured" style="text-align: center">
+                    <img src="images/PA/entire_results_freemium.png" alt="">
+                    <br><b>Figure 2:</b>
+                </span>
+            </p>
+
+            <p id="v">Results of Value Impact.
+                <span class="image featured" style="text-align: center">
+                    <img src="images/PA/value/resultsValueDistribution_1.png" alt="">
+                    (a) Query CD1<br>
+                    <img src="images/PA/value/resultsValueDistribution_6.png" alt="">
+                    (b) Query CD6<br>
+                    <img src="images/PA/value/resultsValueDistribution_9.png" alt="">
+                    (c) Query LD2<br>
+                    <img src="images/PA/value/resultsValueDistribution_10.png" alt="">
+                    (d) Query LD3<br>
+                    <img src="images/PA/value/resultsValueDistribution_11.png" alt="">
+                    (e) Query LD4<br>
+                    <img src="images/PA/value/resultsValueDistribution_12.png" alt="">
+                    (f) Query LD5<br>
+                    <img src="images/PA/value/resultsValueDistribution_13.png" alt="">
+                    (g) Query LD6<br>
+                    <img src="images/PA/value/resultsValueDistribution_15.png" alt="">
+                    (h) Query LD8<br>
+                    <img src="images/PA/value/resultsValueDistribution_24.png" alt="">
+                    (i) Query LS6<br>
+                    <img src="images/PA/value/resultsValueDistribution_25.png" alt="">
+                    (j) Query LS7
+                    <br><b>Figure 3:</b>
+                </span>
+            </p>
 
             <footer>
                 <ul class="stats">
                     <li><a href="#">General</a></li>
-                    <li><a href="#" class="icon fa-heart"></a></li>
+                    <li class="actions">
+                        <a οnclick="add()" class="icon fa-heart">
+                            <a id="like">0</a>
+                            <script type="text/javascript">
+                                function add() {
+                                    var oTxt=document.getElementById('like');
+                                    var a=oTxt.value;
+                                    a++;
+                                    oTxt.value=a;
+                                }
+                            </script>
+                        </a>
+                    </li>
                     <li><a href="#" class="icon fa-comment"></a></li>
                 </ul>
             </footer>
@@ -94,6 +153,12 @@
             <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
             <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </section>
+
+    <section>
+        <ul>
+
         </ul>
     </section>
 </div>
