@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<!--
-	Future Imperfect by HTML5 UP	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
-<html xmlns:text-align="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Purchase Allocation Research</title>
+    <title>Purchase Allocation Problem Analysis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -62,69 +59,55 @@
         <article class="post">
             <header>
                 <div class="title">
-                    <h2><a href="#">Purchase Allocation Research</a></h2>
-                    <p>The entire experiment results of purchase allocation research in paper <br>
+                    <h2><a href="#">Purchase Allocation Problem Analysis</a></h2>
+                    <p>The formalization of the purchase allocation problem in paper <br>
                         <em><b>Best Bang for the Buck: Purchase Allocation Under AccessDependent Pricing Functions.</b></em>
                     </p>
                 </div>
                 <div class="meta">
-                    <time class="published" datetime="2020-06-01">01/06/2021</time>
+                    <time class="published" datetime="2019-10-12">01/06/2021</time>
                     <a href="#" class="author"><span class="name">Mengya Liu</span></a>
 
-                    <time class="published" datetime="2021-06-01">Updated 1 day ago</time>
+                    <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
                 </div>
             </header>
-            <p>To investigate the performance of our two heuristics, 3DDP and Greedy, under varying marketplace conditions,
-                we conduct experiments to evaluate how pricing functions and value distributions of solutions impact the performance, respectively.
-            </p>
-            <p>Following the experiment settings in the paper, the coming figures illustrate the details of<br>
-                <ol>
-                    <li><a href="#p_Flat">Results of Price Impact in the Setting of Allocation with FlatPF.</a></li>
-                    <li><a href="#p_FMPF">Results of Price Impact in the Setting of Allocation with FMPF.</a></li>
-                    <li><a href="#v">Results of Value Impact.</a></li>
-                </ol>
-            </p>
 
-            <p><strong>Experiment Results:</strong></p>
-            <p id="p_Flat">Results of Price Impact in the Setting of Allocation with FlatPF.
-                <span class="image featured" style="text-align: center">
-                    <img src="images/PA/entire_results_flat.png" alt="">
-                    <br><b>Figure 1: Total Solutions And Price Rate of the Allocation of Greedy And 3DDP over FlatPF[P] with Different P</b>
-                </span>
-            </p>
-
-            <p id="p_FMPF">Results of Price Impact in the Setting of Allocation with FMPF.
-                <span class="image featured" style="text-align: center">
-                    <img src="images/PA/entire_results_freemium.png" alt="">
-                    <br><b>Figure 2: Total Solutions And Price Rate of the Allocation of Greedy And 3DDP over FMPF[P,N] with Different P</b>
-                </span>
-            </p>
-
-            <p id="v">Results of Value Impact.
-                <span class="image featured" style="text-align: center">
-                    <img src="images/PA/value/resultsValueDistribution_1.png" alt="">
-                    (a) Query CD1<br>
-                    <img src="images/PA/value/resultsValueDistribution_6.png" alt="">
-                    (b) Query CD6<br>
-                    <img src="images/PA/value/resultsValueDistribution_9.png" alt="">
-                    (c) Query LD2<br>
-                    <img src="images/PA/value/resultsValueDistribution_10.png" alt="">
-                    (d) Query LD3<br>
-                    <img src="images/PA/value/resultsValueDistribution_11.png" alt="">
-                    (e) Query LD4<br>
-                    <img src="images/PA/value/resultsValueDistribution_12.png" alt="">
-                    (f) Query LD5<br>
-                    <img src="images/PA/value/resultsValueDistribution_13.png" alt="">
-                    (g) Query LD6<br>
-                    <img src="images/PA/value/resultsValueDistribution_15.png" alt="">
-                    (h) Query LD8<br>
-                    <img src="images/PA/value/resultsValueDistribution_24.png" alt="">
-                    (i) Query LS6<br>
-                    <img src="images/PA/value/resultsValueDistribution_25.png" alt="">
-                    (j) Query LS7
-                    <br><b>Figure 3: Total Value of the Allocations Returned by Greedy and 3DDP over FlatPF[P] and FMPF[P, N] with
-  Different P</b>
-                </span>
+            <p><strong>Problem Formalization:</strong></p>
+            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
+                the subset of the full answer as Allocation. To measure the utility of an allocation,
+                inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
+                to capture the willingness of clients to pay for \(s\) based on their preferences.
+                Then, the utility of an allocation \(\Lambda\) is $$\mu(\Lambda)=\sum_{s\in\Lambda}v(s).$$
+                Let \(r(s) \in \{0,1\}\) denote whether a solution \(s\) is in \(\Lambda\) or not.
+                If decide to allocate \(s\),
+                it has to purchase all tuples in \(RT(s)\). Let \(z(t)\in\{0,1\}\)
+                represent whether a tuple \(t\) is purchased or not.
+                Thus, the above constraint is \(r_{s}=1\iff \forall t\in RT(s), z(t)=1\),
+                which can be formalized
+                by $$|RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0.$$
+                Since the same triple can exist in different sources with different prices, whichever data sources
+                clients choose to purchase from, they should pay only once for it, even if it contributes to multiple solutions.
+                Therefore, PA has to track where each triple has been purchased.
+                To do so, we introduce the navigation matrix,
+                a (0,1)-matrix \(DT=(a_{i,j})_{m\times n}\), where \(m=|D_{M}|\)
+                and \(n=|RTA(\Lambda)|\), to represent the purchase of the triples in \(RTA(\Lambda)\) over \(D^{M}\).
+                The binary variable \(a_{ij} \in \left\{0,1\right\}\) denotes whether PA purchases the \(j\)th triple
+                \(t_{j}\) in \(RTA(\Lambda)\) from \(d_{i}\).
+                Thus, the pay-only-once constraint is $$z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,$$ where \(j = 1, \cdots, n.\)
+                The cost of the triples purchased from \(d_{i}\) is $$pf\Big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\Big).$$
+                Then, the cost of \(\Lambda\) under the budget constraint is
+                $$\sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\},d_{i}\big) \leq B.$$
+                Hence, purchase allocation is formalized into:
+                $$\begin{equation}
+                \label{eq:target}
+                \begin{gathered}
+                \Upsilon: \operatorname*{arg\,max}_{\Lambda \subseteq S} \mu(\Lambda) \\
+                \text{s.t. } z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,  t_{j} \in RTA(\Lambda), j = 1, \cdots, n, \\
+                |RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0,  \forall s \in \Lambda \\
+                \sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\big) \leq B \\
+                a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
+                \end{gathered}
+                \end{equation}$$
             </p>
 
             <footer>
@@ -170,5 +153,7 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
