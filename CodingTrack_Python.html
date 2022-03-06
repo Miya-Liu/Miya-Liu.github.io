@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Coding Track: Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="single is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html">PhD Recorder</a></h1>
+        <nav class="main">
+            <ul>
+                <li class="search"> <a class="fa-search" href="#search">Search</a>
+                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                      type="text">
+                    </form>
+                </li>
+                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Menu -->
+    <section id="menu">
+        <!-- Search -->
+        <section>
+            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                 type="text">
+            </form>
+        </section>
+        <!-- Links -->
+        <section>
+            <ul class="links">
+                <li> <a href="#">
+                    <h3>Years</h3>
+                    <p>2019</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Topics</h3>
+                    <p>Data Marketplaces</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Publications</h3>
+                    <p>Coming</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>States</h3>
+                    <p>Coming</p>
+                </a> </li>
+            </ul>
+        </section>
+    </section>
+    <!-- Main -->
+    <div id="main">
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="#">Purchase Allocation Problem Analysis</a></h2>
+                    <p>The formalization of the purchase allocation problem in paper <br>
+                        <em><b>Best Bang for the Buck: Purchase Allocation Under AccessDependent Pricing Functions.</b></em>
+                    </p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2019-10-12">01/06/2021</time>
+                    <a href="#" class="author"><span class="name">Mengya Liu</span></a>
+
+                    <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
+                </div>
+            </header>
+
+            <p><strong>Problem Formalization:</strong></p>
+            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
+                the subset of the full answer as Allocation. To measure the utility of an allocation,
+                inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
+                to capture the willingness of clients to pay for \(s\) based on their preferences.
+                Then, the utility of an allocation \(\Lambda\) is $$\mu(\Lambda)=\sum_{s\in\Lambda}v(s).$$
+                Let \(r(s) \in \{0,1\}\) denote whether a solution \(s\) is in \(\Lambda\) or not.
+                If decide to allocate \(s\),
+                it has to purchase all tuples in \(RT(s)\). Let \(z(t)\in\{0,1\}\)
+                represent whether a tuple \(t\) is purchased or not.
+                Thus, the above constraint is \(r_{s}=1\iff \forall t\in RT(s), z(t)=1\),
+                which can be formalized
+                by $$|RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0.$$
+                Since the same triple can exist in different sources with different prices, whichever data sources
+                clients choose to purchase from, they should pay only once for it, even if it contributes to multiple solutions.
+                Therefore, PA has to track where each triple has been purchased.
+                To do so, we introduce the navigation matrix,
+                a (0,1)-matrix \(DT=(a_{i,j})_{m\times n}\), where \(m=|D_{M}|\)
+                and \(n=|RTA(\Lambda)|\), to represent the purchase of the triples in \(RTA(\Lambda)\) over \(D^{M}\).
+                The binary variable \(a_{ij} \in \left\{0,1\right\}\) denotes whether PA purchases the \(j\)th triple
+                \(t_{j}\) in \(RTA(\Lambda)\) from \(d_{i}\).
+                Thus, the pay-only-once constraint is $$z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,$$ where \(j = 1, \cdots, n.\)
+                The cost of the triples purchased from \(d_{i}\) is $$pf\Big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\Big).$$
+                Then, the cost of \(\Lambda\) under the budget constraint is
+                $$\sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\},d_{i}\big) \leq B.$$
+                Hence, purchase allocation is formalized into:
+                $$\begin{equation}
+                \label{eq:target}
+                \begin{gathered}
+                \Upsilon: \operatorname*{arg\,max}_{\Lambda \subseteq S} \mu(\Lambda) \\
+                \text{s.t. } z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,  t_{j} \in RTA(\Lambda), j = 1, \cdots, n, \\
+                |RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0,  \forall s \in \Lambda \\
+                \sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\big) \leq B \\
+                a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
+                \end{gathered}
+                \end{equation}$$
+            </p>
+
+            <footer>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li class="actions">
+                        <a οnclick="add()" class="icon fa-heart">
+                            <a id="like">0</a>
+                            <script type="text/javascript">
+                                function add() {
+                                    var oTxt=document.getElementById('like');
+                                    var a=oTxt.value;
+                                    a++;
+                                    oTxt.value=a;
+                                }
+                            </script>
+                        </a>
+                    </li>
+                    <li><a href="#" class="icon fa-comment"></a></li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </section>
+
+    <section>
+        <ul>
+
+        </ul>
+    </section>
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
+
