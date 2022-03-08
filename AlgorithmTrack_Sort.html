@@ -5,6 +5,9 @@
     <title>Algorithm Track: Sorting</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body class="single is-preload">
 <!-- Wrapper -->
@@ -71,7 +74,6 @@
                 </div>
             </header>
 
-
             <style>
                 table, th, td {
                     border:1px solid black;
@@ -82,62 +84,162 @@
                     <th>Algorithm</th>
                     <th>Average Time Complexity</th>
                     <th>Average Space Complexity</th>
-                    <th>Robustness</th>
+                    <th>Stability</th>
                 </tr>
                 <tr>
-                    <td>Bubble Sort</td>
+                    <td><a href="#bubbleSort">Bubble Sort</a></td>
                     <td>O(n^2)</td>
-                    <td>Germany</td>
+                    <td>O(1)</td>
+                    <td>stable</td>
                 </tr>
                 <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
+                    <td><a href="#QuickSort">Quick Sort</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(logn)</td>
+                    <td>non-stable</td>
                 </tr>
                 <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
+                    <td><a href="#insertionSort">Insertion Sort</a></td>
+                    <td>O(n^2)</td>
+                    <td>O(1)</td>
+                    <td>stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#selectionSort">Selection Sort</a></td>
+                    <td>O(n^2)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#mergeSort">Merge Sort</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(n)</td>
+                    <td>stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#shellSort">Shell Sort</a></td>
+                    <td>O(n^4/3)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Heapsort</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
                 </tr>
             </table>
 
-            <p><strong>Problem Formalization:</strong></p>
-            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
-                the subset of the full answer as Allocation. To measure the utility of an allocation,
-                inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
-                to capture the willingness of clients to pay for \(s\) based on their preferences.
-                Then, the utility of an allocation \(\Lambda\) is $$\mu(\Lambda)=\sum_{s\in\Lambda}v(s).$$
-                Let \(r(s) \in \{0,1\}\) denote whether a solution \(s\) is in \(\Lambda\) or not.
-                If decide to allocate \(s\),
-                it has to purchase all tuples in \(RT(s)\). Let \(z(t)\in\{0,1\}\)
-                represent whether a tuple \(t\) is purchased or not.
-                Thus, the above constraint is \(r_{s}=1\iff \forall t\in RT(s), z(t)=1\),
-                which can be formalized
-                by $$|RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0.$$
-                Since the same triple can exist in different sources with different prices, whichever data sources
-                clients choose to purchase from, they should pay only once for it, even if it contributes to multiple solutions.
-                Therefore, PA has to track where each triple has been purchased.
-                To do so, we introduce the navigation matrix,
-                a (0,1)-matrix \(DT=(a_{i,j})_{m\times n}\), where \(m=|D_{M}|\)
-                and \(n=|RTA(\Lambda)|\), to represent the purchase of the triples in \(RTA(\Lambda)\) over \(D^{M}\).
-                The binary variable \(a_{ij} \in \left\{0,1\right\}\) denotes whether PA purchases the \(j\)th triple
-                \(t_{j}\) in \(RTA(\Lambda)\) from \(d_{i}\).
-                Thus, the pay-only-once constraint is $$z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,$$ where \(j = 1, \cdots, n.\)
-                The cost of the triples purchased from \(d_{i}\) is $$pf\Big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\Big).$$
-                Then, the cost of \(\Lambda\) under the budget constraint is
-                $$\sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\},d_{i}\big) \leq B.$$
-                Hence, purchase allocation is formalized into:
-                $$\begin{equation}
-                \label{eq:target}
-                \begin{gathered}
-                \Upsilon: \operatorname*{arg\,max}_{\Lambda \subseteq S} \mu(\Lambda) \\
-                \text{s.t. } z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,  t_{j} \in RTA(\Lambda), j = 1, \cdots, n, \\
-                |RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0,  \forall s \in \Lambda \\
-                \sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\big) \leq B \\
-                a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
-                \end{gathered}
-                \end{equation}$$
+            <p><strong>Sorting Algorithms:</strong></p>
+            <p>Note: stability refers to the performance of a sorting algorithm when it compares two elements.
+                When there are multiple dimensions to compare the elements, such as by suit or by rank of poker cards,
+                the correctly sorted version of an input list can have various. A stable sorting algorithm will use one
+                dimension for its comparison, decide the equality of two elements and ignore the other dimension, at the meantime,
+                the relative order of other dimensions will be preserved and consistent in the rest of the comparisons.<br>
+                References: Sorting Algorithms Wikipedia (https://en.wikipedia.org/wiki/Sorting_algorithm#Stability).
             </p>
+            <ul>
+                <li>Bubble Sort: switch two elements when they are in wrong order.  <br>
+                    <pre id="bubbleSort"><code class="python">
+    class Solution:
+        def bubble_sort(self, nums: List[int]) -> List[int]:
+            has_changed = False
+            for i in range(len(nums)-1):
+                has_changed = False
+                for j in range(len(nums)-i-1):
+                    if nums[j] > nums[j+1]:
+                        tmp = nums[j]
+                        nums[j] = nums[j+1]
+                        nums[j+1] = tmp
+                        has_changed = True
+                if not has_changed:
+                    break
+            return nums
+                    </code></pre>
+                </li>
+            </ul>
+
+            <ul>
+                <li>Quick Sort: divide-and-conquer, split the original list into two sub lists, namely greater one
+                    and smaller one than a pivot.<br>
+                    <pre id="QuickSort"><code class="python">
+    class Solution:
+        def quick_sort(self, nums: List[int], left, right) -> None:
+            if left >= right:
+                return
+            i, j = left - 1, right + 1
+            num = nums[(left + right) >> 1]
+            while i < j:
+                while True:
+                    i += 1
+                    if nums[i] >= num:
+                        break
+                while True:
+                    j -= 1
+                    if nums[j] <=num:
+                        break
+                if i < j:
+                    tmp = nums[i]
+                    nums[i] = nums[j]
+                    nums[j] = tmp
+            self.quick_sort(nums, left, j)
+            self.quick_sort(nums, j+1, right)
+                    </code></pre>
+                </li>
+            </ul>
+            <ul>
+                <li>Insertion Sort <br>
+                    <pre id="insertionSort"><code class="python">
+            class Solution:
+                def insertion_sort(self, nums: List[int]) -> List[int]:
+
+                    return nums
+                    </code></pre>
+                </li>
+            </ul>
+            <ul>
+                <li>Selection Sort <br>
+                    <pre id="selectionSort"><code class="python">
+            class Solution:
+                def insertion_sort(self, nums: List[int]) -> List[int]:
+
+                    return nums
+                    </code></pre>
+                </li>
+            </ul>
+
+            <ul>
+                <li>Merge Sort <br>
+                    <pre id="mergeSort"><code class="python">
+            class Solution:
+                def insertion_sort(self, nums: List[int]) -> List[int]:
+
+                    return nums
+                    </code></pre>
+                </li>
+            </ul>
+
+            <ul>
+                <li>Shell Sort <br>
+                    <pre id="shellSort"><code class="python">
+            class Solution:
+                def insertion_sort(self, nums: List[int]) -> List[int]:
+
+                    return nums
+                    </code></pre>
+                </li>
+            </ul>
+
+            <ul>
+                <li>Heap Sort <br>
+                    <pre id="heapSort"><code class="python">
+            class Solution:
+                def insertion_sort(self, nums: List[int]) -> List[int]:
+
+                    return nums
+                    </code></pre>
+                </li>
+            </ul>
 
             <footer>
                 <ul class="stats">
