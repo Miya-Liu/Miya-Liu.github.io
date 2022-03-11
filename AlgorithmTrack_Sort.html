@@ -63,7 +63,7 @@
             <header>
                 <div class="title">
                     <h2><a href="#">List of Sorting Algorithms</a></h2>
-                    <p>The theory and implementation. <br>
+                    <p>The theory and implementation in Python. <br>
                     </p>
                 </div>
                 <div class="meta">
@@ -188,33 +188,69 @@
                 </li>
             </ul>
             <ul>
-                <li>Insertion Sort <br>
+                <li>Insertion Sort: insert elements from a messed up list into a sorted listed. <br>
                     <pre id="insertionSort"><code class="python">
-            class Solution:
-                def insertion_sort(self, nums: List[int]) -> List[int]:
-
-                    return nums
+    class Solution:
+        def insertion_sort(self, nums: List[int]) -> None:
+            for i in range(1, len(nums)):
+                tmp = nums[i]
+                print(tmp)
+                j=0
+                for j in range(i-1, -1, -1):
+                    if nums[j] <= tmp:
+                        break
+                    else:
+                        nums[j+1] = nums[j]
+                if j == 0:
+                    nums[j+1] = nums[j]
+                    nums[j] = tmp
+                else:
+                    nums[j+1] = tmp
                     </code></pre>
                 </li>
             </ul>
             <ul>
-                <li>Selection Sort <br>
+                <li>Selection Sort: select the minimum element and insert it into a sorted sub-list. <br>
                     <pre id="selectionSort"><code class="python">
-            class Solution:
-                def insertion_sort(self, nums: List[int]) -> List[int]:
-
-                    return nums
+    class Solution:
+        def selection_sort(self, nums: List[int]) -> None:
+            for i in range(0, len(nums)):
+                tmp = nums[i]
+                min_index = i
+                for j in range(i, len(nums)):
+                    if nums[j] < nums[min_index]:
+                        min_index = j
+                nums[i], nums[min_index] = nums[min_index], nums[i]
                     </code></pre>
                 </li>
             </ul>
 
             <ul>
-                <li>Merge Sort <br>
+                <li>Merge Sort: divide the long list into sub-lists and sort. <br>
                     <pre id="mergeSort"><code class="python">
-            class Solution:
-                def insertion_sort(self, nums: List[int]) -> List[int]:
-
-                    return nums
+    class Solution:
+        def merge_sort(self, nums: List[int], left, right) -> None:
+            if left >= right:
+                return
+            mid = (left + right) >> 1
+            self.merge_sort(nums, left, mid)
+            self.merge_sort(nums, mid+1, right)
+            i, j = left, mid+1
+            tmp = []
+            for k in range(left, right+1):
+                if i > mid:
+                    tmp.append(nums[j])
+                    j += 1
+                elif j > right:
+                    tmp.append(nums[i])
+                    i += 1
+                elif nums[i] < nums[j]:
+                    tmp.append(nums[i])
+                    i += 1
+                else:
+                    tmp.append(nums[j])
+                    j += 1
+            nums[left:right+1] = tmp
                     </code></pre>
                 </li>
             </ul>

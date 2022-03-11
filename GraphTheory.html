@@ -59,9 +59,8 @@
         <article class="post">
             <header>
                 <div class="title">
-                    <h2><a href="#">Purchase Allocation Problem Analysis</a></h2>
-                    <p>The formalization of the purchase allocation problem in paper <br>
-                        <em><b>Best Bang for the Buck: Purchase Allocation Under AccessDependent Pricing Functions.</b></em>
+                    <h2><a href="#">Graph Theory</a></h2>
+                    <p>List of Graph Structure and Algorithms.
                     </p>
                 </div>
                 <div class="meta">
@@ -72,42 +71,121 @@
                 </div>
             </header>
 
-            <p><strong>Problem Formalization:</strong></p>
-            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
-                the subset of the full answer as Allocation. To measure the utility of an allocation,
-                inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
-                to capture the willingness of clients to pay for \(s\) based on their preferences.
-                Then, the utility of an allocation \(\Lambda\) is $$\mu(\Lambda)=\sum_{s\in\Lambda}v(s).$$
-                Let \(r(s) \in \{0,1\}\) denote whether a solution \(s\) is in \(\Lambda\) or not.
-                If decide to allocate \(s\),
-                it has to purchase all tuples in \(RT(s)\). Let \(z(t)\in\{0,1\}\)
-                represent whether a tuple \(t\) is purchased or not.
-                Thus, the above constraint is \(r_{s}=1\iff \forall t\in RT(s), z(t)=1\),
-                which can be formalized
-                by $$|RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0.$$
-                Since the same triple can exist in different sources with different prices, whichever data sources
-                clients choose to purchase from, they should pay only once for it, even if it contributes to multiple solutions.
-                Therefore, PA has to track where each triple has been purchased.
-                To do so, we introduce the navigation matrix,
-                a (0,1)-matrix \(DT=(a_{i,j})_{m\times n}\), where \(m=|D_{M}|\)
-                and \(n=|RTA(\Lambda)|\), to represent the purchase of the triples in \(RTA(\Lambda)\) over \(D^{M}\).
-                The binary variable \(a_{ij} \in \left\{0,1\right\}\) denotes whether PA purchases the \(j\)th triple
-                \(t_{j}\) in \(RTA(\Lambda)\) from \(d_{i}\).
-                Thus, the pay-only-once constraint is $$z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,$$ where \(j = 1, \cdots, n.\)
-                The cost of the triples purchased from \(d_{i}\) is $$pf\Big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\Big).$$
-                Then, the cost of \(\Lambda\) under the budget constraint is
-                $$\sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\},d_{i}\big) \leq B.$$
-                Hence, purchase allocation is formalized into:
-                $$\begin{equation}
-                \label{eq:target}
-                \begin{gathered}
-                \Upsilon: \operatorname*{arg\,max}_{\Lambda \subseteq S} \mu(\Lambda) \\
-                \text{s.t. } z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,  t_{j} \in RTA(\Lambda), j = 1, \cdots, n, \\
-                |RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0,  \forall s \in \Lambda \\
-                \sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\big) \leq B \\
-                a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
-                \end{gathered}
-                \end{equation}$$
+            <p><strong>Graph Problems and Algorithms: (related libraries:
+                <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/">Neo4j</a>,
+                <a href="https://networkx.org/documentation/stable/reference/algorithms/index.html">networkX</a>)
+            </strong></p>
+            <style>
+                table, th, td {
+                    border:1px solid black;
+                }
+            </style>
+            <table style="width:100%">
+                <tr>
+                    <th>Problem</th>
+                    <th>Computational Complexity</th>
+                    <th>Algorithm</th>
+                    <th>Optimum or Not</th>
+                </tr>
+                <tr>
+                    <td><a href="#bubbleSort">Breadth First Search</a></td>
+                    <td>O(n^2)</td>
+                    <td>O(1)</td>
+                    <td>stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#QuickSort">Depth First Search</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(logn)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#insertionSort">Single Shortest Path</a></td>
+                    <td>O(n^2)</td>
+                    <td>Dijkstra[4], Bellman-Ford, etc</td>
+                    <td>stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#selectionSort">All Pair Shortest Path</a></td>
+                    <td>O(n^2)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#mergeSort">Minimum Spanning Tree</a></td>
+                    <td>polynomial</td>
+                    <td> Borůvka[1], Prim[2], Kruskal[3] </td>
+                    <td>stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#shellSort">Random Walk</a></td>
+                    <td>O(n^4/3)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#shellSort"></a></td>
+                    <td>NP-hard</td>
+                    <td> x</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Degree Centrality</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Closeness Centrality</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Betweenness Centrality</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Page Rank</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Triangle Count</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Strongly Connected Components</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+                <tr>
+                    <td><a href="#heapSort">Label Propagation</a></td>
+                    <td>O(nlogn)</td>
+                    <td>O(1)</td>
+                    <td>non-stable</td>
+                </tr>
+            </table>
+
+            <p>References: <br>
+                [1] Otakar Boruvka. O jist ́em probl ́emu minim  ́aln ́ım. Pr ́ace Mor. Prırodved. Spol. v Brne
+                (Acta Societ. Scienc. Natur. Moravicae), 3(3):37–58, 1926..<br>
+                [2] Robert Clay Prim. Shortest connection networks and some generalizations. The Bell
+                System Technical Journal, 36(6):1389–1401, 1957.<br>
+                [3] Joseph B Kruskal. On the shortest spanning subtree of a graph and the traveling salesman problem.
+                Proceedings of the American Mathematical society, 7(1):48–50, 1956.<br>
+                [4] Dijkstra, E.W. A note on two problems in connexion with graphs. Numer. Math. 1, 269–271 (1959). https://doi.org/10.1007/BF01386390<br>
+                [] <br>
+                [] <br>
+                [] <br>
+                [] <br>
+                [] <br>
             </p>
 
             <footer>
@@ -141,11 +219,6 @@
         </ul>
     </section>
 
-    <section>
-        <ul>
-
-        </ul>
-    </section>
 </div>
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
