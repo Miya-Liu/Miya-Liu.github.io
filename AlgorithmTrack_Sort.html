@@ -194,7 +194,6 @@
         def insertion_sort(self, nums: List[int]) -> None:
             for i in range(1, len(nums)):
                 tmp = nums[i]
-                print(tmp)
                 j=0
                 for j in range(i-1, -1, -1):
                     if nums[j] <= tmp:
@@ -256,23 +255,61 @@
             </ul>
 
             <ul>
-                <li>Shell Sort <br>
+                <li>Shell Sort: compare elements in a list by different gaps, until the gap is 1.
+                    By this way, sort parts of the list, and then generally sort the whole list.
                     <pre id="shellSort"><code class="python">
-            class Solution:
-                def insertion_sort(self, nums: List[int]) -> List[int]:
-
-                    return nums
+    class Solution:
+        def shell_sort(self, nums: List[int]) -> None:
+            gap = int(len(nums)/2)
+            while gap > 0:
+                for i in range(gap, len(nums)):
+                    x = nums[i]
+                    j = i
+                    while j >= gap and nums[j - gap] > x:
+                        nums[j] = nums[j - gap]
+                        j -= gap
+                    nums[j] = x
+                gap = int(gap / 2)
                     </code></pre>
                 </li>
             </ul>
 
             <ul>
-                <li>Heap Sort <br>
+                <li>Heap Sort: based on the concept of binary heap, it uses the input list to build up a max binary heap,
+                    switch the biggest element with the last unsorted element in the list, and then keep adjust the new heap to a
+                    max binary heap and switch, until all the element has been sorted.
                     <pre id="heapSort"><code class="python">
-            class Solution:
-                def insertion_sort(self, nums: List[int]) -> List[int]:
+    class Solution:
+        def build_MaxHeap(self, nums: List[int]) -> None:
+            i = (len(nums) >> 1) - 1
+            while i >= 0:
+                print(i)
+                self.heapify(nums, i, len(nums))
+                i -= 1
 
-                    return nums
+
+        def heapify(self, nums: List[int], index, length):
+            left = index * 2 + 1
+            right = index * 2 + 2
+            largest  = index
+            print(index, left, right)
+            if left < length and nums[left] > nums[largest]:
+                largest = left
+            if right < length and nums[right] > nums[largest]:
+                largest = right
+            if largest != index:
+                nums[index], nums[largest] = nums[largest], nums[index]
+                print(nums)
+                self.heapify(nums, largest, length)
+
+
+        def heapsort(self, nums: List[int]) -> None:
+            self.build_MaxHeap(nums)
+            length = len(nums)
+            for cur in range(len(nums)-1, -1, -1):
+                nums[0], nums[cur] = nums[cur], nums[0]
+                length -= 1
+                self.heapify(nums, 0, length)
                     </code></pre>
                 </li>
             </ul>
