@@ -72,9 +72,44 @@
                 </div>
             </header>
 
-            <p><strong>Problem Formalization:</strong></p>
+            <a><strong>Subset Sum Problem: given a set of integers, does any non-empty subset of them add up to zero?</strong></a>
+            <a><strong>Task: Given the fact that Knapsack decision problem is NP-hard, prove subset sum problem is NP-hard. </strong></a>
+            <p id="p_Formal">
+            <br>
+            Proof:<br>
+                Subset Sum Problem Instance: A set of \(n\) integers, \(N=\{r_{1}, r_{2}, \cdots,r_{n}\}\),
+                a value of 0 and a subset of the integers \(S\). <br>
+                QUESTION: Can the integers in S add up to the value of 0.
+                <br><br>
+                Knapsack Problem Instance: A set of \(k\) elements, \(K=\{1,\dots,k\}\), each element has a value of \(v\)
+                and a weight of \(w\), and a value of \(V\) and a knapsack with a capacity of \(W\). <br>
+                Knapsack Question: Can the knapsack reach a value \(V\) without exceeding the capacity of \(W \)?
 
-            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
+                <br><br>
+                Reduction: Define an instance \(I\) of Subset Sum problem reduced from Knapsack by: <br>
+                \begin{align*}
+                , \text{ where } i=1, 2, \cdots, n, \\
+                x_{i} =& 1, \text{ where } i=1, 2, \cdots, n, \\
+                V=0,\\
+                W=k.
+                \end{align*}
+                where \(x_{i} = 1\) denote the weight of the \(i\)th integer ,
+                <br>
+
+                Assume the knapsack in the Knapsack problem has a value of 0 without exceeding the capacity of \(W\).
+                Since the integer
+                We will explain that if there is an answer for the instance $I$ of the PA problem on the assumption with the maximal
+                utility within the budget of $B$, if and only if there is a procedure to find the subset that satisfies the question
+                of SUKP. Assume the subset $\Phi$ of $N$ has a maximal profit without exceeding the capacity of $c$.
+                Since the values of solutions in $S$ and the budget are equal to the profits of items in $N$ and the capacity,
+                the allocation $\Lambda = \Phi$ has maximal value within the budget of $B$ and answers the instance $I$ of problem PA.
+                And vice versa.
+
+                Using the reduction from SUKP to the PA problem establishes the simplified problem as NP-hard. Introducing any other pricing functions (e.g. ADPFs), the PA problem is at least in NP-hard.
+
+
+
+                To formalize the purchase allocation problem in the presence of ADPF, first, we define
                 the subset of the full answer as Allocation. To measure the utility of an allocation,
                 inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
                 to capture the willingness of clients to pay for \(s\) based on their preferences.

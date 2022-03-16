@@ -71,44 +71,190 @@
                     <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
                 </div>
             </header>
+            <ul>
+                <li>
+                    <a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing</a>:
+                    a package that supports spawning processes.
+                    <pre><code class="python">
+from multiprocessing import Pool
 
-            <p><strong>Problem Formalization:</strong></p>
-            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
-                the subset of the full answer as Allocation. To measure the utility of an allocation,
-                inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
-                to capture the willingness of clients to pay for \(s\) based on their preferences.
-                Then, the utility of an allocation \(\Lambda\) is $$\mu(\Lambda)=\sum_{s\in\Lambda}v(s).$$
-                Let \(r(s) \in \{0,1\}\) denote whether a solution \(s\) is in \(\Lambda\) or not.
-                If decide to allocate \(s\),
-                it has to purchase all tuples in \(RT(s)\). Let \(z(t)\in\{0,1\}\)
-                represent whether a tuple \(t\) is purchased or not.
-                Thus, the above constraint is \(r_{s}=1\iff \forall t\in RT(s), z(t)=1\),
-                which can be formalized
-                by $$|RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0.$$
-                Since the same triple can exist in different sources with different prices, whichever data sources
-                clients choose to purchase from, they should pay only once for it, even if it contributes to multiple solutions.
-                Therefore, PA has to track where each triple has been purchased.
-                To do so, we introduce the navigation matrix,
-                a (0,1)-matrix \(DT=(a_{i,j})_{m\times n}\), where \(m=|D_{M}|\)
-                and \(n=|RTA(\Lambda)|\), to represent the purchase of the triples in \(RTA(\Lambda)\) over \(D^{M}\).
-                The binary variable \(a_{ij} \in \left\{0,1\right\}\) denotes whether PA purchases the \(j\)th triple
-                \(t_{j}\) in \(RTA(\Lambda)\) from \(d_{i}\).
-                Thus, the pay-only-once constraint is $$z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,$$ where \(j = 1, \cdots, n.\)
-                The cost of the triples purchased from \(d_{i}\) is $$pf\Big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\Big).$$
-                Then, the cost of \(\Lambda\) under the budget constraint is
-                $$\sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\},d_{i}\big) \leq B.$$
-                Hence, purchase allocation is formalized into:
-                $$\begin{equation}
-                \label{eq:target}
-                \begin{gathered}
-                \Upsilon: \operatorname*{arg\,max}_{\Lambda \subseteq S} \mu(\Lambda) \\
-                \text{s.t. } z(t_{j}) = \sum_{i=1}^{m}a_{ij} \leq 1,  t_{j} \in RTA(\Lambda), j = 1, \cdots, n, \\
-                |RT(s)|\times r(s) - \sum_{t\in RT(s)}z(t) \leq 0,  \forall s \in \Lambda \\
-                \sum_{i=1}^{m}pf\big(\{t_{j}|a_{ij}=1, j = 1, \dots, n\}, d_{i}\big) \leq B \\
-                a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
-                \end{gathered}
-                \end{equation}$$
-            </p>
+def f(x):
+    return x*x
+
+if __name__ == '__main__':
+    # apply 5 thread
+    with Pool(5) as p:
+        # 3 threads of 5, each calls the function f(x), with given values in the array as input x respectively
+        print(p.map(f, [1, 2, 3]))
+                    </code></pre>
+                </li>
+                <li>
+                    <a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>:
+                    the fundamental package for scientific computing in Python.
+                </li>
+                <li>
+                    <a href="https://networkx.org/documentation/latest/reference/introduction.html">networkX</a>:
+                    a package for processing graph structured data and analysis in Python.
+                </li>
+                <li>
+                    <a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>:
+                    the package for plotting charts in Python. <br>
+                    <ul>
+                        <li>
+                            <a>heatmap:</a> to show data which depends on two independent variables as a color coded image plot with or without categories.
+                            <img src="images/python-plot/comparison-C-vs-G-and-S-flat-freemium-per-v5.png"
+                                 alt="Heatmap" width="950">
+                            <pre><code class="python">
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+from pylab import *
+from operator import add
+import os
+
+
+def heatmap_no_bar(data, row_labels, col_labels, ax=None,
+            cbar_kw={}, cbarlabel="", **kwargs):
+
+    if not ax:
+        ax = plt.gca()
+
+    # Plot the heatmap
+    im = ax.imshow(data, **kwargs)
+
+    # We want to show all ticks...
+    ax.set_xticks(np.arange(data.shape[1]))
+    ax.set_yticks(np.arange(data.shape[0]))
+    # ... and label them with the respective list entries.
+    ax.set_xticklabels(col_labels)
+    ax.set_yticklabels(row_labels)
+
+    # Let the horizontal axes labeling appear on top.
+    ax.tick_params(top=True, bottom=False,
+                   labeltop=True, labelbottom=False)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=-30, ha="right",
+             rotation_mode="anchor")
+
+    # Turn spines off and create white grid.
+    for edge, spine in ax.spines.items():
+        spine.set_visible(False)
+
+    ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
+    ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
+    ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
+    ax.tick_params(which="minor", bottom=False, left=False)
+
+    return im
+
+
+def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
+                     textcolors=["black", "white"],
+                     threshold=None, **textkw):
+
+    if not isinstance(data, (list, np.ndarray)):
+        data = im.get_array()
+
+    # Normalize the threshold to the images color range.
+    if threshold is not None:
+        threshold = im.norm(threshold)
+    else:
+        threshold = im.norm(data.max())/2.
+
+    # Set default alignment to center, but allow it to be
+    # overwritten by textkw.
+    kw = dict(horizontalalignment="center",
+              verticalalignment="center")
+    kw.update(textkw)
+
+    # Loop over the data and create a `Text` for each "pixel".
+    # Change the text's color depending on the data.
+    texts = []
+    for i in range(data.shape[0]):
+        for j in range(data.shape[1]):
+            if im.norm(data[i, j]) > 0.79:
+                kw.update(color="white")
+            else:
+                kw.update(color=textcolors[int(im.norm(data[i, j]) > threshold)])
+            text = im.axes.text(j, i, valfmt[i][j], **kw)
+            texts.append(text)
+
+    return texts
+
+
+# fold into one figure
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 7), gridspec_kw={'width_ratios': [4, 4, 5]})
+
+data = np.array(data_matrix)
+label = np.array(markers_matrix)
+im = heatmap_no_bar(data, y_label, x_label, ax=ax1, cmap="PuOr", vmin=-1, vmax=1)
+annotate_heatmap(im, valfmt=label, threshold=-1,
+                    textcolors=["white", "black"], size=7)
+
+data = np.array(freemium_result_matrix)
+label = np.array(freemium_result_matrix_markers)
+im = heatmap_no_bar(data, y_label, x_label, ax=ax2, cmap="PuOr", vmin=-1, vmax=1)
+annotate_heatmap(im, valfmt=label, threshold=-1,
+                    textcolors=["white", "black"], size=7)
+
+data = np.array(per_result_matrix)
+label = np.array(per_result_matrix_markers)
+im, _ = heatmap(data, y_label, x_label, ax=ax3, cmap="PuOr", vmin=-1, vmax=1,
+                cbarlabel="Cost Reduction Rate Over CostFed")
+annotate_heatmap(im, valfmt=label, threshold=-1,
+                    textcolors=["white", "black"], size=7)
+plt.subplots_adjust(left=0.04, bottom=0.02, right=0.965, top=0.94, wspace=0.13)
+plt.setp([ax2], xlabel='G: General Greedy Algorithms, S: Sum-Greedy, C: CostFed, -: All Equal')
+plt.show()
+                            </code></pre>
+                        </li>
+                        <li>
+                            <a>3D plot:</a> (elements in [] means it needs to be updated when reuse the code).
+                            <img src="images/python-plot/demo.png" width="600">
+                            <pre><code class="python">
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+m = ['o', 'x', '+', '^', 's', 'p', '1', '*', 'D', 'P']
+
+data_x = []
+data_y = []
+data_z = []
+
+for n in [an_array]]:
+    data_x = [x_data]
+    data_y = [y_data]
+    data_z = [z_data]
+    ax.scatter(data_x, data_y, data_z, marker=[a_marker], label=str(n))
+ax.set_zlabel('z', labelpad=10)
+ax.set_ylabel('y')
+ax.set_xlabel('x', labelpad=15)
+plt.rcParams.update({'font.size': 12})
+ax.legend(loc='upper left', ncol=5)
+plt.show()
+                            </code></pre>
+                        </li>
+
+                    Others: <a href="https://matplotlib.org/stable/api/markers_api.html">markers</a>,
+                    <a href="https://matplotlib.org/3.5.1/api/_as_gen/matplotlib.pyplot.legend.html">legends</a>,
+                    <a href="https://matplotlib.org/stable/gallery/color/named_colors.html">colors</a>,
+                    <a href="https://matplotlib.org/stable/tutorials/text/text_intro.html">text</a>,
+                    <a href="https://matplotlib.org/3.1.0/gallery/userdemo/connectionstyle_demo.html#
+                    sphx-glr-gallery-userdemo-connectionstyle-demo-py">arrows</a>.
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://pymoo.org">pymoo</a>: Multi-objective Optimization in Python <br>
+                    Input population is in the format of numpy array. The basic operators in a genetic algorithm consist of
+                    sampling, selection, crossover, mutation, and repair. Sampling initialises the population;
+                    selection picks subset of the population based on given selecting method;
+                    crossover uses the selected subset to create offsprings after given the number of parents for one offspring;
+                    mutation updates the offsprings based on given probability and method, which can increase the diversity of populations;
+                    repair offers a way to control the algorithms only searching in feasible space.
+                    <br>
+                    For details, check the <strong>operators</strong> and <strong>API references</strong> on the pymoo website.
+                </li>
+            </ul>
 
             <footer>
                 <ul class="stats">

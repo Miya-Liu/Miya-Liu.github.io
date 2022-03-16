@@ -110,6 +110,32 @@
                 \end{equation}$$
             </p>
 
+            <p><strong>The allocation problem (PA) is NP-hard.</strong></p>
+            <p>
+                We prove that PA is NP-Hard under the following simplifying assumptions: each tuple has a nonnegative constant value as its price. Then, it is straightforward to get the lowest price of each tuple without considering the difficulty brought by pricing functions.
+
+                We reduce a known NP-hard problem, the \textit{Set-Union Knapsack Problem} (SUKP) \citep{goldschmidt1994note} to the PA problem on the above assumption. Following the formalisation of SUKP in \cite{kellerer2003knapsack}, the SUKP problem is
+                \begin{itemize}
+                \item[] INSTANCE: A set of $n$ items, $N$, $N=\{1,\dots,n\}$, a set of $m$ elements, $P$, $P=\{1,\dots,m\}$ and a knapsack with a capacity of $c$. Each item $j$ corresponds to a subset $P_{j}$ of the element set $P$. Each item $j$ has a nonnegative profit, $p_{j}$, and the element $i$ has nonnegative weight $w_{i}$. The total weight of a collection of items is given by the total weight of the elements in the union of the items' element sets.
+                \item[] QUESTION: Find the subset of the items with the maximal profit of a subset of the items and the total weight not exceeding the knapsack capacity.
+                \end{itemize}
+                Define an instance $I$ of problem PA reduced from SUKP by
+                \begin{align*}
+                S=&N, \\
+                RTA(S)=&P, \\
+                RT(s)=& P_{j}, \\
+                v(s) =& p_{j}, \text{ where } s=j, s\in S, j \in N,\\
+                PF[d](\{t\})=&w_{i}, \text{ where } t=i, t\in RTA(S), i \in P, d\in D, \\ & \text{and $d$ is the data source has cheapest price of } \{t\},\\
+                B=&c.
+                \end{align*}
+                %$S=N$, $RTA(S)=P$, $RT(s)= P_{j}$, $v(s) = p_{j}$ where $s=j, s\in S, j \in N$, $PF[d](\{t\})=w_{i}$ where $t=i, t\in RTA(S), i \in P$, $d\in D$ is the data source has cheapest price of $\{t\}$, and $B=c$.
+                We will explain that there is an answer for the instance $I$ of the PA problem on the assumption with the maximal utility within the budget of $B$, if and only if there is a procedure to find the subset that satisfies the question of SUKP. Assume the subset $\Phi$ of $N$ has a maximal profit without exceeding the capacity of $c$.
+                Since the values of solutions in $S$ and the budget are equal to the profits of items in $N$ and the capacity, the allocation $\Lambda = \Phi$ has maximal value within the budget of $B$ and answers the instance $I$ of problem PA. And vice versa.
+
+                Using the reduction from SUKP to the PA problem establishes the simplified problem as NP-hard. Introducing any other pricing functions (e.g. ADPFs), the PA problem is at least in NP-hard.
+
+            </p>
+
             <footer>
                 <ul class="stats">
                     <li><a href="#">General</a></li>
