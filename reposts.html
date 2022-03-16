@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Repost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="single is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html">Thought Recorder</a></h1>
+        <nav class="main">
+            <ul>
+                <li class="search"> <a class="fa-search" href="#search">Search</a>
+                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                      type="text">
+                    </form>
+                </li>
+                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Menu -->
+    <section id="menu">
+        <!-- Search -->
+        <section>
+            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                 type="text">
+            </form>
+        </section>
+        <!-- Links -->
+        <section>
+            <ul class="links">
+                <li> <a href="#">
+                    <h3>Years</h3>
+                    <p>2019</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Topics</h3>
+                    <p>Data Marketplaces</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Publications</h3>
+                    <p>Coming</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>States</h3>
+                    <p>Coming</p>
+                </a> </li>
+            </ul>
+        </section>
+    </section>
+    <!-- Main -->
+    <div id="main">
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="#">Repost from others</a></h2>
+                    <p>List of common commands learned from other developers: vim, bash, command line, docker.
+                    </p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2019-10-12">01/06/2021</time>
+                    <a href="#" class="author"><span class="name">Mengya Liu</span></a>
+
+                    <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
+                </div>
+            </header>
+            <style>
+                table {
+                    min-width: 100%; margin-top: 2em; margin-bottom: 2em; font-size: 0.9em; border-bottom: solid 1px #939aa1;
+                }
+                td, th { text-align: left; border-top: solid 1px #eef3fa; padding: 8px 10px; }
+
+                th { font-family: "raleway", sans-serif; font-weight: 800; color: #151515; }
+            </style>
+
+            <h2><a href="https://devhints.io/vim">Vim</a></h2>
+                vim filename
+            <table>
+                <tr>
+                    <td>
+                        <code>:qa | :w |:wq |:q! ZZ </code>
+                    </td>
+                    <td>
+                        Exiting
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>i | A | C | u | p </code>
+                    </td>
+                    <td>
+                        Editing
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>f[] | gg | G | L |  | </code>
+                    </td>
+                    <td>
+                        Navigation
+                    </td>
+                </tr>
+            </table>
+
+            <h2 id="command_line"><a href="https://devhints.io/command_line">Command Line</a></h2>
+            <table>
+                <tr>
+                    <td>
+                        <code>
+                            ls [option] [path]
+                        </code>
+                    </td>
+                    <td>
+                        List the elements at the current folder or the give path.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>
+                            tail [-F | -f | -r] [-bN | -cN | -nN] [file ...]
+                        </code>
+                    </td>
+                    <td>
+                        Print last lines of each given file to a standard output.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>
+                            sudo [option] "<"command">"
+                        </code>
+                    </td>
+                    <td>
+                        Process commands as a root user.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>
+                            wc [options]
+                        </code>
+                    </td>
+                    <td>
+                        Count words by the given options.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>
+                            grep [option] [pattern] [file ...]
+                        </code>
+                    </td>
+                    <td>
+                        Search given files for lines that match a expression of the given pattern.
+                    </td>
+                </tr>
+            </table>
+
+            <h2><a href="https://devhints.io/docker-compose">Docker</a></h2>
+            <table>
+                <tr>
+                    <td>
+                        <code>docker build | run | create | exec | start  </code>
+                    </td>
+                </tr>
+            </table>
+
+            <h2><a href="https://devhints.io/bash">Bash</a></h2>
+            <table>
+                <tr>
+                    <td>
+                        <code>echo  </code>
+                    </td>
+                    <td>Print in the command lines.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>git</code>
+                    </td>
+                    <td>Conditional Execution</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>$v </code>
+                    </td>
+                    <td>Use a predefined variable whose name is 'v'.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>f(){}</code>
+                    </td>
+                    <td>Format of a Function</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>${FOO:0:3} </code>
+                    </td>
+                    <td>Get the substring of variable FOO (position, length).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>{5..50..5} </code>
+                    </td>
+                    <td>An list of integers from 5 to 50 at the step of 5.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>for ((i = 0 ; i < 100 ; i++)); do
+                            echo $i
+                            done
+                        </code>
+                    </td>
+                    <td>Loop: iterate i from 0 to 99 and return i.</td>
+                </tr>
+            </table>
+
+            <footer>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li class="actions">
+                        <a οnclick="add()" class="icon fa-heart">
+                            <a id="like">0</a>
+                            <script type="text/javascript">
+                                function add() {
+                                    var oTxt=document.getElementById('like');
+                                    var a=oTxt.value;
+                                    a++;
+                                    oTxt.value=a;
+                                }
+                            </script>
+                        </a>
+                    </li>
+                    <li><a href="#" class="icon fa-comment"></a></li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </section>
+
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
