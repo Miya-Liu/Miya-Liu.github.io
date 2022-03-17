@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--
+	Future Imperfect by HTML5 UP	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Daily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="single is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html">Thought Recorder</a></h1>
+        <nav class="main">
+            <ul>
+                <li class="search"> <a class="fa-search" href="#search">Search</a>
+                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                      type="text">
+                    </form>
+                </li>
+                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Menu -->
+    <section id="menu">
+        <!-- Search -->
+        <section>
+            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                 type="text">
+            </form>
+        </section>
+        <!-- Links -->
+        <section>
+            <ul class="links">
+                <li> <a href="#">
+                    <h3>Years</h3>
+                    <p>2019</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Topics</h3>
+                    <p>Data Marketplaces</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Publications</h3>
+                    <p>Coming</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>States</h3>
+                    <p>Coming</p>
+                </a> </li>
+            </ul>
+        </section>
+    </section>
+
+    <!-- Main -->
+    <div id="main">
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="#">Daily Blog</a></h2>
+                    <p>Just type several works when I feel like writing something.
+                        It could be crazy ideas, silly thoughts, negative feelings or motivations.</p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2015-11-01">21/07/2020</time>
+                    <a href="#" class="author">
+                        <span class="name">Mengya Liu</span>
+                        <img src="images/avatar.jpg">
+                    </a>
+                </div>
+            </header>
+            <style>
+                p.diary{
+                    font-family: 'Prosto One', cursive; /*Prosto One is available at http://www.google.com/webfonts*/
+                    position: relative;
+                    display: inline-block;
+                    height: 140px;
+                    padding:0px;
+                    background: #dcdac6;
+                    /*apply a small drop shadow to the date*/
+                    -webkit-box-shadow: 3px 3px 4px rgba(99,99,99,.8);
+                    -moz-box-shadow: 3px 3px 4px rgba(99,99,99,.8);
+                    box-shadow: 3px 3px 4px rgba(99,99,99,.8);
+                    /*give the text a drop shadow*/
+                    text-shadow: 2px 2px 5px #919191;
+                }
+                /**NEXT STYLE THE DAY, MONTH AND YEAR**/
+                /*Day*/
+                p.diary .day{
+                    position: absolute; /*removes the date from the normal flow, allowing the month & year to be wrapped around it*/
+                    top: 0px;
+                    left:30px;
+                    font-size: 60px;
+                    color: #aa0e3a;
+                }
+                /*Month*/
+                p.diary .month{
+                    position: relative;
+                    top: 65px; /*size of .day font and its shadow*/
+                    left: 20px;
+                    font-size:25px;
+                    color: #3b788c;
+                }
+                /*Year*/
+                p.diary .year{
+                    position: relative;
+                    display: inline-block;
+                    top: 40px;
+                    left:0;
+                    font-size:32px;
+                    color: #ca4b29;
+                    /*rotate the year by 90 degrees anticlockwise*/
+                    -webkit-transform: rotate(-90deg);
+                    -moz-transform: rotate(-90deg);
+                    -o-transform: rotate(-90deg);
+                    -ms-transform: rotate(-90deg);
+                    transform: rotate(-90deg);
+                }
+            </style>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">17</span>
+                            <span class="month">December</span>
+                            <span class="year">2021</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            Passed my viva today. Hooray!<br>
+                            It must be a unique experience passing viva in a quarantine hotel. The viva is a great discussion
+                            to improve my thesis instead of an examination to me, thanks to my examiners and their wonderful suggestions.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">13</span>
+                            <span class="month">November</span>
+                            <span class="year">2021</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            Working is different with studying. <br>
+                            Different from my PhD experience, my supervisors make suggestions on my research,
+                            but do not making decisions for me. While I am working as an intern for
+                            a research group, the mode I sense now is that I provide research methods and results,
+                            others will make the decisions. More to learn.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">9</span>
+                            <span class="month">June</span>
+                            <span class="year">2021</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            'You can't wait life isn't hard anymore before you decide to be happy.'<br>
+                            I heard this sentence from a singer who performed in AGT and was fighting against cancer at the time.
+                            It is so right. Lift can not always be easy or bright for you but hard and stressful at most time.
+                            What we can control is how to face and live our life. Try to be positive and peaceful.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">30</span>
+                            <span class="month">March</span>
+                            <span class="year">2020</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            We start quarantine this month. The uni was shutdown and every module has to be online.<br>
+                            I keep wondering whether holography can be used in online module. If we can create a virtual
+                            classroom, and then use holography to present students and lectures in the classroom, it would
+                            be a more 'realistic' classroom for us all in this pandemic time.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">17</span>
+                            <span class="month">September</span>
+                            <span class="year">2019</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            Summer School in Lyon.<br>
+                            Lyon is a peaceful and colorful city. I did not realise that French people love exercise.
+                            There are people running on the street and street market selling article pieces everywhere.
+                            This summer school gathers people in database field and they tend to be well organised and
+                            pay more attention on theory analysis.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">10</span>
+                            <span class="month">  JUNE   </span>
+                            <span class="year">2019</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            Summer School in Italy.<br>
+                            Visit Italy for the first time and lived in a castle on the top of a hill. The weather and people remind me of summer in China.
+                            I already know that Italy and China have lots of cultural similarity from talks with my Italian
+                            Friends, but never get the feeling for real. And I had a great time in the summer school with
+                            terrific tutors and amazing teammates.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">
+                        <p class="diary">
+                            <span class="day">5</span>
+                            <span class="month">October</span>
+                            <span class="year">2017</span>
+                        </p>
+                    </td>
+                    <td style="width: 80%">
+                        <p>
+                            Meet my supervisor for the first time and say hi to my second supervisor in a toilet. <br>
+                            I met my supervisor in person for the first time. She explained me what PhD is and what I can expect from it by
+                            a metaphor of painting. I would be the one who hold the brush and dream about what to paint.
+                            She would be the one who offer colors and point out where to explore the paintings of others. I was noticed that
+                            I have another supervisor to whom I should introduce myself. I happened to meet her in the toilet.
+                            Guess what. I did say hi to her, she kindly introduced herself to me as well. Let's call it a good start.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+
+            <footer>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li><a href="#" class="icon fa-heart"></a></li>
+                    <li><a href="#" class="icon fa-comment"></a></li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </section>
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
