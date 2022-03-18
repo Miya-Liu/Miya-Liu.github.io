@@ -73,7 +73,9 @@
 
             <p><strong>Graph Problems and Algorithms: (related libraries:
                 <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/">Neo4j</a>,
-                <a href="https://networkx.org/documentation/stable/reference/algorithms/index.html">networkX</a>)
+                <a href="https://networkx.org/documentation/stable/reference/algorithms/index.html">networkX</a>,
+                <a href="https://igraph.org">igraph</a>,
+                <a href="">Raphtory</a>.
             </strong></p>
             <style>
                 table, th, td {
@@ -82,94 +84,25 @@
             </style>
             <table style="width:100%">
                 <tr>
-                    <th>Problem</th>
-                    <th>Computational Complexity</th>
-                    <th>Algorithm</th>
-                    <th>Optimum or Not</th>
+                    <td><a>Breadth First Search (BFS), Depth First Search (DFS) [5]</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#bubbleSort">Breadth First Search</a></td>
-                    <td>O(n^2)</td>
-                    <td>O(1)</td>
-                    <td>stable</td>
+                    <td><a>Single Shortest Path: Dijkstra[4], Bellman-Ford, etc</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#QuickSort">Depth First Search</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(logn)</td>
-                    <td>non-stable</td>
+                    <td><a>Minimum Spanning Tree: </a> Borůvka[1], Prim[2], Kruskal[3] </td>
                 </tr>
                 <tr>
-                    <td><a href="#insertionSort">Single Shortest Path</a></td>
-                    <td>O(n^2)</td>
-                    <td>Dijkstra[4], Bellman-Ford, etc</td>
-                    <td>stable</td>
+                    <td><a>Random Walk [7]</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#selectionSort">All Pair Shortest Path</a></td>
-                    <td>O(n^2)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
+                    <td>Betweenness Centrality [8,9]</td>
                 </tr>
                 <tr>
-                    <td><a href="#mergeSort">Minimum Spanning Tree</a></td>
-                    <td>polynomial</td>
-                    <td> Borůvka[1], Prim[2], Kruskal[3] </td>
-                    <td>stable</td>
+                    <td><a>Triangle Count [10,11]</a></td>
                 </tr>
                 <tr>
-                    <td><a href="#shellSort">Random Walk</a></td>
-                    <td>O(n^4/3)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#shellSort"></a></td>
-                    <td>NP-hard</td>
-                    <td> x</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Degree Centrality</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Closeness Centrality</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Betweenness Centrality</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Page Rank</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Triangle Count</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Strongly Connected Components</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
-                </tr>
-                <tr>
-                    <td><a href="#heapSort">Label Propagation</a></td>
-                    <td>O(nlogn)</td>
-                    <td>O(1)</td>
-                    <td>non-stable</td>
+                    <td><a>Label Propagation [12]</a></td>
                 </tr>
             </table>
 
@@ -180,12 +113,16 @@
                 System Technical Journal, 36(6):1389–1401, 1957.<br>
                 [3] Joseph B Kruskal. On the shortest spanning subtree of a graph and the traveling salesman problem.
                 Proceedings of the American Mathematical society, 7(1):48–50, 1956.<br>
-                [4] Dijkstra, E.W. A note on two problems in connexion with graphs. Numer. Math. 1, 269–271 (1959). https://doi.org/10.1007/BF01386390<br>
-                [] <br>
-                [] <br>
-                [] <br>
-                [] <br>
-                [] <br>
+                [4] Dijkstra, E.W. A note on two problems in connexion with graphs. Numer. Math. 1, 269–271, 1959.<br>
+                [5] Robert Sedgewick and Kevin Wayne. Algorithms 4th Edition. <a href="https://algs4.cs.princeton.edu/home/">Online Source Here</a> <br>
+                [6] West, Douglas Brent. Introduction to graph theory. Vol. 2. Upper Saddle River: Prentice hall, 2001.<br>
+                [7] Lovász, László. "Random walks on graphs." Combinatorics, Paul erdos is eighty 2, no. 1-46 (1993): 4.<br>
+                [8] Freeman, Linton C. "A set of measures of centrality based on betweenness." Sociometry (1977): 35-41.<br>
+                [9] Brandes, Ulrik. "A faster algorithm for betweenness centrality." Journal of mathematical sociology 25, no. 2 (2001): 163-177.<br>
+                [10] Schank, Thomas, and Dorothea Wagner. "Finding, counting and listing all triangles in large graphs, an experimental study." In International workshop on experimental and efficient algorithms, pp. 606-609. Springer, Berlin, Heidelberg, 2005.<br>
+                [11] Al Hasan, Mohammad, and Vachik S. Dave. "Triangle counting in large networks: a review." Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery 8, no. 2 (2018): e1226.<br>
+                [12] Zhang, Yun, Yongguo Liu, Rongjiang Jin, Jing Tao, Lidian Chen, and Xindong Wu. "Gllpa: A graph layout based label propagation algorithm for community detection." Knowledge-Based Systems 206 (2020): 106363. <br>
+                Check <a href="https://neo4j.com/blog/top-13-resources-graph-theory-algorithms/">here</a> for more suggestions on systematically learning graph theory and network
             </p>
 
             <footer>
