@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Algorithm Track: Optimisation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class="single is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html">Optimisation Algorithms</a></h1>
+        <nav class="main">
+            <ul>
+                <li class="search"> <a class="fa-search" href="#search">Search</a>
+                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                      type="text">
+                    </form>
+                </li>
+                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Menu -->
+    <section id="menu">
+        <!-- Search -->
+        <section>
+            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
+                                                                 type="text">
+            </form>
+        </section>
+        <!-- Links -->
+        <section>
+            <ul class="links">
+                <li> <a href="#">
+                    <h3>Years</h3>
+                    <p>2019</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Topics</h3>
+                    <p>Data Marketplaces</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>Publications</h3>
+                    <p>Coming</p>
+                </a> </li>
+                <li> <a href="#">
+                    <h3>States</h3>
+                    <p>Coming</p>
+                </a> </li>
+            </ul>
+        </section>
+    </section>
+    <!-- Main -->
+    <div id="main">
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="#">List of Optimisation Algorithms in Finding Optimum Values</a></h2>
+                    <p>Theory and pseudocode. <br>
+                    </p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2019-10-12">01/05/2022</time>
+                    <a href="#" class="author"><span class="name">Mengya Liu</span></a>
+                    <time class="published" datetime="2017-10-12">Updated 1 day ago</time>
+                </div>
+            </header>
+
+            <style>
+                table, th, td {
+                    border:1px solid black;
+                }
+            </style>
+            <table style="width:100%">
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Optimal</th>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                </tr>
+                <tr>
+                    <td><a href="#gradient_descent">Gradient Descent <br>
+                        (by Cauchy 1847, Hadamard 1907, Haskell Curry 1944)</a></td>
+                    <td> Local Optimum <br>
+                        (Global Optimum for Convex Functions [1] )
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a href="#newton_method">Newton's Method <br>
+                        ()</a></td>
+                    <td> Approximation <br>
+                        ()
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+            </table>
+
+            <style id="pseudocode">
+                pp {
+                    margin: 10px 0;
+                    padding: 5px;
+                    border: 1px solid #999;
+                }
+            </style>
+            <p id="p_Formal">Note: in the following discussion, we assume the target in a optimisation problem
+                is to fine the minimum values of a function with multi-variables: \(f(\theta_{1}, \theta_{2}, \cdots, \theta_{k})\).
+                $$\begin{equation}
+                \begin{gathered}
+                \operatorname*{min} f(\theta_{1}, \theta_{2}, \cdots, \theta_{k})
+                \end{gathered}
+                \end{equation}$$
+
+            </p>
+            <ul id="gradient_descent">
+                <li> <h3>Gradient Descent</h3>
+                    Image stand on the graph of the target function. From the standing point,
+                    if we walk towards the direction of steepest descent at each step, we may end up at the minimum point on the graph.
+                    <br><br>
+                    <strong>Steepest descent</strong> is the tangent line of the graph at a point, which is calculated by the derivatives of
+                    \(f(\theta_{1}, \theta_{2}, \cdots, \theta_{k})\). Considering the multiple variables, the derivatives are
+                    the partial derivative with respect to each of the variables:
+                    $$\begin{equation}
+                    \begin{gathered}
+                    \frac{\partial }{\partial \theta_{i}} f(\theta_{1}, \theta_{2}, \cdots, \theta_{k})
+                    \end{gathered}
+                    \end{equation}$$
+                    <br><br>
+                    <strong>Length of step</strong> is called step size or learning rate (in ML), \(\alpha\). If \(\alpha\) is too small, gradient descent
+                    can be slow. On the other hand, if  \(\alpha\) is too large, gradient descent can fail to overshoot the minimum.
+                    (Please refer to the contour line examples in the course of Machine Learning by Andrew Ng.)
+                    <br><br>
+                    <strong>Pseudocode</strong> <p style="background-color:lightgrey; border: #646464; width: fit-content;">
+                        repeat until convergence { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; \(\theta_{i} := \theta_{i} - \alpha \frac{\partial }{\partial \theta_{i}} f(\theta_{1}, \theta_{2}, \cdots, \theta_{k})\),
+                        (simultaneously update for \(i=1, 2, \cdots, k.\))
+                        <br>}
+                    </p>
+                    There are two ways to adopt gradient descent: <b>batch gradient descent</b> and <b>stochastic gradient descent</b>.
+                    Batch gradient descent uses all the training examples in each step of gradient section,
+                    which causes long-time training when using large scale examples, but can guarantee reaching local optimum.
+                    Stochastic gradient descent randomly selects and uses only one sample at a gradient descent step. Thus, there is only a
+                    selected subset of examples will be used in training, which can speed up the process but may miss the optimum.
+
+                </li>
+            </ul>
+            <ul id="newton_method">
+                <li> <h3>Newton's Method</h3>
+                    To be updated.
+                    <br><br>
+
+                </li>
+            </ul>
+            <ul>
+                <li><h3>Footnotes</h3>
+                    <p>
+                        1. Convex Function: A real-valued function is a convex function,
+                        if the line segment between any two points on the graph of the function does not lie below
+                        the graph between the two points.(Wikipedia) <br>
+                        2.
+                    </p>
+                </li>
+            </ul>
+            <footer>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li class="actions">
+                        <a οnclick="add()" class="icon fa-heart">
+                            <a id="like">0</a>
+                            <script type="text/javascript">
+                                function add() {
+                                    var oTxt=document.getElementById('like');
+                                    var a=oTxt.value;
+                                    a++;
+                                    oTxt.value=a;
+                                }
+                            </script>
+                        </a>
+                    </li>
+                    <li><a href="#" class="icon fa-comment"></a></li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+
+
+
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </section>
+
+    <section>
+        <ul>
+
+        </ul>
+    </section>
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
+
