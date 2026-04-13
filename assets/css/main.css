@@ -1,6 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
 
 /*
 	Future Imperfect by HTML5 UP
@@ -3613,7 +3613,7 @@ html {
   --a-border: rgba(20, 20, 20, 0.14);
   --a-shadow: 8px 8px 0 rgba(225, 29, 46, 0.22);
   --a-font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --a-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --a-font-display: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --a-font-poster: "Montserrat", system-ui, sans-serif;
   /* Ref palette: red frame, orange/green, mint moon, sky, teal */
   --paint-charcoal: #3a3a38;
@@ -3630,8 +3630,8 @@ html {
   --rand-red: var(--paint-red);
   --rand-yellow: var(--paint-yellow);
   --rand-shadow: 8px 8px 0 rgba(20, 20, 20, 0.22);
-  /* Blog sidebar / title stack (screenshot ref) */
-  --font-blog-title: "Playfair Display", Georgia, "Times New Roman", serif;
+  /* Editorial site name + intro stack only (serif) */
+  --font-site-title: "Fraunces", Georgia, "Times New Roman", serif;
   --font-blog-tagline: "Montserrat", var(--a-font-body);
   --ref-greige: #c6c2b9;
   --ref-orange-rule: #d9541e;
@@ -3652,7 +3652,7 @@ body.anthropic-site h1,
 body.anthropic-site h2,
 body.anthropic-site h3,
 body.anthropic-site h4 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-blog-tagline) !important;
 }
 
 body.anthropic-site #menu .links h3,
@@ -3669,7 +3669,8 @@ body.anthropic-site #header {
 }
 
 body.anthropic-site #header h1 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
 }
@@ -3679,7 +3680,7 @@ body.anthropic-site #header h1 a {
   align-items: center;
   gap: 0.5rem;
   color: var(--ref-title-ink) !important;
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-site-title) !important;
   font-weight: 900 !important;
   font-size: clamp(0.85rem, 1.5vw, 1.1rem) !important;
   letter-spacing: 0.06em !important;
@@ -3777,7 +3778,7 @@ body.anthropic-site #main .post:nth-child(5n + 5)::after {
 
 body.anthropic-site .post > header .title h2 a,
 body.anthropic-site .post > header .title h2 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-blog-tagline) !important;
   font-weight: 900 !important;
   color: var(--ref-title-ink) !important;
   letter-spacing: 0.02em;
@@ -3894,7 +3895,7 @@ body.anthropic-site #sidebar > * {
 }
 
 body.anthropic-site #sidebar h2 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-blog-tagline) !important;
   font-weight: 900 !important;
   color: var(--ref-title-ink) !important;
   letter-spacing: 0.04em;
@@ -3926,7 +3927,8 @@ body.anthropic-site #intro .logo:before {
 
 body.anthropic-site #intro header h2.intro-site-title,
 body.anthropic-site #intro header h2 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-weight: 900 !important;
   font-style: normal;
   font-size: clamp(1.65rem, 2.8vw, 2.15rem) !important;
@@ -4048,7 +4050,7 @@ body.anthropic-site.single .post td {
 
 body.anthropic-site.single article.post header .title h2 {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-blog-tagline) !important;
   font-weight: 900 !important;
   color: var(--ref-title-ink) !important;
   letter-spacing: 0.02em;
@@ -4102,7 +4104,8 @@ body.anthropic-home .anthropic-brand {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-weight: 900;
   font-size: 1rem;
   color: var(--ref-title-ink);
@@ -4190,7 +4193,8 @@ body.anthropic-home .anthropic-kicker {
 }
 
 body.anthropic-home .anthropic-hero h1 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-size: clamp(2rem, 4vw, 2.85rem);
   font-weight: 900;
   line-height: 1.05;
@@ -4296,7 +4300,7 @@ body.anthropic-home .anthropic-card:nth-child(3n + 3)::before {
 }
 
 body.anthropic-home .anthropic-card h2 {
-  font-family: var(--font-blog-title) !important;
+  font-family: var(--font-blog-tagline) !important;
   font-size: 1.15rem;
   font-weight: 900;
   color: var(--ref-title-ink);
