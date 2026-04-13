@@ -1,6 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap");
 
 /*
 	Future Imperfect by HTML5 UP
@@ -3603,49 +3603,105 @@ html {
 }
 
 :root {
-  --a-bg: #faf8f3;
-  --a-surface: #ffffff;
-  --a-text: #2c2b28;
-  --a-text-muted: #6a6864;
-  --a-accent: #c45c3e;
-  --a-accent-hover: #a84a30;
-  --a-border: rgba(44, 43, 40, 0.08);
-  --a-shadow: 0 1px 2px rgba(44, 43, 40, 0.04);
-  --a-font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --a-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  /* Ground + surfaces (refs: cream field, charcoal, watercolor paper) */
+  --a-bg: #c4bfb4;
+  --a-surface: #fdfbf7;
+  --a-text: #141414;
+  --a-text-muted: #4a4742;
+  --a-accent: #0f766e;
+  --a-accent-hover: #115e59;
+  --a-border: rgba(20, 20, 20, 0.14);
+  --a-shadow: 8px 8px 0 rgba(225, 29, 46, 0.22);
+  --a-font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --a-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --a-font-poster: "Montserrat", system-ui, sans-serif;
+  /* Ref palette: red frame, orange/green, mint moon, sky, teal */
+  --paint-charcoal: #3a3a38;
+  --paint-cream: #fdfbf7;
+  --paint-red: #e11d2e;
+  --paint-orange: #ea580c;
+  --paint-green: #15803d;
+  --paint-teal: #0f766e;
+  --paint-mint: #99f6e4;
+  --paint-sky: #38bdf8;
+  --paint-yellow: #eab308;
+  --rand-ink: #141414;
+  --rand-blue: var(--paint-sky);
+  --rand-red: var(--paint-red);
+  --rand-yellow: var(--paint-yellow);
+  --rand-shadow: 8px 8px 0 rgba(20, 20, 20, 0.22);
+  /* Blog sidebar / title stack (screenshot ref) */
+  --font-blog-title: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-blog-tagline: "Montserrat", var(--a-font-body);
+  --ref-greige: #c6c2b9;
+  --ref-orange-rule: #d9541e;
+  --ref-title-ink: #1a1a1a;
+  --ref-tagline-muted: #5a5855;
 }
 
 body.anthropic-site {
   background: var(--a-bg) !important;
   color: var(--a-text-muted);
-  font-family: var(--a-font-body) !important;
+  font-family: var(--font-blog-tagline) !important;
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
   text-rendering: optimizeLegibility;
 }
 
+body.anthropic-site h1,
+body.anthropic-site h2,
+body.anthropic-site h3,
+body.anthropic-site h4 {
+  font-family: var(--font-blog-title) !important;
+}
+
+body.anthropic-site #menu .links h3,
+body.anthropic-site #menu .links p {
+  font-family: var(--font-blog-tagline) !important;
+}
+
 body.anthropic-site #header {
-  background-color: rgba(250, 249, 245, 0.92) !important;
+  background-color: rgba(253, 251, 247, 0.96) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--a-border) !important;
+  border-bottom: 3px solid var(--paint-red) !important;
   box-shadow: none;
 }
 
 body.anthropic-site #header h1 {
-  font-family: var(--a-font-body) !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em;
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
 }
 
 body.anthropic-site #header h1 a {
-  color: var(--a-text) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ref-title-ink) !important;
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+body.anthropic-site #header h1 a::before {
+  content: "";
+  width: 5.25rem;
+  height: 1.65rem;
+  flex-shrink: 0;
+  background: url("../img/site-marks.svg") no-repeat left center;
+  background-size: auto 100%;
 }
 
 body.anthropic-site #header .main a {
   color: var(--a-text-muted) !important;
-  font-weight: 500;
-  font-size: 0.9em;
+  font-family: var(--font-blog-tagline) !important;
+  font-weight: 600 !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
 }
 
 body.anthropic-site #header .main a:hover {
@@ -3653,8 +3709,8 @@ body.anthropic-site #header .main a:hover {
 }
 
 body.anthropic-site #header .main .info a {
-  text-transform: none;
-  letter-spacing: normal;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
 }
 
 body.anthropic-site #wrapper {
@@ -3662,24 +3718,77 @@ body.anthropic-site #wrapper {
 }
 
 body.anthropic-site #main .post {
-  background: var(--a-surface);
-  border: 1px solid var(--a-border);
-  border-radius: 12px;
-  box-shadow: var(--a-shadow);
-  padding: 2em 2.25em;
+  position: relative;
+  background: var(--paint-cream);
+  border: 3px solid var(--paint-red);
+  border-radius: 0;
+  border-left-width: 12px;
+  border-left-color: var(--paint-orange);
+  box-shadow: var(--rand-shadow);
+  padding: 1.75em 2em 2em 2.25em;
   margin-bottom: 2em !important;
+  overflow: hidden;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 2) {
+  border-left-color: var(--paint-green);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 3) {
+  border-left-color: var(--paint-teal);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 4) {
+  border-left-color: var(--paint-sky);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 5) {
+  border-left-color: var(--paint-red);
+}
+
+body.anthropic-site #main .post::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4rem;
+  height: 4rem;
+  background: var(--paint-mint);
+  opacity: 0.45;
+  border-radius: 0 0 0 100%;
+  pointer-events: none;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 2)::after {
+  background: var(--paint-sky);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 3)::after {
+  background: var(--paint-yellow);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 4)::after {
+  background: var(--paint-orange);
+}
+
+body.anthropic-site #main .post:nth-child(5n + 5)::after {
+  background: var(--paint-mint);
 }
 
 body.anthropic-site .post > header .title h2 a,
 body.anthropic-site .post > header .title h2 {
-  font-family: var(--a-font-display) !important;
-  font-weight: 500 !important;
-  color: var(--a-text) !important;
-  letter-spacing: -0.015em;
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  color: var(--ref-title-ink) !important;
+  letter-spacing: 0.02em;
+  line-height: 1.12;
+  text-transform: none;
 }
 
 body.anthropic-site .post > header .title > :last-child,
 body.anthropic-site .post p {
+  font-family: var(--font-blog-tagline) !important;
+  letter-spacing: 0.04em;
   color: var(--a-text-muted);
   line-height: 1.72;
 }
@@ -3705,26 +3814,67 @@ body.anthropic-site #menu .links > li a:hover h3 {
 }
 
 body.anthropic-site .post > header .title h2 a:hover {
-  color: var(--a-accent) !important;
+  color: var(--ref-orange-rule) !important;
+}
+
+body.anthropic-site .post > header .meta time.published {
+  display: inline-block;
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rand-ink) !important;
+  background: var(--paint-yellow);
+  padding: 0.35em 0.65em;
+  border: 2px solid var(--rand-ink);
+  margin-right: 0.5rem;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 2) .meta time.published {
+  background: var(--paint-mint);
+  border-color: var(--paint-teal);
+  color: var(--paint-teal) !important;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 3) .meta time.published {
+  background: #fff;
+  border-color: var(--paint-orange);
+  color: var(--paint-orange) !important;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 4) .meta time.published {
+  background: var(--paint-sky);
+  border-color: var(--rand-ink);
+  color: var(--rand-ink) !important;
+}
+
+body.anthropic-site #main .post:nth-child(5n + 5) .meta time.published {
+  background: var(--paint-red);
+  color: #fff !important;
+  border-color: var(--rand-ink);
 }
 
 body.anthropic-site .button,
 body.anthropic-site .button.large {
-  background: var(--a-accent) !important;
+  background: var(--paint-charcoal) !important;
   color: #fff !important;
-  border-radius: 999px !important;
-  border: none !important;
-  box-shadow: none !important;
-  font-family: var(--a-font-body) !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.02em;
-  text-transform: none !important;
+  border-radius: 0 !important;
+  border: 2px solid var(--rand-ink) !important;
+  box-shadow: 4px 4px 0 var(--paint-orange) !important;
+  font-family: var(--font-blog-tagline) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase !important;
+  font-size: 0.8rem !important;
 }
 
 body.anthropic-site .button:hover,
 body.anthropic-site .button.large:hover {
-  background: var(--a-accent-hover) !important;
+  background: var(--paint-green) !important;
   color: #fff !important;
+  border-color: var(--rand-ink) !important;
+  box-shadow: 4px 4px 0 var(--paint-mint) !important;
 }
 
 body.anthropic-site input[type="text"]:focus,
@@ -3743,12 +3893,102 @@ body.anthropic-site #sidebar > * {
   border-color: var(--a-border) !important;
 }
 
-body.anthropic-site #sidebar h2,
+body.anthropic-site #sidebar h2 {
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  color: var(--ref-title-ink) !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-bottom: 0.35rem;
+  border-bottom: 4px solid var(--ref-orange-rule);
+  display: inline-block;
+  width: auto;
+}
+
+/* Sidebar intro: serif title stack + sans tagline (matches blog reference) */
+body.anthropic-site #intro {
+  background: var(--ref-greige);
+  margin: 0 0 0 0;
+  padding: 1.75rem 1.35rem 1.5rem;
+  text-align: left;
+  border: 2px solid rgba(20, 20, 20, 0.08);
+}
+
+body.anthropic-site #intro .logo {
+  position: relative;
+  z-index: 1;
+}
+
+body.anthropic-site #intro .logo:before {
+  display: none !important;
+  content: none !important;
+}
+
+body.anthropic-site #intro header h2.intro-site-title,
 body.anthropic-site #intro header h2 {
-  font-family: var(--a-font-display) !important;
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  font-style: normal;
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--ref-title-ink) !important;
+  margin: 0 0 0.65rem !important;
+  padding: 0 0 0.75rem !important;
+  border-bottom: 4px solid var(--ref-orange-rule) !important;
+  border-radius: 0 !important;
+  display: block;
+  width: 100%;
+}
+
+body.anthropic-site #intro header p.intro-tagline {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.68rem !important;
   font-weight: 500 !important;
-  color: var(--a-text) !important;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--ref-tagline-muted) !important;
+  line-height: 1.5 !important;
+  margin: 1rem 0 0.35rem !important;
+}
+
+body.anthropic-site #intro header p.intro-profile {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.72rem !important;
+  margin: 0 !important;
+  letter-spacing: 0.08em;
+}
+
+body.anthropic-site #intro header p.intro-profile a {
+  color: var(--ref-tagline-muted) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.anthropic-site #intro header p.intro-profile a:hover {
+  color: var(--ref-orange-rule) !important;
+}
+
+body.anthropic-site #sidebar .blurb h2 {
+  font-family: var(--font-blog-tagline) !important;
+  font-weight: 600 !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: var(--ref-tagline-muted) !important;
+  border-bottom: 4px solid var(--ref-orange-rule) !important;
+  padding-bottom: 0.5rem !important;
+}
+
+body.anthropic-site .post > header .title > p {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--ref-tagline-muted) !important;
+  margin-top: 0.35em !important;
 }
 
 body.anthropic-site #intro .logo img {
@@ -3757,19 +3997,26 @@ body.anthropic-site #intro .logo img {
   aspect-ratio: 1;
 }
 
-body.anthropic-site #sidebar .blurb p,
-body.anthropic-site #intro p {
+body.anthropic-site #sidebar .blurb p {
   color: var(--a-text-muted);
 }
 
 body.anthropic-site #sidebar .button {
-  background: transparent !important;
-  color: var(--a-accent) !important;
-  border: 1px solid var(--a-border) !important;
+  background: var(--paint-cream) !important;
+  color: var(--rand-ink) !important;
+  border: 2px solid var(--paint-red) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 var(--paint-green) !important;
+  text-transform: uppercase !important;
+  font-family: var(--font-blog-tagline) !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
 }
 
 body.anthropic-site #sidebar .button:hover {
-  background: rgba(196, 92, 62, 0.08) !important;
+  background: var(--paint-mint) !important;
+  color: var(--rand-ink) !important;
+  box-shadow: 3px 3px 0 var(--paint-red) !important;
 }
 
 body.anthropic-site #footer .icons a {
@@ -3781,18 +4028,39 @@ body.anthropic-site #footer .icons a:hover {
 }
 
 body.anthropic-site #menu {
-  background: var(--a-surface);
-  border-left: 1px solid var(--a-border);
+  background: var(--paint-cream);
+  border-left: 3px solid var(--paint-red);
 }
 
 body.anthropic-site.single .post {
   padding: 2.5em 3em;
+  background: var(--paint-cream) !important;
+  border: 3px solid var(--paint-red) !important;
+  box-shadow: var(--rand-shadow);
+}
+
+body.anthropic-site.single .post p,
+body.anthropic-site.single .post li,
+body.anthropic-site.single .post td {
+  font-family: var(--font-blog-tagline) !important;
+  letter-spacing: 0.03em;
 }
 
 body.anthropic-site.single article.post header .title h2 {
-  font-size: 2em;
-  font-variation-settings: "SOFT" 100;
-  line-height: 1.2;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900 !important;
+  color: var(--ref-title-ink) !important;
+  letter-spacing: 0.02em;
+  line-height: 1.08;
+  text-transform: uppercase;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.35em;
+  border-left: none;
+  border-bottom: 4px solid var(--ref-orange-rule);
+  padding-left: 0;
+  margin-left: 0;
+  max-width: none;
 }
 
 /* ——— Landing page (index) ——— */
@@ -3800,11 +4068,15 @@ body.anthropic-site.single article.post header .title h2 {
 body.anthropic-home {
   margin: 0;
   min-height: 100vh;
-  background: var(--a-bg);
+  background-color: var(--a-bg);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 0% 100%, rgba(234, 88, 12, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 0%, rgba(56, 189, 248, 0.16) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(153, 246, 228, 0.35) 0%, transparent 45%);
   color: var(--a-text-muted);
-  font-family: var(--a-font-body);
+  font-family: var(--font-blog-tagline);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -3820,22 +4092,36 @@ body.anthropic-home .anthropic-nav {
   max-width: 68rem;
   margin: 0 auto;
   padding: 1.25rem 1.5rem;
-  background: rgba(250, 249, 245, 0.85);
+  background: rgba(253, 251, 247, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--a-border);
+  border-bottom: 3px solid var(--paint-red);
 }
 
 body.anthropic-home .anthropic-brand {
-  font-weight: 500;
-  font-size: 1.05rem;
-  color: var(--a-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-blog-title) !important;
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--ref-title-ink);
   text-decoration: none;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.anthropic-home .anthropic-brand-with-mark::before {
+  content: "";
+  width: 5.25rem;
+  height: 1.65rem;
+  flex-shrink: 0;
+  background: url("../img/site-marks.svg") no-repeat left center;
+  background-size: auto 100%;
 }
 
 body.anthropic-home .anthropic-brand:hover {
-  color: var(--a-accent);
+  color: var(--paint-teal);
 }
 
 body.anthropic-home .anthropic-nav-links {
@@ -3845,14 +4131,17 @@ body.anthropic-home .anthropic-nav-links {
 }
 
 body.anthropic-home .anthropic-nav-links a {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--a-text-muted);
+  font-family: var(--font-blog-tagline);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ref-tagline-muted);
   text-decoration: none;
 }
 
 body.anthropic-home .anthropic-nav-links a:hover {
-  color: var(--a-accent);
+  color: var(--paint-orange);
 }
 
 body.anthropic-home .anthropic-landing {
@@ -3871,38 +4160,57 @@ body.anthropic-home .anthropic-hero-avatar {
   height: 5.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--a-border);
-  box-shadow: var(--a-shadow);
+  border: 3px solid var(--paint-red);
+  box-shadow: 6px 6px 0 var(--paint-green);
   margin: 0 0 1.25rem;
   display: block;
 }
 
+body.anthropic-home .anthropic-marks-row {
+  display: block;
+  width: 9rem;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 1.1rem;
+  opacity: 0.95;
+}
+
 body.anthropic-home .anthropic-kicker {
-  font-size: 0.78rem;
-  font-weight: 500;
+  font-family: var(--font-blog-tagline);
+  font-size: 0.68rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--a-accent);
+  letter-spacing: 0.2em;
+  color: var(--ref-tagline-muted);
   margin: 0 0 1rem;
+  display: inline-block;
+  padding: 0.45em 0.85em;
+  background: var(--ref-greige);
+  border: 2px solid var(--ref-title-ink);
 }
 
 body.anthropic-home .anthropic-hero h1 {
-  font-family: var(--a-font-display);
-  font-size: clamp(2.35rem, 4.5vw, 3.25rem);
-  font-weight: 500;
-  line-height: 1.18;
-  color: var(--a-text);
-  margin: 0 0 1.25rem;
-  letter-spacing: -0.02em;
-  font-variation-settings: "SOFT" 100;
+  font-family: var(--font-blog-title) !important;
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--ref-title-ink);
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding-bottom: 0.55rem;
+  border-bottom: 4px solid var(--ref-orange-rule);
 }
 
 body.anthropic-home .anthropic-lead {
-  font-size: 1.15rem;
+  font-family: var(--font-blog-tagline);
+  font-size: 0.78rem;
   line-height: 1.75;
-  color: var(--a-text-muted);
-  margin: 0 0 2rem;
-  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ref-tagline-muted);
+  margin: 1.1rem 0 2rem;
+  font-weight: 500;
 }
 
 body.anthropic-home .anthropic-actions {
@@ -3915,34 +4223,41 @@ body.anthropic-home .anthropic-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 1.35rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--font-blog-tagline);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0;
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  border: 2px solid var(--rand-ink);
+  transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
 }
 
 body.anthropic-home .anthropic-btn-primary {
-  background: var(--a-accent);
+  background: var(--paint-charcoal);
   color: #fff;
-  border: 1px solid transparent;
+  box-shadow: 5px 5px 0 var(--paint-orange);
 }
 
 body.anthropic-home .anthropic-btn-primary:hover {
-  background: var(--a-accent-hover);
+  background: var(--paint-teal);
   color: #fff;
+  box-shadow: 5px 5px 0 var(--paint-mint);
+  transform: translate(-1px, -1px);
 }
 
 body.anthropic-home .anthropic-btn-ghost {
-  background: transparent;
-  color: var(--a-text);
-  border: 1px solid var(--a-border);
+  background: var(--paint-cream);
+  color: var(--rand-ink);
+  box-shadow: 5px 5px 0 var(--paint-red);
 }
 
 body.anthropic-home .anthropic-btn-ghost:hover {
-  border-color: var(--a-text-muted);
-  color: var(--a-accent);
+  background: var(--paint-sky);
+  color: var(--rand-ink);
+  box-shadow: 5px 5px 0 var(--paint-charcoal);
 }
 
 body.anthropic-home .anthropic-grid {
@@ -3953,20 +4268,41 @@ body.anthropic-home .anthropic-grid {
 }
 
 body.anthropic-home .anthropic-card {
-  background: var(--a-surface);
-  border: 1px solid var(--a-border);
-  border-radius: 12px;
+  position: relative;
+  background: var(--paint-cream);
+  border: 3px solid var(--paint-red);
+  border-radius: 0;
   padding: 1.5rem 1.5rem 1.35rem;
-  box-shadow: var(--a-shadow);
+  padding-top: 1.65rem;
+  box-shadow: var(--rand-shadow);
+}
+
+body.anthropic-home .anthropic-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  background: var(--paint-orange);
+}
+
+body.anthropic-home .anthropic-card:nth-child(3n + 2)::before {
+  background: var(--paint-green);
+}
+
+body.anthropic-home .anthropic-card:nth-child(3n + 3)::before {
+  background: var(--paint-sky);
 }
 
 body.anthropic-home .anthropic-card h2 {
-  font-family: var(--a-font-display);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--a-text);
+  font-family: var(--font-blog-title) !important;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--ref-title-ink);
   margin: 0 0 0.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 body.anthropic-home .anthropic-card p {
@@ -3978,27 +4314,43 @@ body.anthropic-home .anthropic-card p {
 }
 
 body.anthropic-home .anthropic-card a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--a-accent);
+  font-family: var(--font-blog-tagline);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--paint-teal);
   text-decoration: none;
+  border-bottom: 3px solid var(--paint-yellow);
+  padding-bottom: 0.1em;
 }
 
 body.anthropic-home .anthropic-card a:hover {
-  text-decoration: underline;
+  color: var(--paint-orange);
+  border-bottom-color: var(--paint-orange);
 }
 
 body.anthropic-home .anthropic-site-footer {
   max-width: 68rem;
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
-  border-top: 1px solid var(--a-border);
+  border-top: 3px solid var(--paint-red);
   font-size: 0.85rem;
   color: var(--a-text-muted);
 }
 
 body.anthropic-home .anthropic-site-footer p {
   margin: 0;
+  font-family: var(--font-blog-tagline);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+@media screen and (max-width: 1280px) {
+  body.anthropic-site #intro {
+    text-align: left !important;
+  }
 }
 
 @media screen and (max-width: 736px) {
@@ -4008,5 +4360,10 @@ body.anthropic-home .anthropic-site-footer p {
 
   body.anthropic-site #main .post {
     padding: 1.5rem;
+  }
+
+  body.anthropic-site #intro header h2.intro-site-title,
+  body.anthropic-site #intro header h2 {
+    font-size: 1.45rem !important;
   }
 }
