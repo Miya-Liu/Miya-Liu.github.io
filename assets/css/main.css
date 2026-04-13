@@ -4075,6 +4075,158 @@ body.anthropic-site.single article.post header .title h2 {
   max-width: none;
 }
 
+/* Single post meta: right side, two rows, aligned with title area */
+@media screen and (min-width: 981px) {
+  body.anthropic-site.single .post > header {
+    align-items: flex-start;
+  }
+
+  body.anthropic-site.single .post > header .meta {
+    min-width: 14.5em;
+    width: 14.5em;
+    padding-top: 5.75em;
+	padding-right: 3.5em;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  body.anthropic-site.single .post > header .meta > * {
+    margin: 0 0 0.55em 0;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  body.anthropic-site.single .post > header .meta .published {
+    display: block;
+    margin-right: 0;
+    order: 2;
+  }
+
+  body.anthropic-site.single .post > header .meta .author {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-bottom: 0;
+    order: 1;
+  }
+
+  body.anthropic-site.single .post > header .meta .author .name {
+    margin: 0;
+  }
+
+  body.anthropic-site.single .post > header .meta .author img {
+    width: 2.1em;
+  }
+}
+
+/* Single post: author name larger than default .author 0.6em (date uses ~0.7rem) */
+body.anthropic-site.single .post > header .meta .author .name {
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+}
+
+body.anthropic-site.single .post h3 {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ref-title-ink);
+  margin: 1.75em 0 0.65em;
+}
+
+body.anthropic-site.single .post .table-wrapper {
+  overflow-x: auto;
+  margin: 1em 0 1.5em;
+}
+
+body.anthropic-site.single .post .table-wrapper table {
+  width: 100%;
+  min-width: 20rem;
+}
+
+body.anthropic-site.single .memory-post .table-wrapper th,
+body.anthropic-site.single .memory-post .table-wrapper td {
+  font-size: 0.82rem;
+  padding: 0.5em 0.7em;
+  border: 1px solid var(--a-border);
+  text-align: left;
+}
+
+body.anthropic-site.single .memory-post .table-wrapper thead th {
+  background: rgba(253, 251, 247, 0.85);
+  font-weight: 700;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure {
+  margin: 1.5em 0;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--a-text-muted);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+body.anthropic-site.single .post .mermaid {
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+body.anthropic-site.single .post .mermaid svg {
+  width: 100%;
+  min-width: 0;
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+}
+
+body.anthropic-site #main .post.memory-preview-card .memory-preview-note {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ref-tagline-muted);
+  margin-top: 0.35rem;
+}
+
+body.anthropic-site .mermaid {
+  background: var(--paint-cream);
+  border: 1px solid var(--a-border);
+  border-radius: 2px;
+  color: var(--a-text-muted);
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.anthropic-site .mermaid svg text,
+body.anthropic-site .mermaid .label,
+body.anthropic-site .mermaid .edgeLabel {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 8.8px !important;
+  font-weight: 500 !important;
+  fill: var(--a-text-muted) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.25 !important;
+  text-transform: none !important;
+}
+
+body.anthropic-site .mermaid .edgeLabel {
+  font-size: 8.25px !important;
+}
+
+body.anthropic-site .mermaid .nodeLabel,
+body.anthropic-site .mermaid .nodeLabel p,
+body.anthropic-site .mermaid .edgeLabel p,
+body.anthropic-site .mermaid foreignObject div {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 8.8px !important;
+  line-height: 1.2 !important;
+}
+
 /* ——— Landing page (index) ——— */
 
 body.anthropic-home {
@@ -4411,6 +4563,23 @@ body.anthropic-home .anthropic-site-footer p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.7rem;
+}
+
+/* Per-page view counter (see assets/js/pageviews-config.js) */
+.pageview-stat {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--a-text-muted);
+  margin: 0;
+}
+
+body.anthropic-home .anthropic-site-footer .pageview-stat {
+  margin-top: 0.35rem;
+}
+
+body.anthropic-site #footer .pageview-stat {
+  margin: 0 0 0.75rem;
 }
 
 @media screen and (max-width: 1280px) {

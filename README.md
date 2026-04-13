@@ -27,4 +27,4 @@ Open `index.html` in a browser, or serve the repo root with any static file serv
 
 The blog layout builds on **Future Imperfect** by [HTML5 UP](https://html5up.net) (free for personal and commercial use under [CCA 3.0](https://html5up.net/license)). Demo assets and third-party credits from the original template are noted in the upstream license files.
 
-Site content and customizations are by Miya (Mengya) Liu.
+Site content and customizations are by Miya Liu.

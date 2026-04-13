@@ -16,7 +16,7 @@ templates/         Copy-paste starters (not linked from the site)
 
 assets/            Static assets
   css/main.css     Site stylesheet (Future Imperfect + theme)
-  js/              jQuery, theme scripts
+  js/              jQuery, theme scripts; pageviews.js + pageviews-config.js (optional Firebase counter)
   sass/            Source SCSS if you compile CSS from Sass
   fonts/
 

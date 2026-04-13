@@ -5,9 +5,9 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Let's talk about Openclaw Memory in real | Thought Recorder</title>
+    <title>Memory of agent in real | Thought Recorder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="Notes on Openclaw memory in practice.">
+    <meta name="description" content="Memory of agents in real: Claude Code vs Openclaw, layers, workflow, and how transcript flows into compaction and prompts.">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="single is-preload anthropic-site">
@@ -61,23 +61,146 @@
 
     <!-- Main -->
     <div id="main">
-        <article class="post">
+        <article class="post memory-post">
             <header>
                 <div class="title">
-                    <h2><a href="#">Let's talk about Openclaw Memory in real</a></h2>
-                    <p>Practical notes on how memory shows up when you use Openclaw day to day.</p>
+                    <h2><a href="Openclaw_Memory_Real.html">Memory of Agent in Real</a></h2>
+                    <p>Claude Code vs Openclaw: memory layers, context compaction, extraction hooks, and what is injected into each turn.</p>
                 </div>
                 <div class="meta">
                     <time class="published" datetime="2026-04-13">13/04/2026</time>
-                    <a href="#" class="author">
-                        <span class="name">Mengya Liu</span>
-                        <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Mengya Liu">
+                    <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
+                        <span class="name">Miya Liu</span>
+                        <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
                     </a>
                 </div>
             </header>
-            <p>
-                Draft: add your experience with Openclaw memory—what persists, what resets, and what surprised you in real workflows.
-            </p>
+
+            <p>Let’s talk about memory of agents in real.</p>
+
+            <h3>Agent System vs Memory Type</h3>
+            <p>Sketch for comparing how each stack handles layers (fill cells as you go).</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent system</th>
+                            <th>Claude Code</th>
+                            <th>Openclaw</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Memory type</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Raw transcript</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Session memory</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>User memory</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Project memory</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Agent memory</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Team memory</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Memory wiki</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Memory Workflow</h3>
+            <p>From raw transcript to memory layers, through compaction, extraction, and reinjection into the next system prompt.</p>
+
+            <figure class="memory-mermaid-figure">
+                <div class="mermaid">
+flowchart TD
+    Start([START]) --> Setup["<b>execute setup()</b><br/>+ start_team_memory_sync"]
+    Setup --> Init["<b>Initialize</b><br/>messages ← empty<br/>transcript ← session JSONL"]
+    Init --> WhileCheck{"<b>Session<br/>Not Ended?</b>"}
+
+    %% Main loop body
+    WhileCheck -->|YES| GetContext["<b>userContext ←</b><br/>getUserContext<br/><i>getMemoryFiles</i><br/><i>filterInjected</i><br/><i>getClaudeMds</i>"]
+
+    GetContext --> BuildPrompt["<b>systemPrompt ←</b><br/>build_full_system_prompt"]
+
+    BuildPrompt --> ContextCheck{"<b>Context<br/>Too Large?</b>"}
+
+    %% Compaction path
+    ContextCheck -->|YES| AutoCompact["<b>run_autocompact</b><br/>_or_snip()"]
+    AutoCompact --> StillLarge{"<b>Still<br/>Too Large?</b>"}
+
+    StillLarge -->|YES| DeepCompact["<b>compact.run_</b><br/><b>summarization_fork()</b><br/>+ prune_messages"]
+    StillLarge -->|NO| Converge1["converge"]
+    DeepCompact --> Converge1
+
+    ContextCheck -->|NO| Converge1
+    Converge1 --> Query["<b>result_stream ← query()</b><br/>append_or_merge_messages<br/>record_transcript"]
+
+    %% Post-query check
+    Query --> TurnCheck{"<b>Turn Completed<br/>No Abort?</b>"}
+
+    TurnCheck -->|NO| ExitPath["exit hooks"]
+    ExitPath --> End([END])
+
+    %% Hooks path
+    TurnCheck -->|YES| StopHooks["<b>handleStopHooks()</b><br/>• extractMemories<br/>• autoDream<br/>• other hooks"]
+
+    StopHooks --> ExtractCheck{"<b>Extract Memories<br/>Enabled?</b>"}
+
+    ExtractCheck -->|YES| ExtractMemories["<b>extractMemories.run_</b><br/><b>forked_agent()</b><br/>→ write files<br/><i>background fork</i>"]
+    ExtractCheck -->|NO| RememberCheck
+    ExtractMemories --> RememberCheck{"<b>Remember Skill<br/>+ Ant Enabled?</b>"}
+
+    RememberCheck -->|YES| RememberSkill["<b>remember_skill()</b><br/>→ review report<br/>→ user approval"]
+    RememberCheck -->|NO| LoopBack["loop back"]
+    RememberSkill --> LoopBack
+
+    %% Loop back to session check
+    LoopBack --> WhileCheck
+
+    WhileCheck -->|NO| End
+
+    %% Styling
+    classDef processBox fill:#e8f0fe,stroke:#1f73e8,stroke-width:2px
+    classDef decisionBox fill:#fff3cd,stroke:#ffc107,stroke-width:2px
+    classDef hookBox fill:#f0e6ff,stroke:#764ba2,stroke-width:2px
+    classDef skillBox fill:#e6f7ff,stroke:#1890ff,stroke-width:2px
+    classDef startEndBox fill:#d4edda,stroke:#28a745,stroke-width:2px
+
+    class Start,End startEndBox
+    class Setup,Init,GetContext,BuildPrompt,Query,StopHooks,AutoCompact,DeepCompact,ExtractMemories,Converge1,ExitPath,LoopBack processBox
+    class WhileCheck,ContextCheck,StillLarge,TurnCheck,ExtractCheck,RememberCheck decisionBox
+    class StopHooks hookBox
+    class RememberSkill skillBox
+                </div>
+                <figcaption>Session memory pipeline flowchart: bootstrap, loop control, compaction branch, query, stop hooks, extraction/remember gates, and loop-back or exit.</figcaption>
+            </figure>
 
             <footer>
                 <ul class="stats">
@@ -90,6 +213,7 @@
     </div>
     <!-- Footer -->
     <section id="footer">
+        <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
         <ul class="icons">
             <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
@@ -99,6 +223,9 @@
     </section>
 </div>
 <!-- Scripts -->
+<script src="../assets/js/pageviews-config.js"></script>
+<script src="../assets/js/pageviews.js"></script>
+<script src="../assets/js/mermaid-init.js"></script>
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/browser.min.js"></script>
 <script src="../assets/js/breakpoints.min.js"></script>

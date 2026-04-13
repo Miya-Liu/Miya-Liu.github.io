@@ -60,18 +60,19 @@
       <!-- Main -->
       <div id="main">
         <!-- Post: Openclaw Memory -->
-        <article class="post">
+        <article class="post memory-preview-card">
           <header>
             <div class="title">
-              <h2><a href="posts/Openclaw_Memory_Real.html">Let's talk about Openclaw Memory in real</a></h2>
-              <p>Practical notes on how memory shows up when you use Openclaw day to day.</p>
+              <h2><a href="posts/Openclaw_Memory_Real.html">Memory of Agent in Real</a></h2>
+              <p>Claude Code vs Openclaw: memory layers, context compaction, stop hooks, and remember-skill gates.</p>
             </div>
             <div class="meta">&nbsp; <time class="published" datetime="2026-04-13">13/04/2026</time>
               <a href="#" class="author"><span class="name">Miya Liu</span></a>
             </div>
           </header>
           <a href="posts/Openclaw_Memory_Real.html" class="image featured"></a>
-          <p>Draft: add your experience with Openclaw memory—what persists, what resets, and what surprised you in real workflows.</p>
+          <p>How session memory flows from setup to loop execution, with compaction before query and extraction hooks after each completed turn.</p>
+          <p class="memory-preview-note">Includes comparison table + full workflow diagram in the article.</p>
           <footer>
             <ul class="actions">
               <li><a href="posts/Openclaw_Memory_Real.html" class="button large">Continue Reading</a></li>
@@ -163,7 +164,7 @@
               <p>The entire experiment results of purchase allocation research.</p>
             </div>
             <div class="meta">&nbsp; <time class="published" datetime="2019-10-09">01/06/2021</time>
-              <a href="#" class="author"><span class="name">Mengya Liu</span><img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Mengya Liu"></a>
+              <a href="#" class="author"><span class="name">Miya Liu</span><img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu"></a>
             </div>
           </header>
           <p>Showcase the entire results of 18 queries with the settings of different pricing functions.</p>
@@ -186,7 +187,7 @@
               <p>The formalization of purchase allocation problem.</p>
             </div>
             <div class="meta">&nbsp; <time class="published" datetime="2019-10-09">01/06/2021</time>
-              <a href="#" class="author"><span class="name">Mengya Liu</span></a>
+              <a href="#" class="author"><span class="name">Miya Liu</span></a>
             </div>
           </header>
           <p>We first model the purchase allocation problem into an integer programming problem, and then prove it to be
@@ -329,7 +330,7 @@
       <section id="sidebar">
         <!-- Intro -->
         <section id="intro"> <a href="https://github.com/Miya-Liu" class="logo"><img src="https://avatars.githubusercontent.com/u/41325630?v=4"
-              alt="Mengya Liu"></a>
+              alt="Miya Liu"></a>
           <header>
             <h2 class="intro-site-title">Thought<br>Recorder</h2>
             <p class="intro-tagline">To track discoveries</p>
@@ -347,6 +348,7 @@
         </section>
         <!-- Footer -->
         <section id="footer">
+          <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
           <ul class="icons">
             <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
@@ -357,6 +359,9 @@
       </section>
     </div>
     <!-- Scripts -->
+    <script src="assets/js/pageviews-config.js"></script>
+    <script src="assets/js/pageviews.js"></script>
+    <script src="assets/js/mermaid-init.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
