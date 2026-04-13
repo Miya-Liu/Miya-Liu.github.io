@@ -100,7 +100,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #f4f4f4;
+		background: #f5f0e6;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -117,7 +117,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: #646464;
+		color: #4a4540;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 14pt;
 		font-weight: 400;
@@ -3603,40 +3603,44 @@ html {
 }
 
 :root {
-  /* Ground + surfaces (refs: cream field, charcoal, watercolor paper) */
-  --a-bg: #c4bfb4;
-  --a-surface: #fdfbf7;
-  --a-text: #141414;
-  --a-text-muted: #4a4742;
-  --a-accent: #0f766e;
-  --a-accent-hover: #115e59;
-  --a-border: rgba(20, 20, 20, 0.14);
-  --a-shadow: 8px 8px 0 rgba(225, 29, 46, 0.22);
+  /* Book stock page + Paul Rand–style primaries (red / blue / yellow / black + teal) */
+  --a-bg: #f5f0e6;
+  --a-surface: #fffef9;
+  --a-text: #1a1a1a;
+  --a-text-muted: #4a4540;
+  --a-accent: #1d3557;
+  --a-accent-hover: #0d1821;
+  --a-border: rgba(26, 26, 26, 0.12);
+  --a-shadow: 4px 4px 0 rgba(26, 26, 26, 0.1);
   --a-font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --a-font-display: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --a-font-poster: "Montserrat", system-ui, sans-serif;
-  /* Ref palette: red frame, orange/green, mint moon, sky, teal */
-  --paint-charcoal: #3a3a38;
-  --paint-cream: #fdfbf7;
-  --paint-red: #e11d2e;
-  --paint-orange: #ea580c;
-  --paint-green: #15803d;
-  --paint-teal: #0f766e;
-  --paint-mint: #99f6e4;
-  --paint-sky: #38bdf8;
-  --paint-yellow: #eab308;
+  /* Warm “page” cards sit on book-colour background */
+  --paint-cream: #fffef9;
+  --paint-frame: #c9c3b5;
+  --paint-charcoal: #141414;
+  /* Stripe / block accents (varied blocks, Rand-like) */
+  --paint-orange: #e63946;
+  --paint-green: #1d3557;
+  --paint-teal: #ffb703;
+  --paint-sky: #2a9d8f;
+  --paint-mint: #e8f4fc;
+  --paint-yellow: #ffe066;
   --rand-ink: #141414;
-  --rand-blue: var(--paint-sky);
-  --rand-red: var(--paint-red);
-  --rand-yellow: var(--paint-yellow);
-  --rand-shadow: 8px 8px 0 rgba(20, 20, 20, 0.22);
+  --rand-blue: #1d3557;
+  --rand-red: #e63946;
+  --rand-yellow: #ffb703;
+  --rand-shadow: 4px 4px 0 rgba(20, 20, 20, 0.12);
   /* Editorial site name + intro stack only (serif) */
   --font-site-title: "Fraunces", Georgia, "Times New Roman", serif;
   --font-blog-tagline: "Montserrat", var(--a-font-body);
-  --ref-greige: #c6c2b9;
-  --ref-orange-rule: #d9541e;
-  --ref-title-ink: #1a1a1a;
-  --ref-tagline-muted: #5a5855;
+  --ref-greige: #ebe6dc;
+  --ref-orange-rule: #e63946;
+  --ref-title-ink: #141414;
+  --ref-tagline-muted: #6b5f56;
+  /* Maly-style bold taupe rules (card CTAs, organic / retro line) */
+  --line-taupe: #5a5348;
+  --line-taupe-deep: #454038;
 }
 
 body.anthropic-site {
@@ -3661,10 +3665,10 @@ body.anthropic-site #menu .links p {
 }
 
 body.anthropic-site #header {
-  background-color: rgba(253, 251, 247, 0.96) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 3px solid var(--paint-red) !important;
+  background-color: rgba(255, 254, 249, 0.94) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--paint-frame) !important;
   box-shadow: none;
 }
 
@@ -3673,6 +3677,7 @@ body.anthropic-site #header h1 {
   font-optical-sizing: auto;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
+  flex-shrink: 0;
 }
 
 body.anthropic-site #header h1 a {
@@ -3685,11 +3690,14 @@ body.anthropic-site #header h1 a {
   font-size: clamp(0.85rem, 1.5vw, 1.1rem) !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
+  flex-shrink: 0;
 }
 
+/* Match strip width to SVG aspect (242×36) at 1.65rem tall — avoids clipping the keyboard */
 body.anthropic-site #header h1 a::before {
   content: "";
-  width: 5.25rem;
+  width: calc(1.65rem * 242 / 36);
+  min-width: calc(1.65rem * 242 / 36);
   height: 1.65rem;
   flex-shrink: 0;
   background: url("../img/site-marks.svg") no-repeat left center;
@@ -3721,9 +3729,9 @@ body.anthropic-site #wrapper {
 body.anthropic-site #main .post {
   position: relative;
   background: var(--paint-cream);
-  border: 3px solid var(--paint-red);
-  border-radius: 0;
-  border-left-width: 12px;
+  border: 1px solid var(--paint-frame);
+  border-radius: 4px;
+  border-left-width: 8px;
   border-left-color: var(--paint-orange);
   box-shadow: var(--rand-shadow);
   padding: 1.75em 2em 2em 2.25em;
@@ -3744,7 +3752,7 @@ body.anthropic-site #main .post:nth-child(5n + 4) {
 }
 
 body.anthropic-site #main .post:nth-child(5n + 5) {
-  border-left-color: var(--paint-red);
+  border-left-color: var(--rand-ink);
 }
 
 body.anthropic-site #main .post::after {
@@ -3754,9 +3762,9 @@ body.anthropic-site #main .post::after {
   right: 0;
   width: 4rem;
   height: 4rem;
-  background: var(--paint-mint);
-  opacity: 0.45;
-  border-radius: 0 0 0 100%;
+  background: var(--paint-sky);
+  opacity: 0.22;
+  border-radius: 0 4px 0 100%;
   pointer-events: none;
 }
 
@@ -3769,7 +3777,7 @@ body.anthropic-site #main .post:nth-child(5n + 3)::after {
 }
 
 body.anthropic-site #main .post:nth-child(5n + 4)::after {
-  background: var(--paint-orange);
+  background: var(--paint-sky);
 }
 
 body.anthropic-site #main .post:nth-child(5n + 5)::after {
@@ -3834,35 +3842,35 @@ body.anthropic-site .post > header .meta time.published {
 
 body.anthropic-site #main .post:nth-child(5n + 2) .meta time.published {
   background: var(--paint-mint);
-  border-color: var(--paint-teal);
-  color: var(--paint-teal) !important;
+  border-color: var(--paint-green);
+  color: var(--paint-green) !important;
 }
 
 body.anthropic-site #main .post:nth-child(5n + 3) .meta time.published {
-  background: #fff;
-  border-color: var(--paint-orange);
-  color: var(--paint-orange) !important;
+  background: #fffef9;
+  border-color: var(--rand-red);
+  color: var(--rand-red) !important;
 }
 
 body.anthropic-site #main .post:nth-child(5n + 4) .meta time.published {
-  background: var(--paint-sky);
+  background: var(--paint-yellow);
   border-color: var(--rand-ink);
   color: var(--rand-ink) !important;
 }
 
 body.anthropic-site #main .post:nth-child(5n + 5) .meta time.published {
-  background: var(--paint-red);
-  color: #fff !important;
-  border-color: var(--rand-ink);
+  background: var(--rand-ink);
+  color: var(--rand-yellow) !important;
+  border-color: var(--rand-yellow);
 }
 
 body.anthropic-site .button,
 body.anthropic-site .button.large {
   background: var(--paint-charcoal) !important;
-  color: #fff !important;
-  border-radius: 0 !important;
+  color: #fffef9 !important;
+  border-radius: 4px !important;
   border: 2px solid var(--rand-ink) !important;
-  box-shadow: 4px 4px 0 var(--paint-orange) !important;
+  box-shadow: 4px 4px 0 var(--rand-yellow) !important;
   font-family: var(--font-blog-tagline) !important;
   font-weight: 700 !important;
   letter-spacing: 0.04em;
@@ -3872,10 +3880,10 @@ body.anthropic-site .button.large {
 
 body.anthropic-site .button:hover,
 body.anthropic-site .button.large:hover {
-  background: var(--paint-green) !important;
-  color: #fff !important;
+  background: var(--rand-blue) !important;
+  color: #fffef9 !important;
   border-color: var(--rand-ink) !important;
-  box-shadow: 4px 4px 0 var(--paint-mint) !important;
+  box-shadow: 4px 4px 0 var(--rand-red) !important;
 }
 
 body.anthropic-site input[type="text"]:focus,
@@ -3912,7 +3920,8 @@ body.anthropic-site #intro {
   margin: 0 0 0 0;
   padding: 1.75rem 1.35rem 1.5rem;
   text-align: left;
-  border: 2px solid rgba(20, 20, 20, 0.08);
+  border: 1px solid var(--paint-frame);
+  border-radius: 4px;
 }
 
 body.anthropic-site #intro .logo {
@@ -4006,9 +4015,9 @@ body.anthropic-site #sidebar .blurb p {
 body.anthropic-site #sidebar .button {
   background: var(--paint-cream) !important;
   color: var(--rand-ink) !important;
-  border: 2px solid var(--paint-red) !important;
+  border: 2px solid var(--rand-red) !important;
   border-radius: 0 !important;
-  box-shadow: 3px 3px 0 var(--paint-green) !important;
+  box-shadow: 3px 3px 0 var(--rand-yellow) !important;
   text-transform: uppercase !important;
   font-family: var(--font-blog-tagline) !important;
   font-weight: 700 !important;
@@ -4018,7 +4027,7 @@ body.anthropic-site #sidebar .button {
 body.anthropic-site #sidebar .button:hover {
   background: var(--paint-mint) !important;
   color: var(--rand-ink) !important;
-  box-shadow: 3px 3px 0 var(--paint-red) !important;
+  box-shadow: 3px 3px 0 var(--rand-blue) !important;
 }
 
 body.anthropic-site #footer .icons a {
@@ -4031,13 +4040,14 @@ body.anthropic-site #footer .icons a:hover {
 
 body.anthropic-site #menu {
   background: var(--paint-cream);
-  border-left: 3px solid var(--paint-red);
+  border-left: 4px solid var(--rand-red);
 }
 
 body.anthropic-site.single .post {
   padding: 2.5em 3em;
   background: var(--paint-cream) !important;
-  border: 3px solid var(--paint-red) !important;
+  border: 1px solid var(--paint-frame) !important;
+  border-radius: 4px;
   box-shadow: var(--rand-shadow);
 }
 
@@ -4072,9 +4082,9 @@ body.anthropic-home {
   min-height: 100vh;
   background-color: var(--a-bg);
   background-image:
-    radial-gradient(ellipse 120% 80% at 0% 100%, rgba(234, 88, 12, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 70% at 100% 0%, rgba(56, 189, 248, 0.16) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(153, 246, 228, 0.35) 0%, transparent 45%);
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(255, 183, 3, 0.12) 0%, transparent 42%),
+    radial-gradient(ellipse 85% 55% at 0% 100%, rgba(29, 53, 87, 0.08) 0%, transparent 48%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(230, 57, 70, 0.05) 0%, transparent 45%);
   color: var(--a-text-muted);
   font-family: var(--font-blog-tagline);
   font-weight: 400;
@@ -4094,10 +4104,10 @@ body.anthropic-home .anthropic-nav {
   max-width: 68rem;
   margin: 0 auto;
   padding: 1.25rem 1.5rem;
-  background: rgba(253, 251, 247, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 3px solid var(--paint-red);
+  background: rgba(255, 254, 249, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--paint-frame);
 }
 
 body.anthropic-home .anthropic-brand {
@@ -4116,7 +4126,8 @@ body.anthropic-home .anthropic-brand {
 
 body.anthropic-home .anthropic-brand-with-mark::before {
   content: "";
-  width: 5.25rem;
+  width: calc(1.65rem * 242 / 36);
+  min-width: calc(1.65rem * 242 / 36);
   height: 1.65rem;
   flex-shrink: 0;
   background: url("../img/site-marks.svg") no-repeat left center;
@@ -4124,7 +4135,7 @@ body.anthropic-home .anthropic-brand-with-mark::before {
 }
 
 body.anthropic-home .anthropic-brand:hover {
-  color: var(--paint-teal);
+  color: var(--a-accent);
 }
 
 body.anthropic-home .anthropic-nav-links {
@@ -4144,7 +4155,7 @@ body.anthropic-home .anthropic-nav-links a {
 }
 
 body.anthropic-home .anthropic-nav-links a:hover {
-  color: var(--paint-orange);
+  color: var(--a-accent);
 }
 
 body.anthropic-home .anthropic-landing {
@@ -4153,9 +4164,37 @@ body.anthropic-home .anthropic-landing {
   padding: 0 1.5rem 5rem;
 }
 
+/* Full landing column width (matches .anthropic-grid / page content), not a narrow measure */
 body.anthropic-home .anthropic-hero {
   padding: 4.5rem 0 3.5rem;
-  max-width: 42rem;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  container-type: inline-size;
+  container-name: anthropic-hero;
+}
+
+body.anthropic-home .anthropic-hero-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  gap: 1rem 1.5rem;
+  margin: 0 0 1.25rem;
+}
+
+@media screen and (max-width: 480px) {
+  body.anthropic-home .anthropic-hero-head {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.anthropic-home .anthropic-hero-head-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  justify-self: stretch;
 }
 
 body.anthropic-home .anthropic-hero-avatar {
@@ -4163,19 +4202,24 @@ body.anthropic-home .anthropic-hero-avatar {
   height: 5.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--paint-red);
-  box-shadow: 6px 6px 0 var(--paint-green);
-  margin: 0 0 1.25rem;
+  border: 3px solid var(--rand-ink);
+  box-shadow: 4px 4px 0 var(--rand-yellow);
+  margin: 0;
   display: block;
+  flex-shrink: 0;
+  align-self: end;
 }
 
 body.anthropic-home .anthropic-marks-row {
   display: block;
-  width: 9rem;
+  width: clamp(11rem, 32vw, 16rem);
   max-width: 100%;
   height: auto;
-  margin: 0 0 1.1rem;
+  margin: 0;
+  padding: 0;
   opacity: 0.95;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 body.anthropic-home .anthropic-kicker {
@@ -4184,18 +4228,24 @@ body.anthropic-home .anthropic-kicker {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--ref-tagline-muted);
+  color: var(--rand-blue);
   margin: 0 0 1rem;
   display: inline-block;
   padding: 0.45em 0.85em;
-  background: var(--ref-greige);
-  border: 2px solid var(--ref-title-ink);
+  background: var(--paint-yellow);
+  border: 2px solid var(--rand-ink);
+  border-radius: 4px;
+}
+
+body.anthropic-home .anthropic-hero-head .anthropic-kicker {
+  margin-bottom: 0;
 }
 
 body.anthropic-home .anthropic-hero h1 {
   font-family: var(--font-site-title) !important;
   font-optical-sizing: auto;
-  font-size: clamp(2rem, 4vw, 2.85rem);
+  /* One line; size tracks content column width (container) so it fits without wrapping */
+  font-size: clamp(0.72rem, 5.4cqi + 0.2rem, 2.85rem);
   font-weight: 900;
   line-height: 1.05;
   color: var(--ref-title-ink);
@@ -4204,6 +4254,17 @@ body.anthropic-home .anthropic-hero h1 {
   text-transform: uppercase;
   padding-bottom: 0.55rem;
   border-bottom: 4px solid var(--ref-orange-rule);
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+@supports not (container-type: inline-size) {
+  body.anthropic-home .anthropic-hero h1 {
+    font-size: clamp(0.72rem, 2.4vw + 0.35rem, 2.85rem);
+  }
 }
 
 body.anthropic-home .anthropic-lead {
@@ -4233,7 +4294,7 @@ body.anthropic-home .anthropic-btn {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-radius: 0;
+  border-radius: 4px;
   text-decoration: none;
   border: 2px solid var(--rand-ink);
   transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
@@ -4241,27 +4302,28 @@ body.anthropic-home .anthropic-btn {
 
 body.anthropic-home .anthropic-btn-primary {
   background: var(--paint-charcoal);
-  color: #fff;
-  box-shadow: 5px 5px 0 var(--paint-orange);
+  color: #fffef9;
+  box-shadow: 4px 4px 0 var(--rand-yellow);
 }
 
 body.anthropic-home .anthropic-btn-primary:hover {
-  background: var(--paint-teal);
-  color: #fff;
-  box-shadow: 5px 5px 0 var(--paint-mint);
+  background: var(--rand-blue);
+  color: #fffef9;
+  box-shadow: 4px 4px 0 var(--rand-red);
   transform: translate(-1px, -1px);
 }
 
 body.anthropic-home .anthropic-btn-ghost {
   background: var(--paint-cream);
   color: var(--rand-ink);
-  box-shadow: 5px 5px 0 var(--paint-red);
+  border-color: var(--paint-frame);
+  box-shadow: 4px 4px 0 rgba(20, 20, 20, 0.08);
 }
 
 body.anthropic-home .anthropic-btn-ghost:hover {
-  background: var(--paint-sky);
+  background: var(--paint-mint);
   color: var(--rand-ink);
-  box-shadow: 5px 5px 0 var(--paint-charcoal);
+  box-shadow: 4px 4px 0 var(--rand-blue);
 }
 
 body.anthropic-home .anthropic-grid {
@@ -4274,8 +4336,8 @@ body.anthropic-home .anthropic-grid {
 body.anthropic-home .anthropic-card {
   position: relative;
   background: var(--paint-cream);
-  border: 3px solid var(--paint-red);
-  border-radius: 0;
+  border: 1px solid var(--paint-frame);
+  border-radius: 4px;
   padding: 1.5rem 1.5rem 1.35rem;
   padding-top: 1.65rem;
   box-shadow: var(--rand-shadow);
@@ -4288,15 +4350,15 @@ body.anthropic-home .anthropic-card::before {
   right: 0;
   top: 0;
   height: 6px;
-  background: var(--paint-orange);
+  background: var(--rand-yellow);
 }
 
 body.anthropic-home .anthropic-card:nth-child(3n + 2)::before {
-  background: var(--paint-green);
+  background: var(--rand-red);
 }
 
 body.anthropic-home .anthropic-card:nth-child(3n + 3)::before {
-  background: var(--paint-sky);
+  background: var(--rand-blue);
 }
 
 body.anthropic-home .anthropic-card h2 {
@@ -4323,22 +4385,22 @@ body.anthropic-home .anthropic-card a {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--paint-teal);
+  color: var(--line-taupe-deep);
   text-decoration: none;
-  border-bottom: 3px solid var(--paint-yellow);
-  padding-bottom: 0.1em;
+  border-bottom: 4px solid var(--line-taupe);
+  padding-bottom: 0.2em;
 }
 
 body.anthropic-home .anthropic-card a:hover {
-  color: var(--paint-orange);
-  border-bottom-color: var(--paint-orange);
+  color: var(--line-taupe-deep);
+  border-bottom-color: var(--line-taupe-deep);
 }
 
 body.anthropic-home .anthropic-site-footer {
   max-width: 68rem;
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
-  border-top: 3px solid var(--paint-red);
+  border-top: 1px solid var(--paint-frame);
   font-size: 0.85rem;
   color: var(--a-text-muted);
 }

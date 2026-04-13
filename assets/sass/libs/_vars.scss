@@ -31,15 +31,15 @@
 		kerning-heading:			0.25em
 	);
 
-// Palette.
+// Palette (book page + Rand primaries; see main.css :root).
 	$palette: (
-		bg:							#ffffff,
-		bg-alt:						#f4f4f4,
-		fg:							#646464,
-		fg-bold:					#3c3b3b,
-		fg-light:					#aaaaaa,
-		border:						rgba(160,160,160,0.3),
-		border-bg:					rgba(160,160,160,0.075),
-		border-alt:					rgba(160,160,160,0.65),
-		accent:						#2ebaae
+		bg:							#fffef9,
+		bg-alt:						#f5f0e6,
+		fg:							#4a4540,
+		fg-bold:					#141414,
+		fg-light:					#8a7d72,
+		border:						#c9c3b5,
+		border-bg:					#ebe6dc,
+		border-alt:					rgba(20,20,20,0.15),
+		accent:						#1d3557
 	);
