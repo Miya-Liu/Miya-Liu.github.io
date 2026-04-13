@@ -1,5 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap");
 
 /*
 	Future Imperfect by HTML5 UP
@@ -3586,3 +3587,426 @@ input, select, textarea {
 			}
 
 		}
+
+/* =============================================================================
+   Anthropic-inspired site theme (warm minimal)
+   ============================================================================= */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  --a-bg: #faf8f3;
+  --a-surface: #ffffff;
+  --a-text: #2c2b28;
+  --a-text-muted: #6a6864;
+  --a-accent: #c45c3e;
+  --a-accent-hover: #a84a30;
+  --a-border: rgba(44, 43, 40, 0.08);
+  --a-shadow: 0 1px 2px rgba(44, 43, 40, 0.04);
+  --a-font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --a-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+}
+
+body.anthropic-site {
+  background: var(--a-bg) !important;
+  color: var(--a-text-muted);
+  font-family: var(--a-font-body) !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+}
+
+body.anthropic-site #header {
+  background-color: rgba(250, 249, 245, 0.92) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--a-border) !important;
+  box-shadow: none;
+}
+
+body.anthropic-site #header h1 {
+  font-family: var(--a-font-body) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em;
+}
+
+body.anthropic-site #header h1 a {
+  color: var(--a-text) !important;
+}
+
+body.anthropic-site #header .main a {
+  color: var(--a-text-muted) !important;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+body.anthropic-site #header .main a:hover {
+  color: var(--a-accent) !important;
+}
+
+body.anthropic-site #header .main .info a {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+body.anthropic-site #wrapper {
+  max-width: 72em;
+}
+
+body.anthropic-site #main .post {
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  box-shadow: var(--a-shadow);
+  padding: 2em 2.25em;
+  margin-bottom: 2em !important;
+}
+
+body.anthropic-site .post > header .title h2 a,
+body.anthropic-site .post > header .title h2 {
+  font-family: var(--a-font-display) !important;
+  font-weight: 500 !important;
+  color: var(--a-text) !important;
+  letter-spacing: -0.015em;
+}
+
+body.anthropic-site .post > header .title > :last-child,
+body.anthropic-site .post p {
+  color: var(--a-text-muted);
+  line-height: 1.72;
+}
+
+body.anthropic-site .post > footer .stats li a {
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site a {
+  color: var(--a-accent);
+}
+
+body.anthropic-site a:hover {
+  color: var(--a-accent-hover) !important;
+}
+
+body.anthropic-site a:hover:before {
+  color: var(--a-accent-hover) !important;
+}
+
+body.anthropic-site #menu .links > li a:hover h3 {
+  color: var(--a-accent) !important;
+}
+
+body.anthropic-site .post > header .title h2 a:hover {
+  color: var(--a-accent) !important;
+}
+
+body.anthropic-site .button,
+body.anthropic-site .button.large {
+  background: var(--a-accent) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: var(--a-font-body) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+  text-transform: none !important;
+}
+
+body.anthropic-site .button:hover,
+body.anthropic-site .button.large:hover {
+  background: var(--a-accent-hover) !important;
+  color: #fff !important;
+}
+
+body.anthropic-site input[type="text"]:focus,
+body.anthropic-site input[type="email"]:focus,
+body.anthropic-site textarea:focus,
+body.anthropic-site select:focus {
+  border-color: var(--a-accent) !important;
+  box-shadow: inset 0 0 0 1px var(--a-accent) !important;
+}
+
+body.anthropic-site #sidebar {
+  border-color: var(--a-border);
+}
+
+body.anthropic-site #sidebar > * {
+  border-color: var(--a-border) !important;
+}
+
+body.anthropic-site #sidebar h2,
+body.anthropic-site #intro header h2 {
+  font-family: var(--a-font-display) !important;
+  font-weight: 500 !important;
+  color: var(--a-text) !important;
+  letter-spacing: -0.01em;
+}
+
+body.anthropic-site #intro .logo img {
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+body.anthropic-site #sidebar .blurb p,
+body.anthropic-site #intro p {
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site #sidebar .button {
+  background: transparent !important;
+  color: var(--a-accent) !important;
+  border: 1px solid var(--a-border) !important;
+}
+
+body.anthropic-site #sidebar .button:hover {
+  background: rgba(196, 92, 62, 0.08) !important;
+}
+
+body.anthropic-site #footer .icons a {
+  color: var(--a-text-muted) !important;
+}
+
+body.anthropic-site #footer .icons a:hover {
+  color: var(--a-accent) !important;
+}
+
+body.anthropic-site #menu {
+  background: var(--a-surface);
+  border-left: 1px solid var(--a-border);
+}
+
+body.anthropic-site.single .post {
+  padding: 2.5em 3em;
+}
+
+body.anthropic-site.single article.post header .title h2 {
+  font-size: 2em;
+  font-variation-settings: "SOFT" 100;
+  line-height: 1.2;
+}
+
+/* ——— Landing page (index) ——— */
+
+body.anthropic-home {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--a-bg);
+  color: var(--a-text-muted);
+  font-family: var(--a-font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.anthropic-home .anthropic-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  background: rgba(250, 249, 245, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--a-border);
+}
+
+body.anthropic-home .anthropic-brand {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--a-text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+body.anthropic-home .anthropic-brand:hover {
+  color: var(--a-accent);
+}
+
+body.anthropic-home .anthropic-nav-links {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+body.anthropic-home .anthropic-nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--a-text-muted);
+  text-decoration: none;
+}
+
+body.anthropic-home .anthropic-nav-links a:hover {
+  color: var(--a-accent);
+}
+
+body.anthropic-home .anthropic-landing {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+body.anthropic-home .anthropic-hero {
+  padding: 4.5rem 0 3.5rem;
+  max-width: 42rem;
+}
+
+body.anthropic-home .anthropic-hero-avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--a-border);
+  box-shadow: var(--a-shadow);
+  margin: 0 0 1.25rem;
+  display: block;
+}
+
+body.anthropic-home .anthropic-kicker {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--a-accent);
+  margin: 0 0 1rem;
+}
+
+body.anthropic-home .anthropic-hero h1 {
+  font-family: var(--a-font-display);
+  font-size: clamp(2.35rem, 4.5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.18;
+  color: var(--a-text);
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 100;
+}
+
+body.anthropic-home .anthropic-lead {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--a-text-muted);
+  margin: 0 0 2rem;
+  font-weight: 400;
+}
+
+body.anthropic-home .anthropic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+body.anthropic-home .anthropic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+body.anthropic-home .anthropic-btn-primary {
+  background: var(--a-accent);
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+body.anthropic-home .anthropic-btn-primary:hover {
+  background: var(--a-accent-hover);
+  color: #fff;
+}
+
+body.anthropic-home .anthropic-btn-ghost {
+  background: transparent;
+  color: var(--a-text);
+  border: 1px solid var(--a-border);
+}
+
+body.anthropic-home .anthropic-btn-ghost:hover {
+  border-color: var(--a-text-muted);
+  color: var(--a-accent);
+}
+
+body.anthropic-home .anthropic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+  padding-top: 1rem;
+}
+
+body.anthropic-home .anthropic-card {
+  background: var(--a-surface);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.35rem;
+  box-shadow: var(--a-shadow);
+}
+
+body.anthropic-home .anthropic-card h2 {
+  font-family: var(--a-font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--a-text);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+body.anthropic-home .anthropic-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--a-text-muted);
+  margin: 0 0 1rem;
+  font-weight: 400;
+}
+
+body.anthropic-home .anthropic-card a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--a-accent);
+  text-decoration: none;
+}
+
+body.anthropic-home .anthropic-card a:hover {
+  text-decoration: underline;
+}
+
+body.anthropic-home .anthropic-site-footer {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 1px solid var(--a-border);
+  font-size: 0.85rem;
+  color: var(--a-text-muted);
+}
+
+body.anthropic-home .anthropic-site-footer p {
+  margin: 0;
+}
+
+@media screen and (max-width: 736px) {
+  body.anthropic-home .anthropic-hero {
+    padding-top: 2.5rem;
+  }
+
+  body.anthropic-site #main .post {
+    padding: 1.5rem;
+  }
+}

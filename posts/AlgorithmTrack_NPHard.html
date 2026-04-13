@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Purchase Allocation Problem Analysis</title>
+    <title>Algorithm Track: NP-Hardness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
-<body class="single is-preload">
+<body class="single is-preload anthropic-site">
 <!-- Wrapper -->
 <div id="wrapper">
     <!-- Header -->
     <header id="header">
-        <h1><a href="index.html">Thought Recorder</a></h1>
+        <h1><a href="../index.html">Thought Recorder</a></h1>
         <nav class="main">
             <ul>
+                <li class="info"><a href="../index.html">Home</a></li>
+                <li class="info"><a href="../blog.html">Blog</a></li>
+                <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
                 <li class="search"> <a class="fa-search" href="#search">Search</a>
                     <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
                                                                       type="text">
@@ -59,21 +62,57 @@
         <article class="post">
             <header>
                 <div class="title">
-                    <h2><a href="#">Purchase Allocation Problem Analysis</a></h2>
-                    <p>The formalization of the purchase allocation problem in paper <br>
-                        <em><b>Best Bang for the Buck: Purchase Allocation Under AccessDependent Pricing Functions.</b></em>
+                    <h2><a href="#">Computational Complexity</a></h2>
+                    <p>To prove that problem A is NP-hard, reduce a known NP-hard problem to A.
+                        The reduction should be a polynomial time Turing reduction.
                     </p>
                 </div>
                 <div class="meta">
-                    <time class="published" datetime="2019-10-12">01/06/2021</time>
+                    <time class="published" datetime="2019-10-12">01/06/2019</time>
                     <a href="#" class="author"><span class="name">Mengya Liu</span></a>
 
                     <time class="published" datetime="2019-10-12">Updated 1 day ago</time>
                 </div>
             </header>
 
-            <p><strong>Problem Formalization:</strong></p>
-            <p id="p_Formal"> To formalize the purchase allocation problem in the presence of ADPF, first, we define
+            <a><strong>Subset Sum Problem: given a set of integers, does any non-empty subset of them add up to zero?</strong></a>
+            <a><strong>Task: Given the fact that Knapsack decision problem is NP-hard, prove subset sum problem is NP-hard. </strong></a>
+            <p id="p_Formal">
+            <br>
+            Proof:<br>
+                Subset Sum Problem Instance: A set of \(n\) integers, \(N=\{r_{1}, r_{2}, \cdots,r_{n}\}\),
+                a value of 0 and a subset of the integers \(S\). <br>
+                QUESTION: Can the integers in S add up to the value of 0.
+                <br><br>
+                Knapsack Problem Instance: A set of \(k\) elements, \(K=\{1,\dots,k\}\), each element has a value of \(v\)
+                and a weight of \(w\), and a value of \(V\) and a knapsack with a capacity of \(W\). <br>
+                Knapsack Question: Can the knapsack reach a value \(V\) without exceeding the capacity of \(W \)?
+
+                <br><br>
+                Reduction: Define an instance \(I\) of Subset Sum problem reduced from Knapsack by: <br>
+                \begin{align*}
+                , \text{ where } i=1, 2, \cdots, n, \\
+                x_{i} =& 1, \text{ where } i=1, 2, \cdots, n, \\
+                V=0,\\
+                W=k.
+                \end{align*}
+                where \(x_{i} = 1\) denote the weight of the \(i\)th integer ,
+                <br>
+
+                Assume the knapsack in the Knapsack problem has a value of 0 without exceeding the capacity of \(W\).
+                Since the integer
+                We will explain that if there is an answer for the instance $I$ of the PA problem on the assumption with the maximal
+                utility within the budget of $B$, if and only if there is a procedure to find the subset that satisfies the question
+                of SUKP. Assume the subset $\Phi$ of $N$ has a maximal profit without exceeding the capacity of $c$.
+                Since the values of solutions in $S$ and the budget are equal to the profits of items in $N$ and the capacity,
+                the allocation $\Lambda = \Phi$ has maximal value within the budget of $B$ and answers the instance $I$ of problem PA.
+                And vice versa.
+
+                Using the reduction from SUKP to the PA problem establishes the simplified problem as NP-hard. Introducing any other pricing functions (e.g. ADPFs), the PA problem is at least in NP-hard.
+
+
+
+                To formalize the purchase allocation problem in the presence of ADPF, first, we define
                 the subset of the full answer as Allocation. To measure the utility of an allocation,
                 inspired by the work of FedMark, we define the concept of the value of a solution, \(v(s)\),
                 to capture the willingness of clients to pay for \(s\) based on their preferences.
@@ -108,32 +147,6 @@
                 a_{ij} \in \left\{0,1\right\},  i = 1, ...,m, j = 1, ...,n\\
                 \end{gathered}
                 \end{equation}$$
-            </p>
-
-            <p><strong>The allocation problem (PA) is NP-hard.</strong></p>
-            <p>
-                We prove that PA is NP-Hard under the following simplifying assumptions: each tuple has a nonnegative constant value as its price. Then, it is straightforward to get the lowest price of each tuple without considering the difficulty brought by pricing functions.
-
-                We reduce a known NP-hard problem, the \textit{Set-Union Knapsack Problem} (SUKP) \citep{goldschmidt1994note} to the PA problem on the above assumption. Following the formalisation of SUKP in \cite{kellerer2003knapsack}, the SUKP problem is
-                \begin{itemize}
-                \item[] INSTANCE: A set of $n$ items, $N$, $N=\{1,\dots,n\}$, a set of $m$ elements, $P$, $P=\{1,\dots,m\}$ and a knapsack with a capacity of $c$. Each item $j$ corresponds to a subset $P_{j}$ of the element set $P$. Each item $j$ has a nonnegative profit, $p_{j}$, and the element $i$ has nonnegative weight $w_{i}$. The total weight of a collection of items is given by the total weight of the elements in the union of the items' element sets.
-                \item[] QUESTION: Find the subset of the items with the maximal profit of a subset of the items and the total weight not exceeding the knapsack capacity.
-                \end{itemize}
-                Define an instance $I$ of problem PA reduced from SUKP by
-                \begin{align*}
-                S=&N, \\
-                RTA(S)=&P, \\
-                RT(s)=& P_{j}, \\
-                v(s) =& p_{j}, \text{ where } s=j, s\in S, j \in N,\\
-                PF[d](\{t\})=&w_{i}, \text{ where } t=i, t\in RTA(S), i \in P, d\in D, \\ & \text{and $d$ is the data source has cheapest price of } \{t\},\\
-                B=&c.
-                \end{align*}
-                %$S=N$, $RTA(S)=P$, $RT(s)= P_{j}$, $v(s) = p_{j}$ where $s=j, s\in S, j \in N$, $PF[d](\{t\})=w_{i}$ where $t=i, t\in RTA(S), i \in P$, $d\in D$ is the data source has cheapest price of $\{t\}$, and $B=c$.
-                We will explain that there is an answer for the instance $I$ of the PA problem on the assumption with the maximal utility within the budget of $B$, if and only if there is a procedure to find the subset that satisfies the question of SUKP. Assume the subset $\Phi$ of $N$ has a maximal profit without exceeding the capacity of $c$.
-                Since the values of solutions in $S$ and the budget are equal to the profits of items in $N$ and the capacity, the allocation $\Lambda = \Phi$ has maximal value within the budget of $B$ and answers the instance $I$ of problem PA. And vice versa.
-
-                Using the reduction from SUKP to the PA problem establishes the simplified problem as NP-hard. Introducing any other pricing functions (e.g. ADPFs), the PA problem is at least in NP-hard.
-
             </p>
 
             <footer>
@@ -174,12 +187,13 @@
     </section>
 </div>
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
+

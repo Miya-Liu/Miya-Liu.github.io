@@ -1,0 +1,28 @@
+Thought Recorder — site layout
+================================
+
+Root (GitHub Pages entry)
+  index.html       Home / landing
+  blog.html        Post archive (listing)
+
+posts/             Individual articles and notes (HTML)
+  *.html           One file per topic; links from blog.html use paths like posts/<name>.html
+
+pages/             Secondary standalone pages
+  books.html       Example: books / reading list placeholder
+
+templates/         Copy-paste starters (not linked from the site)
+  single.html      Generic single-post template
+
+assets/            Static assets
+  css/main.css     Site stylesheet (Future Imperfect + theme)
+  js/              jQuery, theme scripts
+  sass/            Source SCSS if you compile CSS from Sass
+  fonts/
+
+images/            Images referenced as ../images/ from posts/
+
+_archive/          Old backups (e.g. former index.html.bak)
+
+Legacy URLs: if anything still pointed to /SomePost.html at the repo root, update it to
+/posts/SomePost.html after this layout change.
