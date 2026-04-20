@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const root = path.resolve("notion_sources/agent-workflow-image.html");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.join(__dirname, "..");
+const root = path.join(repoRoot, "notion_sources", "agent-workflow-image.html");
 let body = fs.readFileSync(root, "utf8").trim();
 
 if (body.includes("<!DOCTYPE")) {

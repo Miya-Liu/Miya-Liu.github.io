@@ -3,111 +3,221 @@
 	Future Imperfect by HTML5 UP	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
 <html lang="en">
+
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Memory of agent in real | Thought Recorder</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="Memory in Claude Code and related stacks: CLAUDE.md ladder, transcripts, memory types, agent workflow, flush and Dream pipelines, prefetch, nested memory, Remember and self-improvement skills.">
-    <link rel="stylesheet" href="../assets/css/main.css">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Memory of agent in real | Thought Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Memory in Claude Code and related stacks: CLAUDE.md ladder, transcripts, memory types, agent workflow, flush and Dream pipelines, prefetch, nested memory, Remember and self-improvement skills.">
+  <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body class="single is-preload anthropic-site">
-<!-- Wrapper -->
-<div id="wrapper">
+  <!-- Wrapper -->
+  <div id="wrapper">
     <!-- Header -->
     <header id="header">
-        <h1><a href="../index.html">Thought Recorder</a></h1>
-        <nav class="main">
-            <ul>
-                <li class="info"><a href="../index.html">Home</a></li>
-                <li class="info"><a href="../blog.html">Blog</a></li>
-                <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
-                <li class="search"> <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
-                                                                      type="text">
-                    </form>
-                </li>
-                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
-            </ul>
-        </nav>
+      <h1><a href="../index.html">Thought Recorder</a></h1>
+      <nav class="main">
+        <ul>
+          <li class="info"><a href="../index.html">Home</a></li>
+          <li class="info"><a href="../blog.html">Blog</a></li>
+          <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
+          <li class="search"> <a class="fa-search" href="#search">Search</a>
+            <form id="search" method="get" action="#"> <input name="query" placeholder="Search" type="text">
+            </form>
+          </li>
+          <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
+        </ul>
+      </nav>
     </header>
     <!-- Menu -->
     <section id="menu">
-        <section>
-            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
-                                                                 type="text">
-            </form>
-        </section>
-        <section>
-            <ul class="links">
-                <li> <a href="#">
-                    <h3>Years</h3>
-                    <p>2019</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>Topics</h3>
-                    <p>Data Marketplaces</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>Publications</h3>
-                    <p>Coming</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>States</h3>
-                    <p>Coming</p>
-                </a> </li>
-            </ul>
-        </section>
+      <section>
+        <form class="search" method="get" action="#"> <input name="query" placeholder="Search" type="text">
+        </form>
+      </section>
+      <section>
+        <ul class="links">
+          <li> <a href="#">
+              <h3>Years</h3>
+              <p>2019</p>
+            </a> </li>
+          <li> <a href="#">
+              <h3>Topics</h3>
+              <p>Data Marketplaces</p>
+            </a> </li>
+          <li> <a href="#">
+              <h3>Publications</h3>
+              <p>Coming</p>
+            </a> </li>
+          <li> <a href="#">
+              <h3>States</h3>
+              <p>Coming</p>
+            </a> </li>
+        </ul>
+      </section>
     </section>
 
     <!-- Main -->
     <div id="main">
-        <div class="post-page-layout">
+      <div class="post-page-layout">
         <article class="post memory-post has-toc">
-            <header>
-                <div class="title">
-                    <h2><a href="Openclaw_Memory_Real.html">Let’s talk about memory of agents.</a></h2>
-                    <p> — from a hands-on pass over real pipelines.</p>
-                </div>
-                <div class="meta">
-                    <time class="published" datetime="2026-04-13">13/04/2026</time>
-                    <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
-                        <span class="name">Miya Liu</span>
-                        <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
-                    </a>
-                </div>
-            </header>
+          <header>
+            <div class="title">
+              <h2><a href="Openclaw_Memory_Real.html">Let’s talk about memory of agents.</a></h2>
+              <p> — from a hands-on pass over real pipelines.</p>
+            </div>
+            <div class="meta">
+              <time class="published" datetime="2026-04-13">13/04/2026</time>
+              <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
+                <span class="name">Miya Liu</span>
+                <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
+              </a>
+            </div>
+          </header>
 
-<!-- Auto-built from Notion export; edit source in notion_sources -->
-<section class="memory-article-body">
-<p id="341006db-a268-8065-bc4f-c879e820bccf">Let’s talk about memory of agents in real. </p>
-<aside class="memory-callout"><p id="343006db-a268-80fc-aa0b-e6b6d449ad0c">Preview: Agent Hosted Disk Files</p>
-  <ol type="1" id="343006db-a268-8038-870d-d54d75c0eeee" class="numbered-list" start="1">
-    <li>Claude Ladder: It refers to the <strong>bottom-up chain of directories</strong>, each step potentially adding another layer of project instructions. Those files are <strong>merged into the same </strong><code><strong>claudeMd</strong></code><strong> / instruction load</strong> together with the <strong>memory dir</strong> content from <code><strong>getMemoryFiles()</strong></code> (when not disabled).<p id="343006db-a268-80ea-8f93-f7e7cd098ef9">From <code><strong>src/utils/claudemd.ts</strong></code> (discovery order and priority):</p>
-      <ol type="1" id="343006db-a268-80b4-8b6a-c6545a1a6ed5" class="numbered-list" start="1">
-        <li><strong>Managed</strong> (e.g. host-level rules, if configured).</li>
-      </ol>
-      <ol type="1" id="343006db-a268-8096-9b43-c7b1c715bebd" class="numbered-list" start="2">
-        <li><strong>User</strong> — e.g. <code><strong>~/.claude/CLAUDE.md</strong></code> (global for all projects).</li>
-      </ol>
-      <ol type="1" id="343006db-a268-8078-aae3-e058ab000486" class="numbered-list" start="3">
-        <li><strong>Project</strong> — walk <strong>from cwd up toward root</strong>; at each level: <code><strong>CLAUDE.md</strong></code>, <code><strong>.claude/CLAUDE.md</strong></code>, <code><strong>.claude/rules/*.md</strong></code>.</li>
-      </ol>
-      <ol type="1" id="343006db-a268-80d3-8251-fdbea27c8855" class="numbered-list" start="4">
-        <li><strong>Local</strong> — <code><strong>CLAUDE.local.md</strong></code> (private, not necessarily committed).</li>
-      </ol>
-      <p id="343006db-a268-803d-beff-f6a8b5627674"><strong>Priority:</strong> Files <strong>closer to root path</strong> loaded <strong>later</strong> win for attention. <code><strong>@include</strong></code> can pull other markdown files into the same assembled system prompt string.</p>
-      <p id="343006db-a268-8098-bef6-d84b420a1477"></p>
-    </li>
-  </ol>
-  <ol type="1" id="343006db-a268-80e9-987d-d71d181b0d9c" class="numbered-list" start="2"><li>Transcripts: Session-adjacent files (raw chat messages)<table id="343006db-a268-8012-be02-ffcbc03d07f8" class="simple-table"><thead class="simple-table-header"><tr id="343006db-a268-80f9-a376-c7f171f9b112"><th id="bLGP" class="simple-table-header-color simple-table-header" style="width:241px">Location &amp; Type</th><th id="\WUT" class="simple-table-header-color simple-table-header" style="width:1399px">Role</th></tr></thead><tbody><tr id="343006db-a268-8002-a5d0-ef4c40c1c553"><td id="bLGP" style="width:241px"><code><strong>sessionId/</strong></code><strong>JSONL </strong></td><td id="\WUT" style="width:1399px"><strong>conversation log</strong> — used for <strong>compaction context</strong>, <strong>extract memories</strong>, <strong>grep</strong> in Dream prompt, <strong>resume</strong>. </td></tr><tr id="343006db-a268-8077-942e-e1ecf6bf04d4"><td id="bLGP" style="width:241px"><code><strong>/sessionId/tool-results/</strong></code><strong> JSONL</strong></td><td id="\WUT" style="width:1399px"><strong>Spilled large tool outputs</strong> when results are replaced in messages, not semantic memory (Ref: <code><strong>toolResultStorage</strong></code>).</td></tr></tbody></table></li></ol><ol type="1" id="343006db-a268-80b6-8d1a-f2ceac09273a" class="numbered-list" start="3"><li>Memories: Durable <strong>facts/preferences</strong> the agent <strong>writes</strong> across sessions (per project in Claude Code case)<ul id="343006db-a268-805b-9139-e4b0bc90ee5e" class="bulleted-list"><li style="list-style-type:disc">Memory Types<table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table"><tbody><tr id="341006db-a268-8071-869b-f61a99cab490"><td id="nBmr" style="width:147.65625px">Memory Type</td><td id="\Nso" style="width:1476.65625px">Content and Purpose</td></tr><tr id="341006db-a268-80db-8bc8-fb2a6021ee54"><td id="nBmr" style="width:147.65625px">Session Memory</td><td id="\Nso" style="width:1476.65625px">compacted messages in session transcripts (per session)</td></tr><tr id="341006db-a268-800a-91bc-d3ce26e71dc8"><td id="nBmr" style="width:147.65625px">User Memory</td><td id="\Nso" style="width:1476.65625px">Facts about the <strong>user’s role, goals, responsibilities, and knowledge</strong> so the assistant can tailor behavior. <strong>Scope (combined mode): always </strong><code><strong>private</strong></code><strong>.</strong> Save when agent learns preferences, background, or how to work with <em>this</em> person. Avoid negative or irrelevant judgments. (per project)</td></tr><tr id="341006db-a268-80ae-824b-e672058f2bde"><td id="nBmr" style="width:147.65625px">Project Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Non-derivable</strong> info about <strong>ongoing work in this repo</strong>: goals, initiatives, bugs, incidents, who/why/when — <strong>not</strong> what you could read from code/git. <strong>Scope:</strong> <code><strong>private</strong></code><strong> or </strong><code><strong>team</strong></code>, with <strong>strong bias toward </strong><code><strong>team</strong></code>. Convert relative dates to absolute when saving. (per project)</td></tr><tr id="341006db-a268-80c3-8ec3-e59636a0a09a"><td id="nBmr" style="width:147.65625px">Feedback Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Guidance the user gave about how to work</strong> — what to stop doing and what to keep doing (corrections <strong>and</strong> confirmations). <strong>Scope:</strong> default <code><strong>private</strong></code>; use <code><strong>team</strong></code> only when the rule is <strong>clearly a project-wide convention</strong> every contributor should follow (e.g. testing policy), not a personal style preference. Check for conflicts with team feedback memories. (per project)</td></tr><tr id="341006db-a268-8078-bf00-e4adaa7ad1ab"><td id="nBmr" style="width:147.65625px">Reference Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Pointers to information in external systems</strong> (Linear, Slack, dashboards, etc.) — where to look for up-to-date truth <strong>outside</strong> the repo. <strong>Scope:</strong> <code><strong>usually team</strong></code>. (per project)</td></tr><tr id="344006db-a268-800e-a107-cfc28aca76d0"><td id="nBmr" style="width:147.65625px">Team Memory</td><td id="\Nso" style="width:1476.65625px">Org-wide knowledge that applies across repositories (only if team memory is configured)</td></tr></tbody></table></li></ul><ul id="343006db-a268-80f8-8490-cce4e641f330" class="bulleted-list"><li style="list-style-type:disc">Memory Structure:<pre id="343006db-a268-8075-8676-c94a60235f79" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">memory/                                    # project auto-mem root
+          <!-- Auto-built from Notion export; edit source in notion_sources -->
+          <section class="memory-article-body">
+            <p id="341006db-a268-8065-bc4f-c879e820bccf">Recently, talkings about memory in agents is rapidly expanding. However, not much talks have touched the real life-cycle of memory in agents: chat messages flush into memory, which shall be updated or consolidated at dynamic or periodic frequency, and then utilised in downstream chats in form of contexts or skills. In this post, I will walk you through the life-cycle of memory in agents that I observed from real pipelines in Claude Code and Openclaw skill. Hopefully, it could bright your practice in building a memory life-cycle in your own agents. </p>
+            <aside class="memory-callout">
+              <p id="343006db-a268-80fc-aa0b-e6b6d449ad0c">Preview: Agent Hosted Disk Files</p>
+              <ol type="1" id="343006db-a268-8038-870d-d54d75c0eeee" class="numbered-list" start="1">
+                <li>Claude Ladder: It refers to the <strong>bottom-up chain of directories</strong>, each step potentially adding another layer of project instructions. Those files are <strong>merged into the same </strong><code><strong>claudeMd</strong></code><strong> / instruction load</strong> together with the <strong>memory dir</strong> content from <code><strong>getMemoryFiles()</strong></code> (when not disabled).<p id="343006db-a268-80ea-8f93-f7e7cd098ef9">From <code><strong>src/utils/claudemd.ts</strong></code> (discovery order and priority):</p>
+                  <ol type="1" id="343006db-a268-80b4-8b6a-c6545a1a6ed5" class="numbered-list" start="1">
+                    <li><strong>Managed</strong> (e.g. host-level rules, if configured).</li>
+                  </ol>
+                  <ol type="1" id="343006db-a268-8096-9b43-c7b1c715bebd" class="numbered-list" start="2">
+                    <li><strong>User</strong> — e.g. <code><strong>~/.claude/CLAUDE.md</strong></code> (global for all projects).</li>
+                  </ol>
+                  <ol type="1" id="343006db-a268-8078-aae3-e058ab000486" class="numbered-list" start="3">
+                    <li><strong>Project</strong> — walk <strong>from cwd up toward root</strong>; at each level: <code><strong>CLAUDE.md</strong></code>, <code><strong>.claude/CLAUDE.md</strong></code>, <code><strong>.claude/rules/*.md</strong></code>.</li>
+                  </ol>
+                  <ol type="1" id="343006db-a268-80d3-8251-fdbea27c8855" class="numbered-list" start="4">
+                    <li><strong>Local</strong> — <code><strong>CLAUDE.local.md</strong></code> (private, not necessarily committed).</li>
+                  </ol>
+                  <p id="343006db-a268-803d-beff-f6a8b5627674"><strong>Priority:</strong> Files <strong>closer to root path</strong> loaded <strong>later</strong> win for attention. <code><strong>@include</strong></code> can pull other markdown files into the same assembled system prompt string.</p>
+                  <p id="343006db-a268-8098-bef6-d84b420a1477"></p>
+                </li>
+              </ol>
+              <ol type="1" id="343006db-a268-80e9-987d-d71d181b0d9c" class="numbered-list" start="2">
+                <li>Transcripts: Session-adjacent files (raw chat messages)<table id="343006db-a268-8012-be02-ffcbc03d07f8" class="simple-table">
+                    <thead class="simple-table-header">
+                      <tr id="343006db-a268-80f9-a376-c7f171f9b112">
+                        <th id="bLGP" class="simple-table-header-color simple-table-header" style="width:241px">Location &amp; Type</th>
+                        <th id="\WUT" class="simple-table-header-color simple-table-header" style="width:1399px">Role</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="343006db-a268-8002-a5d0-ef4c40c1c553">
+                        <td id="bLGP" style="width:241px"><code><strong>sessionId/</strong></code><strong>JSONL </strong></td>
+                        <td id="\WUT" style="width:1399px"><strong>conversation log</strong> — used for <strong>compaction context</strong>, <strong>extract memories</strong>, <strong>grep</strong> in Dream prompt, <strong>resume</strong>. </td>
+                      </tr>
+                      <tr id="343006db-a268-8077-942e-e1ecf6bf04d4">
+                        <td id="bLGP" style="width:241px"><code><strong>/sessionId/tool-results/</strong></code><strong> JSONL</strong></td>
+                        <td id="\WUT" style="width:1399px"><strong>Spilled large tool outputs</strong> when results are replaced in messages, not semantic memory (Ref: <code><strong>toolResultStorage</strong></code>).</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </ol>
+              <ol type="1" id="343006db-a268-80b6-8d1a-f2ceac09273a" class="numbered-list" start="3">
+                <li>Memories: Durable <strong>facts/preferences</strong> the agent <strong>writes</strong> across sessions (per project in Claude Code case)<ul id="343006db-a268-805b-9139-e4b0bc90ee5e" class="bulleted-list">
+                    <li style="list-style-type:disc">Memory Types<table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table">
+                        <tbody>
+                          <tr id="341006db-a268-8071-869b-f61a99cab490">
+                            <td id="nBmr" style="width:147.65625px">Memory Type</td>
+                            <td id="\Nso" style="width:1476.65625px">Content and Purpose</td>
+                          </tr>
+                          <tr id="341006db-a268-80db-8bc8-fb2a6021ee54">
+                            <td id="nBmr" style="width:147.65625px">Session Memory</td>
+                            <td id="\Nso" style="width:1476.65625px">compacted messages in session transcripts (per session)</td>
+                          </tr>
+                          <tr id="341006db-a268-800a-91bc-d3ce26e71dc8">
+                            <td id="nBmr" style="width:147.65625px">User Memory</td>
+                            <td id="\Nso" style="width:1476.65625px">Facts about the <strong>user’s role, goals, responsibilities, and knowledge</strong> so the assistant can tailor behavior. <strong>Scope (combined mode): always </strong><code><strong>private</strong></code><strong>.</strong> Save when agent learns preferences, background, or how to work with <em>this</em> person. Avoid negative or irrelevant judgments. (per project)</td>
+                          </tr>
+                          <tr id="341006db-a268-80ae-824b-e672058f2bde">
+                            <td id="nBmr" style="width:147.65625px">Project Memory</td>
+                            <td id="\Nso" style="width:1476.65625px"><strong>Non-derivable</strong> info about <strong>ongoing work in this repo</strong>: goals, initiatives, bugs, incidents, who/why/when — <strong>not</strong> what you could read from code/git. <strong>Scope:</strong> <code><strong>private</strong></code><strong> or </strong><code><strong>team</strong></code>, with <strong>strong bias toward </strong><code><strong>team</strong></code>. Convert relative dates to absolute when saving. (per project)</td>
+                          </tr>
+                          <tr id="341006db-a268-80c3-8ec3-e59636a0a09a">
+                            <td id="nBmr" style="width:147.65625px">Feedback Memory</td>
+                            <td id="\Nso" style="width:1476.65625px"><strong>Guidance the user gave about how to work</strong> — what to stop doing and what to keep doing (corrections <strong>and</strong> confirmations). <strong>Scope:</strong> default <code><strong>private</strong></code>; use <code><strong>team</strong></code> only when the rule is <strong>clearly a project-wide convention</strong> every contributor should follow (e.g. testing policy), not a personal style preference. Check for conflicts with team feedback memories. (per project)</td>
+                          </tr>
+                          <tr id="341006db-a268-8078-bf00-e4adaa7ad1ab">
+                            <td id="nBmr" style="width:147.65625px">Reference Memory</td>
+                            <td id="\Nso" style="width:1476.65625px"><strong>Pointers to information in external systems</strong> (Linear, Slack, dashboards, etc.) — where to look for up-to-date truth <strong>outside</strong> the repo. <strong>Scope:</strong> <code><strong>usually team</strong></code>. (per project)</td>
+                          </tr>
+                          <tr id="344006db-a268-800e-a107-cfc28aca76d0">
+                            <td id="nBmr" style="width:147.65625px">Team Memory</td>
+                            <td id="\Nso" style="width:1476.65625px">Org-wide knowledge that applies across repositories (only if team memory is configured)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </li>
+                  </ul>
+                  <ul id="343006db-a268-80f8-8490-cce4e641f330" class="bulleted-list">
+                    <li style="list-style-type:disc">Memory Structure:
+                      <pre id="343006db-a268-8075-8676-c94a60235f79" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">memory/                                    # project auto-mem root
 ├── MEMORY.md                              # index over topic *.md 
 ├── &lt;topic&gt;.md                             # topics listed in index .md and will be scanned
 ├── logs/                                  # raw stream → index/topics
 │   └── …/*.md
 └── team/                                  # shared subtree
-    └── MEMORY.md                          # team index</code></pre></li></ul></li>
-  </ol>
-<aside class="memory-callout memory-callout-note"><figure id="344006db-a268-800b-bcf2-e6460ec3f708" class="link-to-page"><a href="../notion_sources/File%20System%20Design%20344006dba268800bbcf2e6460ec3f708.html">File System Design</a></figure></aside></aside><h3 id="343006db-a268-80ed-ac0e-fde20bbcdc5a">Agent Workflow</h3><figure class="memory-mermaid-figure memory-figure-embed"><div class="memory-figure-embed-preview"><iframe title="Sequence diagram: OpenClaw agent workflow (user, prompt assembly, main agent loop, compaction, disk, memory flush, dream, forked agent)" src="../notion_sources/agent-workflow-image.html" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><figcaption class="memory-figure-embed-caption"><a href="../notion_sources/agent-workflow-image.html" target="_blank" rel="noopener noreferrer">Open diagram as full page</a> · <a href="https://www.notion.so/341006dba2688032b7dfca104dd6b635?pvs=21" target="_blank" rel="noopener noreferrer">View in Notion</a></figcaption></figure><aside class="memory-callout"><p id="344006db-a268-805d-8eec-cb1d42fcf89c">Cross Reference:  </p><figure id="344006db-a268-80ec-8229-e829f957c69f" class="link-to-page"><a href="https://www.notion.so/Agent-develops-branches-along-with-crafted-prompt-catching-344006dba26880ec8229e829f957c69f?pvs=21">Agent develops branches along with crafted prompt catching</a></figure></aside><h2 id="343006db-a268-8088-95a5-f01a201de8a7">Memory Flush in Main Agent Loop</h2><p id="343006db-a268-8093-b260-e956a5c5bda4">When main agent loop resolves all tool calls and invoke handle stop hook, memory extraction pipeline starts in a fire-and-forget way. This pipeline inits a forked agent from main with a constrained tool list: <code>read, grep, glob, read-only bash, edit, write</code>  for file processes. The following steps explains the basic steps of the pipeline:  </p><ul id="343006db-a268-805a-aea9-c9896aa5f0c7" class="bulleted-list"><li style="list-style-type:disc">Init Phase: <ul id="343006db-a268-80f7-91ff-e13cf4f0d084" class="bulleted-list"><li style="list-style-type:circle">spot the <em><mark class="highlight-yellow_background"><strong>chat slice</strong></mark></em> to extract memory from, which could be either all most recent messages since last memory message ID or all visiable messages in context.</li></ul><ul id="343006db-a268-80e3-96b9-fc8d12fc32de" class="bulleted-list"><li style="list-style-type:circle">spot workspace, i.e. memory folder path, that current agent can access and prefetch the <em><mark class="highlight-yellow_background"><strong>workspace tree</strong></mark></em> (like run ls bash command)</li></ul><ul id="343006db-a268-809c-b8fa-fab7b3ed3721" class="bulleted-list"><li style="list-style-type:circle">build extraction prompt: either team memory instruction or automatic memory instruction (Ref: <mark class="highlight-blue"><code>services/extractMemories/prompts.ts</code></mark>)</li></ul></li></ul><ul id="343006db-a268-806d-9a2b-f185f579cb83" class="bulleted-list"><li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80ba-b4fd-f42cb26785ae" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul><ul id="343006db-a268-8039-b84a-d3e465762abd" class="bulleted-list"><li style="list-style-type:circle">max turn ≤ 5</li></ul><ul id="343006db-a268-8026-99cf-e7bd528e2f6c" class="bulleted-list"><li style="list-style-type:circle">tool list limited to <code>read, grep, glob, read-only bash, edit, write</code>  </li></ul></li></ul><ul id="343006db-a268-800a-b285-f42d2b0d0d83" class="bulleted-list"><li style="list-style-type:disc">post extraction: append system messages listing written paths</li></ul><aside class="memory-callout"><p id="343006db-a268-80c6-a0be-ec1e4f947244">memory extraction instruction</p><ul id="343006db-a268-80a6-963f-ea405fbb9250" class="toggle"><li><details open=""><summary>individual memory</summary><pre id="343006db-a268-80cb-8787-c8a4632a4f6d" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">You are now acting as the memory extraction subagent. Analyze the most recent ${chat slice} messages above and use them to update your persistent memory systems.
+    └── MEMORY.md                          # team index</code></pre>
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+              <aside class="memory-callout memory-callout-note">
+                <figure id="344006db-a268-800b-bcf2-e6460ec3f708" class="link-to-page"><a href="../notion_sources/File%20System%20Design%20344006dba268800bbcf2e6460ec3f708.html">File System Design</a></figure>
+              </aside>
+              <h3 id="343006db-a268-80ed-ac0e-fde20bbcdc5a">Agent Workflow</h3>
+              <figure class="memory-mermaid-figure memory-figure-embed">
+                <div class="memory-figure-embed-preview"><iframe title="Sequence diagram: OpenClaw agent workflow (user, prompt assembly, main agent loop, compaction, disk, memory flush, dream, forked agent)" src="../notion_sources/agent-workflow-image.html" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                <figcaption class="memory-figure-embed-caption"><a href="../notion_sources/agent-workflow-image.html" target="_blank" rel="noopener noreferrer">Open diagram as full page</a> · <a href="https://www.notion.so/341006dba2688032b7dfca104dd6b635?pvs=21" target="_blank" rel="noopener noreferrer">View in Notion</a></figcaption>
+              </figure>
+              <aside class="memory-callout">
+                <p id="344006db-a268-805d-8eec-cb1d42fcf89c">Cross Reference: </p>
+                <figure id="344006db-a268-80ec-8229-e829f957c69f" class="link-to-page"><a href="https://www.notion.so/Agent-develops-branches-along-with-crafted-prompt-catching-344006dba26880ec8229e829f957c69f?pvs=21">Agent develops branches along with crafted prompt catching</a></figure>
+              </aside>
+              <h2 id="343006db-a268-8088-95a5-f01a201de8a7">Memory Flush in Main Agent Loop</h2>
+              <p id="343006db-a268-8093-b260-e956a5c5bda4">When main agent loop resolves all tool calls and invoke handle stop hook, memory extraction pipeline starts in a fire-and-forget way. This pipeline inits a forked agent from main with a constrained tool list: <code>read, grep, glob, read-only bash, edit, write</code> for file processes. The following steps explains the basic steps of the pipeline: </p>
+              <ul id="343006db-a268-805a-aea9-c9896aa5f0c7" class="bulleted-list">
+                <li style="list-style-type:disc">Init Phase: <ul id="343006db-a268-80f7-91ff-e13cf4f0d084" class="bulleted-list">
+                    <li style="list-style-type:circle">spot the <em><mark class="highlight-yellow_background"><strong>chat slice</strong></mark></em> to extract memory from, which could be either all most recent messages since last memory message ID or all visiable messages in context.</li>
+                  </ul>
+                  <ul id="343006db-a268-80e3-96b9-fc8d12fc32de" class="bulleted-list">
+                    <li style="list-style-type:circle">spot workspace, i.e. memory folder path, that current agent can access and prefetch the <em><mark class="highlight-yellow_background"><strong>workspace tree</strong></mark></em> (like run ls bash command)</li>
+                  </ul>
+                  <ul id="343006db-a268-809c-b8fa-fab7b3ed3721" class="bulleted-list">
+                    <li style="list-style-type:circle">build extraction prompt: either team memory instruction or automatic memory instruction (Ref: <mark class="highlight-blue"><code>services/extractMemories/prompts.ts</code></mark>)</li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="343006db-a268-806d-9a2b-f185f579cb83" class="bulleted-list">
+                <li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80ba-b4fd-f42cb26785ae" class="bulleted-list">
+                    <li style="list-style-type:circle">prompt as user message</li>
+                  </ul>
+                  <ul id="343006db-a268-8039-b84a-d3e465762abd" class="bulleted-list">
+                    <li style="list-style-type:circle">max turn ≤ 5</li>
+                  </ul>
+                  <ul id="343006db-a268-8026-99cf-e7bd528e2f6c" class="bulleted-list">
+                    <li style="list-style-type:circle">tool list limited to <code>read, grep, glob, read-only bash, edit, write</code> </li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="343006db-a268-800a-b285-f42d2b0d0d83" class="bulleted-list">
+                <li style="list-style-type:disc">post extraction: append system messages listing written paths</li>
+              </ul>
+              <aside class="memory-callout">
+                <p id="343006db-a268-80c6-a0be-ec1e4f947244">memory extraction instruction</p>
+                <ul id="343006db-a268-80a6-963f-ea405fbb9250" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>individual memory</summary>
+                      <pre id="343006db-a268-80cb-8787-c8a4632a4f6d" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">You are now acting as the memory extraction subagent. Analyze the most recent ${chat slice} messages above and use them to update your persistent memory systems.
 
 Available tools: ${tool list} for paths inside the memory directory only. rm is not permitted. All other tools — MCP, Agent, write-capable bash tools, etc — will be denied.
 
@@ -212,7 +322,37 @@ type: {user, feedback, project, reference}
 - `MEMORY.md` is always loaded into your system prompt — lines after 200 will be truncated, so keep the index concise
 - Organize memory semantically by topic, not chronologically
 - Update or remove memories that turn out to be wrong or outdated
-- Do not write duplicate memories. First check if there is an existing memory you can update before writing a new one.</code></pre></details></li></ul><ul id="343006db-a268-80e6-8e9a-da2ff650ec78" class="toggle"><li><details open=""><summary>team memory</summary><p id="343006db-a268-80d6-ad8f-ca58dcc4df89">…</p></details></li></ul></aside><h4 id="345006db-a268-8077-8b60-cc4b8880ca2b">Extract Session Memory</h4><p id="345006db-a268-80fc-8778-d9e83d56820d">Session memory follows the same process with three different gates and limited its length to 12000 tokens:</p><ul id="345006db-a268-80d6-a55f-f3b0d58810be" class="bulleted-list"><li style="list-style-type:disc">context length: ≥ 10,000 context-window tokens</li></ul><ul id="345006db-a268-80cb-a953-f8e1f7f5c5b8" class="bulleted-list"><li style="list-style-type:disc">new token length: ≥ 5,000 tokens since last extraction</li></ul><ul id="345006db-a268-808f-aafa-d55732210240" class="bulleted-list"><li style="list-style-type:disc">count of new tool calls: ≥ 3 since last extraction</li></ul><aside class="memory-callout"><p id="345006db-a268-8026-a89b-c59cfd0533a0">session memory extraction instruction</p><ul id="345006db-a268-8025-b1f9-c0a062ae83b9" class="toggle"><li><details open=""><summary>session memory template</summary><pre id="345006db-a268-8011-8505-de04d5f19ebd" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all"># Session Title
+- Do not write duplicate memories. First check if there is an existing memory you can update before writing a new one.</code></pre>
+                    </details>
+                  </li>
+                </ul>
+                <ul id="343006db-a268-80e6-8e9a-da2ff650ec78" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>team memory</summary>
+                      <p id="343006db-a268-80d6-ad8f-ca58dcc4df89">…</p>
+                    </details>
+                  </li>
+                </ul>
+              </aside>
+              <h4 id="345006db-a268-8077-8b60-cc4b8880ca2b">Extract Session Memory</h4>
+              <p id="345006db-a268-80fc-8778-d9e83d56820d">Session memory follows the same process with three different gates and limited its length to 12000 tokens:</p>
+              <ul id="345006db-a268-80d6-a55f-f3b0d58810be" class="bulleted-list">
+                <li style="list-style-type:disc">context length: ≥ 10,000 context-window tokens</li>
+              </ul>
+              <ul id="345006db-a268-80cb-a953-f8e1f7f5c5b8" class="bulleted-list">
+                <li style="list-style-type:disc">new token length: ≥ 5,000 tokens since last extraction</li>
+              </ul>
+              <ul id="345006db-a268-808f-aafa-d55732210240" class="bulleted-list">
+                <li style="list-style-type:disc">count of new tool calls: ≥ 3 since last extraction</li>
+              </ul>
+              <aside class="memory-callout">
+                <p id="345006db-a268-8026-a89b-c59cfd0533a0">session memory extraction instruction</p>
+                <ul id="345006db-a268-8025-b1f9-c0a062ae83b9" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>session memory template</summary>
+                      <pre id="345006db-a268-8011-8505-de04d5f19ebd" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all"># Session Title
 _A short and distinctive 5-10 word descriptive title for the session. Super info dense, no filler_
 
 # Current State
@@ -240,7 +380,15 @@ _What has worked well? What has not? What to avoid? Do not duplicate items from 
 _If the user asked a specific output such as an answer to a question, a table, or other document, repeat the exact result here_
 
 # Worklog
-_Step by step, what was attempted, done? Very terse summary for each step_</code></pre></details></li></ul><ul id="345006db-a268-8063-b488-c50144eb23bf" class="toggle"><li><details open=""><summary>update prompt as user message</summary><pre id="345006db-a268-807b-9cef-eaab1513a2fe" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">IMPORTANT: This message and these instructions are NOT part of the actual user conversation. Do NOT include any references to &quot;note-taking&quot;, &quot;session notes extraction&quot;, or these update instructions in the notes content.
+_Step by step, what was attempted, done? Very terse summary for each step_</code></pre>
+                    </details>
+                  </li>
+                </ul>
+                <ul id="345006db-a268-8063-b488-c50144eb23bf" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>update prompt as user message</summary>
+                      <pre id="345006db-a268-807b-9cef-eaab1513a2fe" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">IMPORTANT: This message and these instructions are NOT part of the actual user conversation. Do NOT include any references to &quot;note-taking&quot;, &quot;session notes extraction&quot;, or these update instructions in the notes content.
 
 Based on the user conversation above (EXCLUDING this note-taking instruction message as well as system prompt, claude.md entries, or any past session summaries), update the session notes file.
 
@@ -277,9 +425,60 @@ Each section has TWO parts that must be preserved exactly as they appear in the 
 You ONLY update the actual content that comes AFTER these two preserved lines. The italic description lines starting and ending with underscores are part of the template structure, NOT content to be edited or removed.
 
 REMEMBER: Use the Edit tool in parallel and stop. Do not continue after the edits. Only include insights from the actual user conversation, never from these note-taking instructions. Do not delete or change section headers or italic _section descriptions_.`
-</code></pre></details></li></ul><ul id="345006db-a268-802f-9f07-c2baa06f2ac8" class="toggle"><li><details open=""><summary>session reminder shall be appended if file length exceeds the limitation</summary><pre id="345006db-a268-8073-871f-f91c227bcdb9" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">CRITICAL: The session memory file is currently ~${totalTokens} tokens, which exceeds the maximum of 12000. You MUST condense the file to fit within this budget. Aggressively shorten oversized sections by removing less important details, merging related items, and summarizing older entries. Prioritize keeping &quot;Current State&quot; and &quot;Errors &amp; Corrections&quot; accurate and detailed.
+</code></pre>
+                    </details>
+                  </li>
+                </ul>
+                <ul id="345006db-a268-802f-9f07-c2baa06f2ac8" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>session reminder shall be appended if file length exceeds the limitation</summary>
+                      <pre id="345006db-a268-8073-871f-f91c227bcdb9" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">CRITICAL: The session memory file is currently ~${totalTokens} tokens, which exceeds the maximum of 12000. You MUST condense the file to fit within this budget. Aggressively shorten oversized sections by removing less important details, merging related items, and summarizing older entries. Prioritize keeping &quot;Current State&quot; and &quot;Errors &amp; Corrections&quot; accurate and detailed.
 
-Oversized sections to condense</code></pre></details></li></ul></aside><h2 id="343006db-a268-80c1-b67e-c8ed72fa5091">Memory Consolidation in Dream</h2><p id="343006db-a268-80f6-90e6-c4294c948862">When main agent loop terminates, auto dream pipeline starts in a fire-and-forget manner. This pipeline alters at gates of consolidation interval length and number of recently visited sessions. In another word, only if the time and number of updated sessions exceeds given thresholds (e.g. 24 hours and 5 sessions) since last auto dream, the pipeline shall be invoked. The following steps demonstrates the basic steps of the pipeline: (Ref: <mark class="highlight-blue"><code>services/autoDream/autoDream.ts</code></mark>)</p><ul id="343006db-a268-8029-b0ce-e251ce5a214b" class="bulleted-list"><li style="list-style-type:disc">Init Phase:<ul id="343006db-a268-80dc-8166-ceae18d4fe07" class="bulleted-list"><li style="list-style-type:circle">collect <em><mark class="highlight-yellow_background"><strong>updated session IDs</strong></mark></em></li></ul><ul id="343006db-a268-80a4-a8c2-e2868b2a45aa" class="bulleted-list"><li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>workspace</strong></mark></em>, i.e. memory folder path, that current agent can access</li></ul><ul id="343006db-a268-80a6-9a86-ef56b817c8c6" class="bulleted-list"><li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>project </strong></mark></em>path, i.e. where multiple sessions location</li></ul></li></ul><ul id="343006db-a268-801c-a112-e9f60e5335b7" class="bulleted-list"><li style="list-style-type:disc">register Dream Task for UI interaction</li></ul><ul id="343006db-a268-8049-b017-eb1f090c01b2" class="bulleted-list"><li style="list-style-type:disc">build consolidation prompt  (Ref: <mark class="highlight-blue"><code>services/autoDream/consolidationPrompts.ts</code></mark>)</li></ul><ul id="343006db-a268-80a3-809c-cca91784b869" class="bulleted-list"><li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80e0-96cb-f4d3d7264ab7" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul><ul id="343006db-a268-804f-a824-f0f82d46cb3a" class="bulleted-list"><li style="list-style-type:circle">no limitation on agent iterative turns</li></ul><ul id="343006db-a268-80ce-bc13-dede0495c391" class="bulleted-list"><li style="list-style-type:circle">constraint tool list on bash: read-only bash tools</li></ul></li></ul><aside class="memory-callout"><p id="343006db-a268-80f5-9148-fb89264d3da1">memory consolidation instruction</p><ul id="343006db-a268-8061-92a8-dc0f14ef3f8b" class="toggle"><li><details open=""><summary>consolidation prompt</summary><pre id="343006db-a268-8076-ad0f-c636ba07f6cf" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all"># Dream: Memory Consolidation
+Oversized sections to condense</code></pre>
+                    </details>
+                  </li>
+                </ul>
+              </aside>
+              <h2 id="343006db-a268-80c1-b67e-c8ed72fa5091">Memory Consolidation in Dream</h2>
+              <p id="343006db-a268-80f6-90e6-c4294c948862">When main agent loop terminates, auto dream pipeline starts in a fire-and-forget manner. This pipeline alters at gates of consolidation interval length and number of recently visited sessions. In another word, only if the time and number of updated sessions exceeds given thresholds (e.g. 24 hours and 5 sessions) since last auto dream, the pipeline shall be invoked. The following steps demonstrates the basic steps of the pipeline: (Ref: <mark class="highlight-blue"><code>services/autoDream/autoDream.ts</code></mark>)</p>
+              <ul id="343006db-a268-8029-b0ce-e251ce5a214b" class="bulleted-list">
+                <li style="list-style-type:disc">Init Phase:<ul id="343006db-a268-80dc-8166-ceae18d4fe07" class="bulleted-list">
+                    <li style="list-style-type:circle">collect <em><mark class="highlight-yellow_background"><strong>updated session IDs</strong></mark></em></li>
+                  </ul>
+                  <ul id="343006db-a268-80a4-a8c2-e2868b2a45aa" class="bulleted-list">
+                    <li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>workspace</strong></mark></em>, i.e. memory folder path, that current agent can access</li>
+                  </ul>
+                  <ul id="343006db-a268-80a6-9a86-ef56b817c8c6" class="bulleted-list">
+                    <li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>project </strong></mark></em>path, i.e. where multiple sessions location</li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="343006db-a268-801c-a112-e9f60e5335b7" class="bulleted-list">
+                <li style="list-style-type:disc">register Dream Task for UI interaction</li>
+              </ul>
+              <ul id="343006db-a268-8049-b017-eb1f090c01b2" class="bulleted-list">
+                <li style="list-style-type:disc">build consolidation prompt (Ref: <mark class="highlight-blue"><code>services/autoDream/consolidationPrompts.ts</code></mark>)</li>
+              </ul>
+              <ul id="343006db-a268-80a3-809c-cca91784b869" class="bulleted-list">
+                <li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80e0-96cb-f4d3d7264ab7" class="bulleted-list">
+                    <li style="list-style-type:circle">prompt as user message</li>
+                  </ul>
+                  <ul id="343006db-a268-804f-a824-f0f82d46cb3a" class="bulleted-list">
+                    <li style="list-style-type:circle">no limitation on agent iterative turns</li>
+                  </ul>
+                  <ul id="343006db-a268-80ce-bc13-dede0495c391" class="bulleted-list">
+                    <li style="list-style-type:circle">constraint tool list on bash: read-only bash tools</li>
+                  </ul>
+                </li>
+              </ul>
+              <aside class="memory-callout">
+                <p id="343006db-a268-80f5-9148-fb89264d3da1">memory consolidation instruction</p>
+                <ul id="343006db-a268-8061-92a8-dc0f14ef3f8b" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>consolidation prompt</summary>
+                      <pre id="343006db-a268-8076-ad0f-c636ba07f6cf" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all"># Dream: Memory Consolidation
 
 You are performing a dream — a reflective pass over your memory files. Synthesize what you&#x27;ve learned recently into durable, well-organized memories so that future sessions can orient quickly.
 
@@ -339,70 +538,98 @@ Return a brief summary of what you consolidated, updated, or pruned. If nothing 
 **Tool constraints for this run:** Bash is restricted to read-only commands (`ls`, `find`, `grep`, `cat`, `stat`, `wc`, `head`, `tail`, and similar). Anything that writes, redirects to a file, or modifies state will be denied. Plan your exploration with this in mind — no need to probe.
 
 Sessions since last consolidation (${updated session IDs})
-</code></pre></details></li></ul></aside><h2 id="344006db-a268-8003-8a92-dd614c0c9e46">Memory Fetch</h2><p id="344006db-a268-80a2-92f0-c3ca54ec0f1e">Memory fetch refer to the process of searching relevant memories. Fetched memories shall be formed as a list of filenames (along with local access paths), i.e. the topic <code>*.md</code> files. </p><figure class="memory-mermaid-figure"><div class="mermaid">
-flowchart
-	A0["Fetch System Prompts"]
-	A1["Get Memory Files 
- claude md and rules md 
-auto-memory folder "]
-	A2["Filter Injected Memory Files"]
-	
-	subgraph Side["Prefetch Relevant Memories"]
-		direction TB
-		C1["Collect Surfaced Memories"]
-		S0["Scan Auto-Memory Files"]
-		
-		subgraph sidequery["Side Query"]
-			direction TB
-				S1["Form Memory Selection Prompt"]
-				S2["Form User Message"]
-				S3["Collect LLM Selected Files"]
-				
-				S1-->S2-->S3 
-			end
-		
-		C2["Read Memory File Contents"]
-		
-		C1-->S0-->sidequery
-		S3-->C2
-	end
-	
-	subgraph Agent["Agent Loop"]
-		direction TB
-		B0["Messages Compaction"]
-		B1["Streaming Context 
-or Tool Executions
-after Calling Model API"]
-		B2["Nested Memory Files updated
-during Tool Execution"]
-		subgraph B3["Get Attachements"]
-			direction TB
-			BB1["Get Relevant 
- Nested Memories"]
-			BB2["Load CLAUDE.md, 
-CLAUDE.local.md,
-.claude/rules/*.md"]
-			
-			BB1-->BB2
-		end
-		B4["Push Attachements 
-as Tool Results"]
-		B5["Consume Prefetched 
- Memories"]
-		
-		B0-->B1-->B2-->B3-->B4-->B5-->B0
-	end
-	
-	A0-->A1-->A2-->C1
-	A2-->B0
-	C2-->B5
-</div></figure><p id="344006db-a268-80e2-8bf0-f5cd3130d745">
-</p><h4 id="344006db-a268-80ba-983a-e0e1e0ca732c">Relevant Memory per User Turn</h4><p id="344006db-a268-8019-8132-cdc4a1d08ff2"> - Ref: <mark class="highlight-blue"><code>startRelevantMemoryPrefetch</code></mark></p><p id="345006db-a268-8002-9618-cb425d4ad8a9">Memory prefetch refer to the process of searching relevant memories w.r.t. latest prompt from real user. The process is triggered at the start of an user turn, and runs while the main agent loop streams and executes tool calls, i.e. as a separate progress. At the end of every agent turn, i.e. post tool executions, individual agent turn collect the memories in the manner of consume-memory-if-ready, i.e. the progress finished, or skip-and-retry-next-turn. The memories can only be consumed once by one agent turn. </p><aside class="memory-callout"><p id="345006db-a268-80c1-be3e-ce5f5dec542e">Query Model API on Sideway</p><ul id="345006db-a268-8006-899c-df04b8e12b17" class="toggle"><li><details open=""><summary>system prompt of memory selection query</summary><pre id="345006db-a268-808b-ac4c-c8865c164172" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">You are selecting memories that will be useful to Claude Code as it processes a user&#x27;s query. You will be given the user&#x27;s query and a list of available memory files with their filenames and descriptions.
+</code></pre>
+                    </details>
+                  </li>
+                </ul>
+              </aside>
+              <h2 id="344006db-a268-8003-8a92-dd614c0c9e46">Memory Fetch</h2>
+              <p id="344006db-a268-80a2-92f0-c3ca54ec0f1e">Memory fetch refer to the process of searching relevant memories. Fetched memories shall be formed as a list of filenames (along with local access paths), i.e. the topic <code>*.md</code> files. </p>
+              <figure class="memory-mermaid-figure">
+                <div class="mermaid">
+                  flowchart
+                  A0["Fetch System Prompts"]
+                  A1["Get Memory Files
+                  claude md and rules md
+                  auto-memory folder "]
+                  A2["Filter Injected Memory Files"]
+
+                  subgraph Side["Prefetch Relevant Memories"]
+                  direction TB
+                  C1["Collect Surfaced Memories"]
+                  S0["Scan Auto-Memory Files"]
+
+                  subgraph sidequery["Side Query"]
+                  direction TB
+                  S1["Form Memory Selection Prompt"]
+                  S2["Form User Message"]
+                  S3["Collect LLM Selected Files"]
+
+                  S1-->S2-->S3
+                  end
+
+                  C2["Read Memory File Contents"]
+
+                  C1-->S0-->sidequery
+                  S3-->C2
+                  end
+
+                  subgraph Agent["Agent Loop"]
+                  direction TB
+                  B0["Messages Compaction"]
+                  B1["Streaming Context
+                  or Tool Executions
+                  after Calling Model API"]
+                  B2["Nested Memory Files updated
+                  during Tool Execution"]
+                  subgraph B3["Get Attachements"]
+                  direction TB
+                  BB1["Get Relevant
+                  Nested Memories"]
+                  BB2["Load CLAUDE.md,
+                  CLAUDE.local.md,
+                  .claude/rules/*.md"]
+
+                  BB1-->BB2
+                  end
+                  B4["Push Attachements
+                  as Tool Results"]
+                  B5["Consume Prefetched
+                  Memories"]
+
+                  B0-->B1-->B2-->B3-->B4-->B5-->B0
+                  end
+
+                  A0-->A1-->A2-->C1
+                  A2-->B0
+                  C2-->B5
+                </div>
+              </figure>
+              <p id="344006db-a268-80e2-8bf0-f5cd3130d745">
+              </p>
+              <h4 id="344006db-a268-80ba-983a-e0e1e0ca732c">Relevant Memory per User Turn</h4>
+              <p id="344006db-a268-8019-8132-cdc4a1d08ff2"> - Ref: <mark class="highlight-blue"><code>startRelevantMemoryPrefetch</code></mark></p>
+              <p id="345006db-a268-8002-9618-cb425d4ad8a9">Memory prefetch refer to the process of searching relevant memories w.r.t. latest prompt from real user. The process is triggered at the start of an user turn, and runs while the main agent loop streams and executes tool calls, i.e. as a separate progress. At the end of every agent turn, i.e. post tool executions, individual agent turn collect the memories in the manner of consume-memory-if-ready, i.e. the progress finished, or skip-and-retry-next-turn. The memories can only be consumed once by one agent turn. </p>
+              <aside class="memory-callout">
+                <p id="345006db-a268-80c1-be3e-ce5f5dec542e">Query Model API on Sideway</p>
+                <ul id="345006db-a268-8006-899c-df04b8e12b17" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>system prompt of memory selection query</summary>
+                      <pre id="345006db-a268-808b-ac4c-c8865c164172" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">You are selecting memories that will be useful to Claude Code as it processes a user&#x27;s query. You will be given the user&#x27;s query and a list of available memory files with their filenames and descriptions.
 
 Return a list of filenames for the memories that will clearly be useful to Claude Code as it processes the user&#x27;s query (up to 5). Only include memories that you are certain will be helpful based on their name and description.
 - If you are unsure if a memory will be useful in processing the user&#x27;s query, then do not include it in your list. Be selective and discerning.
 - If there are no memories in the list that would clearly be useful, feel free to return an empty list.
-- If a list of recently-used tools is provided, do not select memories that are usage reference or API documentation for those tools (Claude Code is already exercising them). DO still select memories containing warnings, gotchas, or known issues about those tools — active use is exactly when those matter.</code></pre></details></li></ul><ul id="345006db-a268-8082-8d94-c431b801768f" class="toggle"><li><details open=""><summary>user prompt of memory selection query</summary><pre id="345006db-a268-8002-889a-c0e7e7f0607a" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Query: ${latest user prompt}
+- If a list of recently-used tools is provided, do not select memories that are usage reference or API documentation for those tools (Claude Code is already exercising them). DO still select memories containing warnings, gotchas, or known issues about those tools — active use is exactly when those matter.</code></pre>
+                    </details>
+                  </li>
+                </ul>
+                <ul id="345006db-a268-8082-8d94-c431b801768f" class="toggle">
+                  <li>
+                    <details open="">
+                      <summary>user prompt of memory selection query</summary>
+                      <pre id="345006db-a268-8002-889a-c0e7e7f0607a" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Query: ${latest user prompt}
 
 Available memories:
 ${list of memory headers}
@@ -412,45 +639,63 @@ ${list of memory headers}
 //
 
 Recently used tools:
-${recently successfully processed tool calls}</code></pre></details></li></ul></aside><p id="345006db-a268-80de-ad77-e4c348b488d2">
-</p><h4 id="344006db-a268-8034-9976-c989d4640091">Nested Memory per Agent Turn</h4><p id="344006db-a268-80a9-bb8b-ed96db3c0766"> - Ref: <mark class="highlight-blue"><code>getNestedMemoryAttachments</code></mark></p><p id="344006db-a268-803f-b508-f805f63a4273">Nested memory refer to the loaded memories  at the end of every agent turn from auto memory folder or another folder specified by user. The scope of memory files to be loaded aligns with the files that have been read in history, accessible workspace and updated claude <code>*.md</code>.</p><h2 id="343006db-a268-80c0-8777-d8de06686c2a">Memory-based Evolution</h2><h3 id="343006db-a268-809e-a169-c3d2d349ada0">Remember Skill used by Claude Code</h3><figure class="memory-mermaid-figure"><div class="mermaid">
-flowchart LR
-  subgraph outer["Remember to Proposal"]
-  direction LR
-	  subgraph invoke["1. Invocation"]
-	    direction TB
-	    B0(["User: /remember "])
-	    B2["load skill prompt (& args)"]
-	    B3["Inject as user message"]
-	    B0 --> B2 --> B3
-	  end
+${recently successfully processed tool calls}</code></pre>
+                    </details>
+                  </li>
+                </ul>
+              </aside>
+              <p id="345006db-a268-80de-ad77-e4c348b488d2">
+              </p>
+              <h4 id="344006db-a268-8034-9976-c989d4640091">Nested Memory per Agent Turn</h4>
+              <p id="344006db-a268-80a9-bb8b-ed96db3c0766"> - Ref: <mark class="highlight-blue"><code>getNestedMemoryAttachments</code></mark></p>
+              <p id="344006db-a268-803f-b508-f805f63a4273">Nested memory refer to the loaded memories at the end of every agent turn from auto memory folder or another folder specified by user. The scope of memory files to be loaded aligns with the files that have been read in history, accessible workspace and updated claude <code>*.md</code>.</p>
+              <h2 id="343006db-a268-80c0-8777-d8de06686c2a">Memory-based Evolution</h2>
+              <h3 id="343006db-a268-809e-a169-c3d2d349ada0">Remember Skill used by Claude Code</h3>
+              <figure class="memory-mermaid-figure">
+                <div class="mermaid">
+                  flowchart LR
+                  subgraph outer["Remember to Proposal"]
+                  direction LR
+                  subgraph invoke["1. Invocation"]
+                  direction TB
+                  B0(["User: /remember "])
+                  B2["load skill prompt (& args)"]
+                  B3["Inject as user message"]
+                  B0 --> B2 --> B3
+                  end
 
-	  subgraph run1["2. Agent Loop —> Proposals"]
-	    direction TB
-	    C1["Read CLAUDE.md layers"]
-	    C2["Read / Glob / Grep as needed
- over auto memories"]
-	    C3["Structured Report; 
- No Write/Edit yet"]
-	    C1 --> C2 --> C3
-	  end
-  end
-  
+                  subgraph run1["2. Agent Loop —> Proposals"]
+                  direction TB
+                  C1["Read CLAUDE.md layers"]
+                  C2["Read / Glob / Grep as needed
+                  over auto memories"]
+                  C3["Structured Report;
+                  No Write/Edit yet"]
+                  C1 --> C2 --> C3
+                  end
+                  end
 
-  D1(["User approves or refines"]) 
-  style D1 fill:#dbeafe
-  
-  subgraph run2["Remember to Disk"]
-    direction TB
-    D3["Write/Edit tool calls"]
-    D5["Disk writes"]
-    D3 --> D5
-  end
 
-  invoke --> run1 
-  outer--> D1
-  D1--> run2
-</div></figure><ul id="344006db-a268-80c7-bb06-e58f20e4642a" class="toggle"><li><details open=""><summary>skill description</summary><pre id="344006db-a268-80bd-934b-f516560a8649" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: remember
+                  D1(["User approves or refines"])
+                  style D1 fill:#dbeafe
+
+                  subgraph run2["Remember to Disk"]
+                  direction TB
+                  D3["Write/Edit tool calls"]
+                  D5["Disk writes"]
+                  D3 --> D5
+                  end
+
+                  invoke --> run1
+                  outer--> D1
+                  D1--> run2
+                </div>
+              </figure>
+              <ul id="344006db-a268-80c7-bb06-e58f20e4642a" class="toggle">
+                <li>
+                  <details open="">
+                    <summary>skill description</summary>
+                    <pre id="344006db-a268-80bd-934b-f516560a8649" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: remember
 description: Review auto-memory entries and propose promotions to CLAUDE.md, CLAUDE.local.md, or shared memory. Also detects outdated, conflicting, and duplicate entries across memory layers.
 whenToUse: Use when the user wants to review, organize, or promote their auto-memory entries. Also useful for cleaning up outdated or conflicting entries across CLAUDE.md, CLAUDE.local.md, and auto-memory.
 
@@ -506,38 +751,82 @@ If auto-memory is empty, say so and offer to review CLAUDE.md for cleanup.
 - Present ALL proposals before making any changes
 - Do NOT modify files without explicit user approval
 - Do NOT create new files unless the target doesn&#x27;t exist yet
-- Ask about ambiguous entries — don&#x27;t guess</code></pre></details></li></ul><aside class="memory-callout"><p id="344006db-a268-803a-9b90-fe7dffbb4797">Cross Reference: </p><figure id="344006db-a268-809f-9e53-f026b35666fb" class="link-to-page"><a href="https://www.notion.so/Observe-the-pipeline-of-skill-loading-running-updating-and-expanding-344006dba268809f9e53f026b35666fb?pvs=21">Observe the pipeline of skill loading, running, updating and expanding</a></figure></aside><h3 id="343006db-a268-80a7-b7b4-fdb86e35f833">Self-Improvement Skill used by Openclaw</h3><h4 id="345006db-a268-80c8-90ff-ceed7c6b772c"><em><strong>When</strong></em>: Guide an agent to improve when</h4><pre id="345006db-a268-80fe-b268-ccf24f302654" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: self-improvement
-description: &quot;Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&#x27;No, that&#x27;s wrong...&#x27;, &#x27;Actually...&#x27;), (3) User requests a capability that doesn&#x27;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.&quot;</code></pre><ul id="345006db-a268-80cc-83a7-c8e5897d9cf4" class="bulleted-list"><li style="list-style-type:disc">encounter a failure: command, API, or tool calls</li></ul><ul id="345006db-a268-804a-9117-f5d8e566d034" class="bulleted-list"><li style="list-style-type:disc">user disagrees</li></ul><ul id="345006db-a268-8009-b1f5-df7a77804fef" class="bulleted-list"><li style="list-style-type:disc">lack of capabilities that user asks</li></ul><ul id="345006db-a268-80b1-8804-e89fd728d0cb" class="bulleted-list"><li style="list-style-type:disc">identify outdated or misleading knowledge</li></ul><ul id="345006db-a268-8087-9b9d-d7151a8c0a1b" class="bulleted-list"><li style="list-style-type:disc">a better approach for recurring tasks</li></ul><h4 id="346006db-a268-809c-a33d-d18d0947768b"><em>What</em>: an agent shall log at ./learnings/ to </h4><p id="347006db-a268-8035-8c00-e451be5a8ad4">The workspace tree that host learnings:<div class="indented"><pre id="346006db-a268-8046-9971-cefff37b389b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">.learnings/ # This skill&#x27;s log files
+- Ask about ambiguous entries — don&#x27;t guess</code></pre>
+                  </details>
+                </li>
+              </ul>
+              <aside class="memory-callout">
+                <p id="344006db-a268-803a-9b90-fe7dffbb4797">Cross Reference: </p>
+                <figure id="344006db-a268-809f-9e53-f026b35666fb" class="link-to-page"><a href="https://www.notion.so/Observe-the-pipeline-of-skill-loading-running-updating-and-expanding-344006dba268809f9e53f026b35666fb?pvs=21">Observe the pipeline of skill loading, running, updating and expanding</a></figure>
+              </aside>
+              <h3 id="343006db-a268-80a7-b7b4-fdb86e35f833">Self-Improvement Skill used by Openclaw</h3>
+              <h4 id="345006db-a268-80c8-90ff-ceed7c6b772c"><em><strong>When</strong></em>: Guide an agent to improve when</h4>
+              <pre id="345006db-a268-80fe-b268-ccf24f302654" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: self-improvement
+description: &quot;Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&#x27;No, that&#x27;s wrong...&#x27;, &#x27;Actually...&#x27;), (3) User requests a capability that doesn&#x27;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.&quot;</code></pre>
+              <ul id="345006db-a268-80cc-83a7-c8e5897d9cf4" class="bulleted-list">
+                <li style="list-style-type:disc">encounter a failure: command, API, or tool calls</li>
+              </ul>
+              <ul id="345006db-a268-804a-9117-f5d8e566d034" class="bulleted-list">
+                <li style="list-style-type:disc">user disagrees</li>
+              </ul>
+              <ul id="345006db-a268-8009-b1f5-df7a77804fef" class="bulleted-list">
+                <li style="list-style-type:disc">lack of capabilities that user asks</li>
+              </ul>
+              <ul id="345006db-a268-80b1-8804-e89fd728d0cb" class="bulleted-list">
+                <li style="list-style-type:disc">identify outdated or misleading knowledge</li>
+              </ul>
+              <ul id="345006db-a268-8087-9b9d-d7151a8c0a1b" class="bulleted-list">
+                <li style="list-style-type:disc">a better approach for recurring tasks</li>
+              </ul>
+              <h4 id="346006db-a268-809c-a33d-d18d0947768b"><em>What</em>: an agent shall log at ./learnings/ to </h4>
+              <p id="347006db-a268-8035-8c00-e451be5a8ad4">The workspace tree that host learnings:
+              <div class="indented">
+                <pre id="346006db-a268-8046-9971-cefff37b389b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">.learnings/ # This skill&#x27;s log files
     ├── LEARNINGS.md
     ├── ERRORS.md
-    └── FEATURE_REQUESTS.md</code></pre></div></p><p id="347006db-a268-8062-9e7f-cc0b3963eac8">The knowledge in transcripts flows into learn as following: <div class="indented"><figure class="memory-mermaid-figure"><div class="mermaid">
-flowchart LR
-  subgraph S["Situations"]
-	  direction TB
-    s1[Command / operation fails]
-    s2[API / external tool fails]
-    s3[User corrects you]
-    s4[User wants missing feature]
-    s5[Knowledge was outdated]
-    s6[Found better approach]
-    s7[Simplify-and-harden recurring pattern]
-  end
+    └── FEATURE_REQUESTS.md</code></pre>
+              </div>
+              </p>
+              <p id="347006db-a268-8062-9e7f-cc0b3963eac8">The knowledge in transcripts flows into learn as following:
+              <div class="indented">
+                <figure class="memory-mermaid-figure">
+                  <div class="mermaid">
+                    flowchart LR
+                    subgraph S["Situations"]
+                    direction TB
+                    s1[Command / operation fails]
+                    s2[API / external tool fails]
+                    s3[User corrects you]
+                    s4[User wants missing feature]
+                    s5[Knowledge was outdated]
+                    s6[Found better approach]
+                    s7[Simplify-and-harden recurring pattern]
+                    end
 
-  subgraph L["Log files (.learnings/)"]
-	  direction TB
-    e[ERRORS.md]
-    ln[LEARNINGS.md]
-    fr[FEATURE_REQUESTS.md]
-  end
+                    subgraph L["Log files (.learnings/)"]
+                    direction TB
+                    e[ERRORS.md]
+                    ln[LEARNINGS.md]
+                    fr[FEATURE_REQUESTS.md]
+                    end
 
-  s1 --> e
-  s2 --> e
-  s3 -->|category: correction| ln
-  s4 --> fr
-  s5 -->|category: knowledge_gap| ln
-  s6 -->|category: best_practice| ln
-  s7 -->|Source + Pattern-Key| ln
-</div></figure></div></p><p id="347006db-a268-8047-99d1-e6e4e603d343">To be specific, the template and schema of 3 types of learnings are:</p><ul id="346006db-a268-80e5-8fdc-e52f21b12896" class="toggle"><li><details open=""><summary>LEARNINGS: Corrections, insights, and knowledge gaps captured during development.</summary><pre id="346006db-a268-808d-839f-d0eb70bb161b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">**Categories**: correction | insight | knowledge_gap | best_practice
+                    s1 --> e
+                    s2 --> e
+                    s3 -->|category: correction| ln
+                    s4 --> fr
+                    s5 -->|category: knowledge_gap| ln
+                    s6 -->|category: best_practice| ln
+                    s7 -->|Source + Pattern-Key| ln
+                  </div>
+                </figure>
+              </div>
+              </p>
+              <p id="347006db-a268-8047-99d1-e6e4e603d343">To be specific, the template and schema of 3 types of learnings are:</p>
+              <ul id="346006db-a268-80e5-8fdc-e52f21b12896" class="toggle">
+                <li>
+                  <details open="">
+                    <summary>LEARNINGS: Corrections, insights, and knowledge gaps captured during development.</summary>
+                    <pre id="346006db-a268-808d-839f-d0eb70bb161b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">**Categories**: correction | insight | knowledge_gap | best_practice
 **Areas**: frontend | backend | infra | tests | docs | config
 **Statuses**: pending | in_progress | resolved | wont_fix | promoted | promoted_to_skill
 
@@ -589,8 +878,24 @@ Specific fix or improvement to make
 - First-Seen: 2025-01-15 (optional)
 - Last-Seen: 2025-01-15 (optional)
 ...
-```</code></pre><ul id="347006db-a268-8000-8ff1-d8f4c442f2a8" class="toggle"><li><details open=""><summary>Learning Entry</summary><p id="347006db-a268-802a-b4e1-fbee8364692f">
-</p></details></li></ul></details></li></ul><ul id="346006db-a268-8042-b655-eac572a71e12" class="toggle"><li><details open=""><summary>ERRORS: Command failures, exceptions, and unexpected behaviors.</summary><pre id="347006db-a268-8016-aea5-ed7975840399" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
+```</code></pre>
+                    <ul id="347006db-a268-8000-8ff1-d8f4c442f2a8" class="toggle">
+                      <li>
+                        <details open="">
+                          <summary>Learning Entry</summary>
+                          <p id="347006db-a268-802a-b4e1-fbee8364692f">
+                          </p>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+              <ul id="346006db-a268-8042-b655-eac572a71e12" class="toggle">
+                <li>
+                  <details open="">
+                    <summary>ERRORS: Command failures, exceptions, and unexpected behaviors.</summary>
+                    <pre id="347006db-a268-8016-aea5-ed7975840399" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
 ## [ERR-YYYYMMDD-XXX] skill_or_command_name
 
 **Logged**: ISO-8601 timestamp
@@ -620,7 +925,15 @@ If identifiable, what might resolve this
 - Related Files: path/to/file.ext
 - See Also: ERR-20250110-001 (if recurring)
 
----</code></pre></details></li></ul><ul id="346006db-a268-80a2-bfa2-e19a296ff22e" class="toggle"><li><details open=""><summary>FEATURE_REQUESTS: Capabilities requested by user that don&#x27;t currently exist.</summary><pre id="347006db-a268-80e5-b1b2-da99cd789fab" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
+---</code></pre>
+                  </details>
+                </li>
+              </ul>
+              <ul id="346006db-a268-80a2-bfa2-e19a296ff22e" class="toggle">
+                <li>
+                  <details open="">
+                    <summary>FEATURE_REQUESTS: Capabilities requested by user that don&#x27;t currently exist.</summary>
+                    <pre id="347006db-a268-80e5-b1b2-da99cd789fab" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
 ## [FEAT-YYYYMMDD-XXX] capability_name
 
 **Logged**: ISO-8601 timestamp
@@ -644,60 +957,172 @@ How this could be built, what it might extend
 - Frequency: first_time | recurring
 - Related Features: existing_feature_name
 
----</code></pre></details></li></ul><h4 id="346006db-a268-80d6-8260-f6568d136882"><em>How</em>: extract knowledge from transcripts into learnings</h4><ol type="1" id="347006db-a268-8047-a494-c42df167877b" class="numbered-list" start="1"><li>Init Step: Make sure the workspace tree of learnings is there, including learning file, error file, feature file</li></ol><ol type="1" id="346006db-a268-8033-ab02-cab094fe10d6" class="numbered-list" start="2"><li>Integration Step: Instruct the agent to log knowledge into the above files<pre id="347006db-a268-800a-bb29-c684c8666248" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">### Add reference to agent files AGENTS.md, CLAUDE.md, or .github/copilot-instructions.md to remind yourself to log learnings. (this is an alternative to hook-based reminders)</code></pre><p id="347006db-a268-8082-939d-e82f650127ef">
-</p></li></ol><ol type="1" id="347006db-a268-80c3-be3d-d894cc558045" class="numbered-list" start="3"><li>Review: consolidate learnings before major tasks<p id="347006db-a268-80e3-a642-c8ea4f0fef94">Instruct an agent to start review learning at the following breakpoints</p><ul id="347006db-a268-8008-97a3-d19f71da167d" class="bulleted-list"><li style="list-style-type:disc">Before starting a new major task</li></ul><ul id="347006db-a268-80f5-87a2-d037d2f3ce4a" class="bulleted-list"><li style="list-style-type:disc">After completing a feature</li></ul><ul id="347006db-a268-80e4-8273-fcd59da20f3e" class="bulleted-list"><li style="list-style-type:disc">when working in an area with past learnings</li></ul><ul id="347006db-a268-8093-85ae-d4daa2f8768c" class="bulleted-list"><li style="list-style-type:disc">weekly during active development (periodic review)</li></ul><p id="347006db-a268-804d-98b4-e70a3feec369">And before actually resolve following review tasks, it shall first collect dependent information by greping <code>[status | priority | area]</code>  of all ./learnings/items: </p><pre id="347006db-a268-8018-a875-d629982e36d3" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">- Resolve fixed items
+---</code></pre>
+                  </details>
+                </li>
+              </ul>
+              <h4 id="346006db-a268-80d6-8260-f6568d136882"><em>How</em>: extract knowledge from transcripts into learnings</h4>
+              <ol type="1" id="347006db-a268-8047-a494-c42df167877b" class="numbered-list" start="1">
+                <li>Init Step: Make sure the workspace tree of learnings is there, including learning file, error file, feature file</li>
+              </ol>
+              <ol type="1" id="346006db-a268-8033-ab02-cab094fe10d6" class="numbered-list" start="2">
+                <li>Integration Step: Instruct the agent to log knowledge into the above files
+                  <pre id="347006db-a268-800a-bb29-c684c8666248" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">### Add reference to agent files AGENTS.md, CLAUDE.md, or .github/copilot-instructions.md to remind yourself to log learnings. (this is an alternative to hook-based reminders)</code></pre>
+                  <p id="347006db-a268-8082-939d-e82f650127ef">
+                  </p>
+                </li>
+              </ol>
+              <ol type="1" id="347006db-a268-80c3-be3d-d894cc558045" class="numbered-list" start="3">
+                <li>Review: consolidate learnings before major tasks<p id="347006db-a268-80e3-a642-c8ea4f0fef94">Instruct an agent to start review learning at the following breakpoints</p>
+                  <ul id="347006db-a268-8008-97a3-d19f71da167d" class="bulleted-list">
+                    <li style="list-style-type:disc">Before starting a new major task</li>
+                  </ul>
+                  <ul id="347006db-a268-80f5-87a2-d037d2f3ce4a" class="bulleted-list">
+                    <li style="list-style-type:disc">After completing a feature</li>
+                  </ul>
+                  <ul id="347006db-a268-80e4-8273-fcd59da20f3e" class="bulleted-list">
+                    <li style="list-style-type:disc">when working in an area with past learnings</li>
+                  </ul>
+                  <ul id="347006db-a268-8093-85ae-d4daa2f8768c" class="bulleted-list">
+                    <li style="list-style-type:disc">weekly during active development (periodic review)</li>
+                  </ul>
+                  <p id="347006db-a268-804d-98b4-e70a3feec369">And before actually resolve following review tasks, it shall first collect dependent information by greping <code>[status | priority | area]</code> of all ./learnings/items: </p>
+                  <pre id="347006db-a268-8018-a875-d629982e36d3" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">- Resolve fixed items
 - Promote applicable learnings
 - Link related entries
-- Escalate recurring issues</code></pre></li></ol><ol type="1" id="347006db-a268-8072-96f2-f166316b27eb" class="numbered-list" start="4"><li>Promotion: When a learning is broadly applicable (not a one-off fix), promote it to permanent project memory.<p id="347006db-a268-809c-907e-ca0cf9a45fc1">Broadly applicable infers the situation that </p><ul id="347006db-a268-8053-b674-c27e268e8439" class="bulleted-list"><li style="list-style-type:disc">a learning applies across multiple files/features</li></ul><ul id="347006db-a268-802d-a833-f6006cdc9ed9" class="bulleted-list"><li style="list-style-type:disc">knowledge any contributor (human or AI) should know</li></ul><ul id="347006db-a268-80e7-b223-e2d40d28a0cf" class="bulleted-list"><li style="list-style-type:disc">prevents recurring mistakes</li></ul><ul id="347006db-a268-80e1-a267-e90dfdc0da50" class="bulleted-list"><li style="list-style-type:disc">documents project-specific conventions</li></ul><p id="347006db-a268-805b-8807-e4f6ddb8d364">This skill should flow those learnings into permanent memories as the following figure shows by three steps:  Distill —&gt; Add —&gt; Update</p><figure class="memory-mermaid-figure"><div class="mermaid">
-flowchart LR
-  subgraph S["Situations"]
-	  direction TB
-    s9[Broadly applicable learning]
-    s10[Workflow improvement]
-    s11[Tool gotcha]
-    s12[Behavioral pattern]
-  end
+- Escalate recurring issues</code></pre>
+                </li>
+              </ol>
+              <ol type="1" id="347006db-a268-8072-96f2-f166316b27eb" class="numbered-list" start="4">
+                <li>Promotion: When a learning is broadly applicable (not a one-off fix), promote it to permanent project memory.<p id="347006db-a268-809c-907e-ca0cf9a45fc1">Broadly applicable infers the situation that </p>
+                  <ul id="347006db-a268-8053-b674-c27e268e8439" class="bulleted-list">
+                    <li style="list-style-type:disc">a learning applies across multiple files/features</li>
+                  </ul>
+                  <ul id="347006db-a268-802d-a833-f6006cdc9ed9" class="bulleted-list">
+                    <li style="list-style-type:disc">knowledge any contributor (human or AI) should know</li>
+                  </ul>
+                  <ul id="347006db-a268-80e7-b223-e2d40d28a0cf" class="bulleted-list">
+                    <li style="list-style-type:disc">prevents recurring mistakes</li>
+                  </ul>
+                  <ul id="347006db-a268-80e1-a267-e90dfdc0da50" class="bulleted-list">
+                    <li style="list-style-type:disc">documents project-specific conventions</li>
+                  </ul>
+                  <p id="347006db-a268-805b-8807-e4f6ddb8d364">This skill should flow those learnings into permanent memories as the following figure shows by three steps: Distill —&gt; Add —&gt; Update</p>
+                  <figure class="memory-mermaid-figure">
+                    <div class="mermaid">
+                      flowchart LR
+                      subgraph S["Situations"]
+                      direction TB
+                      s9[Broadly applicable learning]
+                      s10[Workflow improvement]
+                      s11[Tool gotcha]
+                      s12[Behavioral pattern]
+                      end
 
-  subgraph P["Promotion (stable context)"]
-	  direction TB
-    p_gen["CLAUDE.md · AGENTS.md · .github/copilot-instructions.md"]
-    p_ag["AGENTS.md (OpenClaw workspace)"]
-    p_tools["TOOLS.md (OpenClaw workspace)"]
-    p_soul["SOUL.md (OpenClaw workspace)"]
-  end
+                      subgraph P["Promotion (stable context)"]
+                      direction TB
+                      p_gen["CLAUDE.md · AGENTS.md · .github/copilot-instructions.md"]
+                      p_ag["AGENTS.md (OpenClaw workspace)"]
+                      p_tools["TOOLS.md (OpenClaw workspace)"]
+                      p_soul["SOUL.md (OpenClaw workspace)"]
+                      end
 
-  s9 --> p_gen
-  s10 --> p_ag
-  s11 --> p_tools
-  s12 --> p_soul
-</div></figure><p id="347006db-a268-80ca-b973-d1d0b983a8aa">For instance: </p><ul id="347006db-a268-8034-87cf-cca9150cbc29" class="bulleted-list"><li style="list-style-type:disc">Learning → CLAUDE.md<div id="347006db-a268-8022-bdc5-c8d6c2682e89" class="column-list"><div id="347006db-a268-802e-aa38-f927cf53ee96" style="width:50%" class="column"><pre id="347006db-a268-8010-b5b0-d47b97d79903" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#Learning
+                      s9 --> p_gen
+                      s10 --> p_ag
+                      s11 --> p_tools
+                      s12 --> p_soul
+                    </div>
+                  </figure>
+                  <p id="347006db-a268-80ca-b973-d1d0b983a8aa">For instance: </p>
+                  <ul id="347006db-a268-8034-87cf-cca9150cbc29" class="bulleted-list">
+                    <li style="list-style-type:disc">Learning → CLAUDE.md<div id="347006db-a268-8022-bdc5-c8d6c2682e89" class="column-list">
+                        <div id="347006db-a268-802e-aa38-f927cf53ee96" style="width:50%" class="column">
+                          <pre id="347006db-a268-8010-b5b0-d47b97d79903" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#Learning
 &gt; Project uses pnpm workspaces. Attempted `npm install` but failed. 
-&gt; Lock file is `pnpm-lock.yaml`. Must use `pnpm install`.</code></pre></div><div id="347006db-a268-803a-8f04-c67c3a186f66" style="width:50%" class="column"><pre id="347006db-a268-80cd-ab4d-e6d3d8a84418" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#CLAUDE.md
+&gt; Lock file is `pnpm-lock.yaml`. Must use `pnpm install`.</code></pre>
+                        </div>
+                        <div id="347006db-a268-803a-8f04-c67c3a186f66" style="width:50%" class="column">
+                          <pre id="347006db-a268-80cd-ab4d-e6d3d8a84418" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#CLAUDE.md
 ## Build &amp; Dependencies
 - Package manager: pnpm (not npm) - use `pnpm install`
-</code></pre></div></div></li></ul></li></ol><ol type="1" id="347006db-a268-8031-ba8f-ebcb4eba41b9" class="numbered-list" start="5"><li>Reminder: Hook learnings as session starters automatically</li></ol><ol type="1" id="347006db-a268-8064-991c-cdac434dead2" class="numbered-list" start="6"><li>Skill Extraction: When a learning is valuable enough to become a reusable skill, extract it using the provided helper.<p id="348006db-a268-8055-a5a7-f03938e16bfa">The flow from learning to skill, i.e. the life-cycle of a learning status</p><figure class="memory-mermaid-figure"><div class="mermaid">
-stateDiagram-v2
-  [*] --> pending: append entry in *.md
-  pending --> in_progress: work started
-  in_progress --> resolved: fix + Resolution block
-  in_progress --> wont_fix: deliberate drop
-  pending --> promoted: distill to memory files
-  resolved --> promoted: still worth a rule
-  promoted --> promoted_to_skill: extract-skill + Skill-Path
-  promoted_to_skill --> [*]
-  resolved --> [*]
-  wont_fix --> [*]
-</div></figure><ul id="348006db-a268-802f-81ce-fa57218d89dc" class="bulleted-list"><li style="list-style-type:disc">Criterion of Learnings:<table id="348006db-a268-8064-9be0-eed90e82d5a1" class="simple-table"><tbody><tr id="348006db-a268-806b-b7a5-f9027f4e59dd"><td id="?bXm" style="width:168.66073608398438px">Criterion</td><td id="ngnW" style="width:820.6607360839844px">Description</td></tr><tr id="348006db-a268-80dc-a6c9-d8ea48bb91b0"><td id="?bXm" style="width:168.66073608398438px">Recurring</td><td id="ngnW" style="width:820.6607360839844px">Has `See Also` links to 2+ similar issues</td></tr><tr id="348006db-a268-80f5-88f3-e57859f35ea7"><td id="?bXm" style="width:168.66073608398438px">Verified</td><td id="ngnW" style="width:820.6607360839844px">Status is `resolved` with working fix</td></tr><tr id="348006db-a268-8025-ac77-deb9cb45784f"><td id="?bXm" style="width:168.66073608398438px">Non-obvious</td><td id="ngnW" style="width:820.6607360839844px">Required actual debugging/investigation to discover</td></tr><tr id="348006db-a268-80d5-9332-c23d970afc08"><td id="?bXm" style="width:168.66073608398438px">Broadly Applicable</td><td id="ngnW" style="width:820.6607360839844px"> Not project-specific; useful across codebases</td></tr><tr id="348006db-a268-80df-8ff8-f9f4ba064b4f"><td id="?bXm" style="width:168.66073608398438px">User-flagged</td><td id="ngnW" style="width:820.6607360839844px">User says &quot;save this as a skill&quot; or similar</td></tr></tbody></table></li></ul><ul id="348006db-a268-80ea-981b-f2aad9b23f0b" class="bulleted-list"><li style="list-style-type:disc">Workflow of Extraction:<p id="348006db-a268-8068-a290-e1e056406471">If any learnings meet the above criterion, run a specific script to derive and verify a skill from it. The entire workflow is as following:</p><figure class="memory-mermaid-figure"><div class="mermaid">
-stateDiagram-v2
-  [*] --> skill_name/: decide a skill name (lowercase-hyphens)
-  template.md --> SKILL_md: initilises
-  skill_name/ --> SKILL_md: extration starts
-  ~/learnings/ --> enriched: learnings pass criterion
-  SKILL_md --> enriched: distill learnings into skill
-	enriched --> ~/learnings/ : update learning status to 'promoted-to-skill'
-	enriched --> verified: read SKILL.md in a fresh session (self-contained?)
-  verified --> [*]
-</div></figure></li></ul><ul id="348006db-a268-803b-ae60-e95fe91c0ff6" class="bulleted-list"><li style="list-style-type:disc">Extraction Triggers: Watch for these signals that a learning should become a skill:<pre id="348006db-a268-8032-bbba-d6da0324593b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Watch for these signals that a learning should become a skill:
+</code></pre>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+              <ol type="1" id="347006db-a268-8031-ba8f-ebcb4eba41b9" class="numbered-list" start="5">
+                <li>Reminder: Hook learnings as session starters automatically</li>
+              </ol>
+              <ol type="1" id="347006db-a268-8064-991c-cdac434dead2" class="numbered-list" start="6">
+                <li>Skill Extraction: When a learning is valuable enough to become a reusable skill, extract it using the provided helper.<p id="348006db-a268-8055-a5a7-f03938e16bfa">The flow from learning to skill, i.e. the life-cycle of a learning status</p>
+                  <figure class="memory-mermaid-figure">
+                    <div class="mermaid">
+                      stateDiagram-v2
+                      [*] --> pending: append entry in *.md
+                      pending --> in_progress: work started
+                      in_progress --> resolved: fix + Resolution block
+                      in_progress --> wont_fix: deliberate drop
+                      pending --> promoted: distill to memory files
+                      resolved --> promoted: still worth a rule
+                      promoted --> promoted_to_skill: extract-skill + Skill-Path
+                      promoted_to_skill --> [*]
+                      resolved --> [*]
+                      wont_fix --> [*]
+                    </div>
+                  </figure>
+                  <ul id="348006db-a268-802f-81ce-fa57218d89dc" class="bulleted-list">
+                    <li style="list-style-type:disc">Criterion of Learnings:<table id="348006db-a268-8064-9be0-eed90e82d5a1" class="simple-table">
+                        <tbody>
+                          <tr id="348006db-a268-806b-b7a5-f9027f4e59dd">
+                            <td id="?bXm" style="width:168.66073608398438px">Criterion</td>
+                            <td id="ngnW" style="width:820.6607360839844px">Description</td>
+                          </tr>
+                          <tr id="348006db-a268-80dc-a6c9-d8ea48bb91b0">
+                            <td id="?bXm" style="width:168.66073608398438px">Recurring</td>
+                            <td id="ngnW" style="width:820.6607360839844px">Has `See Also` links to 2+ similar issues</td>
+                          </tr>
+                          <tr id="348006db-a268-80f5-88f3-e57859f35ea7">
+                            <td id="?bXm" style="width:168.66073608398438px">Verified</td>
+                            <td id="ngnW" style="width:820.6607360839844px">Status is `resolved` with working fix</td>
+                          </tr>
+                          <tr id="348006db-a268-8025-ac77-deb9cb45784f">
+                            <td id="?bXm" style="width:168.66073608398438px">Non-obvious</td>
+                            <td id="ngnW" style="width:820.6607360839844px">Required actual debugging/investigation to discover</td>
+                          </tr>
+                          <tr id="348006db-a268-80d5-9332-c23d970afc08">
+                            <td id="?bXm" style="width:168.66073608398438px">Broadly Applicable</td>
+                            <td id="ngnW" style="width:820.6607360839844px"> Not project-specific; useful across codebases</td>
+                          </tr>
+                          <tr id="348006db-a268-80df-8ff8-f9f4ba064b4f">
+                            <td id="?bXm" style="width:168.66073608398438px">User-flagged</td>
+                            <td id="ngnW" style="width:820.6607360839844px">User says &quot;save this as a skill&quot; or similar</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </li>
+                  </ul>
+                  <ul id="348006db-a268-80ea-981b-f2aad9b23f0b" class="bulleted-list">
+                    <li style="list-style-type:disc">Workflow of Extraction:<p id="348006db-a268-8068-a290-e1e056406471">If any learnings meet the above criterion, run a specific script to derive and verify a skill from it. The entire workflow is as following:</p>
+                      <figure class="memory-mermaid-figure">
+                        <div class="mermaid">
+                          stateDiagram-v2
+                          [*] --> skill_name/: decide a skill name (lowercase-hyphens)
+                          template.md --> SKILL_md: initilises
+                          skill_name/ --> SKILL_md: extration starts
+                          ~/learnings/ --> enriched: learnings pass criterion
+                          SKILL_md --> enriched: distill learnings into skill
+                          enriched --> ~/learnings/ : update learning status to 'promoted-to-skill'
+                          enriched --> verified: read SKILL.md in a fresh session (self-contained?)
+                          verified --> [*]
+                        </div>
+                      </figure>
+                    </li>
+                  </ul>
+                  <ul id="348006db-a268-803b-ae60-e95fe91c0ff6" class="bulleted-list">
+                    <li style="list-style-type:disc">Extraction Triggers: Watch for these signals that a learning should become a skill:
+                      <pre id="348006db-a268-8032-bbba-d6da0324593b" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Watch for these signals that a learning should become a skill:
 
 **In conversation:**
 - &quot;Save this as a skill&quot;
@@ -709,7 +1134,31 @@ stateDiagram-v2
 - Multiple `See Also` links (recurring issue)
 - High priority + resolved status
 - Category: `best_practice` with broad applicability
-- User feedback praising the solution</code></pre></li></ul><p id="348006db-a268-8055-86e9-f853e88cbf8a">Note: <a href="https://agentskills.io/specification">Agent Skills spec</a></p></li></ol><h2 id="347006db-a268-80be-9fb9-ca4d834640ea">Detailed References</h2><ul id="347006db-a268-8067-b6fe-f5425ab0262e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">self-evolution skill hooks: Inject command execution after user turn terminates</span><div class="indented"><ul id="347006db-a268-80cd-882e-c343fe3b15f8" class="bulleted-list"><li style="list-style-type:disc"><a href="http://activator.sh">activator.sh</a> </li></ul><ul id="347006db-a268-8050-a318-cfb38aaa55cc" class="bulleted-list"><li style="list-style-type:disc"><a href="http://error-detector.sh/">error-detector.sh</a></li></ul></div></li></ul><ul id="347006db-a268-8027-9d00-dd32ed76b575" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Referral Example Triggers for Learning</span><div class="indented"><pre id="347006db-a268-8085-a08c-ffd9a6551696" class="memory-inline-code"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">**Corrections** (→ learning with `correction` category):
+- User feedback praising the solution</code></pre>
+                    </li>
+                  </ul>
+                  <p id="348006db-a268-8055-86e9-f853e88cbf8a">Note: <a href="https://agentskills.io/specification">Agent Skills spec</a></p>
+                </li>
+              </ol>
+              <h2 id="347006db-a268-80be-9fb9-ca4d834640ea">Detailed References</h2>
+              <ul id="347006db-a268-8067-b6fe-f5425ab0262e" class="to-do-list">
+                <li>
+                  <div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">self-evolution skill hooks: Inject command execution after user turn terminates</span>
+                  <div class="indented">
+                    <ul id="347006db-a268-80cd-882e-c343fe3b15f8" class="bulleted-list">
+                      <li style="list-style-type:disc"><a href="http://activator.sh">activator.sh</a> </li>
+                    </ul>
+                    <ul id="347006db-a268-8050-a318-cfb38aaa55cc" class="bulleted-list">
+                      <li style="list-style-type:disc"><a href="http://error-detector.sh/">error-detector.sh</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <ul id="347006db-a268-8027-9d00-dd32ed76b575" class="to-do-list">
+                <li>
+                  <div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Referral Example Triggers for Learning</span>
+                  <div class="indented">
+                    <pre id="347006db-a268-8085-a08c-ffd9a6551696" class="memory-inline-code"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">**Corrections** (→ learning with `correction` category):
 - &quot;No, that&#x27;s not right...&quot;
 - &quot;Actually, it should be...&quot;
 - &quot;You&#x27;re wrong about...&quot;
@@ -730,45 +1179,52 @@ stateDiagram-v2
 - Command returns non-zero exit code
 - Exception or stack trace
 - Unexpected output or behavior
-- Timeout or connection failure</code></pre></div></li></ul><p id="347006db-a268-8019-820c-f22f21b9bc54">
-</p><p id="346006db-a268-80fd-9af7-e01e84a4fb0c"> </p><p id="347006db-a268-80ec-b3dd-fed7d7260225">
-</p>
-</section>
+- Timeout or connection failure</code></pre>
+                  </div>
+                </li>
+              </ul>
+              <p id="347006db-a268-8019-820c-f22f21b9bc54">
+              </p>
+              <p id="346006db-a268-80fd-9af7-e01e84a4fb0c"> </p>
+              <p id="347006db-a268-80ec-b3dd-fed7d7260225">
+              </p>
+          </section>
 
 
-            <footer>
-                <ul class="stats">
-                    <li><a href="#">General</a></li>
-                    <li><a href="#" class="icon fa-heart"></a></li>
-                    <li><a href="#" class="icon fa-comment"></a></li>
-                </ul>
-            </footer>
+          <footer>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart"></a></li>
+              <li><a href="#" class="icon fa-comment"></a></li>
+            </ul>
+          </footer>
         </article>
         <aside class="post-toc-wrap" aria-label="On this page">
           <nav class="post-toc" id="post-toc-nav"></nav>
         </aside>
-        </div>
+      </div>
     </div>
     <!-- Footer -->
     <section id="footer">
-        <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
-        <ul class="icons">
-            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
+      <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
+      <ul class="icons">
+        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
     </section>
-</div>
-<!-- Scripts -->
-<script src="../assets/js/pageviews-config.js"></script>
-<script src="../assets/js/pageviews.js"></script>
-<script src="../assets/js/mermaid-init.js"></script>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/browser.min.js"></script>
-<script src="../assets/js/breakpoints.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/post-toc.js"></script>
-<script src="../assets/js/main.js"></script>
+  </div>
+  <!-- Scripts -->
+  <script src="../assets/js/pageviews-config.js"></script>
+  <script src="../assets/js/pageviews.js"></script>
+  <script src="../assets/js/mermaid-init.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/post-toc.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

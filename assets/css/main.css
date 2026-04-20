@@ -4240,35 +4240,45 @@ body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-image img 
 }
 
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed {
-  /* Tunable preview scale (applies to both width and height of the iframe paint) */
+  /* Tunable preview scale for the embedded workflow diagram */
   --memory-embed-zoom: 1.15;
 }
 
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed .memory-figure-embed-preview {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 4px;
-  /* Let a wide iframe + zoom spill horizontally instead of clipping */
+  background: #fff;
+  height: min(70vh, 560px);
   overflow-x: auto;
   overflow-y: hidden;
-  background: #fff;
   -webkit-overflow-scrolling: touch;
 }
 
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed iframe {
   display: block;
   width: 100%;
-  height: min(70vh, 560px);
+  height: 100%;
   border: 0;
   zoom: var(--memory-embed-zoom);
-  --memory-embed-zoom: 1.15;
+}
+
+/* Firefox/Safari fallback for browsers that do not support zoom */
+@supports not (zoom: 1) {
+  body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed iframe {
+    width: calc(100% / var(--memory-embed-zoom));
+    height: calc(100% / var(--memory-embed-zoom));
+    transform: scale(var(--memory-embed-zoom));
+    transform-origin: top left;
+  }
 }
 
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed .memory-figure-embed-caption,
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed figcaption.memory-figure-embed-caption {
-  font-size: 0.85rem;
-  color: var(--a-text-muted);
+  font-size: 0.9rem;
+  color: var(--a-body-color, #3a332b);
+  opacity: 0.82;
   margin-top: 0.75rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 body.anthropic-site.single .post .memory-mermaid-figure figcaption {
