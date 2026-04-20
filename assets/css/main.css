@@ -4176,8 +4176,8 @@ body.anthropic-site.single .post h3 {
   font-optical-sizing: auto;
   font-size: clamp(1.15rem, 1.1vw + 0.55rem, 1.4rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--ref-title-ink);
   line-height: 1.25;
   margin: 1.75em 0 0.65em;
@@ -4207,8 +4207,8 @@ body.anthropic-site.single .post .table-wrapper table {
 
 body.anthropic-site.single .memory-post .table-wrapper th,
 body.anthropic-site.single .memory-post .table-wrapper td {
-  font-size: 0.82rem;
-  padding: 0.5em 0.7em;
+  font-size: 0.88rem;
+  padding: 0.55em 0.75em;
   border: 1px solid var(--a-border);
   text-align: left;
 }
@@ -4274,9 +4274,9 @@ body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed ifra
 
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed .memory-figure-embed-caption,
 body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed figcaption.memory-figure-embed-caption {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--a-body-color, #3a332b);
-  opacity: 0.82;
+  opacity: 0.9;
   margin-top: 0.75rem;
   line-height: 1.55;
 }
@@ -4290,6 +4290,32 @@ body.anthropic-site.single .post .memory-mermaid-figure figcaption {
 
 body.anthropic-site.single .memory-post .memory-article-body {
   margin-top: 0.5rem;
+}
+
+/* Front-of-article readability polish */
+body.anthropic-site.single .memory-post .memory-article-body > p:first-child {
+  max-width: 74ch;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+/* Notion-export lists: tighten vertical rhythm for easier scanning */
+body.anthropic-site.single .memory-post .memory-article-body ul.bulleted-list,
+body.anthropic-site.single .memory-post .memory-article-body ol.numbered-list {
+  margin: 0.3em 0 0.7em 0;
+  padding-left: 1.05em;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body ul.bulleted-list li,
+body.anthropic-site.single .memory-post .memory-article-body ol.numbered-list li {
+  margin: 0.12em 0;
+  padding-left: 0.34em;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body li > ul.bulleted-list,
+body.anthropic-site.single .memory-post .memory-article-body li > ol.numbered-list {
+  margin-top: 0.2em;
+  margin-bottom: 0.35em;
 }
 
 /* Long post: .post card (article) + TOC beside it in #main — TOC sits in page gutter, not inside card */
@@ -4509,13 +4535,13 @@ body.anthropic-site.single .memory-post .memory-article-body .simple-table {
   width: 100%;
   border-collapse: collapse;
   margin: 0.75em 0 1em;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
 }
 
 body.anthropic-site.single .memory-post .memory-article-body .simple-table th,
 body.anthropic-site.single .memory-post .memory-article-body .simple-table td {
   border: 1px solid var(--a-border);
-  padding: 0.45em 0.6em;
+  padding: 0.55em 0.72em;
   vertical-align: top;
   text-align: left;
 }
