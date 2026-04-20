@@ -1,113 +1,77 @@
-<!DOCTYPE html>
-<!--
-	Future Imperfect by HTML5 UP	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
-<html lang="en">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Memory of agent in real | Thought Recorder</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="Memory in Claude Code and related stacks: CLAUDE.md ladder, transcripts, memory types, agent workflow, flush and Dream pipelines, prefetch, nested memory, Remember and self-improvement skills.">
-    <link rel="stylesheet" href="../assets/css/main.css">
-</head>
-<body class="single is-preload anthropic-site">
-<!-- Wrapper -->
-<div id="wrapper">
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="../index.html">Thought Recorder</a></h1>
-        <nav class="main">
-            <ul>
-                <li class="info"><a href="../index.html">Home</a></li>
-                <li class="info"><a href="../blog.html">Blog</a></li>
-                <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
-                <li class="search"> <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="#"> <input name="query" placeholder="Search"
-                                                                      type="text">
-                    </form>
-                </li>
-                <li class="menu"> <a class="fa-bars" href="#menu">Menu</a> </li>
-            </ul>
-        </nav>
-    </header>
-    <!-- Menu -->
-    <section id="menu">
-        <section>
-            <form class="search" method="get" action="#"> <input name="query" placeholder="Search"
-                                                                 type="text">
-            </form>
-        </section>
-        <section>
-            <ul class="links">
-                <li> <a href="#">
-                    <h3>Years</h3>
-                    <p>2019</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>Topics</h3>
-                    <p>Data Marketplaces</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>Publications</h3>
-                    <p>Coming</p>
-                </a> </li>
-                <li> <a href="#">
-                    <h3>States</h3>
-                    <p>Coming</p>
-                </a> </li>
-            </ul>
-        </section>
-    </section>
-
-    <!-- Main -->
-    <div id="main">
-        <div class="post-page-layout">
-        <article class="post memory-post has-toc">
-            <header>
-                <div class="title">
-                    <h2><a href="Openclaw_Memory_Real.html">Let’s talk about memory of agents.</a></h2>
-                    <p> — from a hands-on pass over real pipelines.</p>
-                </div>
-                <div class="meta">
-                    <time class="published" datetime="2026-04-13">13/04/2026</time>
-                    <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
-                        <span class="name">Miya Liu</span>
-                        <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
-                    </a>
-                </div>
-            </header>
-
 <!-- Auto-built from Notion export; edit source in notion_sources -->
 <section class="memory-article-body">
-<p id="341006db-a268-8065-bc4f-c879e820bccf">Let’s talk about memory of agents in real. </p>
-<aside class="memory-callout"><p id="343006db-a268-80fc-aa0b-e6b6d449ad0c">Preview: Agent Hosted Disk Files</p>
-  <ol type="1" id="343006db-a268-8038-870d-d54d75c0eeee" class="numbered-list" start="1">
-    <li>Claude Ladder: It refers to the <strong>bottom-up chain of directories</strong>, each step potentially adding another layer of project instructions. Those files are <strong>merged into the same </strong><code><strong>claudeMd</strong></code><strong> / instruction load</strong> together with the <strong>memory dir</strong> content from <code><strong>getMemoryFiles()</strong></code> (when not disabled).<p id="343006db-a268-80ea-8f93-f7e7cd098ef9">From <code><strong>src/utils/claudemd.ts</strong></code> (discovery order and priority):</p>
-      <ol type="1" id="343006db-a268-80b4-8b6a-c6545a1a6ed5" class="numbered-list" start="1">
-        <li><strong>Managed</strong> (e.g. host-level rules, if configured).</li>
-      </ol>
-      <ol type="1" id="343006db-a268-8096-9b43-c7b1c715bebd" class="numbered-list" start="2">
-        <li><strong>User</strong> — e.g. <code><strong>~/.claude/CLAUDE.md</strong></code> (global for all projects).</li>
-      </ol>
-      <ol type="1" id="343006db-a268-8078-aae3-e058ab000486" class="numbered-list" start="3">
-        <li><strong>Project</strong> — walk <strong>from cwd up toward root</strong>; at each level: <code><strong>CLAUDE.md</strong></code>, <code><strong>.claude/CLAUDE.md</strong></code>, <code><strong>.claude/rules/*.md</strong></code>.</li>
-      </ol>
-      <ol type="1" id="343006db-a268-80d3-8251-fdbea27c8855" class="numbered-list" start="4">
-        <li><strong>Local</strong> — <code><strong>CLAUDE.local.md</strong></code> (private, not necessarily committed).</li>
-      </ol>
-      <p id="343006db-a268-803d-beff-f6a8b5627674"><strong>Priority:</strong> Files <strong>closer to root path</strong> loaded <strong>later</strong> win for attention. <code><strong>@include</strong></code> can pull other markdown files into the same assembled system prompt string.</p>
-      <p id="343006db-a268-8098-bef6-d84b420a1477"></p>
-    </li>
-  </ol>
-  <ol type="1" id="343006db-a268-80e9-987d-d71d181b0d9c" class="numbered-list" start="2"><li>Transcripts: Session-adjacent files (raw chat messages)<table id="343006db-a268-8012-be02-ffcbc03d07f8" class="simple-table"><thead class="simple-table-header"><tr id="343006db-a268-80f9-a376-c7f171f9b112"><th id="bLGP" class="simple-table-header-color simple-table-header" style="width:241px">Location &amp; Type</th><th id="\WUT" class="simple-table-header-color simple-table-header" style="width:1399px">Role</th></tr></thead><tbody><tr id="343006db-a268-8002-a5d0-ef4c40c1c553"><td id="bLGP" style="width:241px"><code><strong>sessionId/</strong></code><strong>JSONL </strong></td><td id="\WUT" style="width:1399px"><strong>conversation log</strong> — used for <strong>compaction context</strong>, <strong>extract memories</strong>, <strong>grep</strong> in Dream prompt, <strong>resume</strong>. </td></tr><tr id="343006db-a268-8077-942e-e1ecf6bf04d4"><td id="bLGP" style="width:241px"><code><strong>/sessionId/tool-results/</strong></code><strong> JSONL</strong></td><td id="\WUT" style="width:1399px"><strong>Spilled large tool outputs</strong> when results are replaced in messages, not semantic memory (Ref: <code><strong>toolResultStorage</strong></code>).</td></tr></tbody></table></li></ol><ol type="1" id="343006db-a268-80b6-8d1a-f2ceac09273a" class="numbered-list" start="3"><li>Memories: Durable <strong>facts/preferences</strong> the agent <strong>writes</strong> across sessions (per project in Claude Code case)<ul id="343006db-a268-805b-9139-e4b0bc90ee5e" class="bulleted-list"><li style="list-style-type:disc">Memory Types<table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table"><tbody><tr id="341006db-a268-8071-869b-f61a99cab490"><td id="nBmr" style="width:147.65625px">Memory Type</td><td id="\Nso" style="width:1476.65625px">Content and Purpose</td></tr><tr id="341006db-a268-80db-8bc8-fb2a6021ee54"><td id="nBmr" style="width:147.65625px">Session Memory</td><td id="\Nso" style="width:1476.65625px">compacted messages in session transcripts (per session)</td></tr><tr id="341006db-a268-800a-91bc-d3ce26e71dc8"><td id="nBmr" style="width:147.65625px">User Memory</td><td id="\Nso" style="width:1476.65625px">Facts about the <strong>user’s role, goals, responsibilities, and knowledge</strong> so the assistant can tailor behavior. <strong>Scope (combined mode): always </strong><code><strong>private</strong></code><strong>.</strong> Save when agent learns preferences, background, or how to work with <em>this</em> person. Avoid negative or irrelevant judgments. (per project)</td></tr><tr id="341006db-a268-80ae-824b-e672058f2bde"><td id="nBmr" style="width:147.65625px">Project Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Non-derivable</strong> info about <strong>ongoing work in this repo</strong>: goals, initiatives, bugs, incidents, who/why/when — <strong>not</strong> what you could read from code/git. <strong>Scope:</strong> <code><strong>private</strong></code><strong> or </strong><code><strong>team</strong></code>, with <strong>strong bias toward </strong><code><strong>team</strong></code>. Convert relative dates to absolute when saving. (per project)</td></tr><tr id="341006db-a268-80c3-8ec3-e59636a0a09a"><td id="nBmr" style="width:147.65625px">Feedback Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Guidance the user gave about how to work</strong> — what to stop doing and what to keep doing (corrections <strong>and</strong> confirmations). <strong>Scope:</strong> default <code><strong>private</strong></code>; use <code><strong>team</strong></code> only when the rule is <strong>clearly a project-wide convention</strong> every contributor should follow (e.g. testing policy), not a personal style preference. Check for conflicts with team feedback memories. (per project)</td></tr><tr id="341006db-a268-8078-bf00-e4adaa7ad1ab"><td id="nBmr" style="width:147.65625px">Reference Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Pointers to information in external systems</strong> (Linear, Slack, dashboards, etc.) — where to look for up-to-date truth <strong>outside</strong> the repo. <strong>Scope:</strong> <code><strong>usually team</strong></code>. (per project)</td></tr><tr id="344006db-a268-800e-a107-cfc28aca76d0"><td id="nBmr" style="width:147.65625px">Team Memory</td><td id="\Nso" style="width:1476.65625px">Org-wide knowledge that applies across repositories (only if team memory is configured)</td></tr></tbody></table></li></ul><ul id="343006db-a268-80f8-8490-cce4e641f330" class="bulleted-list"><li style="list-style-type:disc">Memory Structure:<pre id="343006db-a268-8075-8676-c94a60235f79" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">memory/                                    # project auto-mem root
+<p id="341006db-a268-8065-bc4f-c879e820bccf">Let’s talk about memory of agents in real. </p><aside class="memory-callout"><p id="343006db-a268-80fc-aa0b-e6b6d449ad0c">Agent Hosted Disk Files</p><ol type="1" id="343006db-a268-8038-870d-d54d75c0eeee" class="numbered-list" start="1"><li>Claude Ladder: It refers to the <strong>bottom-up chain of directories</strong>, each step potentially adding another layer of project instructions. Those files are <strong>merged into the same </strong><code><strong>claudeMd</strong></code><strong> / instruction load</strong> together with the <strong>memory dir</strong> content from <code><strong>getMemoryFiles()</strong></code> (when not disabled).<p id="343006db-a268-80ea-8f93-f7e7cd098ef9">From <code><strong>src/utils/claudemd.ts</strong></code> (discovery order and priority):</p><ol type="1" id="343006db-a268-80b4-8b6a-c6545a1a6ed5" class="numbered-list" start="1"><li><strong>Managed</strong> (e.g. host-level rules, if configured).</li></ol><ol type="1" id="343006db-a268-8096-9b43-c7b1c715bebd" class="numbered-list" start="2"><li><strong>User</strong> — e.g. <code><strong>~/.claude/CLAUDE.md</strong></code> (global for all projects).</li></ol><ol type="1" id="343006db-a268-8078-aae3-e058ab000486" class="numbered-list" start="3"><li><strong>Project</strong> — walk <strong>from cwd up toward root</strong>; at each level: <code><strong>CLAUDE.md</strong></code>, <code><strong>.claude/CLAUDE.md</strong></code>, <code><strong>.claude/rules/*.md</strong></code>.</li></ol><ol type="1" id="343006db-a268-80d3-8251-fdbea27c8855" class="numbered-list" start="4"><li><strong>Local</strong> — <code><strong>CLAUDE.local.md</strong></code> (private, not necessarily committed).</li></ol><p id="343006db-a268-803d-beff-f6a8b5627674"><strong>Priority:</strong> Files <strong>closer to root path</strong> loaded <strong>later</strong> win for attention. <code><strong>@include</strong></code> can pull other markdown files into the same assembled system prompt string.</p><p id="343006db-a268-8098-bef6-d84b420a1477">
+</p></li></ol><ol type="1" id="343006db-a268-80e9-987d-d71d181b0d9c" class="numbered-list" start="2"><li>Transcripts: Session-adjacent files (raw chat messages)<table id="343006db-a268-8012-be02-ffcbc03d07f8" class="simple-table"><thead class="simple-table-header"><tr id="343006db-a268-80f9-a376-c7f171f9b112"><th id="bLGP" class="simple-table-header-color simple-table-header" style="width:241px">Location &amp; Type</th><th id="\WUT" class="simple-table-header-color simple-table-header" style="width:1399px">Role</th></tr></thead><tbody><tr id="343006db-a268-8002-a5d0-ef4c40c1c553"><td id="bLGP" style="width:241px"><code><strong>sessionId/</strong></code><strong>JSONL </strong></td><td id="\WUT" style="width:1399px"><strong>conversation log</strong> — used for <strong>compaction context</strong>, <strong>extract memories</strong>, <strong>grep</strong> in Dream prompt, <strong>resume</strong>. </td></tr><tr id="343006db-a268-8077-942e-e1ecf6bf04d4"><td id="bLGP" style="width:241px"><code><strong>/sessionId/tool-results/</strong></code><strong> JSONL</strong></td><td id="\WUT" style="width:1399px"><strong>Spilled large tool outputs</strong> when results are replaced in messages, not semantic memory (Ref: <code><strong>toolResultStorage</strong></code>).</td></tr></tbody></table></li></ol><ol type="1" id="343006db-a268-80b6-8d1a-f2ceac09273a" class="numbered-list" start="3"><li>Memories: Durable <strong>facts/preferences</strong> the agent <strong>writes</strong> across sessions (per project in Claude Code case)<ul id="343006db-a268-805b-9139-e4b0bc90ee5e" class="bulleted-list"><li style="list-style-type:disc">Memory Types<table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table"><tbody><tr id="341006db-a268-8071-869b-f61a99cab490"><td id="nBmr" style="width:147.65625px">Memory Type</td><td id="\Nso" style="width:1476.65625px">Content and Purpose</td></tr><tr id="341006db-a268-80db-8bc8-fb2a6021ee54"><td id="nBmr" style="width:147.65625px">Session Memory</td><td id="\Nso" style="width:1476.65625px">compacted messages in session transcripts (per session)</td></tr><tr id="341006db-a268-800a-91bc-d3ce26e71dc8"><td id="nBmr" style="width:147.65625px">User Memory</td><td id="\Nso" style="width:1476.65625px">Facts about the <strong>user’s role, goals, responsibilities, and knowledge</strong> so the assistant can tailor behavior. <strong>Scope (combined mode): always </strong><code><strong>private</strong></code><strong>.</strong> Save when agent learns preferences, background, or how to work with <em>this</em> person. Avoid negative or irrelevant judgments. (per project)</td></tr><tr id="341006db-a268-80ae-824b-e672058f2bde"><td id="nBmr" style="width:147.65625px">Project Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Non-derivable</strong> info about <strong>ongoing work in this repo</strong>: goals, initiatives, bugs, incidents, who/why/when — <strong>not</strong> what you could read from code/git. <strong>Scope:</strong> <code><strong>private</strong></code><strong> or </strong><code><strong>team</strong></code>, with <strong>strong bias toward </strong><code><strong>team</strong></code>. Convert relative dates to absolute when saving. (per project)</td></tr><tr id="341006db-a268-80c3-8ec3-e59636a0a09a"><td id="nBmr" style="width:147.65625px">Feedback Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Guidance the user gave about how to work</strong> — what to stop doing and what to keep doing (corrections <strong>and</strong> confirmations). <strong>Scope:</strong> default <code><strong>private</strong></code>; use <code><strong>team</strong></code> only when the rule is <strong>clearly a project-wide convention</strong> every contributor should follow (e.g. testing policy), not a personal style preference. Check for conflicts with team feedback memories. (per project)</td></tr><tr id="341006db-a268-8078-bf00-e4adaa7ad1ab"><td id="nBmr" style="width:147.65625px">Reference Memory</td><td id="\Nso" style="width:1476.65625px"><strong>Pointers to information in external systems</strong> (Linear, Slack, dashboards, etc.) — where to look for up-to-date truth <strong>outside</strong> the repo. <strong>Scope:</strong> <code><strong>usually team</strong></code>. (per project)</td></tr><tr id="344006db-a268-800e-a107-cfc28aca76d0"><td id="nBmr" style="width:147.65625px">Team Memory</td><td id="\Nso" style="width:1476.65625px">Org-wide knowledge that applies across repositories (only if team memory is configured)</td></tr></tbody></table></li></ul><ul id="343006db-a268-80f8-8490-cce4e641f330" class="bulleted-list"><li style="list-style-type:disc">Memory Structure:<pre id="343006db-a268-8075-8676-c94a60235f79" class="memory-inline-code"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">memory/                                    # project auto-mem root
 ├── MEMORY.md                              # index over topic *.md 
 ├── &lt;topic&gt;.md                             # topics listed in index .md and will be scanned
 ├── logs/                                  # raw stream → index/topics
 │   └── …/*.md
 └── team/                                  # shared subtree
-    └── MEMORY.md                          # team index</code></pre></li></ul></li>
-  </ol>
-<aside class="memory-callout memory-callout-note"><figure id="344006db-a268-800b-bcf2-e6460ec3f708" class="link-to-page"><a href="../notion_sources/File%20System%20Design%20344006dba268800bbcf2e6460ec3f708.html">File System Design</a></figure></aside></aside><h3 id="343006db-a268-80ed-ac0e-fde20bbcdc5a">Agent Workflow</h3><figure class="memory-mermaid-figure memory-figure-embed"><div class="memory-figure-embed-preview"><iframe title="Sequence diagram: OpenClaw agent workflow (user, prompt assembly, main agent loop, compaction, disk, memory flush, dream, forked agent)" src="../notion_sources/agent-workflow-image.html" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><figcaption class="memory-figure-embed-caption"><a href="../notion_sources/agent-workflow-image.html" target="_blank" rel="noopener noreferrer">Open diagram as full page</a> · <a href="https://www.notion.so/341006dba2688032b7dfca104dd6b635?pvs=21" target="_blank" rel="noopener noreferrer">View in Notion</a></figcaption></figure><aside class="memory-callout"><p id="344006db-a268-805d-8eec-cb1d42fcf89c">Cross Reference:  </p><figure id="344006db-a268-80ec-8229-e829f957c69f" class="link-to-page"><a href="https://www.notion.so/Agent-develops-branches-along-with-crafted-prompt-catching-344006dba26880ec8229e829f957c69f?pvs=21">Agent develops branches along with crafted prompt catching</a></figure></aside><h2 id="343006db-a268-8088-95a5-f01a201de8a7">Memory Flush in Main Agent Loop</h2><p id="343006db-a268-8093-b260-e956a5c5bda4">When main agent loop resolves all tool calls and invoke handle stop hook, memory extraction pipeline starts in a fire-and-forget way. This pipeline inits a forked agent from main with a constrained tool list: <code>read, grep, glob, read-only bash, edit, write</code>  for file processes. The following steps explains the basic steps of the pipeline:  </p><ul id="343006db-a268-805a-aea9-c9896aa5f0c7" class="bulleted-list"><li style="list-style-type:disc">Init Phase: <ul id="343006db-a268-80f7-91ff-e13cf4f0d084" class="bulleted-list"><li style="list-style-type:circle">spot the <em><mark class="highlight-yellow_background"><strong>chat slice</strong></mark></em> to extract memory from, which could be either all most recent messages since last memory message ID or all visiable messages in context.</li></ul><ul id="343006db-a268-80e3-96b9-fc8d12fc32de" class="bulleted-list"><li style="list-style-type:circle">spot workspace, i.e. memory folder path, that current agent can access and prefetch the <em><mark class="highlight-yellow_background"><strong>workspace tree</strong></mark></em> (like run ls bash command)</li></ul><ul id="343006db-a268-809c-b8fa-fab7b3ed3721" class="bulleted-list"><li style="list-style-type:circle">build extraction prompt: either team memory instruction or automatic memory instruction (Ref: <mark class="highlight-blue"><code>services/extractMemories/prompts.ts</code></mark>)</li></ul></li></ul><ul id="343006db-a268-806d-9a2b-f185f579cb83" class="bulleted-list"><li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80ba-b4fd-f42cb26785ae" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul><ul id="343006db-a268-8039-b84a-d3e465762abd" class="bulleted-list"><li style="list-style-type:circle">max turn ≤ 5</li></ul><ul id="343006db-a268-8026-99cf-e7bd528e2f6c" class="bulleted-list"><li style="list-style-type:circle">tool list limited to <code>read, grep, glob, read-only bash, edit, write</code>  </li></ul></li></ul><ul id="343006db-a268-800a-b285-f42d2b0d0d83" class="bulleted-list"><li style="list-style-type:disc">post extraction: append system messages listing written paths</li></ul><aside class="memory-callout"><p id="343006db-a268-80c6-a0be-ec1e4f947244">memory extraction instruction</p><ul id="343006db-a268-80a6-963f-ea405fbb9250" class="toggle"><li><details open=""><summary>individual memory</summary><pre id="343006db-a268-80cb-8787-c8a4632a4f6d" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">You are now acting as the memory extraction subagent. Analyze the most recent ${chat slice} messages above and use them to update your persistent memory systems.
+    └── MEMORY.md                          # team index</code></pre></li></ul></li></ol><aside class="memory-callout memory-callout-note"><figure id="344006db-a268-800b-bcf2-e6460ec3f708" class="link-to-page"><a href="../notion_sources/File System Design 344006dba268800bbcf2e6460ec3f708.html">File System Design</a></figure></aside></aside><h3 id="343006db-a268-80ed-ac0e-fde20bbcdc5a">Agent Workflow</h3><figure class="memory-mermaid-figure"><div class="mermaid">
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant P as prompt assembly
+  participant Q as Main Agent Loop
+  participant C as Compaction
+  participant Disk as Files on Disk (per Project)
+  participant S as Memory Flush
+  participant D as Dream
+  participant X as Forked Agent  
+  
+  Note over Q,Disk: Iterative Assistant Response until no tool follow-up
+  Q->>Disk: append / record messages as turn runs
+  rect rgb(240, 245, 250)
+    Disk->>Q: relevance-ranked memories with rules
+  end
+  Q->>C: if over context window budget
+  rect rgb(240, 245, 250)
+	  C->>Disk: load session memory
+    Disk->>C: session memory file content
+  end
+  C->>Q: compact_boundary + summary replaces prefix
+  C->>Disk: store new chat slice to transcripts
+  Q-->>Q: call model API and stream response and tool executions
+  par
+	  Note over Q,Disk: Handle Post Sampling Hook in background
+	  rect rgb(240, 246, 244)
+		  Q->>Disk: extract session memory
+	  end
+  end
+  Note over Q,X: Handle StopHook in background after main loop
+  par Extract Memories
+    rect rgb(240, 246, 244)
+      Q-->>S: extract memories over transcript slice + autoDream
+      S->>X: flush transcriptes into memory under instruction
+    end
+    rect rgb(240, 248, 246)
+      Q-->>D: autoDream: consolidate memory
+      D->>X: consolidate 
+      X->>Disk: write memory .md + MEMORY.md
+    end
+  end
+  
+  X-->>Q: yield summary message  
+  U->>P: user request
+  Note over P,Q: next request
+  par Prompt assembly (fetchSystemPromptParts)
+    rect rgb(240, 245, 250)
+      P->>Disk: get system prompt 
+      Disk->>P: systemPrompt: instruction, tools, MCPs, memory instructions
+    end
+    rect rgb(230, 245, 255)
+      P->>Disk: get user context
+      Disk->>P: userContent: memory files + CLAUDE.md ladder + @include file paths
+    end
+    rect rgb(250, 250, 250)
+      P->>Disk: get project context
+      Disk->>P: systemContent: local files or env status
+    end
+  end
+  P->>P: prompt + content + messages
+  P->>Q: system + user context with memory
+  Note over Q,Disk: Next Main Agent Loop
+</div></figure><aside class="memory-callout"><p id="344006db-a268-805d-8eec-cb1d42fcf89c">Cross Reference:  </p><figure id="344006db-a268-80ec-8229-e829f957c69f" class="link-to-page"><a href="https://www.notion.so/Agent-develops-branches-along-with-crafted-prompt-catching-344006dba26880ec8229e829f957c69f?pvs=21">Agent develops branches along with crafted prompt catching</a></figure></aside><h2 id="343006db-a268-8088-95a5-f01a201de8a7">Memory Flush in Main Agent Loop</h2><p id="343006db-a268-8093-b260-e956a5c5bda4">When main agent loop resolves all tool calls and invoke handle stop hook, memory extraction pipeline starts in a fire-and-forget way. This pipeline inits a forked agent from main with a constrained tool list: <code>read, grep, glob, read-only bash, edit, write</code>  for file processes. The following steps explains the basic steps of the pipeline:  </p><ul id="343006db-a268-805a-aea9-c9896aa5f0c7" class="bulleted-list"><li style="list-style-type:disc">Init Phase: <ul id="343006db-a268-80f7-91ff-e13cf4f0d084" class="bulleted-list"><li style="list-style-type:circle">spot the <em><mark class="highlight-yellow_background"><strong>chat slice</strong></mark></em> to extract memory from, which could be either all most recent messages since last memory message ID or all visiable messages in context.</li></ul><ul id="343006db-a268-80e3-96b9-fc8d12fc32de" class="bulleted-list"><li style="list-style-type:circle">spot workspace, i.e. memory folder path, that current agent can access and prefetch the <em><mark class="highlight-yellow_background"><strong>workspace tree</strong></mark></em> (like run ls bash command)</li></ul><ul id="343006db-a268-809c-b8fa-fab7b3ed3721" class="bulleted-list"><li style="list-style-type:circle">build extraction prompt: either team memory instruction or automatic memory instruction (Ref: <mark class="highlight-blue"><code>services/extractMemories/prompts.ts</code></mark>)</li></ul></li></ul><ul id="343006db-a268-806d-9a2b-f185f579cb83" class="bulleted-list"><li style="list-style-type:disc">agent loop:<ul id="343006db-a268-80ba-b4fd-f42cb26785ae" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul><ul id="343006db-a268-8039-b84a-d3e465762abd" class="bulleted-list"><li style="list-style-type:circle">max turn ≤ 5</li></ul><ul id="343006db-a268-8026-99cf-e7bd528e2f6c" class="bulleted-list"><li style="list-style-type:circle">tool list limited to <code>read, grep, glob, read-only bash, edit, write</code>  </li></ul></li></ul><ul id="343006db-a268-800a-b285-f42d2b0d0d83" class="bulleted-list"><li style="list-style-type:disc">post extraction: append system messages listing written paths</li></ul><aside class="memory-callout"><p id="343006db-a268-80c6-a0be-ec1e4f947244">memory extraction instruction</p><ul id="343006db-a268-80a6-963f-ea405fbb9250" class="toggle"><li><details open=""><summary>individual memory</summary><pre id="343006db-a268-80cb-8787-c8a4632a4f6d" class="memory-inline-code"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">You are now acting as the memory extraction subagent. Analyze the most recent ${chat slice} messages above and use them to update your persistent memory systems.
 
 Available tools: ${tool list} for paths inside the memory directory only. rm is not permitted. All other tools — MCP, Agent, write-capable bash tools, etc — will be denied.
 
@@ -734,41 +698,3 @@ stateDiagram-v2
 </p><p id="346006db-a268-80fd-9af7-e01e84a4fb0c"> </p><p id="347006db-a268-80ec-b3dd-fed7d7260225">
 </p>
 </section>
-
-
-            <footer>
-                <ul class="stats">
-                    <li><a href="#">General</a></li>
-                    <li><a href="#" class="icon fa-heart"></a></li>
-                    <li><a href="#" class="icon fa-comment"></a></li>
-                </ul>
-            </footer>
-        </article>
-        <aside class="post-toc-wrap" aria-label="On this page">
-          <nav class="post-toc" id="post-toc-nav"></nav>
-        </aside>
-        </div>
-    </div>
-    <!-- Footer -->
-    <section id="footer">
-        <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
-        <ul class="icons">
-            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-    </section>
-</div>
-<!-- Scripts -->
-<script src="../assets/js/pageviews-config.js"></script>
-<script src="../assets/js/pageviews.js"></script>
-<script src="../assets/js/mermaid-init.js"></script>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/browser.min.js"></script>
-<script src="../assets/js/breakpoints.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/post-toc.js"></script>
-<script src="../assets/js/main.js"></script>
-</body>
-</html>

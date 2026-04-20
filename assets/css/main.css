@@ -3723,7 +3723,24 @@ body.anthropic-site #header .main .info a {
 }
 
 body.anthropic-site #wrapper {
-  max-width: 72em;
+  max-width: min(78rem, 100%);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(0.35rem, 1.6vw, 1.15rem);
+  padding-right: clamp(0.35rem, 1.6vw, 1.15rem);
+  box-sizing: border-box;
+}
+
+/* Single long-form posts: use more line width, minimal horizontal gutter */
+body.anthropic-site.single #wrapper {
+  max-width: min(112rem, 100%);
+  padding-left: clamp(0px, 1.1vw, 0.45rem);
+  padding-right: clamp(0px, 1.1vw, 0.45rem);
+}
+
+html {
+  scroll-padding-top: 4.25rem;
 }
 
 body.anthropic-site #main .post {
@@ -3786,7 +3803,8 @@ body.anthropic-site #main .post:nth-child(5n + 5)::after {
 
 body.anthropic-site .post > header .title h2 a,
 body.anthropic-site .post > header .title h2 {
-  font-family: var(--font-blog-tagline) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-weight: 900 !important;
   color: var(--ref-title-ink) !important;
   letter-spacing: 0.02em;
@@ -4044,11 +4062,15 @@ body.anthropic-site #menu {
 }
 
 body.anthropic-site.single .post {
-  padding: 2.5em 3em;
+  padding: clamp(1.35rem, 3.5vw, 2.5em) clamp(1rem, 3.2vw, 3em);
   background: var(--paint-cream) !important;
   border: 1px solid var(--paint-frame) !important;
   border-radius: 4px;
   box-shadow: var(--rand-shadow);
+}
+
+body.anthropic-site.single .post.memory-post {
+  padding: clamp(0.85rem, 1.6vw, 1.85em) clamp(0.45rem, 1.1vw, 1.15rem);
 }
 
 body.anthropic-site.single .post p,
@@ -4058,9 +4080,16 @@ body.anthropic-site.single .post td {
   letter-spacing: 0.03em;
 }
 
+body.anthropic-site.single .post .memory-article-body p,
+body.anthropic-site.single .post .memory-article-body li {
+  font-size: 1rem;
+  line-height: 1.68;
+}
+
 body.anthropic-site.single article.post header .title h2 {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-family: var(--font-blog-tagline) !important;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
   font-weight: 900 !important;
   color: var(--ref-title-ink) !important;
   letter-spacing: 0.02em;
@@ -4073,6 +4102,20 @@ body.anthropic-site.single article.post header .title h2 {
   padding-left: 0;
   margin-left: 0;
   max-width: none;
+}
+
+/* In-article headings (long-form + memory posts): match Fraunces like home hero titles */
+body.anthropic-site.single #main article.post h2 {
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
+}
+
+body.anthropic-site.single #main article.post .memory-article-body h2 {
+  text-transform: none;
+  letter-spacing: 0.025em;
+  font-size: clamp(1.35rem, 1.6vw + 0.55rem, 1.85rem);
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 /* Single post meta: right side, two rows, aligned with title area */
@@ -4129,13 +4172,27 @@ body.anthropic-site.single .post > header .meta .author .name {
 }
 
 body.anthropic-site.single .post h3 {
-  font-family: var(--font-blog-tagline) !important;
-  font-size: 1.05rem;
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
+  font-size: clamp(1.15rem, 1.1vw + 0.55rem, 1.4rem);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ref-title-ink);
+  line-height: 1.25;
   margin: 1.75em 0 0.65em;
+}
+
+body.anthropic-site.single .post h4 {
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
+  font-size: clamp(1.05rem, 0.85vw + 0.5rem, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--ref-title-ink);
+  line-height: 1.28;
+  margin: 1.5em 0 0.55em;
 }
 
 body.anthropic-site.single .post .table-wrapper {
@@ -4165,11 +4222,333 @@ body.anthropic-site.single .post .memory-mermaid-figure {
   margin: 1.5em 0;
 }
 
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-image a.memory-figure-image-link {
+  display: block;
+  cursor: zoom-in;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-image a.memory-figure-image-link:focus-visible {
+  outline: 2px solid var(--a-accent, #666);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed {
+  /* Tunable preview scale (applies to both width and height of the iframe paint) */
+  --memory-embed-zoom: 1.15;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed .memory-figure-embed-preview {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  /* Let a wide iframe + zoom spill horizontally instead of clipping */
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed iframe {
+  display: block;
+  width: 100%;
+  height: min(70vh, 560px);
+  border: 0;
+  zoom: var(--memory-embed-zoom);
+  --memory-embed-zoom: 1.15;
+}
+
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed .memory-figure-embed-caption,
+body.anthropic-site.single .post .memory-mermaid-figure.memory-figure-embed figcaption.memory-figure-embed-caption {
+  font-size: 0.85rem;
+  color: var(--a-text-muted);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
 body.anthropic-site.single .post .memory-mermaid-figure figcaption {
   font-size: 0.85rem;
   color: var(--a-text-muted);
   margin-top: 0.75rem;
   line-height: 1.5;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body {
+  margin-top: 0.5rem;
+}
+
+/* Long post: .post card (article) + TOC beside it in #main — TOC sits in page gutter, not inside card */
+body.anthropic-site.single #main .post-page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.45rem, 1.5vw, 1rem);
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+body.anthropic-site.single #main {
+  width: 100%;
+  max-width: none;
+}
+
+@media screen and (min-width: 1100px) {
+  body.anthropic-site.single #main .post-page-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, min(22vw, 18rem));
+    gap: clamp(0.45rem, 1.15vw, 1rem);
+  }
+
+  body.anthropic-site.single #main .post-page-layout > .post-toc-wrap {
+    min-width: 0;
+    position: sticky;
+    top: 4.25rem;
+    z-index: 2;
+    align-self: start;
+    max-height: calc(100vh - 5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.35rem 0 0.5rem 0.75rem;
+    margin: 0;
+    border: none;
+    background: transparent;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 1099px) {
+  body.anthropic-site.single #main .post-page-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.anthropic-site.single #main .post-page-layout > .post-toc-wrap {
+    order: -1;
+    position: relative;
+    top: auto;
+    min-width: 0;
+    max-height: none;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0.85rem 1rem;
+    margin: 0 0 0.75rem;
+    border: 1px solid var(--a-border);
+    border-radius: 4px;
+    background: rgba(253, 251, 247, 0.65);
+    box-sizing: border-box;
+  }
+
+  body.anthropic-site.single .memory-post .post-toc-list,
+  body.anthropic-site.single .memory-post .post-toc-nested {
+    display: block;
+  }
+
+  body.anthropic-site.single .memory-post .post-toc-item {
+    margin: 0 0 0.35em;
+  }
+
+  body.anthropic-site.single .memory-post .post-toc-link {
+    display: block;
+    padding: 0.2rem 0.45rem;
+    border-radius: 3px;
+    font-size: 0.72rem !important;
+  }
+}
+
+body.anthropic-site.single .memory-post .post-toc-label {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ref-tagline-muted);
+  margin: 0 0 0.6rem;
+  padding: 0;
+}
+
+body.anthropic-site.single .memory-post .post-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.anthropic-site.single .memory-post .post-toc-item {
+  margin: 0 0 0.45em;
+  border-radius: 4px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+body.anthropic-site.single .memory-post .post-toc-nested {
+  list-style: none;
+  margin: 0.3em 0 0.15em 0;
+  padding: 0.1em 0 0.1em 0.65rem;
+  border-left: 2px solid rgba(130, 115, 95, 0.28);
+}
+
+body.anthropic-site.single .memory-post .post-toc-item.is-active-branch:not(.is-active) {
+  background: rgba(255, 252, 246, 0.65);
+  border-radius: 5px;
+}
+
+body.anthropic-site.single .memory-post .post-toc-item.is-active {
+  position: relative;
+  background: linear-gradient(
+    105deg,
+    rgba(115, 112, 108, 0.12) 0%,
+    rgba(255, 252, 249, 0.98) 42%,
+    rgba(250, 249, 246, 0.6) 100%
+  );
+  border-left: 3px solid rgba(110, 108, 104, 0.42);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.05);
+}
+
+body.anthropic-site.single .memory-post .post-toc-depth-2 > .post-toc-link {
+  font-weight: 650;
+}
+
+body.anthropic-site.single .memory-post .post-toc-depth-3 > .post-toc-link {
+  font-size: 0.72rem !important;
+  font-weight: 600;
+}
+
+body.anthropic-site.single .memory-post .post-toc-depth-4 > .post-toc-link {
+  font-size: 0.68rem !important;
+  font-weight: 600;
+  opacity: 0.98;
+}
+
+body.anthropic-site.single .memory-post .post-toc-link {
+  font-family: var(--font-site-title) !important;
+  font-optical-sizing: auto;
+  font-size: 0.74rem !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--a-text-muted) !important;
+  text-decoration: none;
+  border-radius: 2px;
+  display: block;
+  transition: color 0.15s ease, background 0.15s ease;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+body.anthropic-site.single .memory-post .post-toc-link:hover {
+  color: var(--a-accent) !important;
+}
+
+/* Highlight lives on <li> (one rounded block for wrapped titles); link stays flat — avoids per-line inset boxes */
+body.anthropic-site.single .memory-post .post-toc-item.is-active > .post-toc-link {
+  color: var(--ref-title-ink) !important;
+  font-weight: 700;
+  background: transparent !important;
+  padding: 0.32rem 0.45rem 0.32rem 0.35rem;
+  box-shadow: none !important;
+}
+
+/* Scroll-spy: same look when body.single is absent */
+#post-toc-nav .post-toc-item.is-active {
+  position: relative;
+  background: linear-gradient(
+    105deg,
+    rgba(115, 112, 108, 0.12) 0%,
+    rgba(255, 252, 249, 0.98) 42%,
+    rgba(250, 249, 246, 0.6) 100%
+  ) !important;
+  border-left: 3px solid rgba(110, 108, 104, 0.42) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.05) !important;
+}
+
+#post-toc-nav .post-toc-item.is-active > .post-toc-link,
+#post-toc-nav a.post-toc-link.is-active {
+  color: var(--ref-title-ink) !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0.32rem 0.45rem 0.32rem 0.35rem;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body h2,
+body.anthropic-site.single .memory-post .memory-article-body h3,
+body.anthropic-site.single .memory-post .memory-article-body h4 {
+  scroll-margin-top: 4.75rem;
+}
+
+body.anthropic-site.single .memory-post .memory-callout {
+  margin: 1.25em 0;
+  padding: 1em 1.25em;
+  border: 1px solid var(--a-border);
+  border-radius: 4px;
+  background: rgba(253, 251, 247, 0.7);
+}
+
+body.anthropic-site.single .memory-post .memory-callout-note {
+  background: rgba(229, 242, 252, 0.45);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0 1em;
+  font-size: 0.82rem;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .simple-table th,
+body.anthropic-site.single .memory-post .memory-article-body .simple-table td {
+  border: 1px solid var(--a-border);
+  padding: 0.45em 0.6em;
+  vertical-align: top;
+  text-align: left;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .simple-table-header-color {
+  background: rgba(253, 251, 247, 0.85);
+}
+
+body.anthropic-site.single .memory-post .memory-inline-code {
+  display: block;
+  margin: 0.65em 0 1em;
+  padding: 0.85em 1em;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  border: 1px solid var(--a-border);
+}
+
+body.anthropic-site.single .memory-post .memory-inline-code code {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body details {
+  margin: 0.65em 0;
+  padding: 0.5em 0.75em;
+  border-left: 3px solid var(--ref-orange-rule);
+  background: rgba(253, 251, 247, 0.4);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body mark.highlight-yellow_background {
+  background: rgba(255, 235, 120, 0.35);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body mark.highlight-blue {
+  background: transparent;
+  color: var(--ref-orange-rule);
 }
 
 body.anthropic-site.single .post .mermaid {

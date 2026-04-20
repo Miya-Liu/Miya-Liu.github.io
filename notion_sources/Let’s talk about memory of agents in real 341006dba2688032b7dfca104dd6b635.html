@@ -1,0 +1,1424 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Let’s talk about memory of agents in real. </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="341006db-a268-8032-b7df-ca104dd6b635" class="page sans"><header><h1 class="page-title" dir="auto">Let’s talk about memory of agents in real. </h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time>April 13, 2026 3:45 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>April 20, 2026 11:38 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><p id="341006db-a268-8065-bc4f-c879e820bccf" class="">Let’s talk about memory of agents in real. </p></div><div style="display:contents" dir="ltr"><nav id="343006db-a268-8095-8e4f-e943f13176cb" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#343006db-a268-80ed-ac0e-fde20bbcdc5a">Agent Workflow</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#343006db-a268-8088-95a5-f01a201de8a7">Memory Flush in Main Agent Loop</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#345006db-a268-8077-8b60-cc4b8880ca2b">Extract Session Memory</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#343006db-a268-80c1-b67e-c8ed72fa5091">Memory Consolidation in Dream</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#344006db-a268-8003-8a92-dd614c0c9e46">Memory Fetch</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#344006db-a268-80ba-983a-e0e1e0ca732c">Relevant Memory per User Turn</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#344006db-a268-8034-9976-c989d4640091">Nested Memory per Agent Turn</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#343006db-a268-80c0-8777-d8de06686c2a">Memory-based Evolution</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#343006db-a268-809e-a169-c3d2d349ada0">Remember Skill used by Claude Code</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#343006db-a268-80a7-b7b4-fdb86e35f833">Self-Improvement Skill used by Openclaw</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#345006db-a268-80c8-90ff-ceed7c6b772c"><em><strong>When</strong></em>: Guide an agent to improve when</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#346006db-a268-809c-a33d-d18d0947768b"><em>What</em>: an agent shall log at ./learnings/ to </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#346006db-a268-80d6-8260-f6568d136882"><em>How</em>: extract knowledge from transcripts into learnings</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#347006db-a268-80be-9fb9-ca4d834640ea">Detailed References</a></div></nav></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="343006db-a268-801f-8fee-de4f88838638"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="343006db-a268-80fc-aa0b-e6b6d449ad0c" class="">Agent Hosted Disk Files</p></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-8038-870d-d54d75c0eeee" class="numbered-list" start="1"><li>Claude Ladder: It refers to the <strong>bottom-up chain of directories</strong>, each step potentially adding another layer of project instructions. Those files are <strong>merged into the same </strong><code><strong>claudeMd</strong></code><strong> / instruction load</strong> together with the <strong>memory dir</strong> content from <code><strong>getMemoryFiles()</strong></code> (when not disabled).<div style="display:contents" dir="auto"><p id="343006db-a268-80ea-8f93-f7e7cd098ef9" class="">From <code><strong>src/utils/claudemd.ts</strong></code> (discovery order and priority):</p></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-80b4-8b6a-c6545a1a6ed5" class="numbered-list" start="1"><li><strong>Managed</strong> (e.g. host-level rules, if configured).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-8096-9b43-c7b1c715bebd" class="numbered-list" start="2"><li><strong>User</strong> — e.g. <code><strong>~/.claude/CLAUDE.md</strong></code> (global for all projects).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-8078-aae3-e058ab000486" class="numbered-list" start="3"><li><strong>Project</strong> — walk <strong>from cwd up toward root</strong>; at each level: <code><strong>CLAUDE.md</strong></code>, <code><strong>.claude/CLAUDE.md</strong></code>, <code><strong>.claude/rules/*.md</strong></code>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-80d3-8251-fdbea27c8855" class="numbered-list" start="4"><li><strong>Local</strong> — <code><strong>CLAUDE.local.md</strong></code> (private, not necessarily committed).</li></ol></div><div style="display:contents" dir="auto"><p id="343006db-a268-803d-beff-f6a8b5627674" class=""><strong>Priority:</strong> Files <strong>closer to root path</strong> loaded <strong>later</strong> win for attention. <code><strong>@include</strong></code> can pull other markdown files into the same assembled system prompt string.</p></div><div style="display:contents" dir="auto"><p id="343006db-a268-8098-bef6-d84b420a1477" class="">
+</p></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-80e9-987d-d71d181b0d9c" class="numbered-list" start="2"><li>Transcripts: Session-adjacent files (raw chat messages)<div style="display:contents" dir="ltr"><table id="343006db-a268-8012-be02-ffcbc03d07f8" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="343006db-a268-80f9-a376-c7f171f9b112"><th id="bLGP" class="simple-table-header-color simple-table-header" style="width:241px">Location &amp; Type</th><th id="\WUT" class="simple-table-header-color simple-table-header" style="width:1399px">Role</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="343006db-a268-8002-a5d0-ef4c40c1c553"><td id="bLGP" class="" style="width:241px"><code><strong>sessionId/</strong></code><strong>JSONL </strong></td><td id="\WUT" class="" style="width:1399px"><strong>conversation log</strong> — used for <strong>compaction context</strong>, <strong>extract memories</strong>, <strong>grep</strong> in Dream prompt, <strong>resume</strong>. </td></tr></div><div style="display:contents" dir="ltr"><tr id="343006db-a268-8077-942e-e1ecf6bf04d4"><td id="bLGP" class="" style="width:241px"><code><strong>/sessionId/tool-results/</strong></code><strong> JSONL</strong></td><td id="\WUT" class="" style="width:1399px"><strong>Spilled large tool outputs</strong> when results are replaced in messages, not semantic memory (Ref: <code><strong>toolResultStorage</strong></code>).</td></tr></div></tbody></table></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343006db-a268-80b6-8d1a-f2ceac09273a" class="numbered-list" start="3"><li>Memories: Durable <strong>facts/preferences</strong> the agent <strong>writes</strong> across sessions (per project in Claude Code case)<div style="display:contents" dir="auto"><ul id="343006db-a268-805b-9139-e4b0bc90ee5e" class="bulleted-list"><li style="list-style-type:disc">Memory Types<div style="display:contents" dir="ltr"><table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="341006db-a268-8071-869b-f61a99cab490"><td id="nBmr" class="" style="width:147.65625px">Memory Type</td><td id="\Nso" class="" style="width:1476.65625px">Content and Purpose</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80db-8bc8-fb2a6021ee54"><td id="nBmr" class="" style="width:147.65625px">Session Memory</td><td id="\Nso" class="" style="width:1476.65625px">compacted messages in session transcripts (per session)</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-800a-91bc-d3ce26e71dc8"><td id="nBmr" class="" style="width:147.65625px">User Memory</td><td id="\Nso" class="" style="width:1476.65625px">Facts about the <strong>user’s role, goals, responsibilities, and knowledge</strong> so the assistant can tailor behavior. <strong>Scope (combined mode): always </strong><code><strong>private</strong></code><strong>.</strong> Save when agent learns preferences, background, or how to work with <em>this</em> person. Avoid negative or irrelevant judgments. (per project)</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80ae-824b-e672058f2bde"><td id="nBmr" class="" style="width:147.65625px">Project Memory</td><td id="\Nso" class="" style="width:1476.65625px"><strong>Non-derivable</strong> info about <strong>ongoing work in this repo</strong>: goals, initiatives, bugs, incidents, who/why/when — <strong>not</strong> what you could read from code/git. <strong>Scope:</strong> <code><strong>private</strong></code><strong> or </strong><code><strong>team</strong></code>, with <strong>strong bias toward </strong><code><strong>team</strong></code>. Convert relative dates to absolute when saving. (per project)</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80c3-8ec3-e59636a0a09a"><td id="nBmr" class="" style="width:147.65625px">Feedback Memory</td><td id="\Nso" class="" style="width:1476.65625px"><strong>Guidance the user gave about how to work</strong> — what to stop doing and what to keep doing (corrections <strong>and</strong> confirmations). <strong>Scope:</strong> default <code><strong>private</strong></code>; use <code><strong>team</strong></code> only when the rule is <strong>clearly a project-wide convention</strong> every contributor should follow (e.g. testing policy), not a personal style preference. Check for conflicts with team feedback memories. (per project)</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-8078-bf00-e4adaa7ad1ab"><td id="nBmr" class="" style="width:147.65625px">Reference Memory</td><td id="\Nso" class="" style="width:1476.65625px"><strong>Pointers to information in external systems</strong> (Linear, Slack, dashboards, etc.) — where to look for up-to-date truth <strong>outside</strong> the repo. <strong>Scope:</strong> <code><strong>usually team</strong></code>. (per project)</td></tr></div><div style="display:contents" dir="ltr"><tr id="344006db-a268-800e-a107-cfc28aca76d0"><td id="nBmr" class="" style="width:147.65625px">Team Memory</td><td id="\Nso" class="" style="width:1476.65625px">Org-wide knowledge that applies across repositories (only if team memory is configured)</td></tr></div></tbody></table></div></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80f8-8490-cce4e641f330" class="bulleted-list"><li style="list-style-type:disc">Memory Structure:<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="343006db-a268-8075-8676-c94a60235f79" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">memory/                                    # project auto-mem root
+├── MEMORY.md                              # index over topic *.md 
+├── &lt;topic&gt;.md                             # topics listed in index .md and will be scanned
+├── logs/                                  # raw stream → index/topics
+│   └── …/*.md
+└── team/                                  # shared subtree
+    └── MEMORY.md                          # team index</code></pre></div></li></ul></div></li></ol></div><div style="display:contents" dir="ltr"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="344006db-a268-807a-88f1-c338506b9dc4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="ltr"><figure id="344006db-a268-800b-bcf2-e6460ec3f708" class="link-to-page"><a href="File%20System%20Design%20344006dba268800bbcf2e6460ec3f708.html">File System Design</a></figure></div></div></figure></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="343006db-a268-80ed-ac0e-fde20bbcdc5a" class="">Agent Workflow</h3></div><div style="display:contents" dir="auto"><pre id="341006db-a268-8081-9d02-c8fca1735fed" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">sequenceDiagram
+  autonumber
+  participant U as User
+  participant P as prompt assembly
+  participant Q as Main Agent Loop
+  participant C as Compaction
+  participant Disk as Files on Disk (per Project)
+  participant S as Memory Flush
+  participant D as Dream
+  participant X as Forked Agent  
+  
+  Note over Q,Disk: Iterative Assistant Response until no tool follow-up
+  Q-&gt;&gt;Disk: append / record messages as turn runs
+  rect rgb(240, 245, 250)
+    Disk-&gt;&gt;Q: relevanc-ranked memories with rules
+  end
+  Q-&gt;&gt;C: if over context windown budget
+  rect rgb(240, 245, 250)
+	  C-&gt;&gt;Disk: load session memory
+    Disk-&gt;&gt;C: session memory file content
+  end
+  C-&gt;&gt;Q: compact_boundary + summary replaces prefix
+  C-&gt;&gt;Disk: store new chat slice to transcripts
+  Q--&gt;&gt;Q: call model API and stream response and tool executions
+  par
+	  Note over Q,Disk: Handle Post Sampling Hook in background
+	  rect rgb(240, 246, 244)
+		  Q-&gt;&gt;Disk: extract session memory
+	  end
+  end
+  Note over Q,X: Handle StopHook in background after main loop
+  par Extract Memories
+    rect rgb(240, 246, 244)
+      Q--&gt;&gt;S: extract memories over transcript slice + autoDream
+      S-&gt;&gt;X: flush transcriptes into memory under instruction
+    end
+    rect rgb(240, 248, 246)
+      Q--&gt;&gt;D: autoDream: consolidate memory
+      D-&gt;&gt;X: consolidate 
+      X-&gt;&gt;Disk: write memory .md + MEMORY.md
+    end
+  end
+  
+  X--&gt;&gt;Q: yield summary message  
+  U-&gt;&gt;P: user request
+  Note over P,Q: next request
+  par Prompt assembly (fetchSystemPromptParts)
+    rect rgb(240, 245, 250)
+      P-&gt;&gt;Disk: get system prompt 
+      Disk-&gt;&gt;P: systemPrompt: instruction, tools, MCPs, memory instructions
+    end
+    rect rgb(230, 245, 255)
+      P-&gt;&gt;Disk: get user context
+      Disk-&gt;&gt;P: userContent: memory files + CLAUDE.md ladder + @include file paths
+    end
+    rect rgb(250, 250, 250)
+      P-&gt;&gt;Disk: get project context
+      Disk-&gt;&gt;P: systemContent: local files or env status
+    end
+  end
+  P-&gt;&gt;P: prompt + content + messages
+  P-&gt;&gt;Q: system + user context with memory
+  Note over Q,Disk: Next Main Agent Loop
+  </code></pre></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="344006db-a268-804e-8b13-c2c7b2b2c5c2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="344006db-a268-805d-8eec-cb1d42fcf89c" class="">Cross Reference:  </p></div><div style="display:contents" dir="auto"><div style="display:contents" dir="ltr"><figure id="344006db-a268-80ec-8229-e829f957c69f" class="link-to-page"><a href="https://www.notion.so/Agent-develops-branches-along-with-crafted-prompt-catching-344006dba26880ec8229e829f957c69f?pvs=21">Agent develops branches along with crafted prompt catching</a></figure></div></div></div></figure></div><div style="display:contents" dir="auto"><h2 id="343006db-a268-8088-95a5-f01a201de8a7" class="">Memory Flush in Main Agent Loop</h2></div><div style="display:contents" dir="auto"><p id="343006db-a268-8093-b260-e956a5c5bda4" class="">When main agent loop resolves all tool calls and invoke handle stop hook, memory extraction pipeline starts in a fire-and-forget way. This pipeline inits a forked agent from main with a constrained tool list: <code>read, grep, glob, read-only bash, edit, write</code>  for file processes. The following steps explains the basic steps of the pipeline:  </p></div><div style="display:contents" dir="auto"><ul id="343006db-a268-805a-aea9-c9896aa5f0c7" class="bulleted-list"><li style="list-style-type:disc">Init Phase: <div style="display:contents" dir="auto"><ul id="343006db-a268-80f7-91ff-e13cf4f0d084" class="bulleted-list"><li style="list-style-type:circle">spot the <em><mark class="highlight-yellow_background"><strong>chat slice</strong></mark></em> to extract memory from, which could be either all most recent messages since last memory message ID or all visiable messages in context.</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80e3-96b9-fc8d12fc32de" class="bulleted-list"><li style="list-style-type:circle">spot workspace, i.e. memory folder path, that current agent can access and prefetch the <em><mark class="highlight-yellow_background"><strong>workspace tree</strong></mark></em> (like run ls bash command)</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-809c-b8fa-fab7b3ed3721" class="bulleted-list"><li style="list-style-type:circle">build extraction prompt: either team memory instruction or automatic memory instruction (Ref: <mark class="highlight-blue"><code>services/extractMemories/prompts.ts</code></mark>)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-806d-9a2b-f185f579cb83" class="bulleted-list"><li style="list-style-type:disc">agent loop:<div style="display:contents" dir="auto"><ul id="343006db-a268-80ba-b4fd-f42cb26785ae" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-8039-b84a-d3e465762abd" class="bulleted-list"><li style="list-style-type:circle">max turn ≤ 5</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-8026-99cf-e7bd528e2f6c" class="bulleted-list"><li style="list-style-type:circle">tool list limited to <code>read, grep, glob, read-only bash, edit, write</code>  </li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-800a-b285-f42d2b0d0d83" class="bulleted-list"><li style="list-style-type:disc">post extraction: append system messages listing written paths</li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="343006db-a268-80bc-903a-e1e353bdde11"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="343006db-a268-80c6-a0be-ec1e4f947244" class="">memory extraction instruction</p></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80a6-963f-ea405fbb9250" class="toggle"><li><details open=""><summary>individual memory</summary><div style="display:contents" dir="auto"><pre id="343006db-a268-80cb-8787-c8a4632a4f6d" class="code code-wrap"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">You are now acting as the memory extraction subagent. Analyze the most recent ${chat slice} messages above and use them to update your persistent memory systems.
+
+Available tools: ${tool list} for paths inside the memory directory only. rm is not permitted. All other tools — MCP, Agent, write-capable bash tools, etc — will be denied.
+
+You have a limited turn budget. ${file edit tool} requires a prior ${file read tool} of the same file, so the efficient strategy is: turn 1 — issue all ${file read tool} calls in parallel for every file you might update; turn 2 — issue all ${file write tool}/${file edit tool} calls in parallel. Do not interleave reads and writes across multiple turns.
+
+You MUST only use content from the last recent messages to update your persistent memories. Do not waste any turns attempting to investigate or verify that content further — no grepping source files, no reading code to confirm a pattern exists, no git commands.
+  
+
+### Existing memory files
+
+${workspace tree}
+
+Check this list before writing — update an existing file rather than creating a duplicate.
+
+
+If the user explicitly asks you to remember something, save it immediately as whichever type fits best. If they ask you to forget something, find and remove the relevant entry.
+
+## Types of memory
+There are several discrete types of memory that you can store in your memory system:
+&lt;types&gt;
+&lt;type&gt;
+    &lt;name&gt;user&lt;/name&gt;
+    &lt;description&gt;Contain information about the user&#x27;s role, goals, responsibilities, and knowledge. Great user memories help you tailor your future behavior to the user&#x27;s preferences and perspective. Your goal in reading and writing these memories is to build up an understanding of who the user is and how you can be most helpful to them specifically. For example, you should collaborate with a senior software engineer differently than a student who is coding for the very first time. Keep in mind, that the aim here is to be helpful to the user. Avoid writing memories about the user that could be viewed as a negative judgement or that are not relevant to the work you&#x27;re trying to accomplish together.&lt;/description&gt;
+    &lt;when_to_save&gt;When you learn any details about the user&#x27;s role, preferences, responsibilities, or knowledge&lt;/when_to_save&gt;
+    &lt;how_to_use&gt;When your work should be informed by the user&#x27;s profile or perspective. For example, if the user is asking you to explain a part of the code, you should answer that question in a way that is tailored to the specific details that they will find most valuable or that helps them build their mental model in relation to domain knowledge they already have.&lt;/how_to_use&gt;
+    &lt;examples&gt;
+    user: I&#x27;m a data scientist investigating what logging we have in place
+    assistant: [saves user memory: user is a data scientist, currently focused on observability/logging]
+    user: I&#x27;ve been writing Go for ten years but this is my first time touching the React side of this repo
+    assistant: [saves user memory: deep Go expertise, new to React and this project&#x27;s frontend — frame frontend explanations in terms of backend analogues]
+    &lt;/examples&gt;
+&lt;/type&gt;
+&lt;type&gt;
+    &lt;name&gt;feedback&lt;/name&gt;
+    &lt;description&gt;Guidance the user has given you about how to approach work — both what to avoid and what to keep doing. These are a very important type of memory to read and write as they allow you to remain coherent and responsive to the way you should approach work in the project. Record from failure AND success: if you only save corrections, you will avoid past mistakes but drift away from approaches the user has already validated, and may grow overly cautious.&lt;/description&gt;
+    &lt;when_to_save&gt;Any time the user corrects your approach (&quot;no not that&quot;, &quot;don&#x27;t&quot;, &quot;stop doing X&quot;) OR confirms a non-obvious approach worked (&quot;yes exactly&quot;, &quot;perfect, keep doing that&quot;, accepting an unusual choice without pushback). Corrections are easy to notice; confirmations are quieter — watch for them. In both cases, save what is applicable to future conversations, especially if surprising or not obvious from the code. Include *why* so you can judge edge cases later.&lt;/when_to_save&gt;
+    &lt;how_to_use&gt;Let these memories guide your behavior so that the user does not need to offer the same guidance twice.&lt;/how_to_use&gt;
+    &lt;body_structure&gt;Lead with the rule itself, then a **Why:** line (the reason the user gave — often a past incident or strong preference) and a **How to apply:** line (when/where this guidance kicks in). Knowing *why* lets you judge edge cases instead of blindly following the rule.&lt;/body_structure&gt;
+    &lt;examples&gt;
+    user: don&#x27;t mock the database in these tests — we got burned last quarter when mocked tests passed but the prod migration failed
+    assistant: [saves feedback memory: integration tests must hit a real database, not mocks. Reason: prior incident where mock/prod divergence masked a broken migration]
+    user: stop summarizing what you just did at the end of every response, I can read the diff
+    assistant: [saves feedback memory: this user wants terse responses with no trailing summaries]
+    user: yeah the single bundled PR was the right call here, splitting this one would&#x27;ve just been churn
+    assistant: [saves feedback memory: for refactors in this area, user prefers one bundled PR over many small ones. Confirmed after I chose this approach — a validated judgment call, not a correction]
+    &lt;/examples&gt;
+&lt;/type&gt;
+&lt;type&gt;
+    &lt;name&gt;project&lt;/name&gt;
+    &lt;description&gt;Information that you learn about ongoing work, goals, initiatives, bugs, or incidents within the project that is not otherwise derivable from the code or git history. Project memories help you understand the broader context and motivation behind the work the user is doing within this working directory.&lt;/description&gt;
+    &lt;when_to_save&gt;When you learn who is doing what, why, or by when. These states change relatively quickly so try to keep your understanding of this up to date. Always convert relative dates in user messages to absolute dates when saving (e.g., &quot;Thursday&quot; → &quot;2026-03-05&quot;), so the memory remains interpretable after time passes.&lt;/when_to_save&gt;
+    &lt;how_to_use&gt;Use these memories to more fully understand the details and nuance behind the user&#x27;s request and make better informed suggestions.&lt;/how_to_use&gt;
+    &lt;body_structure&gt;Lead with the fact or decision, then a **Why:** line (the motivation — often a constraint, deadline, or stakeholder ask) and a **How to apply:** line (how this should shape your suggestions). Project memories decay fast, so the why helps future-you judge whether the memory is still load-bearing.&lt;/body_structure&gt;
+    &lt;examples&gt;
+    user: we&#x27;re freezing all non-critical merges after Thursday — mobile team is cutting a release branch
+    assistant: [saves project memory: merge freeze begins 2026-03-05 for mobile release cut. Flag any non-critical PR work scheduled after that date]
+    user: the reason we&#x27;re ripping out the old auth middleware is that legal flagged it for storing session tokens in a way that doesn&#x27;t meet the new compliance requirements
+    assistant: [saves project memory: auth middleware rewrite is driven by legal/compliance requirements around session token storage, not tech-debt cleanup — scope decisions should favor compliance over ergonomics]
+    &lt;/examples&gt;
+&lt;/type&gt;
+&lt;type&gt;
+    &lt;name&gt;reference&lt;/name&gt;
+    &lt;description&gt;Stores pointers to where information can be found in external systems. These memories allow you to remember where to look to find up-to-date information outside of the project directory.&lt;/description&gt;
+    &lt;when_to_save&gt;When you learn about resources in external systems and their purpose. For example, that bugs are tracked in a specific project in Linear or that feedback can be found in a specific Slack channel.&lt;/when_to_save&gt;
+    &lt;how_to_use&gt;When the user references an external system or information that may be in an external system.&lt;/how_to_use&gt;
+    &lt;examples&gt;
+    user: check the Linear project &quot;INGEST&quot; if you want context on these tickets, that&#x27;s where we track all pipeline bugs
+    assistant: [saves reference memory: pipeline bugs are tracked in Linear project &quot;INGEST&quot;]
+    user: the Grafana board at grafana.internal/d/api-latency is what oncall watches — if you&#x27;re touching request handling, that&#x27;s the thing that&#x27;ll page someone
+    assistant: [saves reference memory: grafana.internal/d/api-latency is the oncall latency dashboard — check it when editing request-path code]
+    &lt;/examples&gt;
+&lt;/type&gt;
+&lt;/types&gt;
+    
+## What NOT to save in memory
+
+- Code patterns, conventions, architecture, file paths, or project structure — these can be derived by reading the current project state.
+- Git history, recent changes, or who-changed-what — `git log` / `git blame` are authoritative.
+- Debugging solutions or fix recipes — the fix is in the code; the commit message has the context.
+- Anything already documented in CLAUDE.md files.
+- Ephemeral task details: in-progress work, temporary state, current conversation context.
+
+
+## How to save memories
+
+Saving a memory is a two-step process:
+
+**Step 1** — write the memory to its own file (e.g., `user_role.md`, `feedback_testing.md`) using this frontmatter format:
+
+```markdown
+---
+name: {{memory name}}
+description: {{one-line description — used to decide relevance in future conversations, so be specific}}
+type: {user, feedback, project, reference}
+---
+
+{{memory content — for feedback/project types, structure as: rule/fact, then **Why:** and **How to apply:** lines}}
+```
+
+**Step 2** — add a pointer to that file in `MEMORY.md`. `MEMORY.md` is an index, not a memory — each entry should be one line, under ~150 characters: `- [Title](file.md) — one-line hook`. It has no frontmatter. Never write memory content directly into `MEMORY.md`
+
+- `MEMORY.md` is always loaded into your system prompt — lines after 200 will be truncated, so keep the index concise
+- Organize memory semantically by topic, not chronologically
+- Update or remove memories that turn out to be wrong or outdated
+- Do not write duplicate memories. First check if there is an existing memory you can update before writing a new one.</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80e6-8e9a-da2ff650ec78" class="toggle"><li><details open=""><summary>team memory</summary><div style="display:contents" dir="auto"><p id="343006db-a268-80d6-ad8f-ca58dcc4df89" class="">…</p></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><h4 id="345006db-a268-8077-8b60-cc4b8880ca2b" class="">Extract Session Memory</h4></div><div style="display:contents" dir="auto"><p id="345006db-a268-80fc-8778-d9e83d56820d" class="">Session memory follows the same process with three different gates and limited its length to 12000 tokens:</p></div><div style="display:contents" dir="auto"><ul id="345006db-a268-80d6-a55f-f3b0d58810be" class="bulleted-list"><li style="list-style-type:disc">context length: ≥ 10,000 context-window tokens</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-80cb-a953-f8e1f7f5c5b8" class="bulleted-list"><li style="list-style-type:disc">new token length: ≥ 5,000 tokens since last extraction</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-808f-aafa-d55732210240" class="bulleted-list"><li style="list-style-type:disc">count of new tool calls: ≥ 3 since last extraction</li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="345006db-a268-80d8-81c3-da7e1a6e6306"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="345006db-a268-8026-a89b-c59cfd0533a0" class="">session memory extraction instruction</p></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8025-b1f9-c0a062ae83b9" class="toggle"><li><details open=""><summary>session memory template</summary><div style="display:contents" dir="auto"><pre id="345006db-a268-8011-8505-de04d5f19ebd" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all"># Session Title
+_A short and distinctive 5-10 word descriptive title for the session. Super info dense, no filler_
+
+# Current State
+_What is actively being worked on right now? Pending tasks not yet completed. Immediate next steps._
+
+# Task specification
+_What did the user ask to build? Any design decisions or other explanatory context_
+
+# Files and Functions
+_What are the important files? In short, what do they contain and why are they relevant?_
+
+# Workflow
+_What bash commands are usually run and in what order? How to interpret their output if not obvious?_
+
+# Errors &amp; Corrections
+_Errors encountered and how they were fixed. What did the user correct? What approaches failed and should not be tried again?_
+
+# Codebase and System Documentation
+_What are the important system components? How do they work/fit together?_
+
+# Learnings
+_What has worked well? What has not? What to avoid? Do not duplicate items from other sections_
+
+# Key results
+_If the user asked a specific output such as an answer to a question, a table, or other document, repeat the exact result here_
+
+# Worklog
+_Step by step, what was attempted, done? Very terse summary for each step_</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8063-b488-c50144eb23bf" class="toggle"><li><details open=""><summary>update prompt as user message</summary><div style="display:contents" dir="auto"><pre id="345006db-a268-807b-9cef-eaab1513a2fe" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">IMPORTANT: This message and these instructions are NOT part of the actual user conversation. Do NOT include any references to &quot;note-taking&quot;, &quot;session notes extraction&quot;, or these update instructions in the notes content.
+
+Based on the user conversation above (EXCLUDING this note-taking instruction message as well as system prompt, claude.md entries, or any past session summaries), update the session notes file.
+
+The file {{notesPath}} has already been read for you. Here are its current contents:
+&lt;current_notes_content&gt;
+${content of current session memory file}
+&lt;/current_notes_content&gt;
+
+Your ONLY task is to use the Edit tool to update the notes file, then stop. You can make multiple edits (update every section as needed) - make all Edit tool calls in parallel in a single message. Do not call any other tools.
+
+CRITICAL RULES FOR EDITING:
+- The file must maintain its exact structure with all sections, headers, and italic descriptions intact
+-- NEVER modify, delete, or add section headers (the lines starting with &#x27;#&#x27; like # Task specification)
+-- NEVER modify or delete the italic _section description_ lines (these are the lines in italics immediately following each header - they start and end with underscores)
+-- The italic _section descriptions_ are TEMPLATE INSTRUCTIONS that must be preserved exactly as-is - they guide what content belongs in each section
+-- ONLY update the actual content that appears BELOW the italic _section descriptions_ within each existing section
+-- Do NOT add any new sections, summaries, or information outside the existing structure
+- Do NOT reference this note-taking process or instructions anywhere in the notes
+- It&#x27;s OK to skip updating a section if there are no substantial new insights to add. Do not add filler content like &quot;No info yet&quot;, just leave sections blank/unedited if appropriate.
+- Write DETAILED, INFO-DENSE content for each section - include specifics like file paths, function names, error messages, exact commands, technical details, etc.
+- For &quot;Key results&quot;, include the complete, exact output the user requested (e.g., full table, full answer, etc.)
+- Do not include information that&#x27;s already in the CLAUDE.md files included in the context
+- Keep each section under 12000 tokens/words - if a section is approaching this limit, condense it by cycling out less important details while preserving the most critical information
+- Focus on actionable, specific information that would help someone understand or recreate the work discussed in the conversation
+- IMPORTANT: Always update &quot;Current State&quot; to reflect the most recent work - this is critical for continuity after compaction
+
+Use the Edit tool with file_path: {{notesPath}}
+
+STRUCTURE PRESERVATION REMINDER:
+Each section has TWO parts that must be preserved exactly as they appear in the current file:
+1. The section header (line starting with #)
+2. The italic description line (the _italicized text_ immediately after the header - this is a template instruction)
+
+You ONLY update the actual content that comes AFTER these two preserved lines. The italic description lines starting and ending with underscores are part of the template structure, NOT content to be edited or removed.
+
+REMEMBER: Use the Edit tool in parallel and stop. Do not continue after the edits. Only include insights from the actual user conversation, never from these note-taking instructions. Do not delete or change section headers or italic _section descriptions_.`
+</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-802f-9f07-c2baa06f2ac8" class="toggle"><li><details open=""><summary>session reminder shall be appended if file length exceeds the limitation</summary><div style="display:contents" dir="auto"><pre id="345006db-a268-8073-871f-f91c227bcdb9" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">CRITICAL: The session memory file is currently ~${totalTokens} tokens, which exceeds the maximum of 12000. You MUST condense the file to fit within this budget. Aggressively shorten oversized sections by removing less important details, merging related items, and summarizing older entries. Prioritize keeping &quot;Current State&quot; and &quot;Errors &amp; Corrections&quot; accurate and detailed.
+
+Oversized sections to condense</code></pre></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><h2 id="343006db-a268-80c1-b67e-c8ed72fa5091" class="">Memory Consolidation in Dream</h2></div><div style="display:contents" dir="auto"><p id="343006db-a268-80f6-90e6-c4294c948862" class="">When main agent loop terminates, auto dream pipeline starts in a fire-and-forget manner. This pipeline alters at gates of consolidation interval length and number of recently visited sessions. In another word, only if the time and number of updated sessions exceeds given thresholds (e.g. 24 hours and 5 sessions) since last auto dream, the pipeline shall be invoked. The following steps demonstrates the basic steps of the pipeline: (Ref: <mark class="highlight-blue"><code>services/autoDream/autoDream.ts</code></mark>)</p></div><div style="display:contents" dir="auto"><ul id="343006db-a268-8029-b0ce-e251ce5a214b" class="bulleted-list"><li style="list-style-type:disc">Init Phase:<div style="display:contents" dir="auto"><ul id="343006db-a268-80dc-8166-ceae18d4fe07" class="bulleted-list"><li style="list-style-type:circle">collect <em><mark class="highlight-yellow_background"><strong>updated session IDs</strong></mark></em></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80a4-a8c2-e2868b2a45aa" class="bulleted-list"><li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>workspace</strong></mark></em>, i.e. memory folder path, that current agent can access</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80a6-9a86-ef56b817c8c6" class="bulleted-list"><li style="list-style-type:circle">spot <em><mark class="highlight-yellow_background"><strong>project </strong></mark></em>path, i.e. where multiple sessions location</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-801c-a112-e9f60e5335b7" class="bulleted-list"><li style="list-style-type:disc">register Dream Task for UI interaction</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-8049-b017-eb1f090c01b2" class="bulleted-list"><li style="list-style-type:disc">build consolidation prompt  (Ref: <mark class="highlight-blue"><code>services/autoDream/consolidationPrompts.ts</code></mark>)</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80a3-809c-cca91784b869" class="bulleted-list"><li style="list-style-type:disc">agent loop:<div style="display:contents" dir="auto"><ul id="343006db-a268-80e0-96cb-f4d3d7264ab7" class="bulleted-list"><li style="list-style-type:circle">prompt as user message</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-804f-a824-f0f82d46cb3a" class="bulleted-list"><li style="list-style-type:circle">no limitation on agent iterative turns</li></ul></div><div style="display:contents" dir="auto"><ul id="343006db-a268-80ce-bc13-dede0495c391" class="bulleted-list"><li style="list-style-type:circle">constraint tool list on bash: read-only bash tools</li></ul></div></li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="343006db-a268-8096-b8d1-ecdb0d2115ab"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="343006db-a268-80f5-9148-fb89264d3da1" class="">memory consolidation instruction</p></div><div style="display:contents" dir="auto"><ul id="343006db-a268-8061-92a8-dc0f14ef3f8b" class="toggle"><li><details open=""><summary>consolidation prompt</summary><div style="display:contents" dir="auto"><pre id="343006db-a268-8076-ad0f-c636ba07f6cf" class="code code-wrap"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all"># Dream: Memory Consolidation
+
+You are performing a dream — a reflective pass over your memory files. Synthesize what you&#x27;ve learned recently into durable, well-organized memories so that future sessions can orient quickly.
+
+Memory directory: ${workspace path}
+
+This directory already exists — write to it directly with the Write tool (do not run mkdir or check for its existence).
+
+
+Session transcripts: ${project path} (large JSONL files — grep narrowly, don&#x27;t read whole files)
+
+---
+
+## Phase 1 — Orient
+
+- `ls` the memory directory to see what already exists
+- Read `MEMORY.md` to understand the current index
+- Skim existing topic files so you improve them rather than creating duplicates
+- If `logs/` or `sessions/` subdirectories exist (assistant-mode layout), review recent entries there
+
+## Phase 2 — Gather recent signal
+
+Look for new information worth persisting. Sources in rough priority order:
+
+1. **Daily logs** (`logs/YYYY/MM/YYYY-MM-DD.md`) if present — these are the append-only stream
+2. **Existing memories that drifted** — facts that contradict something you see in the codebase now
+3. **Transcript search** — if you need specific context (e.g., &quot;what was the error message from yesterday&#x27;s build failure?&quot;), grep the JSONL transcripts for narrow terms:
+   `grep -rn &quot;&lt;narrow term&gt;&quot; ${project path}/ --include=&quot;*.jsonl&quot; | tail -50`
+
+Don&#x27;t exhaustively read transcripts. Look only for things you already suspect matter.
+
+## Phase 3 — Consolidate
+
+For each thing worth remembering, write or update a memory file at the top level of the memory directory. Use the memory file format and type conventions from your system prompt&#x27;s auto-memory section — it&#x27;s the source of truth for what to save, how to structure it, and what NOT to save.
+
+Focus on:
+- Merging new signal into existing topic files rather than creating near-duplicates
+- Converting relative dates (&quot;yesterday&quot;, &quot;last week&quot;) to absolute dates so they remain interpretable after time passes
+- Deleting contradicted facts — if today&#x27;s investigation disproves an old memory, fix it at the source
+
+
+## Phase 4 — Prune and index
+
+Update `MEMORY.md` so it stays under 200 lines AND under ~25KB. It&#x27;s an **index**, not a dump — each entry should be one line under ~150 characters: `- [Title](file.md) — one-line hook`. Never write memory content directly into it.
+
+- Remove pointers to memories that are now stale, wrong, or superseded
+- Demote verbose entries: if an index line is over ~200 chars, it&#x27;s carrying content that belongs in the topic file — shorten the line, move the detail
+- Add pointers to newly important memories
+- Resolve contradictions — if two files disagree, fix the wrong one
+
+---
+
+Return a brief summary of what you consolidated, updated, or pruned. If nothing changed (memories are already tight), say so.
+
+
+## Additional context
+
+**Tool constraints for this run:** Bash is restricted to read-only commands (`ls`, `find`, `grep`, `cat`, `stat`, `wc`, `head`, `tail`, and similar). Anything that writes, redirects to a file, or modifies state will be denied. Plan your exploration with this in mind — no need to probe.
+
+Sessions since last consolidation (${updated session IDs})
+</code></pre></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><h2 id="344006db-a268-8003-8a92-dd614c0c9e46" class="">Memory Fetch</h2></div><div style="display:contents" dir="auto"><p id="344006db-a268-80a2-92f0-c3ca54ec0f1e" class="">Memory fetch refer to the process of searching relevant memories. Fetched memories shall be formed as a list of filenames (along with local access paths), i.e. the topic <code>*.md</code> files. </p></div><div style="display:contents" dir="auto"><pre id="344006db-a268-801c-9061-c1652cf9565d" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart
+	A0[&quot;Fetch System Prompts&quot;]
+	A1[&quot;Get Memory Files &lt;br&gt; claude md and rules md &lt;br&gt;auto-memory folder &quot;]
+	A2[&quot;Filter Injected Memory Files&quot;]
+	
+	subgraph Side[&quot;Prefetch Relevant Memories&quot;]
+		direction TB
+		C1[&quot;Collect Surfaced Memories&quot;]
+		S0[&quot;Scan Auto-Memory Files&quot;]
+		
+		subgraph sidequery[&quot;Side Query&quot;]
+			direction TB
+				S1[&quot;Form Memory Selection Prompt&quot;]
+				S2[&quot;Form User Message&quot;]
+				S3[&quot;Collect LLM Selected Files&quot;]
+				
+				S1--&gt;S2--&gt;S3 
+			end
+		
+		C2[&quot;Read Memory File Contents&quot;]
+		
+		C1--&gt;S0--&gt;sidequery
+		S3--&gt;C2
+	end
+	
+	subgraph Agent[&quot;Agent Loop&quot;]
+		direction TB
+		B0[&quot;Messages Compaction&quot;]
+		B1[&quot;Streaming Context &lt;br/&gt;or Tool Executions&lt;br&gt;after Calling Model API&quot;]
+		B2[&quot;Nested Memory Files updated&lt;br&gt;during Tool Execution&quot;]
+		subgraph B3[&quot;Get Attachements&quot;]
+			direction TB
+			BB1[&quot;Get Relevant &lt;br/&gt; Nested Memories&quot;]
+			BB2[&quot;Load CLAUDE.md, &lt;br&gt;CLAUDE.local.md,&lt;br&gt;.claude/rules/*.md&quot;]
+			
+			BB1--&gt;BB2
+		end
+		B4[&quot;Push Attachements &lt;br&gt;as Tool Results&quot;]
+		B5[&quot;Consume Prefetched &lt;br/&gt; Memories&quot;]
+		
+		B0--&gt;B1--&gt;B2--&gt;B3--&gt;B4--&gt;B5--&gt;B0
+	end
+	
+	A0--&gt;A1--&gt;A2--&gt;C1
+	A2--&gt;B0
+	C2--&gt;B5
+	
+	
+	
+	</code></pre></div><div style="display:contents" dir="auto"><p id="344006db-a268-80e2-8bf0-f5cd3130d745" class="">
+</p></div><div style="display:contents" dir="auto"><h4 id="344006db-a268-80ba-983a-e0e1e0ca732c" class="">Relevant Memory per User Turn</h4></div><div style="display:contents" dir="auto"><p id="344006db-a268-8019-8132-cdc4a1d08ff2" class=""> - Ref: <mark class="highlight-blue"><code>startRelevantMemoryPrefetch</code></mark></p></div><div style="display:contents" dir="auto"><p id="345006db-a268-8002-9618-cb425d4ad8a9" class="">Memory prefetch refer to the process of searching relevant memories w.r.t. latest prompt from real user. The process is triggered at the start of an user turn, and runs while the main agent loop streams and executes tool calls, i.e. as a separate progress. At the end of every agent turn, i.e. post tool executions, individual agent turn collect the memories in the manner of consume-memory-if-ready, i.e. the progress finished, or skip-and-retry-next-turn. The memories can only be consumed once by one agent turn. </p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="345006db-a268-8055-844f-de5daa8736e8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="345006db-a268-80c1-be3e-ce5f5dec542e" class="">Query Model API on Sideway</p></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8006-899c-df04b8e12b17" class="toggle"><li><details open=""><summary>system prompt of memory selection query</summary><div style="display:contents" dir="auto"><pre id="345006db-a268-808b-ac4c-c8865c164172" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">You are selecting memories that will be useful to Claude Code as it processes a user&#x27;s query. You will be given the user&#x27;s query and a list of available memory files with their filenames and descriptions.
+
+Return a list of filenames for the memories that will clearly be useful to Claude Code as it processes the user&#x27;s query (up to 5). Only include memories that you are certain will be helpful based on their name and description.
+- If you are unsure if a memory will be useful in processing the user&#x27;s query, then do not include it in your list. Be selective and discerning.
+- If there are no memories in the list that would clearly be useful, feel free to return an empty list.
+- If a list of recently-used tools is provided, do not select memories that are usage reference or API documentation for those tools (Claude Code is already exercising them). DO still select memories containing warnings, gotchas, or known issues about those tools — active use is exactly when those matter.</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8082-8d94-c431b801768f" class="toggle"><li><details open=""><summary>user prompt of memory selection query</summary><div style="display:contents" dir="auto"><pre id="345006db-a268-8002-889a-c0e7e7f0607a" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Query: ${latest user prompt}
+
+Available memories:
+${list of memory headers}
+// memory header example
+// - memory type: memory file name with access path (update time): brief description of file content
+// - memory type: memory file name with access path (update time)
+//
+
+Recently used tools:
+${recently successfully processed tool calls}</code></pre></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="345006db-a268-80de-ad77-e4c348b488d2" class="">
+</p></div><div style="display:contents" dir="auto"><h4 id="344006db-a268-8034-9976-c989d4640091" class="">Nested Memory per Agent Turn</h4></div><div style="display:contents" dir="auto"><p id="344006db-a268-80a9-bb8b-ed96db3c0766" class=""> - Ref: <mark class="highlight-blue"><code>getNestedMemoryAttachments</code></mark></p></div><div style="display:contents" dir="auto"><p id="344006db-a268-803f-b508-f805f63a4273" class="">Nested memory refer to the loaded memories  at the end of every agent turn from auto memory folder or another folder specified by user. The scope of memory files to be loaded aligns with the files that have been read in history, accessible workspace and updated claude <code>*.md</code>.</p></div><div style="display:contents" dir="auto"><h2 id="343006db-a268-80c0-8777-d8de06686c2a" class="">Memory-based Evolution</h2></div><div style="display:contents" dir="auto"><h3 id="343006db-a268-809e-a169-c3d2d349ada0" class="">Remember Skill used by Claude Code</h3></div><div style="display:contents" dir="auto"><pre id="344006db-a268-800e-adc8-c3410d69d5e9" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart LR
+  subgraph outer[&quot;Remember to Proposal&quot;]
+  direction LR
+	  subgraph invoke[&quot;1. Invocation&quot;]
+	    direction TB
+	    B0([&quot;User: /remember &quot;])
+	    B2[&quot;load skill prompt (&amp; args)&quot;]
+	    B3[&quot;Inject as user message&quot;]
+	    B0 --&gt; B2 --&gt; B3
+	  end
+
+	  subgraph run1[&quot;2. Agent Loop —&gt; Proposals&quot;]
+	    direction TB
+	    C1[&quot;Read CLAUDE.md layers&quot;]
+	    C2[&quot;Read / Glob / Grep as needed&lt;br/&gt; over auto memories&quot;]
+	    C3[&quot;Structured Report; &lt;br/&gt; No Write/Edit yet&quot;]
+	    C1 --&gt; C2 --&gt; C3
+	  end
+  end
+  
+
+  D1([&quot;User approves or refines&quot;]) 
+  style D1 fill:#dbeafe
+  
+  subgraph run2[&quot;Remember to Disk&quot;]
+    direction TB
+    D3[&quot;Write/Edit tool calls&quot;]
+    D5[&quot;Disk writes&quot;]
+    D3 --&gt; D5
+  end
+
+  invoke --&gt; run1 
+  outer--&gt; D1
+  D1--&gt; run2
+</code></pre></div><div style="display:contents" dir="auto"><ul id="344006db-a268-80c7-bb06-e58f20e4642a" class="toggle"><li><details open=""><summary>skill description</summary><div style="display:contents" dir="auto"><pre id="344006db-a268-80bd-934b-f516560a8649" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: remember
+description: Review auto-memory entries and propose promotions to CLAUDE.md, CLAUDE.local.md, or shared memory. Also detects outdated, conflicting, and duplicate entries across memory layers.
+whenToUse: Use when the user wants to review, organize, or promote their auto-memory entries. Also useful for cleaning up outdated or conflicting entries across CLAUDE.md, CLAUDE.local.md, and auto-memory.
+
+# Memory Review
+
+## Goal
+Review the user&#x27;s memory landscape and produce a clear report of proposed changes, grouped by action type. Do NOT apply changes — present proposals for user approval.
+
+## Steps
+
+### 1. Gather all memory layers
+Read CLAUDE.md and CLAUDE.local.md from the project root (if they exist). Your auto-memory content is already in your system prompt — review it there. Note which team memory sections exist, if any.
+
+**Success criteria**: You have the contents of all memory layers and can compare them.
+
+### 2. Classify each auto-memory entry
+For each substantive entry in auto-memory, determine the best destination:
+
+| Destination | What belongs there | Examples |
+|---|---|---|
+| **CLAUDE.md** | Project conventions and instructions for Claude that all contributors should follow | &quot;use bun not npm&quot;, &quot;API routes use kebab-case&quot;, &quot;test command is bun test&quot;, &quot;prefer functional style&quot; |
+| **CLAUDE.local.md** | Personal instructions for Claude specific to this user, not applicable to other contributors | &quot;I prefer concise responses&quot;, &quot;always explain trade-offs&quot;, &quot;don&#x27;t auto-commit&quot;, &quot;run tests before committing&quot; |
+| **Team memory** | Org-wide knowledge that applies across repositories (only if team memory is configured) | &quot;deploy PRs go through #deploy-queue&quot;, &quot;staging is at staging.internal&quot;, &quot;platform team owns infra&quot; |
+| **Stay in auto-memory** | Working notes, temporary context, or entries that don&#x27;t clearly fit elsewhere | Session-specific observations, uncertain patterns |
+
+**Important distinctions:**
+- CLAUDE.md and CLAUDE.local.md contain instructions for Claude, not user preferences for external tools (editor theme, IDE keybindings, etc. don&#x27;t belong in either)
+- Workflow practices (PR conventions, merge strategies, branch naming) are ambiguous — ask the user whether they&#x27;re personal or team-wide
+- When unsure, ask rather than guess
+
+**Success criteria**: Each entry has a proposed destination or is flagged as ambiguous.
+
+### 3. Identify cleanup opportunities
+Scan across all layers for:
+- **Duplicates**: Auto-memory entries already captured in CLAUDE.md or CLAUDE.local.md → propose removing from auto-memory
+- **Outdated**: CLAUDE.md or CLAUDE.local.md entries contradicted by newer auto-memory entries → propose updating the older layer
+- **Conflicts**: Contradictions between any two layers → propose resolution, noting which is more recent
+
+**Success criteria**: All cross-layer issues identified.
+
+### 4. Present the report
+Output a structured report grouped by action type:
+1. **Promotions** — entries to move, with destination and rationale
+2. **Cleanup** — duplicates, outdated entries, conflicts to resolve
+3. **Ambiguous** — entries where you need the user&#x27;s input on destination
+4. **No action needed** — brief note on entries that should stay put
+
+If auto-memory is empty, say so and offer to review CLAUDE.md for cleanup.
+
+**Success criteria**: User can review and approve/reject each proposal individually.
+
+## Rules
+- Present ALL proposals before making any changes
+- Do NOT modify files without explicit user approval
+- Do NOT create new files unless the target doesn&#x27;t exist yet
+- Ask about ambiguous entries — don&#x27;t guess</code></pre></div></details></li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="344006db-a268-806c-bd76-f2e854c99b77"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="344006db-a268-803a-9b90-fe7dffbb4797" class="">Cross Reference: </p></div><div style="display:contents" dir="auto"><div style="display:contents" dir="ltr"><figure id="344006db-a268-809f-9e53-f026b35666fb" class="link-to-page"><a href="https://www.notion.so/Observe-the-pipeline-of-skill-loading-running-updating-and-expanding-344006dba268809f9e53f026b35666fb?pvs=21">Observe the pipeline of skill loading, running, updating and expanding</a></figure></div></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="343006db-a268-80a7-b7b4-fdb86e35f833" class="">Self-Improvement Skill used by Openclaw</h3></div><div style="display:contents" dir="auto"><h4 id="345006db-a268-80c8-90ff-ceed7c6b772c" class=""><em><strong>When</strong></em>: Guide an agent to improve when</h4></div><div style="display:contents" dir="auto"><pre id="345006db-a268-80fe-b268-ccf24f302654" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">name: self-improvement
+description: &quot;Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude (&#x27;No, that&#x27;s wrong...&#x27;, &#x27;Actually...&#x27;), (3) User requests a capability that doesn&#x27;t exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.&quot;</code></pre></div><div style="display:contents" dir="auto"><ul id="345006db-a268-80cc-83a7-c8e5897d9cf4" class="bulleted-list"><li style="list-style-type:disc">encounter a failure: command, API, or tool calls</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-804a-9117-f5d8e566d034" class="bulleted-list"><li style="list-style-type:disc">user disagrees</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8009-b1f5-df7a77804fef" class="bulleted-list"><li style="list-style-type:disc">lack of capabilities that user asks</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-80b1-8804-e89fd728d0cb" class="bulleted-list"><li style="list-style-type:disc">identify outdated or misleading knowledge</li></ul></div><div style="display:contents" dir="auto"><ul id="345006db-a268-8087-9b9d-d7151a8c0a1b" class="bulleted-list"><li style="list-style-type:disc">a better approach for recurring tasks</li></ul></div><div style="display:contents" dir="auto"><h4 id="346006db-a268-809c-a33d-d18d0947768b" class=""><em>What</em>: an agent shall log at ./learnings/ to </h4></div><div style="display:contents" dir="auto"><p id="347006db-a268-8035-8c00-e451be5a8ad4" class="">The workspace tree that host learnings:<div class="indented"><div style="display:contents" dir="auto"><pre id="346006db-a268-8046-9971-cefff37b389b" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">.learnings/ # This skill&#x27;s log files
+    ├── LEARNINGS.md
+    ├── ERRORS.md
+    └── FEATURE_REQUESTS.md</code></pre></div></div></p></div><div style="display:contents" dir="auto"><p id="347006db-a268-8062-9e7f-cc0b3963eac8" class="">The knowledge in transcripts flows into learn as following: <div class="indented"><div style="display:contents" dir="auto"><pre id="347006db-a268-8085-ba3a-f7b186062ca4" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart LR
+  subgraph S[&quot;Situations&quot;]
+	  direction TB
+    s1[Command / operation fails]
+    s2[API / external tool fails]
+    s3[User corrects you]
+    s4[User wants missing feature]
+    s5[Knowledge was outdated]
+    s6[Found better approach]
+    s7[Simplify-and-harden recurring pattern]
+  end
+
+  subgraph L[&quot;Log files (.learnings/)&quot;]
+	  direction TB
+    e[ERRORS.md]
+    ln[LEARNINGS.md]
+    fr[FEATURE_REQUESTS.md]
+  end
+
+  s1 --&gt; e
+  s2 --&gt; e
+  s3 --&gt;|category: correction| ln
+  s4 --&gt; fr
+  s5 --&gt;|category: knowledge_gap| ln
+  s6 --&gt;|category: best_practice| ln
+  s7 --&gt;|Source + Pattern-Key| ln
+  
+</code></pre></div></div></p></div><div style="display:contents" dir="auto"><p id="347006db-a268-8047-99d1-e6e4e603d343" class="">To be specific, the template and schema of 3 types of learnings are:</p></div><div style="display:contents" dir="auto"><ul id="346006db-a268-80e5-8fdc-e52f21b12896" class="toggle"><li><details open=""><summary>LEARNINGS: Corrections, insights, and knowledge gaps captured during development.</summary><div style="display:contents" dir="auto"><pre id="346006db-a268-808d-839f-d0eb70bb161b" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">**Categories**: correction | insight | knowledge_gap | best_practice
+**Areas**: frontend | backend | infra | tests | docs | config
+**Statuses**: pending | in_progress | resolved | wont_fix | promoted | promoted_to_skill
+
+## Status Definitions
+
+| Status | Meaning |
+|--------|---------|
+| `pending` | Not yet addressed |
+| `in_progress` | Actively being worked on |
+| `resolved` | Issue fixed or knowledge integrated |
+| `wont_fix` | Decided not to address (reason in Resolution) |
+| `promoted` | Elevated to CLAUDE.md, AGENTS.md, or copilot-instructions.md |
+| `promoted_to_skill` | Extracted as a reusable skill |
+
+## Skill Extraction Fields
+
+When a learning is promoted to a skill, add these fields:
+
+```markdown
+**Status**: promoted_to_skill
+**Skill-Path**: skills/skill-name
+```
+
+Template:
+```markdown
+## [LRN-YYYYMMDD-XXX] category
+
+**Logged**: ISO-8601 timestamp
+**Priority**: low | medium | high | critical
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Summary
+One-line description of what was learned
+
+### Details
+Full context: what happened, what was wrong, what&#x27;s correct
+
+### Suggested Action
+Specific fix or improvement to make
+
+### Metadata
+- Source: conversation | error | user_feedback
+- Related Files: path/to/file.ext
+- Tags: tag1, tag2
+- See Also: LRN-20250110-001 (if related to existing entry)
+- Pattern-Key: simplify.dead_code | harden.input_validation (optional, for recurring-pattern tracking)
+- Recurrence-Count: 1 (optional)
+- First-Seen: 2025-01-15 (optional)
+- Last-Seen: 2025-01-15 (optional)
+...
+```</code></pre></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8000-8ff1-d8f4c442f2a8" class="toggle"><li><details open=""><summary>Learning Entry</summary><div style="display:contents" dir="auto"><p id="347006db-a268-802a-b4e1-fbee8364692f" class="">
+</p></div></details></li></ul></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="346006db-a268-8042-b655-eac572a71e12" class="toggle"><li><details open=""><summary>ERRORS: Command failures, exceptions, and unexpected behaviors.</summary><div style="display:contents" dir="auto"><pre id="347006db-a268-8016-aea5-ed7975840399" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
+## [ERR-YYYYMMDD-XXX] skill_or_command_name
+
+**Logged**: ISO-8601 timestamp
+**Priority**: high
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Summary
+Brief description of what failed
+
+### Error
+```
+Actual error message or output
+```
+
+### Context
+- Command/operation attempted
+- Input or parameters used
+- Environment details if relevant
+- Summary or redacted excerpt of relevant output (avoid full transcripts and secret-bearing data by default)
+
+### Suggested Fix
+If identifiable, what might resolve this
+
+### Metadata
+- Reproducible: yes | no | unknown
+- Related Files: path/to/file.ext
+- See Also: ERR-20250110-001 (if recurring)
+
+---</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="346006db-a268-80a2-bfa2-e19a296ff22e" class="toggle"><li><details open=""><summary>FEATURE_REQUESTS: Capabilities requested by user that don&#x27;t currently exist.</summary><div style="display:contents" dir="auto"><pre id="347006db-a268-80e5-b1b2-da99cd789fab" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Template
+## [FEAT-YYYYMMDD-XXX] capability_name
+
+**Logged**: ISO-8601 timestamp
+**Priority**: medium
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Requested Capability
+What the user wanted to do
+
+### User Context
+Why they needed it, what problem they&#x27;re solving
+
+### Complexity Estimate
+simple | medium | complex
+
+### Suggested Implementation
+How this could be built, what it might extend
+
+### Metadata
+- Frequency: first_time | recurring
+- Related Features: existing_feature_name
+
+---</code></pre></div></details></li></ul></div><div style="display:contents" dir="auto"><h4 id="346006db-a268-80d6-8260-f6568d136882" class=""><em>How</em>: extract knowledge from transcripts into learnings</h4></div><div style="display:contents" dir="auto"><ol type="1" id="347006db-a268-8047-a494-c42df167877b" class="numbered-list" start="1"><li>Init Step: Make sure the workspace tree of learnings is there, including learning file, error file, feature file</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="346006db-a268-8033-ab02-cab094fe10d6" class="numbered-list" start="2"><li>Integration Step: Instruct the agent to log knowledge into the above files<div style="display:contents" dir="auto"><pre id="347006db-a268-800a-bb29-c684c8666248" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">### Add reference to agent files AGENTS.md, CLAUDE.md, or .github/copilot-instructions.md to remind yourself to log learnings. (this is an alternative to hook-based reminders)</code></pre></div><div style="display:contents" dir="auto"><p id="347006db-a268-8082-939d-e82f650127ef" class="">
+</p></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="347006db-a268-80c3-be3d-d894cc558045" class="numbered-list" start="3"><li>Review: consolidate learnings before major tasks<div style="display:contents" dir="auto"><p id="347006db-a268-80e3-a642-c8ea4f0fef94" class="">Instruct an agent to start review learning at the following breakpoints</p></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8008-97a3-d19f71da167d" class="bulleted-list"><li style="list-style-type:disc">Before starting a new major task</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-80f5-87a2-d037d2f3ce4a" class="bulleted-list"><li style="list-style-type:disc">After completing a feature</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-80e4-8273-fcd59da20f3e" class="bulleted-list"><li style="list-style-type:disc">when working in an area with past learnings</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8093-85ae-d4daa2f8768c" class="bulleted-list"><li style="list-style-type:disc">weekly during active development (periodic review)</li></ul></div><div style="display:contents" dir="auto"><p id="347006db-a268-804d-98b4-e70a3feec369" class="">And before actually resolve following review tasks, it shall first collect dependent information by greping <code>[status | priority | area]</code>  of all ./learnings/items: </p></div><div style="display:contents" dir="auto"><pre id="347006db-a268-8018-a875-d629982e36d3" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">- Resolve fixed items
+- Promote applicable learnings
+- Link related entries
+- Escalate recurring issues</code></pre></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="347006db-a268-8072-96f2-f166316b27eb" class="numbered-list" start="4"><li>Promotion: When a learning is broadly applicable (not a one-off fix), promote it to permanent project memory.<div style="display:contents" dir="auto"><p id="347006db-a268-809c-907e-ca0cf9a45fc1" class="">Broadly applicable infers the situation that </p></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8053-b674-c27e268e8439" class="bulleted-list"><li style="list-style-type:disc">a learning applies across multiple files/features</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-802d-a833-f6006cdc9ed9" class="bulleted-list"><li style="list-style-type:disc">knowledge any contributor (human or AI) should know</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-80e7-b223-e2d40d28a0cf" class="bulleted-list"><li style="list-style-type:disc">prevents recurring mistakes</li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-80e1-a267-e90dfdc0da50" class="bulleted-list"><li style="list-style-type:disc">documents project-specific conventions</li></ul></div><div style="display:contents" dir="auto"><p id="347006db-a268-805b-8807-e4f6ddb8d364" class="">This skill should flow those learnings into permanent memories as the following figure shows by three steps:  Distill —&gt; Add —&gt; Update</p></div><div style="display:contents" dir="auto"><pre id="347006db-a268-80d2-9609-fd00346642db" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart LR
+  subgraph S[&quot;Situations&quot;]
+	  direction TB
+    s9[Broadly applicable learning]
+    s10[Workflow improvement]
+    s11[Tool gotcha]
+    s12[Behavioral pattern]
+  end
+
+  subgraph P[&quot;Promotion (stable context)&quot;]
+	  direction TB
+    p_gen[&quot;CLAUDE.md · AGENTS.md · .github/copilot-instructions.md&quot;]
+    p_ag[&quot;AGENTS.md (OpenClaw workspace)&quot;]
+    p_tools[&quot;TOOLS.md (OpenClaw workspace)&quot;]
+    p_soul[&quot;SOUL.md (OpenClaw workspace)&quot;]
+  end
+
+  s9 --&gt; p_gen
+  s10 --&gt; p_ag
+  s11 --&gt; p_tools
+  s12 --&gt; p_soul
+  
+</code></pre></div><div style="display:contents" dir="auto"><p id="347006db-a268-80ca-b973-d1d0b983a8aa" class="">For instance: </p></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8034-87cf-cca9150cbc29" class="bulleted-list"><li style="list-style-type:disc">Learning → CLAUDE.md<div style="display:contents" dir="auto"><div id="347006db-a268-8022-bdc5-c8d6c2682e89" class="column-list"><div style="display:contents" dir="auto"><div id="347006db-a268-802e-aa38-f927cf53ee96" style="width:50%" class="column"><div style="display:contents" dir="auto"><pre id="347006db-a268-8010-b5b0-d47b97d79903" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#Learning
+&gt; Project uses pnpm workspaces. Attempted `npm install` but failed. 
+&gt; Lock file is `pnpm-lock.yaml`. Must use `pnpm install`.</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="347006db-a268-803a-8f04-c67c3a186f66" style="width:50%" class="column"><div style="display:contents" dir="auto"><pre id="347006db-a268-80cd-ab4d-e6d3d8a84418" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">#CLAUDE.md
+## Build &amp; Dependencies
+- Package manager: pnpm (not npm) - use `pnpm install`
+</code></pre></div></div></div></div></div></li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="347006db-a268-8031-ba8f-ebcb4eba41b9" class="numbered-list" start="5"><li>Reminder: Hook learnings as session starters automatically</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="347006db-a268-8064-991c-cdac434dead2" class="numbered-list" start="6"><li>Skill Extraction: When a learning is valuable enough to become a reusable skill, extract it using the provided helper.<div style="display:contents" dir="auto"><p id="348006db-a268-8055-a5a7-f03938e16bfa" class="">The flow from learning to skill, i.e. the life-cycle of a learning status</p></div><div style="display:contents" dir="auto"><pre id="348006db-a268-8016-9886-e349728e65e1" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">stateDiagram-v2
+  [*] --&gt; pending: append entry in *.md
+  pending --&gt; in_progress: work started
+  in_progress --&gt; resolved: fix + Resolution block
+  in_progress --&gt; wont_fix: deliberate drop
+  pending --&gt; promoted: distill to memory files
+  resolved --&gt; promoted: still worth a rule
+  promoted --&gt; promoted_to_skill: extract-skill + Skill-Path
+  promoted_to_skill --&gt; [*]
+  resolved --&gt; [*]
+  wont_fix --&gt; [*]
+</code></pre></div><div style="display:contents" dir="auto"><ul id="348006db-a268-802f-81ce-fa57218d89dc" class="bulleted-list"><li style="list-style-type:disc">Criterion of Learnings:<div style="display:contents" dir="ltr"><table id="348006db-a268-8064-9be0-eed90e82d5a1" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="348006db-a268-806b-b7a5-f9027f4e59dd"><td id="?bXm" class="" style="width:168.66073608398438px">Criterion</td><td id="ngnW" class="" style="width:820.6607360839844px">Description</td></tr></div><div style="display:contents" dir="ltr"><tr id="348006db-a268-80dc-a6c9-d8ea48bb91b0"><td id="?bXm" class="" style="width:168.66073608398438px">Recurring</td><td id="ngnW" class="" style="width:820.6607360839844px">Has `See Also` links to 2+ similar issues</td></tr></div><div style="display:contents" dir="ltr"><tr id="348006db-a268-80f5-88f3-e57859f35ea7"><td id="?bXm" class="" style="width:168.66073608398438px">Verified</td><td id="ngnW" class="" style="width:820.6607360839844px">Status is `resolved` with working fix</td></tr></div><div style="display:contents" dir="ltr"><tr id="348006db-a268-8025-ac77-deb9cb45784f"><td id="?bXm" class="" style="width:168.66073608398438px">Non-obvious</td><td id="ngnW" class="" style="width:820.6607360839844px">Required actual debugging/investigation to discover</td></tr></div><div style="display:contents" dir="ltr"><tr id="348006db-a268-80d5-9332-c23d970afc08"><td id="?bXm" class="" style="width:168.66073608398438px">Broadly Applicable</td><td id="ngnW" class="" style="width:820.6607360839844px"> Not project-specific; useful across codebases</td></tr></div><div style="display:contents" dir="ltr"><tr id="348006db-a268-80df-8ff8-f9f4ba064b4f"><td id="?bXm" class="" style="width:168.66073608398438px">User-flagged</td><td id="ngnW" class="" style="width:820.6607360839844px">User says &quot;save this as a skill&quot; or similar</td></tr></div></tbody></table></div></li></ul></div><div style="display:contents" dir="auto"><ul id="348006db-a268-80ea-981b-f2aad9b23f0b" class="bulleted-list"><li style="list-style-type:disc">Workflow of Extraction:<div style="display:contents" dir="auto"><p id="348006db-a268-8068-a290-e1e056406471" class="">If any learnings meet the above criterion, run a specific script to derive and verify a skill from it. The entire workflow is as following:</p></div><div style="display:contents" dir="auto"><pre id="348006db-a268-806d-aae8-dbf36043c743" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">stateDiagram-v2
+  [*] --&gt; skill_name/: decide a skill name (lowercase-hyphens)
+  template.md --&gt; SKILL_md: initilises
+  skill_name/--&gt; SKILL_md: extration starts
+  ~/learnings/ --&gt; enriched: learnings pass criterion
+  SKILL_md --&gt; enriched: distill learnings into skill
+	enriched --&gt; ~/learnings/ : update learning status to &#x27;promted-to-skill&#x27;
+	enriched --&gt; verified: read SKILL.md in a fresh session (self-contained?)
+  verified --&gt; [*]</code></pre></div></li></ul></div><div style="display:contents" dir="auto"><ul id="348006db-a268-803b-ae60-e95fe91c0ff6" class="bulleted-list"><li style="list-style-type:disc">Extraction Triggers: Watch for these signals that a learning should become a skill:<div style="display:contents" dir="auto"><pre id="348006db-a268-8032-bbba-d6da0324593b" class="code code-wrap"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">Watch for these signals that a learning should become a skill:
+
+**In conversation:**
+- &quot;Save this as a skill&quot;
+- &quot;I keep running into this&quot;
+- &quot;This would be useful for other projects&quot;
+- &quot;Remember this pattern&quot;
+
+**In learning entries:**
+- Multiple `See Also` links (recurring issue)
+- High priority + resolved status
+- Category: `best_practice` with broad applicability
+- User feedback praising the solution</code></pre></div></li></ul></div><div style="display:contents" dir="auto"><p id="348006db-a268-8055-86e9-f853e88cbf8a" class="">Note: [Agent Skills spec](https://agentskills.io/specification]</p></div></li></ol></div><div style="display:contents" dir="auto"><h2 id="347006db-a268-80be-9fb9-ca4d834640ea" class="">Detailed References</h2></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8067-b6fe-f5425ab0262e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">self-evolution skill hooks: Inject command execution after user turn terminates</span><div class="indented"><div style="display:contents" dir="auto"><ul id="347006db-a268-80cd-882e-c343fe3b15f8" class="bulleted-list"><li style="list-style-type:disc"><a href="http://activator.sh">activator.sh</a> </li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8050-a318-cfb38aaa55cc" class="bulleted-list"><li style="list-style-type:disc"><a href="http://error-detector.sh/">error-detector.sh</a></li></ul></div></div></li></ul></div><div style="display:contents" dir="auto"><ul id="347006db-a268-8027-9d00-dd32ed76b575" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Referral Example Triggers for Learning</span><div class="indented"><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="347006db-a268-8085-a08c-ffd9a6551696" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">**Corrections** (→ learning with `correction` category):
+- &quot;No, that&#x27;s not right...&quot;
+- &quot;Actually, it should be...&quot;
+- &quot;You&#x27;re wrong about...&quot;
+- &quot;That&#x27;s outdated...&quot;
+
+**Feature Requests** (→ feature request):
+- &quot;Can you also...&quot;
+- &quot;I wish you could...&quot;
+- &quot;Is there a way to...&quot;
+- &quot;Why can&#x27;t you...&quot;
+
+**Knowledge Gaps** (→ learning with `knowledge_gap` category):
+- User provides information you didn&#x27;t know
+- Documentation you referenced is outdated
+- API behavior differs from your understanding
+
+**Errors** (→ error entry):
+- Command returns non-zero exit code
+- Exception or stack trace
+- Unexpected output or behavior
+- Timeout or connection failure</code></pre></div></div></li></ul></div><div style="display:contents" dir="auto"><p id="347006db-a268-8019-820c-f22f21b9bc54" class="">
+</p></div><div style="display:contents" dir="auto"><p id="346006db-a268-80fd-9af7-e01e84a4fb0c" class=""> </p></div><div style="display:contents" dir="auto"><p id="347006db-a268-80ec-b3dd-fed7d7260225" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

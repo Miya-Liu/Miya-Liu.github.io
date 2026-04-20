@@ -54,9 +54,22 @@
         });
 
         var result = mermaid.run({ querySelector: ".mermaid" });
+        function notifyLayout() {
+          document.dispatchEvent(new CustomEvent("memorypost-mermaid-rendered"));
+        }
         if (result && typeof result.then === "function") {
-          result.catch(function (err) {
-            console.warn("[mermaid]", err);
+          result
+            .then(function () {
+              window.requestAnimationFrame(function () {
+                notifyLayout();
+              });
+            })
+            .catch(function (err) {
+              console.warn("[mermaid]", err);
+            });
+        } else {
+          window.requestAnimationFrame(function () {
+            notifyLayout();
           });
         }
       })

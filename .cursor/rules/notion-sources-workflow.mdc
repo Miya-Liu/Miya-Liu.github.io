@@ -1,0 +1,46 @@
+---
+description: Sync Notion HTML exports from notion_sources/ into posts/ and blog.html
+alwaysApply: true
+---
+
+# Notion sources → Thought Recorder pages
+
+## Source folder
+
+- **`notion_sources/`** holds your writing as **Notion HTML exports** (e.g. “Export → HTML” from Notion). Files often look like `My Title <notion-page-id>.html` with inline Notion CSS and a `<title>` / `.page-title` / heading structure.
+- **Do not** serve these files as the live site pages. They are **staging sources** only.
+
+## When to run this workflow
+
+- The user adds **new** `.html` files under `notion_sources/`, or **updates** existing ones.
+- The user asks to **sync**, **publish from Notion**, **update posts from sources**, or similar.
+
+**At the start of those tasks:** list `notion_sources/**/*.html` and compare to **`posts/*.html`** to see what is new vs already published.
+
+## Agent checklist (each source file)
+
+1. **Read** the Notion export: take title from `<title>`, `.page-title`, or the first major heading; note date if present.
+2. **Decide target URL** under `posts/`:
+   - **Update:** If a post already covers the same article (same title, or same topic as an existing `posts/<Name>.html` the user has been using), **update that file** and refresh its `blog.html` card.
+   - **Create:** If no matching post exists, **create** `posts/<Slug>.html` using the **Thought Recorder post pattern** (see project rule *Thought Recorder site — HTML patterns* / `posts/Openclaw_Memory_Real.html`).
+   - **Slug:** Use a short readable filename in **PascalCase or snake_case** matching the repo (e.g. `Openclaw_Memory_Real.html`). Derive from the page title; strip Notion IDs from the filename for the **published** filename only.
+3. **Transform content:** Copy the **semantic content** (headings, paragraphs, lists, tables, links, code blocks) into the site template. **Strip** Notion’s wrapper `<style>` and layout-only classes; **do not** paste the whole export verbatim as the final page body.
+4. **Mermaid / diagrams:** If the export has diagram-like content or fenced code that should render as Mermaid, follow **`assets/js/mermaid-init.js`** and **`posts/Openclaw_Memory_Real.html`** (container markup + include `mermaid-init.js` in script order).
+5. **`blog.html`:** For **new** posts, add an `<article class="post">` entry (match structure of existing cards: title link, subtitle, `datetime`, teaser, “Continue Reading”). Put **new / important** items where the user expects (often **near the top** of `#main`, consistent with current site).
+6. **`STRUCTURE.txt`:** Update only if layout conventions change (optional; not required for every sync).
+
+## What to preserve vs drop
+
+- **Preserve:** Meaning, structure, internal links (rewrite relative paths to `posts/...` or external URLs as needed), code blocks, images (copy to **`images/`** under the site if the export references local assets, and fix `src` paths to `../images/...` from `posts/`).
+- **Drop:** Notion print CSS, `notion-*` chrome, empty spacer blocks, duplicate titles if already in the post `<header>`.
+
+## If multiple new sources appear
+
+- Process **each** file; create or update the corresponding **`posts/`** page and **`blog.html`** for each new public article.
+- Avoid duplicating the same post under two slugs; **one canonical** `posts/<Slug>.html` per article.
+
+## Reference files
+
+- Styled post + scripts: `posts/Openclaw_Memory_Real.html`
+- Archive listing pattern: `blog.html` (first articles show the card pattern for new entries)
+- Site chrome and classes: `.cursor/rules/thought-recorder-site-style.mdc`

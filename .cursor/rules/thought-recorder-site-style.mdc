@@ -1,0 +1,54 @@
+---
+description: Thought Recorder site — HTML patterns, paths, scripts, and theme for new pages
+alwaysApply: true
+---
+
+# Thought Recorder (GitHub Pages) — site rules
+
+## Identity
+
+- Site name: **Thought Recorder** (nav, titles, footer — not generic “Blog”).
+- Author: **Miya Liu**. About: `https://www.ecs.soton.ac.uk/people/ml3u17`. Avatar used in headers: `https://avatars.githubusercontent.com/u/41325630?v=4`.
+- Single stylesheet: **`assets/css/main.css`**. Do not add parallel theme CSS unless necessary.
+
+## Two page patterns (pick one)
+
+### A — Articles (`posts/*.html`)
+
+- `body` classes: `single is-preload anthropic-site`.
+- Structure: `#wrapper` → `#header` → `#menu` (optional) → `#main` → `#footer` (Future Imperfect layout).
+- Content: `<article class="post">` inside `#main`. Header: `.title` (h2 + subtitle) + `.meta` with `<time class="published" datetime="YYYY-MM-DD">` and `.author` / `.name` (optional avatar).
+- Paths from `posts/`: `../assets/...`, `../images/...`, `../index.html`, `../blog.html`.
+- Scripts **in order**: `pageviews-config.js` → `pageviews.js` → **`mermaid-init.js` only if the page has Mermaid** → jQuery bundle (`jquery.min.js`, `browser.min.js`, `breakpoints.min.js`, `util.js`) → `main.js`. Match a current post such as `posts/Openclaw_Memory_Real.html`.
+- Footer: `#footer` may include `<p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>`.
+
+### B — Landing / simple pages (`index.html`, `pages/*.html`)
+
+- `body` classes: `anthropic-home anthropic-site`.
+- `header.anthropic-nav`: `anthropic-brand anthropic-brand-with-mark` + `anthropic-nav-links` (Blog, About). See `index.html` or `pages/books.html`.
+- `main.anthropic-landing` → `section.anthropic-hero` with avatar, `assets/img/site-marks.svg` (`anthropic-marks-row`), `.anthropic-kicker`, `h1`, `.anthropic-lead`, optional `.anthropic-actions` with `.anthropic-btn` / `.anthropic-btn-primary` / `.anthropic-btn-ghost`.
+- Paths from `pages/`: `../assets/...`, `../index.html`, `../blog.html`.
+- Scripts: `pageviews-config.js` + `pageviews.js` only (no jQuery unless you need `main.js` behavior).
+
+## Head
+
+- `<html lang="en">`. Charset utf-8 + viewport meta.
+- Title: `Page title | Thought Recorder` (home may be just `Thought Recorder`).
+- Use `<meta name="description" content="...">` for public pages.
+
+## Design tokens (do not fight existing CSS)
+
+- Warm paper background, body text and link hover colors are defined in `main.css` (e.g. background `#f5f0e6`, hover accent `#2ebaae`). Prefer existing `.post`, `.anthropic-*`, and button classes over ad-hoc colors.
+
+## Wiring
+
+- **New post:** add `posts/<name>.html` (pattern A) and **link it from `blog.html`**.
+- **New standalone page:** prefer `pages/<name>.html` (pattern B).
+- Avoid new top-level HTML except for `index.html` / `blog.html` unless fixing a legacy URL (see `STRUCTURE.txt`).
+- Keep **`anthropic-site`** on `body` — it activates theme overrides in `main.css`.
+
+## Reference files
+
+- Post example: `posts/Openclaw_Memory_Real.html` (Mermaid + full script chain).
+- Simple page: `pages/books.html`. Template starter: `templates/single.html`.
+- **Notion → site:** when publishing from `notion_sources/`, follow `.cursor/rules/notion-sources-workflow.mdc`.

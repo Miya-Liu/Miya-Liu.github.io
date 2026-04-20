@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Memory of Agent</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>File System Design</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -209,10 +209,10 @@ table,
 th,
 td {
 	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
 }
 
 table {
+	border-collapse: collapse;
 	border-left: none;
 	border-right: none;
 }
@@ -740,66 +740,5 @@ blockquote.quote-large {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="341006db-a268-8032-b7df-ca104dd6b635" class="page sans"><header><h1 class="page-title" dir="auto">Memory of Agent</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time>April 13, 2026 3:45 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>April 13, 2026 4:06 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><p id="341006db-a268-8065-bc4f-c879e820bccf" class="">Let’s talk about memory of agents in real. </p></div><div style="display:contents" dir="auto"><p id="341006db-a268-80bc-9a73-f114524e5910" class="">
-</p></div><div style="display:contents" dir="ltr"><table id="341006db-a268-80b5-b121-cd333ba3e659" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="341006db-a268-8029-8d51-d52f609d98dd"><td id="nBmr" class="" style="width:233.66666666666666px">Agent System</td><td id="\Nso" class="" style="width:233.66666666666666px">Claude Code</td><td id="WNZ&gt;" class="" style="width:233.66666666666666px">Openclaw</td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-8071-869b-f61a99cab490"><td id="nBmr" class="" style="width:233.66666666666666px">Memory Type</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-8041-8261-f93e915e3836"><td id="nBmr" class="" style="width:233.66666666666666px">Raw Transcript</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80db-8bc8-fb2a6021ee54"><td id="nBmr" class="" style="width:233.66666666666666px">Session Memory</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-800a-91bc-d3ce26e71dc8"><td id="nBmr" class="" style="width:233.66666666666666px">User Memory</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80ae-824b-e672058f2bde"><td id="nBmr" class="" style="width:233.66666666666666px">Project Memory</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-80c3-8ec3-e59636a0a09a"><td id="nBmr" class="" style="width:233.66666666666666px">Agent Memory</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-8078-bf00-e4adaa7ad1ab"><td id="nBmr" class="" style="width:233.66666666666666px">Team Memory</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div><div style="display:contents" dir="ltr"><tr id="341006db-a268-801c-9ce0-e442affa375c"><td id="nBmr" class="" style="width:233.66666666666666px">Memory Wiki</td><td id="\Nso" class="" style="width:233.66666666666666px"></td><td id="WNZ&gt;" class="" style="width:233.66666666666666px"></td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="341006db-a268-8026-b051-f2b400e96c82" class="">Memory Workflow</p></div><div style="display:contents" dir="auto"><p id="341006db-a268-80e2-9f3d-f8c58a2376e4" class="">from raw transcript, to various type of memory, to compaction, to memory wiki, to system prompt, etc. </p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="341006db-a268-8032-91bb-f2c776b7d9b9" class="code code-wrap"><code class="language-Mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart TB
-  subgraph live [&quot;Live conversation&quot;]
-    MSG[&quot;Message array (user / assistant / tools)&quot;]
-    TR[&quot;Session transcript (JSONL via session storage)&quot;]
-  end
-
-  subgraph compact [&quot;Compaction (context window)&quot;]
-    AUTOCP[&quot;Autocompact / snip / microcompact in query loop&quot;]
-    CP[&quot;compact.ts: model summarizes prefix&quot;]
-    BOUND[&quot;system message: compact_boundary + preserved segment metadata&quot;]
-  end
-
-  subgraph extract [&quot;Turn-end memory extraction (optional)&quot;]
-    SH[&quot;handleStopHooks (stopHooks.ts)&quot;]
-    EX[&quot;extractMemories: runForkedAgent over transcript slice&quot;]
-  end
-
-  subgraph disk [&quot;On-disk memory layers&quot;]
-    AUTO[&quot;Auto memory: project memory dir + MEMORY.md index + topic .md files&quot;]
-    TEAM[&quot;Team memory: shared dir (synced / watched when enabled)&quot;]
-    CLAUDE[&quot;CLAUDE.md / CLAUDE.local.md / .claude/rules/*.md&quot;]
-  end
-
-  subgraph inject [&quot;What gets into the next API call&quot;]
-    UC[&quot;getUserContext (context.ts)&quot;]
-    CM[&quot;getClaudeMds(getMemoryFiles()) — hierarchy + MEMORY.md + includes&quot;]
-    MP[&quot;buildMemoryPrompt / buildCombinedMemoryPrompt (memdir)&quot;]
-    SYS[&quot;System prompt assembly (instructions + memory taxonomy)&quot;]
-  end
-
-  subgraph skill [&quot;Remember skill (bundled; gated)&quot;]
-    REM[&quot;/remember → read layers, propose promotions only&quot;]
-  end
-
-  MSG --&gt; TR
-  MSG --&gt; AUTOCP
-  AUTOCP --&gt; CP
-  CP --&gt; BOUND
-  BOUND --&gt; MSG
-
-  MSG --&gt; SH
-  SH --&gt; EX
-  EX --&gt; AUTO
-
-  TEAM &lt;--&gt;|&quot;watcher / session sync&quot;| TEAM
-
-  CLAUDE --&gt; CM
-  AUTO --&gt; CM
-  TEAM --&gt; CM
-  CM --&gt; UC
-  MP --&gt; SYS
-  UC --&gt; SYS
-
-  SYS --&gt; AGENTS[&quot;Main REPL + AgentTool subagents (runAgent system prompt)&quot;]
-
-  AUTO --&gt; REM
-  CLAUDE --&gt; REM
-  TEAM --&gt; REM
-  REM -.-&gt;|&quot;user-approved edits&quot;| CLAUDE
-  REM -.-&gt;|&quot;user-approved edits&quot;| AUTO
-  REM -.-&gt;|&quot;user-approved edits&quot;| TEAM
-</code></pre></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+</style></head><body><article id="344006db-a268-800b-bcf2-e6460ec3f708" class="page sans"><header><h1 class="page-title" dir="auto">File System Design</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="344006db-a268-80d4-808e-d4b94b4eb40e" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
