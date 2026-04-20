@@ -4294,7 +4294,7 @@ body.anthropic-site.single .memory-post .memory-article-body {
 
 /* Front-of-article readability polish for long TOC posts */
 body.anthropic-site.single .memory-post.has-toc .memory-article-body > p:first-child {
-  max-width: 74ch;
+  max-width: none;
   font-size: 1.02rem;
   line-height: 1.85;
 }
