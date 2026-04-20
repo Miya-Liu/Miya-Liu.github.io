@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+  Future Imperfect by HTML5 UP html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Agent Self-Evolution | Thought Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Study notes on agent self-evolution: feedback loops, memory updates, skill extraction, evaluation, and safe rollout patterns.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="single is-preload anthropic-site">
+  <div id="wrapper">
+    <header id="header">
+      <h1><a href="../index.html">Thought Recorder</a></h1>
+      <nav class="main">
+        <ul>
+          <li class="info"><a href="../index.html">Home</a></li>
+          <li class="info"><a href="../blog.html">Blog</a></li>
+          <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
+          <li class="search">
+            <a class="fa-search" href="#search">Search</a>
+            <form id="search" method="get" action="#">
+              <input name="query" placeholder="Search" type="text">
+            </form>
+          </li>
+          <li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="menu">
+      <section>
+        <form class="search" method="get" action="#">
+          <input name="query" placeholder="Search" type="text">
+        </form>
+      </section>
+      <section>
+        <ul class="links">
+          <li><a href="#"><h3>Years</h3><p>2019</p></a></li>
+          <li><a href="#"><h3>Topics</h3><p>Data Marketplaces</p></a></li>
+          <li><a href="#"><h3>Publications</h3><p>Coming</p></a></li>
+          <li><a href="#"><h3>States</h3><p>Coming</p></a></li>
+        </ul>
+      </section>
+    </section>
+
+    <div id="main">
+      <div class="post-page-layout">
+        <article class="post memory-post has-toc">
+          <header>
+            <div class="title">
+              <h2><a href="Agent_Self_Evolution.html">Agent Self-Evolution</a></h2>
+              <p>How agents learn, adapt, and improve over time.</p>
+            </div>
+            <div class="meta">
+              <time class="published" datetime="2026-04-20">20/04/2026</time>
+              <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
+                <span class="name">Miya Liu</span>
+                <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
+              </a>
+            </div>
+          </header>
+
+          <section class="memory-article-body">
+            <p>This page is my ongoing study log about agent self-evolution. I will track how agents improve from interaction history, how memories and skills are updated, and how to keep the evolution loop reliable and safe in production.</p>
+
+            <h3>What Self-Evolution Means</h3>
+            <ul class="bulleted-list">
+              <li>Not one-shot fine-tuning, but iterative adaptation in running systems.</li>
+              <li>Signals come from failures, corrections, confirmations, and repeated tasks.</li>
+              <li>Outputs include updated memory, adjusted prompts, and extracted skills.</li>
+            </ul>
+
+            <h3>Core Loop to Study</h3>
+            <ol class="numbered-list">
+              <li>Observe outcomes (successes, failures, friction points).</li>
+              <li>Extract structured learning from transcripts and tool traces.</li>
+              <li>Classify learning (memory update, rule update, skill candidate).</li>
+              <li>Validate changes with tests or replay tasks.</li>
+              <li>Promote reliable learnings and monitor drift.</li>
+            </ol>
+
+            <h3>Memory and Skill Evolution</h3>
+            <ul class="bulleted-list">
+              <li>Short-term memory supports immediate context adaptation.</li>
+              <li>Project/team memory captures durable conventions and known pitfalls.</li>
+              <li>Reusable skills are distilled from repeated, verified learnings.</li>
+            </ul>
+
+            <h3>Evaluation Dimensions</h3>
+            <ul class="bulleted-list">
+              <li>Task success and recovery quality after errors.</li>
+              <li>Human supervision load per completed task.</li>
+              <li>Stability over time (avoiding regressions and behavior drift).</li>
+              <li>Cost-performance balance under realistic workloads.</li>
+            </ul>
+
+            <h3>Guardrails</h3>
+            <ul class="bulleted-list">
+              <li>Do not auto-promote uncertain learnings into global rules.</li>
+              <li>Keep traceability from behavior change to source evidence.</li>
+              <li>Use staged rollout for major policy or prompt updates.</li>
+            </ul>
+
+            <h3>Next Study Updates</h3>
+            <ul class="bulleted-list">
+              <li>Compare self-evolution mechanisms across Claude Code, Cursor, and OpenClaw workflows.</li>
+              <li>Add concrete case studies of failure-to-learning-to-skill transitions.</li>
+              <li>Draft an evaluation template for long-horizon agent improvement.</li>
+            </ul>
+          </section>
+
+          <footer>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart">0</a></li>
+              <li><a href="#" class="icon fa-comment">0</a></li>
+            </ul>
+          </footer>
+        </article>
+        <aside class="post-toc-wrap" aria-label="On this page">
+          <nav class="post-toc" id="post-toc-nav"></nav>
+        </aside>
+      </div>
+    </div>
+
+    <section id="footer">
+      <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
+      <ul class="icons">
+        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="../assets/js/pageviews-config.js"></script>
+  <script src="../assets/js/pageviews.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/post-toc.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

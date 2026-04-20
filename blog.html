@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
-  <body class="is-preload anthropic-site"> <!-- Wrapper -->
+  <body class="is-preload anthropic-site blog-page"> <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
       <header id="header">
@@ -59,6 +59,10 @@
       </section>
       <!-- Main -->
       <div id="main">
+        <section class="draft-visibility-control" id="draft-visibility-control" hidden>
+          <p>Draft mode enabled for this browser.</p>
+          <button type="button" class="button small" id="draft-toggle-btn" aria-pressed="false">Show Draft Posts</button>
+        </section>
         <!-- Post: Openclaw Memory -->
         <article class="post memory-preview-card">
           <header>
@@ -71,11 +75,59 @@
             </div>
           </header>
           <a href="posts/Openclaw_Memory_Real.html" class="image featured"></a>
-          <p>Hands-on walkthrough of on-disk layout, a sequence diagram of the agent loop, extraction prompts, Dream consolidation, and learnings → skills.</p>
-          <p class="memory-preview-note">Multiple Mermaid diagrams and long reference blocks (prompts, templates).</p>
+          <p>Memory life-cycle in Claude Code and Openclaw: CLAUDE.md ladder, transcript flow, memory types, flush + Dream pipelines, and learnings promoted into reusable skills.</p>
+          <p class="memory-preview-note">Includes sequence/flow diagrams, architecture tables, and prompt templates for extraction, dream, and skill evolution.</p>
           <footer>
             <ul class="actions">
               <li><a href="posts/Openclaw_Memory_Real.html" class="button large">Continue Reading</a></li>
+            </ul>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart">0</a></li>
+              <li><a href="#" class="icon fa-comment">0</a></li>
+            </ul>
+          </footer>
+        </article>
+        <!-- Post: Agent Ecosystem -->
+        <article class="post draft-post">
+          <header>
+            <div class="title">
+              <h2><a href="posts/Agent_Ecosystem.html">Agent Ecosystem</a></h2>
+              <p>Cloud, device, self-hosted, and hybrid agent systems.</p>
+            </div>
+            <div class="meta">&nbsp; <time class="published" datetime="2026-04-20">20/04/2026</time>
+              <a href="#" class="author"><span class="name">Miya Liu</span></a>
+            </div>
+          </header>
+          <a href="posts/Agent_Ecosystem.html" class="image featured"></a>
+          <p>A draft page to capture thoughts on deployment models, trade-offs, and design patterns across different agent environments.</p>
+          <footer>
+            <ul class="actions">
+              <li><a href="posts/Agent_Ecosystem.html" class="button large">Continue Reading</a></li>
+            </ul>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart">0</a></li>
+              <li><a href="#" class="icon fa-comment">0</a></li>
+            </ul>
+          </footer>
+        </article>
+        <!-- Post: Agent Self-Evolution -->
+        <article class="post draft-post">
+          <header>
+            <div class="title">
+              <h2><a href="posts/Agent_Self_Evolution.html">Agent Self-Evolution</a></h2>
+              <p>How agents learn, adapt, and improve over time.</p>
+            </div>
+            <div class="meta">&nbsp; <time class="published" datetime="2026-04-20">20/04/2026</time>
+              <a href="#" class="author"><span class="name">Miya Liu</span></a>
+            </div>
+          </header>
+          <a href="posts/Agent_Self_Evolution.html" class="image featured"></a>
+          <p>A dedicated study page on feedback loops, memory updates, skill extraction, evaluation, and safe rollout for evolving agent systems.</p>
+          <footer>
+            <ul class="actions">
+              <li><a href="posts/Agent_Self_Evolution.html" class="button large">Continue Reading</a></li>
             </ul>
             <ul class="stats">
               <li><a href="#">General</a></li>
@@ -362,6 +414,32 @@
     <script src="assets/js/pageviews-config.js"></script>
     <script src="assets/js/pageviews.js"></script>
     <script src="assets/js/mermaid-init.js"></script>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("draft") !== "1") return;
+
+        const storageKey = "thought_recorder_show_drafts";
+        const control = document.getElementById("draft-visibility-control");
+        const button = document.getElementById("draft-toggle-btn");
+        if (!control || !button) return;
+
+        const apply = function (visible) {
+          document.body.classList.toggle("show-drafts", visible);
+          button.textContent = visible ? "Hide Draft Posts" : "Show Draft Posts";
+          button.setAttribute("aria-pressed", String(visible));
+        };
+
+        control.hidden = false;
+        apply(window.localStorage.getItem(storageKey) === "1");
+
+        button.addEventListener("click", function () {
+          const next = !document.body.classList.contains("show-drafts");
+          window.localStorage.setItem(storageKey, next ? "1" : "0");
+          apply(next);
+        });
+      })();
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>

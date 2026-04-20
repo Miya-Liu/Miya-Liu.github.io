@@ -4292,8 +4292,8 @@ body.anthropic-site.single .memory-post .memory-article-body {
   margin-top: 0.5rem;
 }
 
-/* Front-of-article readability polish */
-body.anthropic-site.single .memory-post .memory-article-body > p:first-child {
+/* Front-of-article readability polish for long TOC posts */
+body.anthropic-site.single .memory-post.has-toc .memory-article-body > p:first-child {
   max-width: 74ch;
   font-size: 1.02rem;
   line-height: 1.85;
@@ -4316,6 +4316,29 @@ body.anthropic-site.single .memory-post .memory-article-body li > ul.bulleted-li
 body.anthropic-site.single .memory-post .memory-article-body li > ol.numbered-list {
   margin-top: 0.2em;
   margin-bottom: 0.35em;
+}
+
+/* Blog drafts: hidden by default, locally toggleable for author */
+body.anthropic-site.blog-page .post.draft-post {
+  display: none;
+}
+
+body.anthropic-site.blog-page.show-drafts .post.draft-post {
+  display: block;
+}
+
+body.anthropic-site.blog-page #main .draft-visibility-control {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--a-border);
+  border-radius: 4px;
+  background: rgba(253, 251, 247, 0.72);
+}
+
+body.anthropic-site.blog-page #main .draft-visibility-control p {
+  margin: 0 0 0.45rem;
+  font-size: 0.86rem;
+  color: var(--a-text-muted);
 }
 
 /* Long post: .post card (article) + TOC beside it in #main — TOC sits in page gutter, not inside card */
