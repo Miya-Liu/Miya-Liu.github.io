@@ -59,10 +59,6 @@
       </section>
       <!-- Main -->
       <div id="main">
-        <section class="draft-visibility-control" id="draft-visibility-control" hidden>
-          <p>Draft mode enabled for this browser.</p>
-          <button type="button" class="button small" id="draft-toggle-btn" aria-pressed="false">Show Draft Posts</button>
-        </section>
         <!-- Post: Openclaw Memory -->
         <article class="post memory-preview-card">
           <header>
@@ -89,7 +85,7 @@
           </footer>
         </article>
         <!-- Post: Agent Ecosystem -->
-        <article class="post draft-post">
+        <article class="post">
           <header>
             <div class="title">
               <h2><a href="posts/Agent_Ecosystem.html">Agent Ecosystem</a></h2>
@@ -113,7 +109,7 @@
           </footer>
         </article>
         <!-- Post: Agent Self-Evolution -->
-        <article class="post draft-post">
+        <article class="post">
           <header>
             <div class="title">
               <h2><a href="posts/Agent_Self_Evolution.html">Agent Self-Evolution</a></h2>
@@ -128,6 +124,30 @@
           <footer>
             <ul class="actions">
               <li><a href="posts/Agent_Self_Evolution.html" class="button large">Continue Reading</a></li>
+            </ul>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart">0</a></li>
+              <li><a href="#" class="icon fa-comment">0</a></li>
+            </ul>
+          </footer>
+        </article>
+        <!-- Post: Agents — Design to Infrastructure -->
+        <article class="post">
+          <header>
+            <div class="title">
+              <h2><a href="posts/Agent_Design_To_Infrastructure.html">Agents: From Design to Infrastructure</a></h2>
+              <p>Bridging product intent, system architecture, and production ops.</p>
+            </div>
+            <div class="meta">&nbsp; <time class="published" datetime="2026-04-21">21/04/2026</time>
+              <a href="#" class="author"><span class="name">Miya Liu</span></a>
+            </div>
+          </header>
+          <a href="posts/Agent_Design_To_Infrastructure.html" class="image featured"></a>
+          <p>A working outline from design (goals, trust, workflows) through architecture (tools, memory, orchestration) to infrastructure (runtime, scaling, observability, security).</p>
+          <footer>
+            <ul class="actions">
+              <li><a href="posts/Agent_Design_To_Infrastructure.html" class="button large">Continue Reading</a></li>
             </ul>
             <ul class="stats">
               <li><a href="#">General</a></li>
@@ -414,36 +434,11 @@
     <script src="assets/js/pageviews-config.js"></script>
     <script src="assets/js/pageviews.js"></script>
     <script src="assets/js/mermaid-init.js"></script>
-    <script>
-      (function () {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get("draft") !== "1") return;
-
-        const storageKey = "thought_recorder_show_drafts";
-        const control = document.getElementById("draft-visibility-control");
-        const button = document.getElementById("draft-toggle-btn");
-        if (!control || !button) return;
-
-        const apply = function (visible) {
-          document.body.classList.toggle("show-drafts", visible);
-          button.textContent = visible ? "Hide Draft Posts" : "Show Draft Posts";
-          button.setAttribute("aria-pressed", String(visible));
-        };
-
-        control.hidden = false;
-        apply(window.localStorage.getItem(storageKey) === "1");
-
-        button.addEventListener("click", function () {
-          const next = !document.body.classList.contains("show-drafts");
-          window.localStorage.setItem(storageKey, next ? "1" : "0");
-          apply(next);
-        });
-      })();
-    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/post-likes.js"></script>
   </body>
 </html>

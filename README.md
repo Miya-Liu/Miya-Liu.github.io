@@ -23,6 +23,19 @@ For more detail, see [`STRUCTURE.txt`](STRUCTURE.txt).
 
 Open `index.html` in a browser, or serve the repo root with any static file server (for example `npx serve .`).
 
+### Local file-backed likes/comments (no Firebase)
+
+For local development, you can persist post likes and comments to a JSON file in this repo:
+
+1. Start the local interactions API:
+   - `node _scripts/local-interactions-server.mjs`
+2. In `assets/js/pageviews-config.js`, set:
+   - `window.__LOCAL_INTERACTIONS__.enabled = true`
+   - Keep `apiBase` as `http://127.0.0.1:8787` (or update both if you change the port)
+3. Run the site with a local static server and open it in the browser.
+
+Data is stored in `_local_data/interactions.json`.
+
 ## Credits
 
 The blog layout builds on **Future Imperfect** by [HTML5 UP](https://html5up.net) (free for personal and commercial use under [CCA 3.0](https://html5up.net/license)). Demo assets and third-party credits from the original template are noted in the upstream license files.

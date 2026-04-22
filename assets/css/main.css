@@ -3822,6 +3822,168 @@ body.anthropic-site .post p {
 
 body.anthropic-site .post > footer .stats li a {
   color: var(--a-text-muted);
+  cursor: pointer;
+}
+
+body.anthropic-site.single .post > footer .stats li a.icon,
+body.anthropic-site.blog-page .post > footer .stats li a.fa-heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25em;
+  min-height: 2.25em;
+}
+
+body.anthropic-site .post > footer .stats a.fa-heart .post-like-count {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-left: 0.35em;
+  vertical-align: middle;
+}
+
+body.anthropic-site .post > footer .stats a.fa-comment .post-comment-count {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-left: 0.35em;
+  vertical-align: middle;
+}
+
+body.anthropic-site .post > footer .stats a.fa-heart.is-liked,
+body.anthropic-site .post > footer .stats a.fa-heart.is-liked:before {
+  color: #e91e63 !important;
+}
+
+body.anthropic-site .post > footer .stats a.fa-heart.is-liked:before {
+  text-shadow: 0 0 0 rgba(233, 30, 99, 0.35);
+}
+
+body.anthropic-site.single .post > footer {
+  position: relative;
+  z-index: 2;
+  background: var(--paint-cream);
+  margin-top: 0.35rem;
+  padding-top: 0.75rem;
+}
+
+body.anthropic-site.single .post .post-comments-section {
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--paint-frame);
+  padding-top: 1rem;
+}
+
+body.anthropic-site.single .post .post-comments-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+}
+
+body.anthropic-site.single .post .post-comments-note {
+  margin: 0 0 0.8rem;
+  font-size: 0.9rem;
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site.single .post .post-comment-form,
+body.anthropic-site.single .post .post-comment-reply-wrap {
+  display: grid;
+  gap: 0.5rem;
+}
+
+body.anthropic-site.single .post .post-comment-form textarea,
+body.anthropic-site.single .post .post-comment-reply-wrap textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+body.anthropic-site.single .post .post-comment-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+body.anthropic-site.single .post .post-comment-status {
+  font-size: 0.82rem;
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site.single .post .post-comments-list {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+body.anthropic-site.single .post .post-comments-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site.single .post .post-comment-item {
+  border: 1px solid var(--paint-frame);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 0.75rem;
+}
+
+body.anthropic-site.single .post .post-comment-item.is-reply {
+  margin-left: 1rem;
+}
+
+body.anthropic-site.single .post .post-comment-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+body.anthropic-site.single .post .post-comment-author {
+  font-weight: 700;
+  color: var(--rand-ink);
+}
+
+body.anthropic-site.single .post .post-comment-time {
+  font-size: 0.75rem;
+  color: var(--a-text-muted);
+}
+
+body.anthropic-site.single .post .post-comment-body {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+}
+
+body.anthropic-site.single .post .post-comment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body.anthropic-site.single .post .post-comment-action {
+  background: transparent;
+  border: 1px solid var(--paint-frame);
+  border-radius: 3px;
+  color: var(--a-text-muted);
+  cursor: pointer;
+  font-size: 0.76rem;
+  line-height: 1;
+  padding: 0.28rem 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+body.anthropic-site.single .post .post-comment-action.is-active {
+  color: #e91e63;
+  border-color: #e91e63;
+}
+
+body.anthropic-site.single .post .post-comment-reply-wrap {
+  margin-top: 0.6rem;
+}
+
+body.anthropic-site.single .post .post-comment-children {
+  margin-top: 0.6rem;
 }
 
 body.anthropic-site a {
@@ -4289,6 +4451,8 @@ body.anthropic-site.single .post .memory-mermaid-figure figcaption {
 }
 
 body.anthropic-site.single .memory-post .memory-article-body {
+  position: relative;
+  z-index: 0;
   margin-top: 0.5rem;
 }
 
@@ -4318,29 +4482,6 @@ body.anthropic-site.single .memory-post .memory-article-body li > ol.numbered-li
   margin-bottom: 0.35em;
 }
 
-/* Blog drafts: hidden by default, locally toggleable for author */
-body.anthropic-site.blog-page .post.draft-post {
-  display: none;
-}
-
-body.anthropic-site.blog-page.show-drafts .post.draft-post {
-  display: block;
-}
-
-body.anthropic-site.blog-page #main .draft-visibility-control {
-  margin: 0 0 1rem;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--a-border);
-  border-radius: 4px;
-  background: rgba(253, 251, 247, 0.72);
-}
-
-body.anthropic-site.blog-page #main .draft-visibility-control p {
-  margin: 0 0 0.45rem;
-  font-size: 0.86rem;
-  color: var(--a-text-muted);
-}
-
 /* Long post: .post card (article) + TOC beside it in #main — TOC sits in page gutter, not inside card */
 body.anthropic-site.single #main .post-page-layout {
   display: grid;
@@ -4350,6 +4491,12 @@ body.anthropic-site.single #main .post-page-layout {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Sticky TOC uses z-index: 2; keep the post (and its footer links) above it when layers overlap */
+body.anthropic-site.single #main .post-page-layout > article.post {
+  position: relative;
+  z-index: 3;
 }
 
 body.anthropic-site.single #main {
@@ -4367,7 +4514,8 @@ body.anthropic-site.single #main {
     min-width: 0;
     position: sticky;
     top: 4.25rem;
-    z-index: 2;
+    /* Below article.post (z-index: 3) so in-page links/footer stats stay clickable */
+    z-index: 1;
     align-self: start;
     max-height: calc(100vh - 5rem);
     overflow-x: hidden;

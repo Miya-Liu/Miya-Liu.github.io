@@ -11,6 +11,20 @@
  *         ".read": true,
  *         ".write": "newData.isNumber() && (!data.exists() ? newData.val() === 1 : newData.val() === data.val() + 1)"
  *       }
+ *     },
+ *     "likes": {
+ *       "$key": {
+ *         ".read": true,
+ *         ".write": "newData.isNumber() && (!data.exists() ? newData.val() === 1 : newData.val() === data.val() + 1)"
+ *       }
+ *     },
+ *     "comments": {
+ *       "$page": {
+ *         "$commentId": {
+ *           ".read": true,
+ *           ".write": "newData.hasChildren(['author','text','createdAt','parentId','likes','dislikes'])"
+ *         }
+ *       }
  *     }
  *   }
  * }
@@ -29,4 +43,14 @@ window.__PAGE_VIEWS__ = {
     messagingSenderId: "",
     appId: ""
   }
+};
+
+/**
+ * Local file-backed interactions (likes/comments) for local development.
+ * Run the local server script and set enabled:true.
+ */
+window.__LOCAL_INTERACTIONS__ = {
+  enabled: false,
+  apiBase: "http://127.0.0.1:8787",
+  pollMs: 1500
 };

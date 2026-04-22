@@ -93,3 +93,20 @@
 			});
 
 })(jQuery);
+
+/* Post/blog card footer stats (Future Imperfect .stats): stop clicks bubbling to body.
+   util.js attaches body click/touchend -> panel _hide(), which preventDefault()s while
+   the menu thinks it is open; bubbling past the link avoids that interfering with # / placeholder links. */
+(function () {
+	document.addEventListener('DOMContentLoaded', function () {
+		var nodes = document.querySelectorAll('article.post > footer ul.stats a:not(.fa-heart)');
+		for (var i = 0; i < nodes.length; i++) {
+			nodes[i].addEventListener('click', function (e) {
+				e.stopPropagation();
+			});
+			nodes[i].addEventListener('touchend', function (e) {
+				e.stopPropagation();
+			}, false);
+		}
+	});
+})();
