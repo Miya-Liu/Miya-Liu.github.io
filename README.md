@@ -36,8 +36,14 @@ For local development, you can persist post likes and comments to a JSON file in
 
 Data is stored in `_local_data/interactions.json`.
 
-## Credits
+## Content and copyright
 
-The blog layout builds on **Future Imperfect** by [HTML5 UP](https://html5up.net) (free for personal and commercial use under [CCA 3.0](https://html5up.net/license)). Demo assets and third-party credits from the original template are noted in the upstream license files.
+**Writing (posts and original text on this site):** for reading on **[miya-liu.github.io](https://miya-liu.github.io)** only. All rights reserved. Please do not republish, scrape for reuse, or mirror without permission. Short quotations with attribution may be fine under fair dealing / fair use; ask if unsure.
 
-Site content and customizations are by Miya Liu.
+The same line appears in the site footer on pages so visitors see a consistent notice.
+
+## Credits (third-party)
+
+The blog layout builds on **Future Imperfect** by [HTML5 UP](https://html5up.net) (free for personal and commercial use under [CCA 3.0](https://html5up.net/license); see also [`LICENSE.txt`](LICENSE.txt)). Demo assets and third-party credits from the original template are noted in the upstream license files.
+
+**Your original writing and customizations** are not covered by the HTML5 UP license; they are © Miya Liu.

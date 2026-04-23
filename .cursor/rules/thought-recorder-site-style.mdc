@@ -20,7 +20,7 @@ alwaysApply: true
 - Content: `<article class="post">` inside `#main`. Header: `.title` (h2 + subtitle) + `.meta` with `<time class="published" datetime="YYYY-MM-DD">` and `.author` / `.name` (optional avatar).
 - Paths from `posts/`: `../assets/...`, `../images/...`, `../index.html`, `../blog.html`.
 - Scripts **in order**: `pageviews-config.js` → `pageviews.js` → **`mermaid-init.js` only if the page has Mermaid** → jQuery bundle (`jquery.min.js`, `browser.min.js`, `breakpoints.min.js`, `util.js`) → `main.js`. Match a current post such as `posts/Openclaw_Memory_Real.html`.
-- Footer: `#footer` may include `<p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>`.
+- Footer: `#footer` may include `<p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>` and the standard reading notice `<p class="content-rights" role="note">` (same wording as `index.html` / `README.md` — for reading on this site only).
 
 ### B — Landing / simple pages (`index.html`, `pages/*.html`)
 
