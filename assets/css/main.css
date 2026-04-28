@@ -5190,6 +5190,370 @@ body.anthropic-site #footer .pageview-stat {
   margin: 0 0 0.75rem;
 }
 
+/* Readings page: shelf scene presentation */
+body.anthropic-home .readings-space .reading-room {
+  margin-top: 1.15rem;
+  display: grid;
+  gap: 1.1rem;
+  padding: 0.6rem 0.25rem 0.2rem;
+}
+
+body.anthropic-home .readings-space .reading-lane {
+  position: relative;
+}
+
+body.anthropic-home .readings-space .reading-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.95rem;
+  align-items: end;
+  padding: 0 0.1rem 0.32rem;
+}
+
+body.anthropic-home .readings-space .reading-plank {
+  position: relative;
+  height: 1rem;
+  border: 1px solid #9d7a54;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #be9b72 0%, #d8bc96 52%, #b88e61 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -2px 0 rgba(96, 63, 31, 0.28), 0 8px 16px rgba(71, 46, 23, 0.2);
+}
+
+body.anthropic-home .readings-space .reading-plank::before,
+body.anthropic-home .readings-space .reading-plank::after {
+  content: "";
+  position: absolute;
+  width: 1.55rem;
+  height: 0.85rem;
+  bottom: -0.86rem;
+  border: 1px solid #9d7a54;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #c8a07a, #b8895e);
+}
+
+body.anthropic-home .readings-space .reading-plank::before {
+  left: 12%;
+}
+
+body.anthropic-home .readings-space .reading-plank::after {
+  right: 12%;
+}
+
+body.anthropic-home .readings-space .reading-item {
+  position: relative;
+  flex: 0 0 clamp(11.8rem, 22vw, 14rem);
+  min-width: 11.8rem;
+  max-width: 14rem;
+  min-height: 11.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.78rem 0.78rem 0.82rem 1.05rem;
+  background: linear-gradient(180deg, rgba(255, 253, 247, 0.98) 0%, rgba(247, 241, 231, 0.98) 100%);
+  border: 1px solid rgba(90, 72, 55, 0.38);
+  border-left: 0.5rem solid rgba(93, 68, 45, 0.58);
+  border-radius: 3px 6px 6px 3px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.09), 0 2px 0 rgba(119, 86, 53, 0.2);
+  transform-origin: bottom center;
+}
+
+body.anthropic-home .readings-space .reading-item::after {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  right: 0.3rem;
+  bottom: -0.42rem;
+  height: 0.42rem;
+  background: rgba(89, 61, 35, 0.22);
+  filter: blur(0.5px);
+  border-radius: 0 0 4px 4px;
+}
+
+body.anthropic-home .readings-space .reading-item::before {
+  content: "";
+  position: absolute;
+  left: 0.52rem;
+  right: 0.25rem;
+  top: -0.18rem;
+  height: 0.22rem;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, rgba(248, 242, 232, 0.96), rgba(236, 226, 208, 0.96));
+  border: 1px solid rgba(90, 72, 55, 0.25);
+  border-bottom: 0;
+}
+
+body.anthropic-home .readings-space .reading-item:nth-of-type(odd) {
+  transform: rotate(-1deg);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-of-type(even) {
+  transform: rotate(1.1deg);
+}
+
+body.anthropic-home .readings-space .reading-prop {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: end;
+  width: 5rem;
+  min-height: 5.2rem;
+}
+
+body.anthropic-home .readings-space .reading-prop::before,
+body.anthropic-home .readings-space .reading-prop::after {
+  content: "";
+  position: absolute;
+}
+
+body.anthropic-home .readings-space .reading-prop-pot::before {
+  left: 0.35rem;
+  right: 0.35rem;
+  bottom: 0.15rem;
+  height: 2.35rem;
+  border: 1px solid var(--paint-frame);
+  border-radius: 0.3rem 0.3rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, #f2d7a8, #e7c58a);
+}
+
+body.anthropic-home .readings-space .reading-prop-pot::after {
+  left: 0.92rem;
+  bottom: 2.35rem;
+  width: 3.1rem;
+  height: 2.2rem;
+  background: radial-gradient(circle at 15% 80%, #f1a35d 0.35rem, transparent 0.4rem),
+    radial-gradient(circle at 48% 25%, #f19c58 0.38rem, transparent 0.44rem),
+    radial-gradient(circle at 78% 70%, #f3aa6b 0.35rem, transparent 0.4rem),
+    radial-gradient(circle at 30% 55%, #70a741 0.12rem, transparent 0.16rem),
+    radial-gradient(circle at 62% 50%, #6fa34a 0.12rem, transparent 0.16rem);
+}
+
+body.anthropic-home .readings-space .reading-prop-frame::before {
+  left: 0.28rem;
+  right: 0.28rem;
+  bottom: 0.2rem;
+  height: 3.6rem;
+  border: 0.35rem solid #e7c18e;
+  border-radius: 0.2rem;
+  background: linear-gradient(180deg, #d8edf0 0 42%, #66c7d7 42% 100%);
+}
+
+body.anthropic-home .readings-space .reading-prop-frame::after {
+  left: 2.05rem;
+  bottom: 1.35rem;
+  width: 0.9rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background: #9b5f3b;
+}
+
+body.anthropic-home .readings-space .reading-prop-pencilcup::before {
+  left: 0.8rem;
+  right: 0.8rem;
+  bottom: 0.15rem;
+  height: 2.7rem;
+  border: 1px solid var(--paint-frame);
+  border-radius: 0.25rem 0.25rem 0.85rem 0.85rem;
+  background: repeating-linear-gradient(180deg, #c9e4ef 0 0.44rem, #b8d9e7 0.44rem 0.88rem);
+}
+
+body.anthropic-home .readings-space .reading-prop-pencilcup::after {
+  left: 1.45rem;
+  bottom: 2.62rem;
+  width: 2.05rem;
+  height: 1.9rem;
+  background: linear-gradient(65deg, #f2a77d 0 28%, transparent 28%),
+    linear-gradient(95deg, transparent 0 26%, #d96f55 26% 50%, transparent 50%),
+    linear-gradient(120deg, transparent 0 55%, #6f7fc8 55% 78%, transparent 78%),
+    linear-gradient(145deg, transparent 0 72%, #72b66f 72% 100%);
+}
+
+body.anthropic-home .readings-space .reading-prop-clock::before {
+  left: 0.8rem;
+  right: 0.8rem;
+  bottom: 0.35rem;
+  height: 3.2rem;
+  border: 0.26rem solid #4da0b4;
+  border-radius: 50%;
+  background: #f3fafc;
+}
+
+body.anthropic-home .readings-space .reading-prop-clock::after {
+  left: 2.26rem;
+  bottom: 1.24rem;
+  width: 0.14rem;
+  height: 1.2rem;
+  background: #4da0b4;
+  box-shadow: -0.46rem 0.48rem 0 -0.02rem #4da0b4;
+}
+
+body.anthropic-home .readings-space .reading-prop-box::before {
+  left: 0.32rem;
+  right: 0.32rem;
+  bottom: 0.15rem;
+  height: 2.75rem;
+  border: 1px solid #b77552;
+  border-radius: 0.2rem;
+  background: repeating-linear-gradient(45deg, #f2b07d 0 0.4rem, #e59766 0.4rem 0.8rem);
+}
+
+body.anthropic-home .readings-space .reading-prop-box::after {
+  left: 0.3rem;
+  right: 0.3rem;
+  bottom: 2.75rem;
+  height: 0.55rem;
+  border: 1px solid #b77552;
+  border-bottom: 0;
+  border-radius: 0.2rem 0.2rem 0 0;
+  background: #f28f58;
+}
+
+body.anthropic-home .readings-space .reading-prop-vase::before {
+  left: 1.45rem;
+  width: 2.1rem;
+  bottom: 0.15rem;
+  height: 3.3rem;
+  border: 1px solid #d0b469;
+  border-radius: 0.8rem 0.8rem 1rem 1rem;
+  background: linear-gradient(180deg, #f4d46f, #dfbf53);
+}
+
+body.anthropic-home .readings-space .reading-prop-vase::after {
+  left: 1.2rem;
+  bottom: 3.2rem;
+  width: 2.65rem;
+  height: 1.6rem;
+  background: radial-gradient(circle at 20% 65%, #6f9e3e 0.22rem, transparent 0.24rem),
+    radial-gradient(circle at 52% 25%, #7aaa44 0.22rem, transparent 0.24rem),
+    radial-gradient(circle at 80% 60%, #96c25d 0.24rem, transparent 0.26rem);
+}
+
+body.anthropic-home .readings-space .reading-cover {
+  align-self: flex-start;
+  border: 1px solid rgba(70, 61, 53, 0.25);
+  border-radius: 3px;
+  display: inline-grid;
+  place-items: center;
+  min-height: 1.55rem;
+  min-width: 2.6rem;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-site-title) !important;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #fff8ef;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-child(5n + 1) .reading-cover {
+  background: linear-gradient(180deg, #6e5346, #8f6f5f);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-child(5n + 2) .reading-cover {
+  background: linear-gradient(180deg, #475a6d, #617b93);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-child(5n + 3) .reading-cover {
+  background: linear-gradient(180deg, #556144, #76845f);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-child(5n + 4) .reading-cover {
+  background: linear-gradient(180deg, #734f2f, #976b43);
+}
+
+body.anthropic-home .readings-space .reading-item:nth-child(5n + 5) .reading-cover {
+  background: linear-gradient(180deg, #5e4a70, #7a6291);
+}
+
+body.anthropic-home .readings-space .reading-meta h2 {
+  margin: 0 0 0.2rem;
+  font-size: 0.94rem;
+  line-height: 1.28;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+body.anthropic-home .readings-space .reading-author {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+}
+
+body.anthropic-home .readings-space .reading-state {
+  margin: 0 0 0.5rem;
+}
+
+body.anthropic-home .readings-space .reading-jot {
+  position: relative;
+  margin: 0 0 0.5rem;
+  display: inline-block;
+  border: 1px dashed #b98f66;
+  border-radius: 4px;
+  background: rgba(255, 249, 236, 0.8);
+  padding: 0.2rem 0.45rem;
+  font-size: 0.63rem;
+  line-height: 1.45;
+  color: #6d5a47;
+  letter-spacing: 0.04em;
+}
+
+body.anthropic-home .readings-space .reading-jot::before {
+  content: "";
+  position: absolute;
+  left: -0.78rem;
+  top: 50%;
+  width: 0.68rem;
+  border-top: 2px solid #b98f66;
+  transform: rotate(-17deg);
+}
+
+body.anthropic-home .readings-space .reading-state span {
+  display: inline-block;
+  border: 1px solid var(--paint-frame);
+  border-radius: 999px;
+  padding: 0.2rem 0.62rem;
+  font-size: 0.67rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+body.anthropic-home .readings-space .reading-item.status-read .reading-state span {
+  background: rgba(159, 197, 150, 0.28);
+  color: #2d4c2d;
+}
+
+body.anthropic-home .readings-space .reading-item.status-to-read .reading-state span {
+  background: rgba(235, 205, 134, 0.3);
+  color: #5f4a12;
+}
+
+body.anthropic-home .readings-space .reading-item.status-reading .reading-state span {
+  background: rgba(150, 181, 214, 0.28);
+  color: #2e4f75;
+}
+
+body.anthropic-home .readings-space .reading-meta a {
+  font-size: 0.72rem;
+}
+
+@media screen and (max-width: 900px) {
+  body.anthropic-home .readings-space .reading-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  body.anthropic-home .readings-space .reading-item {
+    max-width: none;
+    min-height: 0;
+    transform: none;
+  }
+
+  body.anthropic-home .readings-space .reading-prop {
+    width: 4.3rem;
+    min-height: 4.6rem;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   body.anthropic-site #intro {
     text-align: left !important;
