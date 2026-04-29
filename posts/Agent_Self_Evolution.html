@@ -105,6 +105,127 @@
               <li>Use staged rollout for major policy or prompt updates.</li>
             </ul>
 
+          <h3>Evolution Metrics Framework (v1)</h3>
+          <p>
+            This section defines the primary evolution metrics dimensions used by the verification layer.
+            Terminology: each metric must be backed by explicit computation rules in scorecard implementation.
+          </p>
+
+          <h4>1) Skill Evolution</h4>
+          <p>
+            <strong>Purpose:</strong> evaluate whether capability growth is real, transferable, and non-destructive.
+          </p>
+          <p>
+            <strong>Metrics:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li>
+              <strong>skill_expansion</strong>: additive feature unlocked.
+              Measures success on newly introduced capability slices relative to baseline.
+            </li>
+            <li>
+              <strong>skill_enhancement</strong>: improved performance of existing skills on OOD or harder variants.
+              Measures delta on fixed “same skill, harder context” slices.
+            </li>
+            <li>
+              <strong>skill_intactness</strong>: previously consolidated skills remain intact during expansion/enhancement.
+              Measures regression rate on stable retention slices (catastrophic forgetting indicator).
+            </li>
+          </ul>
+          <p>
+            <strong>Suggested benchmark linkage:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>Primary</strong>: EvoSkill, WildClawBench.</li>
+            <li><strong>Supporting</strong>: Protocol B seen/unseen family splits for transfer vs memorization.</li>
+          </ul>
+
+          <h4>2) Memory Adaptation</h4>
+          <p>
+            <strong>Purpose:</strong> evaluate whether memory is collected, refreshed, retrieved, and useful under realistic multi-session operation.
+          </p>
+          <p>
+            <strong>Core metrics:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>remembered</strong>: memory system captures useful cross-session and long-session information.</li>
+            <li><strong>renewed</strong>: memory stays up to date and tracks migration (external source-of-truth changes and user preference drift).</li>
+            <li><strong>recalled</strong>: relevant memory is retrieved when current agent state requires it.</li>
+            <li><strong>consistent</strong>: no obvious conflicts or near-duplicate memory artifacts.</li>
+            <li><strong>valuable</strong>: memory contributes to robustness or efficiency improvement.</li>
+          </ul>
+          <p>
+            <strong>Suggested additional memory aspects (recommended but on-hold):</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>provenance</strong>: each memory item links to source event/session and timestamp.</li>
+            <li><strong>staleness_control</strong>: stale/conflicting memories are decayed, superseded, or invalidated.</li>
+            <li><strong>retrieval_precision</strong>: retrieved memories are relevant, not over-retrieved.</li>
+            <li><strong>retrieval_latency</strong>: memory lookup overhead stays within budget.</li>
+            <li><strong>privacy_safety</strong>: restricted or sensitive memory is not inappropriately surfaced.</li>
+          </ul>
+          <p>
+            <strong>Suggested benchmark linkage:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>Primary</strong>: MemoryArena.</li>
+            <li><strong>Supporting</strong>: Protocol C feedback-event lineage and update-boundary auditing.</li>
+          </ul>
+
+          <h4>3) Robustness Evolution</h4>
+          <p>
+            <strong>Purpose:</strong> evaluate whether the agent remains reliable under failures, perturbations, and adversarial context.
+          </p>
+          <p>
+            <strong>Metrics:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>self_correction</strong>: detect and recover from execution errors and environment perturbations.</li>
+            <li><strong>noise_rejection</strong>: reject unsafe/misleading injections and poison context, while ignoring irrelevant noise.</li>
+            <li>
+              <strong>evolution_stability</strong>: newly evolved behaviors do not degrade ongoing execution quality,
+              including stability under continual memory growth (recall quality should not collapse as memory expands).
+            </li>
+          </ul>
+          <p>
+            <strong>Suggested benchmark linkage:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>Primary</strong>: SEA-Eval (sequential stability), perturbation suites in Protocol A/B/C.</li>
+            <li><strong>Supporting</strong>: operator-based perturbation methodology similar to AutoEvoEval.</li>
+          </ul>
+
+          <h4>4) Efficiency Convergence</h4>
+          <p>
+            <strong>Purpose:</strong> evaluate whether evolution reduces human and compute cost while maintaining quality.
+          </p>
+          <p>
+            <strong>Metrics:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>decreased_user_intervention</strong>: fewer user clarifications/corrections to reach acceptable outcomes.</li>
+            <li><strong>effective_steps_reduction</strong>: fewer actions/tool calls/turns to completion on comparable tasks.</li>
+            <li><strong>token_consumption_reduction</strong>: lower or non-increasing token cost on comparable tasks.</li>
+            <li><strong>efficiency_evolution_rate</strong>: success rate normalized by token cost.
+              <br>
+              <span style="white-space: nowrap;">v1 formula: <code>success_rate / avg_tokens</code></span>
+            </li>
+          </ul>
+          <p>
+            <strong>Measurement policy:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li>For comparable tasks, use non-increase or statistically significant decrease according to configured threshold policy.</li>
+            <li>Exact thresholds MUST be persisted in <code>eval_config_canonical_json</code>.</li>
+          </ul>
+          <p>
+            <strong>Suggested benchmark linkage:</strong>
+          </p>
+          <ul class="bulleted-list">
+            <li><strong>Primary</strong>: SEA-Eval token trajectory (T) and sequential SR/T analysis.</li>
+            <li><strong>Supporting</strong>: existing suite-level analysis (to be filled).</li>
+          </ul>
+
             <h3>Next Study Updates</h3>
             <ul class="bulleted-list">
               <li>Compare self-evolution mechanisms across Claude Code, Cursor, and OpenClaw workflows.</li>

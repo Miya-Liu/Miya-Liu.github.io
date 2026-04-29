@@ -5245,17 +5245,19 @@ body.anthropic-home .readings-space .reading-item {
   flex: 0 0 clamp(11.8rem, 22vw, 14rem);
   min-width: 11.8rem;
   max-width: 14rem;
-  min-height: 11.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  padding: 0.78rem 0.78rem 0.82rem 1.05rem;
+  min-height: 12.4rem;
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: stretch;
+  padding: 0.78rem 0.8rem 0.82rem 0.75rem;
   background: linear-gradient(180deg, rgba(255, 253, 247, 0.98) 0%, rgba(247, 241, 231, 0.98) 100%);
   border: 1px solid rgba(90, 72, 55, 0.38);
   border-left: 0.5rem solid rgba(93, 68, 45, 0.58);
   border-radius: 3px 6px 6px 3px;
   box-shadow: 0 10px 14px rgba(0, 0, 0, 0.09), 0 2px 0 rgba(119, 86, 53, 0.2);
   transform-origin: bottom center;
+  overflow: visible;
 }
 
 body.anthropic-home .readings-space .reading-item::after {
@@ -5428,14 +5430,15 @@ body.anthropic-home .readings-space .reading-prop-vase::after {
 }
 
 body.anthropic-home .readings-space .reading-cover {
-  align-self: flex-start;
+  align-self: stretch;
   border: 1px solid rgba(70, 61, 53, 0.25);
   border-radius: 3px;
-  display: inline-grid;
-  place-items: center;
-  min-height: 1.55rem;
-  min-width: 2.6rem;
-  padding: 0.15rem 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  min-width: 2.2rem;
+  padding: 0.15rem 0.15rem;
   font-family: var(--font-site-title) !important;
   font-size: 0.74rem;
   font-weight: 900;
@@ -5443,25 +5446,63 @@ body.anthropic-home .readings-space .reading-cover {
   color: #fff8ef;
   text-transform: uppercase;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
-body.anthropic-home .readings-space .reading-item:nth-child(5n + 1) .reading-cover {
+body.anthropic-home .readings-space .reading-cover::before {
+  content: "";
+  position: absolute;
+  top: 0.12rem;
+  bottom: 0.12rem;
+  left: 0.35rem;
+  width: 0.18rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.26);
+}
+
+body.anthropic-home .readings-space .reading-cover::after {
+  content: "";
+  position: absolute;
+  top: 0.12rem;
+  bottom: 0.12rem;
+  right: 0.12rem;
+  width: 0.12rem;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+body.anthropic-home .readings-space .reading-cover span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+
+body.anthropic-home .readings-space .reading-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  position: relative;
+}
+
+body.anthropic-home .readings-space .reading-stack > article.reading-item:nth-of-type(5n + 1) .reading-cover {
   background: linear-gradient(180deg, #6e5346, #8f6f5f);
 }
 
-body.anthropic-home .readings-space .reading-item:nth-child(5n + 2) .reading-cover {
+body.anthropic-home .readings-space .reading-stack > article.reading-item:nth-of-type(5n + 2) .reading-cover {
   background: linear-gradient(180deg, #475a6d, #617b93);
 }
 
-body.anthropic-home .readings-space .reading-item:nth-child(5n + 3) .reading-cover {
+body.anthropic-home .readings-space .reading-stack > article.reading-item:nth-of-type(5n + 3) .reading-cover {
   background: linear-gradient(180deg, #556144, #76845f);
 }
 
-body.anthropic-home .readings-space .reading-item:nth-child(5n + 4) .reading-cover {
+body.anthropic-home .readings-space .reading-stack > article.reading-item:nth-of-type(5n + 4) .reading-cover {
   background: linear-gradient(180deg, #734f2f, #976b43);
 }
 
-body.anthropic-home .readings-space .reading-item:nth-child(5n + 5) .reading-cover {
+body.anthropic-home .readings-space .reading-stack > article.reading-item:nth-of-type(5n + 5) .reading-cover {
   background: linear-gradient(180deg, #5e4a70, #7a6291);
 }
 
@@ -5471,39 +5512,303 @@ body.anthropic-home .readings-space .reading-meta h2 {
   line-height: 1.28;
   text-transform: none;
   letter-spacing: 0.02em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 body.anthropic-home .readings-space .reading-author {
   margin: 0 0 0.3rem;
   font-size: 0.78rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 body.anthropic-home .readings-space .reading-state {
-  margin: 0 0 0.5rem;
+  margin: auto 0 0.5rem;
 }
 
 body.anthropic-home .readings-space .reading-jot {
-  position: relative;
-  margin: 0 0 0.5rem;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.1rem;
+  margin: 0;
   display: inline-block;
   border: 1px dashed #b98f66;
   border-radius: 4px;
   background: rgba(255, 249, 236, 0.8);
-  padding: 0.2rem 0.45rem;
+  padding: 0.18rem 0.42rem;
   font-size: 0.63rem;
   line-height: 1.45;
   color: #6d5a47;
   letter-spacing: 0.04em;
+  max-width: 8.8rem;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 body.anthropic-home .readings-space .reading-jot::before {
   content: "";
   position: absolute;
-  left: -0.78rem;
-  top: 50%;
-  width: 0.68rem;
+  left: auto;
+  right: 0.1rem;
+  top: 0.65rem;
+  width: 0.55rem;
   border-top: 2px solid #b98f66;
   transform: rotate(-17deg);
+}
+
+body.anthropic-home .readings-space .reading-item:hover .reading-jot,
+body.anthropic-home .readings-space .reading-item:focus-within .reading-jot {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Touch devices don't support hover: show callouts by default. */
+@media (hover: none) {
+  body.anthropic-home .readings-space .reading-jot {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* Agent Ecosystem: interactive playground */
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interactive {
+  border: 1px solid var(--paint-frame);
+  border-radius: 6px;
+  padding: 1rem;
+  background: rgba(253, 251, 247, 0.75);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.04);
+  margin: 0.6rem 0 1rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-platform-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 0.95rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-platform-tab {
+  appearance: none;
+  border: 1px solid var(--paint-frame);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--a-text-muted);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-platform-tab:hover {
+  transform: translateY(-1px);
+  border-color: rgba(90, 72, 55, 0.55);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-platform-tab.is-active {
+  background: rgba(46, 186, 174, 0.18);
+  border-color: rgba(46, 186, 174, 0.55);
+  color: var(--rand-ink);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-platform-panel {
+  padding-top: 0.1rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interaction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 0.8rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interaction-btn {
+  appearance: none;
+  border: 1px solid var(--paint-frame);
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--a-text-muted);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interaction-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(90, 72, 55, 0.55);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interaction-btn.is-active {
+  background: rgba(46, 186, 174, 0.16);
+  border-color: rgba(46, 186, 174, 0.55);
+  color: var(--rand-ink);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-interaction-details {
+  border-top: 1px solid var(--paint-frame);
+  padding-top: 0.9rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-detail {
+  animation: ecosystemDetailIn 0.18s ease;
+}
+
+@keyframes ecosystemDetailIn {
+  from {
+    opacity: 0.0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-detail p {
+  margin: 0.4rem 0;
+}
+
+/* Agent Ecosystem: Task Lab */
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab {
+  border: 1px solid var(--paint-frame);
+  border-radius: 6px;
+  padding: 1rem;
+  background: rgba(253, 251, 247, 0.6);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.03);
+  margin: 0.6rem 0 1rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-label {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a-text-muted);
+  margin: 0;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-control {
+  width: 100%;
+  border: 1px solid var(--paint-frame);
+  border-radius: 4px;
+  padding: 0.55rem 0.7rem;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--rand-ink);
+  font-family: var(--font-blog-tagline) !important;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.85rem 0 1rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-output {
+  display: grid;
+  gap: 1rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-panel {
+  border: 1px solid var(--paint-frame);
+  border-radius: 6px;
+  padding: 0.9rem 0.95rem;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-panel-title {
+  font-family: var(--font-blog-tagline) !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a-text-muted);
+  margin-bottom: 0.6rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-stepper-wrap {
+  border: 1px solid var(--paint-frame);
+  border-radius: 6px;
+  padding: 0.9rem 0.95rem;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-stepper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-step {
+  display: none;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-step.is-active {
+  display: block;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-step-title {
+  font-family: var(--font-blog-tagline) !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem;
+  color: var(--rand-ink);
+  margin-bottom: 0.35rem;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-step-body {
+  color: var(--a-text-muted);
+  line-height: 1.7;
+}
+
+body.anthropic-site.single article.post.ecosystem-interactive .ecosystem-tasklab-step-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
 }
 
 body.anthropic-home .readings-space .reading-state span {

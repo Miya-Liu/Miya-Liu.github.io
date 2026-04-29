@@ -49,7 +49,7 @@
 
     <div id="main">
       <div class="post-page-layout">
-        <article class="post memory-post has-toc">
+        <article class="post memory-post has-toc ecosystem-interactive">
           <header>
             <div class="title">
               <h2><a href="Agent_Ecosystem.html">Agent Ecosystem</a></h2>
@@ -130,6 +130,307 @@
             </table>
           </div>
 
+          <h3>Interaction Playground</h3>
+          <div class="ecosystem-interactive" role="region" aria-label="Agent interaction modes by platform">
+            <div class="ecosystem-platform-tabs" role="tablist" aria-label="Platforms">
+              <button type="button" class="ecosystem-platform-tab is-active" data-platform-tab="claude-code" role="tab" aria-selected="true">Claude Code</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="cursor" role="tab" aria-selected="false">Cursor</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="cowork" role="tab" aria-selected="false">Claude Cowork</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="chatgpt" role="tab" aria-selected="false">ChatGPT</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="manus" role="tab" aria-selected="false">Manus</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="openclaw" role="tab" aria-selected="false">OpenClaw</button>
+              <button type="button" class="ecosystem-platform-tab" data-platform-tab="korix" role="tab" aria-selected="false">Korix</button>
+            </div>
+
+            <div class="ecosystem-platform-panels">
+              <!-- Claude Code -->
+              <section class="ecosystem-platform-panel" data-platform-panel="claude-code">
+                <div class="ecosystem-interaction-grid" aria-label="Interaction types">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Checkpointing loops</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Tool-driven execution</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Patch & artifact review</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Repo-aware context</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Human-in-the-loop governance</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> you propose an edit plan, then iterate through short cycles (diff → verify → refine).</p>
+                    <p><strong>When it shines:</strong> code edits, test/debug loops, and “make this change without breaking X”.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> terminal commands, file operations, and repository-aware search/edits.</p>
+                    <p><strong>Practical habit:</strong> explicitly name the “expected outputs” so tool runs stay grounded.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> patches, code diffs, and verification logs.</p>
+                    <p><strong>Review style:</strong> treat each checkpoint as a reviewable unit—not a single monolithic request.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> project context + working notes (what you’ve built so far) is repeatedly re-used.</p>
+                    <p><strong>Design idea:</strong> keep “canonical decisions” in files so the agent can anchor on them.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> you approve the next tool step (implicitly via iteration cadence, or explicitly via config).</p>
+                    <p><strong>Failure mode:</strong> unclear acceptance criteria makes the agent brute-force search paths.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Cursor -->
+              <section class="ecosystem-platform-panel" data-platform-panel="cursor" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Checkpointing loops</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Inline tool actions</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Diff-first review</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Workspace rhythm</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Human rhythm & constraints</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> the IDE becomes your control panel—small steps, fast feedback, and frequent “stop & inspect”.</p>
+                    <p><strong>When it shines:</strong> refactors, multi-file edits, and “maintain style/structure”.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> file system awareness + IDE commands (run, inspect, re-run).</p>
+                    <p><strong>Practical habit:</strong> ask for explicit checkpoints (“show me the diff before applying”).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> suggested edits/diffs at the place you’re working.</p>
+                    <p><strong>Review style:</strong> accept as you go; reject/redirect when constraints drift.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> current file context + recent conversation anchors.</p>
+                    <p><strong>Design idea:</strong> keep “invariant rules” as project notes (so the agent won’t re-invent them).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> your attention is the gate—IDE checkpoints help you notice risky changes early.</p>
+                    <p><strong>Failure mode:</strong> long requests without intermediate diff checkpoints can create cascading edits.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Cowork -->
+              <section class="ecosystem-platform-panel" data-platform-panel="cowork" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Checkpointing loops</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Desktop task execution</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Document synthesis</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Working set & files</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Approval & auditability</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> you delegate a workflow, then review drafts/outputs at milestones.</p>
+                    <p><strong>When it shines:</strong> document-heavy tasks (summaries, reports, recurring ops).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> file access, app-level actions, and structured task steps.</p>
+                    <p><strong>Practical habit:</strong> name the “inputs” (folders/docs) and “deliverables” (templates/pages).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> drafts, stitched notes, and ready-to-send documents.</p>
+                    <p><strong>Review style:</strong> focus on tone/consistency + correctness before sign-off.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> “working set” files and session context.</p>
+                    <p><strong>Design idea:</strong> keep your templates and style guide somewhere the agent can reference.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> explicit review checkpoints reduce the risk of wrong assumptions propagating.</p>
+                    <p><strong>Failure mode:</strong> vague deliverable format creates rework cycles.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- ChatGPT -->
+              <section class="ecosystem-platform-panel" data-platform-panel="chatgpt" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Prompt checkpoints</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Tool-assisted answers</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Draft artifacts</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Context + memory</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">User-controlled constraints</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> you “checkpoint” by iterating prompts and asking for specific intermediate outputs.</p>
+                    <p><strong>When it shines:</strong> fast brainstorming, spec drafts, and narrowing requirements.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> browsing/code-interpreter style tools, or API tool integrations.</p>
+                    <p><strong>Practical habit:</strong> request tool outputs in a structured form (steps, assumptions, artifacts).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> text drafts, outlines, and “ready-to-edit” sections you can apply elsewhere.</p>
+                    <p><strong>Review style:</strong> verify claims, then convert drafts into your target format (tickets, patches, notes).</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> what you provide in the prompt plus any product-level memory features.</p>
+                    <p><strong>Design idea:</strong> keep your “current truth” as a short, explicit summary the agent must reuse.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> system prompts, refusal criteria, and user-specified constraints.</p>
+                    <p><strong>Failure mode:</strong> ambiguous constraints can lead to confident but mismatched outputs.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Manus -->
+              <section class="ecosystem-platform-panel" data-platform-panel="manus" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Milestone checkpointing</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Cloud execution</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Deliverable packaging</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Task state</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Budget & run controls</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> you scope the mission, then check progress at stage boundaries.</p>
+                    <p><strong>When it shines:</strong> multi-step workflows that end in a completed artifact.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> cloud execution steps with consistent state handling.</p>
+                    <p><strong>Practical habit:</strong> define “done” as measurable outputs.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> bundled results (files, summaries, staged deliverables).</p>
+                    <p><strong>Review style:</strong> treat evaluation as part of the pipeline: verify, then iterate.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> the workflow state lives inside the run (plus any persistent context you provide).</p>
+                    <p><strong>Design idea:</strong> log decisions so future runs don’t restart from scratch.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> operational constraints (credits/budgets, run limits) shape how you should prompt.</p>
+                    <p><strong>Failure mode:</strong> long ambiguous missions can become expensive exploration.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- OpenClaw -->
+              <section class="ecosystem-platform-panel" data-platform-panel="openclaw" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Workflow step checkpoints</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Plugin & channel tools</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Pipeline outputs</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Configurable memory tiers</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Policy-first orchestration</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> each workflow step is a controllable boundary (transform → verify → commit).</p>
+                    <p><strong>When it shines:</strong> custom pipelines and “agent as a component”.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> plugins + integrations that define what the agent can touch.</p>
+                    <p><strong>Practical habit:</strong> build explicit tool contracts (inputs/outputs) so reasoning stays stable.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> pipeline outputs and intermediate traces.</p>
+                    <p><strong>Review style:</strong> evaluate step-by-step, then promote only verified results.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> typically more customizable—session/project/global stores you can configure.</p>
+                    <p><strong>Design idea:</strong> separate “working memory” from “promoted knowledge”.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> you encode policy gates in the orchestration layer.</p>
+                    <p><strong>Failure mode:</strong> missing validation steps lets untrusted outputs progress too far.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Korix -->
+              <section class="ecosystem-platform-panel" data-platform-panel="korix" hidden>
+                <div class="ecosystem-interaction-grid">
+                  <button type="button" class="ecosystem-interaction-btn is-active" data-interaction-btn="checkpointing">Governed checkpoints</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="tools">Enterprise integrations</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="artifacts">Audit-friendly outputs</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="memory">Organization context</button>
+                  <button type="button" class="ecosystem-interaction-btn" data-interaction-btn="governance">Compliance & approvals</button>
+                </div>
+                <div class="ecosystem-interaction-details">
+                  <div class="ecosystem-detail" data-interaction-detail="checkpointing">
+                    <p><strong>What it feels like:</strong> progress is tied to compliance checkpoints and approved steps.</p>
+                    <p><strong>When it shines:</strong> process-heavy and regulated environments.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="tools" hidden>
+                    <p><strong>Tool surface:</strong> integrations aligned to enterprise workflows.</p>
+                    <p><strong>Practical habit:</strong> define required approvals for sensitive operations.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="artifacts" hidden>
+                    <p><strong>Artifact shape:</strong> structured reports and outputs with traceability.</p>
+                    <p><strong>Review style:</strong> verify provenance and compliance attributes.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="memory" hidden>
+                    <p><strong>Memory flavor:</strong> organization context and curated data sources.</p>
+                    <p><strong>Design idea:</strong> ensure the agent has “approved knowledge” boundaries.</p>
+                  </div>
+                  <div class="ecosystem-detail" data-interaction-detail="governance" hidden>
+                    <p><strong>Governance pattern:</strong> approvals + policy gates drive the interaction flow.</p>
+                    <p><strong>Failure mode:</strong> policy drift makes outputs hard to trust.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <h3>Task Lab</h3>
+          <div class="ecosystem-tasklab" role="region" aria-label="Simulate an agent resolving a task">
+            <div class="ecosystem-tasklab-grid">
+              <div class="ecosystem-tasklab-field">
+                <label for="ecosystem-tasklab-platform" class="ecosystem-tasklab-label">Platform</label>
+                <select id="ecosystem-tasklab-platform" class="ecosystem-tasklab-control" aria-label="Choose agent platform">
+                  <option value="claude-code" selected>Claude Code</option>
+                  <option value="cursor">Cursor</option>
+                  <option value="cowork">Claude Cowork</option>
+                  <option value="manus">Manus</option>
+                  <option value="openclaw">OpenClaw</option>
+                  <option value="chatgpt">ChatGPT</option>
+                  <option value="korix">Korix</option>
+                </select>
+              </div>
+
+              <div class="ecosystem-tasklab-field">
+                <label for="ecosystem-tasklab-scenario" class="ecosystem-tasklab-label">Scenario</label>
+                <select id="ecosystem-tasklab-scenario" class="ecosystem-tasklab-control" aria-label="Choose scenario">
+                  <option value="refactor" selected>Refactor a feature (with tests)</option>
+                  <option value="docs">Summarize a doc set (and produce a brief)</option>
+                  <option value="plan">Plan an experiment (deliverable + checklist)</option>
+                  <option value="triage">Triage issues (priorities + next actions)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ecosystem-tasklab-field">
+              <label for="ecosystem-tasklab-input" class="ecosystem-tasklab-label">Your task instruction</label>
+              <textarea id="ecosystem-tasklab-input" class="ecosystem-tasklab-control ecosystem-tasklab-textarea" rows="4" aria-label="Task instruction">
+Update the authentication flow so it logs failures with context, then add tests to prevent regressions.</textarea>
+            </div>
+
+            <div class="ecosystem-tasklab-actions">
+              <button type="button" class="button small" id="ecosystem-tasklab-simulate">Simulate resolution</button>
+              <button type="button" class="button small" id="ecosystem-tasklab-reset">Reset</button>
+            </div>
+
+            <div class="ecosystem-tasklab-output" aria-live="polite">
+              <div class="ecosystem-tasklab-panel">
+                <div class="ecosystem-tasklab-panel-title">Prompt (copyable)</div>
+                <pre class="ecosystem-tasklab-pre" id="ecosystem-tasklab-prompt"></pre>
+              </div>
+
+              <div class="ecosystem-tasklab-stepper-wrap">
+                <div class="ecosystem-tasklab-panel-title">Resolution loop</div>
+                <ol class="ecosystem-tasklab-stepper" id="ecosystem-tasklab-steps"></ol>
+                <div class="ecosystem-tasklab-step-controls">
+                  <button type="button" class="button small" id="ecosystem-tasklab-prev">Prev</button>
+                  <button type="button" class="button small" id="ecosystem-tasklab-next">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <h3>Platform Notes</h3>
           <ul class="bulleted-list">
             <li><strong>Claude Code</strong>: strongest when tasks involve code edits, shell tools, iterative verification, and repository-aware reasoning.</li>
@@ -163,6 +464,318 @@
             <li>A benchmark matrix for agent quality: success rate, supervision load, and recovery behavior.</li>
           </ul>
         </section>
+
+        <script>
+          (function () {
+            function initEcosystemPlayground() {
+              var root = document.querySelector(".ecosystem-interactive");
+              if (!root) return;
+
+              var tabs = root.querySelectorAll("[data-platform-tab]");
+              var panels = root.querySelectorAll("[data-platform-panel]");
+              if (!tabs.length || !panels.length) return;
+
+              function activatePlatform(platform) {
+                for (var i = 0; i < panels.length; i++) {
+                  var p = panels[i];
+                  var active = p.getAttribute("data-platform-panel") === platform;
+                  p.hidden = !active;
+                }
+                for (var j = 0; j < tabs.length; j++) {
+                  var t = tabs[j];
+                  var activeTab = t.getAttribute("data-platform-tab") === platform;
+                  t.classList.toggle("is-active", activeTab);
+                  t.setAttribute("aria-selected", activeTab ? "true" : "false");
+                }
+
+                var activePanel = root.querySelector('[data-platform-panel="' + platform + '"]');
+                if (!activePanel) return;
+                var firstBtn = activePanel.querySelector("[data-interaction-btn]");
+                if (!firstBtn) return;
+                activateInteraction(activePanel, firstBtn.getAttribute("data-interaction-btn"));
+              }
+
+              function activateInteraction(panel, interactionKey) {
+                var details = panel.querySelectorAll("[data-interaction-detail]");
+                for (var k = 0; k < details.length; k++) {
+                  var d = details[k];
+                  var isActive = d.getAttribute("data-interaction-detail") === interactionKey;
+                  d.hidden = !isActive;
+                }
+                var btns = panel.querySelectorAll("[data-interaction-btn]");
+                for (var n = 0; n < btns.length; n++) {
+                  var b = btns[n];
+                  var isActiveBtn = b.getAttribute("data-interaction-btn") === interactionKey;
+                  b.classList.toggle("is-active", isActiveBtn);
+                }
+              }
+
+              for (var i = 0; i < tabs.length; i++) {
+                (function (tab) {
+                  tab.addEventListener("click", function () {
+                    activatePlatform(tab.getAttribute("data-platform-tab"));
+                  });
+                })(tabs[i]);
+              }
+
+              root.addEventListener("click", function (e) {
+                var btn = e.target.closest("[data-interaction-btn]");
+                if (!btn) return;
+                var panel = btn.closest("[data-platform-panel]");
+                if (!panel) return;
+                activateInteraction(panel, btn.getAttribute("data-interaction-btn"));
+              });
+
+              var initialTab = root.querySelector("[data-platform-tab]");
+              if (initialTab) activatePlatform(initialTab.getAttribute("data-platform-tab"));
+            }
+
+            if (document.readyState === "loading") {
+              document.addEventListener("DOMContentLoaded", initEcosystemPlayground);
+            } else {
+              initEcosystemPlayground();
+            }
+          })();
+        </script>
+
+        <script>
+          (function () {
+            function $(id) {
+              return document.getElementById(id);
+            }
+
+            function setText(el, value) {
+              if (!el) return;
+              el.textContent = value || "";
+            }
+
+            function escapeHtml(s) {
+              return String(s || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            }
+
+            function buildScenario(scenarioKey, baseInstruction) {
+              var scenarios = {
+                refactor: {
+                  title: "Refactor a feature (with tests)",
+                  acceptance: "Acceptance: add structured failure logs + tests that fail before the change and pass after.",
+                  deliverable: "Deliverable: updated code + test suite + a short checklist of what was changed and why."
+                },
+                docs: {
+                  title: "Summarize a doc set (and produce a brief)",
+                  acceptance: "Acceptance: produce a 1-page brief with key takeaways, assumptions, and open questions.",
+                  deliverable: "Deliverable: brief + a structured outline you can reuse for follow-up work."
+                },
+                plan: {
+                  title: "Plan an experiment (deliverable + checklist)",
+                  acceptance: "Acceptance: plan includes hypotheses, data sources, steps, evaluation criteria, and risk notes.",
+                  deliverable: "Deliverable: execution plan + checklist for when you start the work."
+                },
+                triage: {
+                  title: "Triage issues (priorities + next actions)",
+                  acceptance: "Acceptance: output ranks issues by impact/effort and proposes next actions per cluster.",
+                  deliverable: "Deliverable: prioritized list + a small set of recommended next steps."
+                }
+              };
+              var s = scenarios[scenarioKey] || scenarios.refactor;
+
+              return {
+                scenarioKey: scenarioKey,
+                scenarioTitle: s.title,
+                acceptance: s.acceptance,
+                deliverable: s.deliverable,
+                instruction: baseInstruction
+              };
+            }
+
+            function platformFlavor(platformKey) {
+              var map = {
+                "claude-code": {
+                  label: "Claude Code",
+                  tools: "Use terminal tools + repository-aware edits; verify with tests.",
+                  checkpoints: "Checkpoint each patch: diff → run tests → interpret failures → refine."
+                },
+                cursor: {
+                  label: "Cursor",
+                  tools: "Use IDE-native edits; stage changes and validate via run/test actions.",
+                  checkpoints: "Checkpoint on diff hunks; request review before applying larger restructures."
+                },
+                cowork: {
+                  label: "Claude Cowork",
+                  tools: "Plan task steps, draft outputs, and request human review at milestones.",
+                  checkpoints: "Checkpoint at milestones: draft → review tone/structure → finalize deliverable."
+                },
+                manus: {
+                  label: "Manus",
+                  tools: "Execute multi-step work end-to-end and package final results.",
+                  checkpoints: "Checkpoint by stage boundaries: setup → execute → validate → deliver."
+                },
+                openclaw: {
+                  label: "OpenClaw",
+                  tools: "Use a pipeline-style orchestration: tools/plugins define what can be touched.",
+                  checkpoints: "Checkpoint per pipeline stage: transform → validate → commit."
+                },
+                chatgpt: {
+                  label: "ChatGPT",
+                  tools: "Produce structured plans and iterate on the draft reasoning and output format.",
+                  checkpoints: "Checkpoint on intermediate artifacts: outline → draft → verify against acceptance."
+                },
+                korix: {
+                  label: "Korix",
+                  tools: "Apply policy gates and explicit approval points before sensitive actions.",
+                  checkpoints: "Checkpoint with compliance constraints: verify provenance + approvals."
+                }
+              };
+              return map[platformKey] || map["claude-code"];
+            }
+
+            function buildSteps(platformKey, scenario) {
+              var f = platformFlavor(platformKey);
+              return [
+                {
+                  title: "1) Interpret the task",
+                  body:
+                    "Restate the goal and extract acceptance criteria.\n\n" +
+                    "Task input:\n" +
+                    scenario.instruction +
+                    "\n\n" +
+                    scenario.acceptance
+                },
+                {
+                  title: "2) Propose a plan",
+                  body:
+                    "Plan a minimal sequence of steps that fits your constraints.\n\n" +
+                    "Tools direction: " + f.tools
+                },
+                {
+                  title: "3) Execute in checkpoints",
+                  body:
+                    "Run the work as short checkpoints so each change can be verified.\n\n" +
+                    f.checkpoints
+                },
+                {
+                  title: "4) Produce artifacts",
+                  body:
+                    "Deliver the requested output in a reusable form.\n\n" +
+                    scenario.deliverable +
+                    "\n\n(Anchor to task input: " +
+                    scenario.instruction +
+                    ")"
+                },
+                {
+                  title: "5) Self-check & handoff",
+                  body:
+                    "Validate against acceptance criteria and summarize what was learned.\n\n" +
+                    "Handoff: include a short next-step checklist."
+                }
+              ];
+            }
+
+            function renderStepper(steps, activeIndex) {
+              var list = $("ecosystem-tasklab-steps");
+              if (!list) return;
+              list.innerHTML = "";
+
+              for (var i = 0; i < steps.length; i++) {
+                var li = document.createElement("li");
+                li.className = "ecosystem-tasklab-step";
+                li.setAttribute("data-step-index", String(i));
+                if (i === activeIndex) li.classList.add("is-active");
+                li.innerHTML =
+                  '<div class="ecosystem-tasklab-step-title">' +
+                  escapeHtml(steps[i].title) +
+                  "</div>" +
+                  '<div class="ecosystem-tasklab-step-body">' +
+                  escapeHtml(steps[i].body).replace(/\\n/g, "<br>") +
+                  "</div>";
+                list.appendChild(li);
+              }
+            }
+
+            function activate(activeIndex, steps) {
+              renderStepper(steps, activeIndex);
+            }
+
+            function init() {
+              var simulateBtn = $("ecosystem-tasklab-simulate");
+              var resetBtn = $("ecosystem-tasklab-reset");
+              var prevBtn = $("ecosystem-tasklab-prev");
+              var nextBtn = $("ecosystem-tasklab-next");
+              var platformSel = $("ecosystem-tasklab-platform");
+              var scenarioSel = $("ecosystem-tasklab-scenario");
+              var input = $("ecosystem-tasklab-input");
+              var promptEl = $("ecosystem-tasklab-prompt");
+
+              if (!simulateBtn || !platformSel || !scenarioSel || !input || !promptEl) return;
+
+              var steps = [];
+              var current = 0;
+
+              function simulate() {
+                var platformKey = platformSel.value;
+                var scenarioKey = scenarioSel.value;
+                var instruction = input.value.trim();
+
+                var scenario = buildScenario(scenarioKey, instruction);
+                var f = platformFlavor(platformKey);
+                steps = buildSteps(platformKey, scenario);
+                current = 0;
+
+                var promptText =
+                  "Platform: " +
+                  f.label +
+                  "\nScenario: " +
+                  scenario.scenarioTitle +
+                  "\n\nTask:\n" +
+                  instruction +
+                  "\n\n" +
+                  scenario.acceptance +
+                  "\n\n" +
+                  "Output format:\n- Start with a short plan\n- Execute in checkpoints\n- Provide final artifacts and a checklist\n";
+
+                setText(promptEl, promptText);
+                activate(current, steps);
+              }
+
+              simulateBtn.addEventListener("click", function () {
+                simulate();
+              });
+
+              prevBtn.addEventListener("click", function () {
+                if (!steps.length) return;
+                current = Math.max(0, current - 1);
+                activate(current, steps);
+              });
+
+              nextBtn.addEventListener("click", function () {
+                if (!steps.length) return;
+                current = Math.min(steps.length - 1, current + 1);
+                activate(current, steps);
+              });
+
+              if (resetBtn) {
+                resetBtn.addEventListener("click", function () {
+                  steps = [];
+                  current = 0;
+                  setText(promptEl, "");
+                  var list = $("ecosystem-tasklab-steps");
+                  if (list) list.innerHTML = "";
+                });
+              }
+
+              // Initial render (so the section doesn't look empty).
+              simulate();
+            }
+
+            if (document.readyState === "loading") {
+              document.addEventListener("DOMContentLoaded", init);
+            } else {
+              init();
+            }
+          })();
+        </script>
 
           <footer>
             <ul class="stats">
