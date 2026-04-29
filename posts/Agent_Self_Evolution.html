@@ -267,18 +267,21 @@ adjacent + windowed views"] --> F
                 G["Emit immutable Self-Evolution Scorecard"] --> H["Decision: promote / hold / rollback"]
               end
 
+              %% Feed constructed slices into evaluation execution
+              B2 --> C
+
               %% Coverage sets / run families
               subgraph RF[Required run sets (coverage sets) + protocol alignment]
                 R1["Stream run family
-adaptation + self-correction + convergence trends"]:::fam
+adaptation + self-correction + convergence trends"]
                 R2["Transfer run family
-seen vs unseen-within-family + memorization gap"]:::fam
+seen vs unseen-within-family + memorization gap"]
                 R3["Robustness run family
-clean vs perturbed/evolved counterparts"]:::fam
+clean vs perturbed/evolved counterparts"]
                 R4["Memory run family
-multi-session remembered/renewed/recalled/etc."]:::fam
+multi-session remembered/renewed/recalled/etc."]
                 R5["Feedback run family
-gain per feedback + regret/learning trend"]:::fam
+gain per feedback + regret/learning trend"]
               end
 
               C --> R1
@@ -290,13 +293,13 @@ gain per feedback + regret/learning trend"]:::fam
               %% Dimensions → Metrics
               subgraph M[Dimensions → Metrics]
                 DS["Skill Evolution
-expansion / enhancement / intactness"]:::dim
+expansion / enhancement / intactness"]
                 DM["Memory Adaptation
-remembered / renewed / recalled / consistent / valuable"]:::dim
+remembered / renewed / recalled / consistent / valuable"]
                 DR["Robustness Evolution
-self-correction / noise rejection / stability"]:::dim
+self-correction / noise rejection / stability"]
                 DE["Efficiency Convergence
-reduced intervention / fewer effective steps / lower cost trend"]:::dim
+reduced intervention / fewer effective steps / lower cost trend"]
               end
 
               R2 --> DS
@@ -308,9 +311,9 @@ reduced intervention / fewer effective steps / lower cost trend"]:::dim
               %% Comparison windows
               subgraph W[Comparison windows]
                 W1["Adjacent delta (t vs t-1)
-catch abrupt regressions"]:::win
+catch abrupt regressions"]
                 W2["Windowed delta (t vs t-N, N>=2)
-primary for promotion scoring"]:::win
+primary for promotion scoring"]
                 W1 --> W2
               end
               E --> W2
@@ -319,36 +322,36 @@ primary for promotion scoring"]:::win
               subgraph Gate[Promotion Gate + Auditing Concepts]
                 Mode{Checkpoint mode}
                 Mode -->|fast checkpoint| Pre["Reduced checks
-decision: hold only (no promotion)"]:::gate
+decision: hold only (no promotion)"]
                 Mode -->|full certification| Full["Full certification
-decision: promote / hold / rollback"]:::gate
+decision: promote / hold / rollback"]
 
                 subgraph Hard[Hard blockers (must all pass to promote)]
                   HB1["Generalization
-improvement on unseen evidence + confidence"]:::hard
+improvement on unseen evidence + confidence"]
                   HB2["Retention
-no significant regression on stable evidence"]:::hard
+no significant regression on stable evidence"]
                   HB3["Robustness
-no collapse under perturbed/evolved evidence"]:::hard
+no collapse under perturbed/evolved evidence"]
                   HB4["Trajectory quality
-no degradation in execution/process metrics"]:::hard
+no degradation in execution/process metrics"]
                   HB5["Data integrity
-no leakage / invalid lineage between slices"]:::hard
+no leakage / invalid lineage between slices"]
                 end
 
                 subgraph Weighted[Weighted decision score (for hold vs promote)]
                   WS["Combine margins across: transfer gain + retention + robustness + trajectory + efficiency
-penalize uncertainty/high variance"]:::weight
+penalize uncertainty/high variance"]
                 end
 
                 subgraph Stats[Statistical eligibility / gating rules]
                   CI["Uncertainty (confidence intervals), sample sufficiency, effect-size floor
-and 'only gate-eligible if required evidence exists'"]:::rule
+and 'only gate-eligible if required evidence exists'"]
                 end
 
                 subgraph External[External validity check concept]
                   EXT["Promotion also requires an external, frozen validity evaluation
-plus a freshness constraint relative to the candidate checkpoint"]:::audit
+plus a freshness constraint relative to the candidate checkpoint"]
                 end
 
                 Full --> HB1
@@ -364,19 +367,11 @@ plus a freshness constraint relative to the candidate checkpoint"]:::audit
                 HB5 --> WS
 
                 Full --> CI
-                CI --> Full
-                Full --> EXT
+                CI --> EXT
               end
               H --> Mode
 
-              classDef fam fill:#eef7ff,stroke:#3b82f6,stroke-width:1px;
-              classDef dim fill:#f3fff3,stroke:#22c55e,stroke-width:1px;
-              classDef gate fill:#fff7ed,stroke:#f59e0b,stroke-width:1px;
-              classDef hard fill:#ffe4e6,stroke:#ef4444,stroke-width:1px;
-              classDef weight fill:#fef3f7,stroke:#ec4899,stroke-width:1px;
-              classDef rule fill:#f6f6f6,stroke:#6b7280,stroke-width:1px;
-              classDef audit fill:#f1f5f9,stroke:#64748b,stroke-width:1px;
-              classDef win fill:#f8fafc,stroke:#94a3b8,stroke-width:1px;
+              %% Styling removed for maximum compatibility; re-add once rendering is confirmed.
             </div>
           </figure>
 
