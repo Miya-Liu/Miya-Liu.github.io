@@ -52,8 +52,8 @@
         <article class="post memory-post has-toc">
           <header>
             <div class="title">
-              <h2><a href="Agent_Self_Evolution.html">Agent Self-Evolution</a></h2>
-              <p>How agents learn, adapt, and improve over time.</p>
+              <h2><a href="Agent_Self_Evolution.html">Can you tell that your agent is evolving?</a></h2>
+              <p> — after an evaluation on agent's self-evolution performance.</p>
             </div>
             <div class="meta">
               <time class="published" datetime="2026-04-20">20/04/2026</time>
@@ -65,12 +65,14 @@
           </header>
 
           <section class="memory-article-body">
-            <p>This page is my ongoing study log about agent self-evolution. I will track how agents improve from interaction history, how memories and skills are updated, and how to keep the evolution loop reliable and safe in production.</p>
+            <p id="341006db-a268-8065-bc4f-c879e820bccf">In the field of AI, especially the recent area of AI agents, the future and endevor is to see that an agent can grow up like a human being, i.e. having an agent onboarding at basic level and growing into an expert in a manner of self-evolution. 
+              However, apart from telling the growth of your agent by your gut feeling, there is not much systematic way to actually evaluate the self-evolution of your agent. For instance, did agent learn from past experiences, have it enhanced its skills without affecting previous capabilities, is it getting formaliser with its owners or users, etc. 
+            <p>In this page, I will share my ongoing study log about evaluating agents capability growth from its self-evolution. The evaluation shall first propose a group of dimensions to measure agent evolution, followed by different policies to build datasets and conduct experiments to report performance analysis with full rationale and evidence in each dimension.</p>
 
             <h3>What Self-Evolution Means</h3>
             <ul class="bulleted-list">
-              <li>Not one-shot fine-tuning, but iterative adaptation in running systems.</li>
-              <li>Signals come from failures, corrections, confirmations, and repeated tasks.</li>
+              <li>Not one-shot fine-tuning, but iterative adaptation in running systems. </li>
+              <li>Signals come from failures, corrections, confirmations, and repeated tasks. </li>
               <li>Outputs include updated memory, adjusted prompts, and extracted skills.</li>
             </ul>
 
