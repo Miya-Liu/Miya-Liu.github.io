@@ -235,143 +235,125 @@
           <figure class="memory-mermaid-figure">
             <div class="mermaid">
               flowchart TD
-              %% Abstract evaluation pipeline for agent evolution performance (v1, conceptual)
+	A1["Baseline"]
+	A2["Candidate"]
+	Policy{"Evaluation Protocol type <br/> repetition policy"}
+	A1-->Policy
+	A2-->Policy
+	
+	subgraph Stage1["Stage 1: Task Manifest Construction"]
+	  B2{Evaluation Mode}
+	  B2 -->|Stream| S1["Sequencial tasks:<br/>drift/adaptation behavior"]
+	  B2 -->|Group| S2["Grouped tasks:<br> - seen/unseen<br/> - retention<br/> - robustness A/B"]
+	end
 
-              A["Inputs
-baseline config + candidate config
-protocol type (A/B/C) + repetition policy
-deterministic task construction seed"] --> B
+	Policy-->|Streaming|B2
+	Policy-->|Streaming|B2
+		
+	subgraph Stage2["Stage 2: Evaluation Execution"]
+	  D["Persist run artifacts + transcripts/outcomes: results grouped by slice + protocol metadata"] --> E
+	  E["Compare versions with aligned deltas + uncertainty: adjacent + windowed views"] --> F
+	  F["Validate trajectories/process quality: from transcript/outcome only"] --> G
+	  G["Emit immutable Self-Evolution Scorecard"] --> H["Decision: promote / hold / rollback"]
+	end
+	
+	Stage1 --> Stage2
 
-              subgraph Stage1[Stage 1: Task Construction]
-                B1["Build immutable Task Manifest
-construction_mode: stream or group
-partition_rules + family_keys
-deterministic produced slices + lineage to source"]
-                B2{slice type}
-                B2 -->|stream| S1["Stream slices
-ordered execution + drift/adaptation behavior"]
-                B2 -->|group|  S2["Group slices
-seen/unseen + retention + robustness A/B"]
-                B --> B1 --> B2
-              end
+	subgraph RF["Required run sets (coverage sets) + protocol alignment"]
+	  R1["Stream run family: adaptation + self-correction + convergence trends"]
+	  R2["Transfer run family: seen vs unseen-within-family + memorization gap"]
+	  R3["Robustness run family: clean vs perturbed/evolved counterparts"]
+	  R4["Memory run family: multi-session remembered/renewed/recalled/etc."]
+	  R5["Feedback run family: gain per feedback + regret/learning trend"]
+	end
+	
+	Stage2 --> R1
+	Stage2 --> R2
+	Stage2 --> R3
+	Stage2 --> R4
+	Stage2 --> R5
+	
+	subgraph M["Dimensions → Metrics"]
+		direction TB
+    subgraph DS["Skill Evolution"]
+      SE1["Expansion"]
+      SE2["Enhancement"]
+      SE3["Intactness"]
+    end
+    subgraph DM["Memory Adaptation"]
+      DM1["Remembered"]
+      DM2["Renewed"]
+      DM3["Recalled"]
+      DM4["Consistent"]
+      DM5["Valuable"]
+    end
+    subgraph DR["Robustness Evolution"]
+      DR1["Self-correction"]
+      DR2["Noise rejection"]
+      DR3["Stability"]
+    end
+    subgraph DE["Efficiency Convergence"]
+      DE1["Reduced intervention"]
+      DE2["Fewer effective steps"]
+      DE3["Lower cost trend"]
+    end
+  end
 
-              subgraph Stage2[Stage 2: Evaluation Execution]
-                C["Execute baseline vs candidate on constructed slices
-with aligned seeds/config constraints"] --> D
-                D["Persist run artifacts + transcripts/outcomes
-results grouped by slice + protocol metadata"] --> E
-                E["Compare versions with aligned deltas + uncertainty
-adjacent + windowed views"] --> F
-                F["Validate trajectories/process quality
-(from transcript/outcome only)"] --> G
-                G["Emit immutable Self-Evolution Scorecard"] --> H["Decision: promote / hold / rollback"]
-              end
+R2 --> DS
+R4 --> DM
+R3 --> DR
+R1 --> DE
+R2 --> DE
 
-              %% Feed constructed slices into evaluation execution
-              B2 --> C
+subgraph W["Comparison windows"]
+  W1["Adjacent delta (t vs t-1): catch abrupt regressions"]
+  W2["Windowed delta (t vs t-N, N>=2): primary for promotion scoring"]
+  W1 --> W2
+end
+E --> W2
 
-              %% Coverage sets / run families
-              subgraph RF[Required run sets (coverage sets) + protocol alignment]
-                R1["Stream run family
-adaptation + self-correction + convergence trends"]
-                R2["Transfer run family
-seen vs unseen-within-family + memorization gap"]
-                R3["Robustness run family
-clean vs perturbed/evolved counterparts"]
-                R4["Memory run family
-multi-session remembered/renewed/recalled/etc."]
-                R5["Feedback run family
-gain per feedback + regret/learning trend"]
-              end
+subgraph Gate["Promotion Gate + Auditing Concepts"]
+  Mode{Checkpoint mode: fast checkpoint or full certification}
+  Mode -->|fast checkpoint| Pre["Reduced checks: decision: hold only (no promotion)"]
+  Mode -->|full certification| Full["Full certification decision: promote / hold / rollback"]
 
-              C --> R1
-              C --> R2
-              C --> R3
-              C --> R4
-              C --> R5
+  subgraph Hard["Hard blockers (must all pass to promote)"]
+    HB1["Generalization: improvement on unseen evidence + confidence"]
+    HB2["Retention: no significant regression on stable evidence"]
+    HB3["Robustness: no collapse under perturbed/evolved evidence"]
+    HB4["Trajectory quality: no degradation in execution/process metrics"]
+    HB5["Data integrity: no leakage / invalid lineage between slices"]
+  end
 
-              %% Dimensions → Metrics
-              subgraph M[Dimensions → Metrics]
-                DS["Skill Evolution
-expansion / enhancement / intactness"]
-                DM["Memory Adaptation
-remembered / renewed / recalled / consistent / valuable"]
-                DR["Robustness Evolution
-self-correction / noise rejection / stability"]
-                DE["Efficiency Convergence
-reduced intervention / fewer effective steps / lower cost trend"]
-              end
+  subgraph Weighted["Weighted decision score (for hold vs promote)"]
+    WS["Combine margins across: transfer gain + retention + robustness + trajectory + efficiency: penalize uncertainty/high variance"]
+  end
 
-              R2 --> DS
-              R4 --> DM
-              R3 --> DR
-              R1 --> DE
-              R2 --> DE
+  subgraph Stats["Statistical eligibility / gating rules"]
+    CI["Uncertainty (confidence intervals), sample sufficiency, effect-size floor: and 'only gate-eligible if required evidence exists'"]
+  end
 
-              %% Comparison windows
-              subgraph W[Comparison windows]
-                W1["Adjacent delta (t vs t-1)
-catch abrupt regressions"]
-                W2["Windowed delta (t vs t-N, N>=2)
-primary for promotion scoring"]
-                W1 --> W2
-              end
-              E --> W2
+  subgraph External["External validity check concept"]
+    EXT["Promotion also requires an external, frozen validity evaluation: plus a freshness constraint relative to the candidate checkpoint"]
+  end
 
-              %% Promotion gate (conceptual, auditable)
-              subgraph Gate[Promotion Gate + Auditing Concepts]
-                Mode{Checkpoint mode}
-                Mode -->|fast checkpoint| Pre["Reduced checks
-decision: hold only (no promotion)"]
-                Mode -->|full certification| Full["Full certification
-decision: promote / hold / rollback"]
+  Full --> HB1
+  Full --> HB2
+  Full --> HB3
+  Full --> HB4
+  Full --> HB5
 
-                subgraph Hard[Hard blockers (must all pass to promote)]
-                  HB1["Generalization
-improvement on unseen evidence + confidence"]
-                  HB2["Retention
-no significant regression on stable evidence"]
-                  HB3["Robustness
-no collapse under perturbed/evolved evidence"]
-                  HB4["Trajectory quality
-no degradation in execution/process metrics"]
-                  HB5["Data integrity
-no leakage / invalid lineage between slices"]
-                end
+  HB1 --> WS
+  HB2 --> WS
+  HB3 --> WS
+  HB4 --> WS
+  HB5 --> WS
 
-                subgraph Weighted[Weighted decision score (for hold vs promote)]
-                  WS["Combine margins across: transfer gain + retention + robustness + trajectory + efficiency
-penalize uncertainty/high variance"]
-                end
+  Full --> CI
+  CI --> EXT
+end
+H --> Mode
 
-                subgraph Stats[Statistical eligibility / gating rules]
-                  CI["Uncertainty (confidence intervals), sample sufficiency, effect-size floor
-and 'only gate-eligible if required evidence exists'"]
-                end
-
-                subgraph External[External validity check concept]
-                  EXT["Promotion also requires an external, frozen validity evaluation
-plus a freshness constraint relative to the candidate checkpoint"]
-                end
-
-                Full --> HB1
-                Full --> HB2
-                Full --> HB3
-                Full --> HB4
-                Full --> HB5
-
-                HB1 --> WS
-                HB2 --> WS
-                HB3 --> WS
-                HB4 --> WS
-                HB5 --> WS
-
-                Full --> CI
-                CI --> EXT
-              end
-              H --> Mode
-
-              %% Styling removed for maximum compatibility; re-add once rendering is confirmed.
             </div>
           </figure>
 
