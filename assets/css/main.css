@@ -4721,6 +4721,63 @@ body.anthropic-site.single .memory-post .memory-article-body .simple-table-heade
   background: rgba(253, 251, 247, 0.85);
 }
 
+/* Evolution Metrics Framework tables (Agent_Self_Evolution) */
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap {
+  margin-top: 1.15em;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework th[scope="row"] {
+  min-width: 7.5rem;
+  max-width: 9.5rem;
+  font-weight: 700;
+  color: var(--ref-title-ink, #1a1a1a);
+  background: rgba(46, 186, 174, 0.08);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework thead th {
+  background: rgba(253, 251, 247, 0.95);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ref-tagline-muted, #666);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metric-list {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: disc;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metric-list li {
+  margin: 0.25em 0;
+  line-height: 1.45;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metric-list li code {
+  font-size: 0.86em;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metric-note {
+  margin: 0.6em 0 0;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--a-text-muted, #555);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body details.evolution-metrics-details {
+  margin: 0.5em 0 1.25em;
+  border-left-color: rgba(46, 186, 174, 0.45);
+  background: rgba(46, 186, 174, 0.06);
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-details summary {
+  font-size: 0.92rem;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-details .table-wrapper {
+  margin-top: 0.75em;
+}
+
 body.anthropic-site.single .memory-post .memory-inline-code {
   display: block;
   margin: 0.65em 0 1em;
