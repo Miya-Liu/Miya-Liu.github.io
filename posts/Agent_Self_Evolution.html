@@ -117,11 +117,20 @@
 
             <div class="table-wrapper evolution-metrics-framework-wrap">
               <table class="simple-table evolution-metrics-framework">
+                <colgroup>
+                  <col class="evolution-col-dimension" />
+                  <col class="evolution-col-purpose" />
+                  <col class="evolution-col-metric" />
+                  <col class="evolution-col-measure" />
+                  <col class="evolution-col-primary" />
+                  <col class="evolution-col-supporting" />
+                </colgroup>
                 <thead>
                   <tr>
                     <th scope="col">Dimension</th>
                     <th scope="col">Purpose</th>
-                    <th scope="col">Metrics (what to measure)</th>
+                    <th scope="col">Metric</th>
+                    <th scope="col">What to measure</th>
                     <th scope="col">Primary benchmarks</th>
                     <th scope="col">Supporting benchmarks</th>
                   </tr>
@@ -130,66 +139,78 @@
                   <tr>
                     <th scope="row" rowspan="3">Skill Evolution</th>
                     <td rowspan="3">Whether capability growth is real, transferable, and non-destructive.</td>
-                    <td><code>skill_expansion</code> — success on newly introduced capability slices vs baseline.</td>
+                    <td><code>skill_expansion</code></td>
+                    <td>Success on newly introduced capability slices vs baseline.</td>
                     <td rowspan="3">EvoSkill, WildClawBench</td>
                     <td rowspan="3">Protocol B seen/unseen family splits (transfer vs memorization)</td>
                   </tr>
                   <tr>
-                    <td><code>skill_enhancement</code> — delta on fixed “same skill, harder context” slices (OOD / harder variants).</td>
+                    <td><code>skill_enhancement</code></td>
+                    <td>Delta on fixed "same skill, harder context" slices (OOD / harder variants).</td>
                   </tr>
                   <tr>
-                    <td><code>skill_intactness</code> — regression rate on stable retention slices (catastrophic forgetting).</td>
+                    <td><code>skill_intactness</code></td>
+                    <td>Regression rate on stable retention slices (catastrophic forgetting).</td>
                   </tr>
                   <tr>
                     <th scope="row" rowspan="5">Memory Adaptation</th>
                     <td rowspan="5">Whether memory is collected, refreshed, retrieved, and useful under realistic multi-session operation.</td>
-                    <td><code>remembered</code> — useful cross-session and long-session information captured.</td>
+                    <td><code>remembered</code></td>
+                    <td>Useful cross-session and long-session information captured.</td>
                     <td rowspan="5">MemoryArena</td>
                     <td rowspan="5">Protocol C feedback-event lineage; update-boundary auditing</td>
                   </tr>
                   <tr>
-                    <td><code>renewed</code> — tracks migration (external truth changes, preference drift).</td>
+                    <td><code>renewed</code></td>
+                    <td>Tracks migration (external truth changes, preference drift).</td>
                   </tr>
                   <tr>
-                    <td><code>recalled</code> — relevant retrieval when agent state requires it.</td>
+                    <td><code>recalled</code></td>
+                    <td>Relevant retrieval when agent state requires it.</td>
                   </tr>
                   <tr>
-                    <td><code>consistent</code> — no obvious conflicts or near-duplicates.</td>
+                    <td><code>consistent</code></td>
+                    <td>No obvious conflicts or near-duplicates.</td>
                   </tr>
                   <tr>
-                    <td><code>valuable</code> — contributes to robustness or efficiency.</td>
+                    <td><code>valuable</code></td>
+                    <td>Contributes to robustness or efficiency.</td>
                   </tr>
                   <tr>
                     <th scope="row" rowspan="3">Robustness Evolution</th>
                     <td rowspan="3">Reliability under failures, perturbations, and adversarial context.</td>
-                    <td><code>self_correction</code> — recover from execution errors and environment perturbations.</td>
+                    <td><code>self_correction</code></td>
+                    <td>Recover from execution errors and environment perturbations.</td>
                     <td rowspan="3">SEA-Eval (sequential stability); perturbation suites in Protocol A/B/C</td>
                     <td rowspan="3">Operator-based perturbation methodology (e.g. AutoEvoEval-style)</td>
                   </tr>
                   <tr>
-                    <td><code>noise_rejection</code> — reject unsafe/misleading injections and poison context; ignore irrelevant noise.</td>
+                    <td><code>noise_rejection</code></td>
+                    <td>Reject unsafe/misleading injections and poison context; ignore irrelevant noise.</td>
                   </tr>
                   <tr>
-                    <td><code>evolution_stability</code> — evolved behaviors do not degrade ongoing quality; stability as memory grows.</td>
+                    <td><code>evolution_stability</code></td>
+                    <td>Evolved behaviors do not degrade ongoing quality; stability as memory grows.</td>
                   </tr>
                   <tr>
                     <th scope="row" rowspan="4">Efficiency Convergence</th>
                     <td rowspan="4">Evolution reduces human and compute cost while maintaining quality.</td>
-                    <td><code>decreased_user_intervention</code> — fewer clarifications/corrections to acceptable outcomes.</td>
+                    <td><code>decreased_user_intervention</code></td>
+                    <td>Fewer clarifications/corrections to acceptable outcomes.</td>
                     <td rowspan="4">SEA-Eval token trajectory (T); sequential SR/T analysis</td>
                     <td rowspan="4">Suite-level analysis (to be filled)</td>
                   </tr>
                   <tr>
-                    <td><code>effective_steps_reduction</code> — fewer actions/tool calls/turns on comparable tasks.</td>
+                    <td><code>effective_steps_reduction</code></td>
+                    <td>Fewer actions/tool calls/turns on comparable tasks.</td>
                   </tr>
                   <tr>
-                    <td><code>token_consumption_reduction</code> — lower or non-increasing token cost on comparable tasks.</td>
+                    <td><code>token_consumption_reduction</code></td>
+                    <td>Lower or non-increasing token cost on comparable tasks.</td>
                   </tr>
                   <tr>
-                    <td><code>efficiency_evolution_rate</code> — success normalized by tokens; v1: <code>success_rate / avg_tokens</code>.</td>
-                  </tr>
-                  <tr>
-                    <td rowspan="4">Suite-level analysis (to be filled)</td>
+                    <td><code>efficiency_evolution_rate</code></td>
+                    <td>Success normalized by tokens; v1: <code>success_rate / avg_tokens</code>.</td>
                   </tr>
                 </tbody>
               </table>

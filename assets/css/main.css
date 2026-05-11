@@ -3723,24 +3723,32 @@ body.anthropic-site #header .main .info a {
 }
 
 body.anthropic-site #wrapper {
-  max-width: min(78rem, 100%);
+  max-width: 90%;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(0.35rem, 1.6vw, 1.15rem);
-  padding-right: clamp(0.35rem, 1.6vw, 1.15rem);
+  padding-left: clamp(0.65rem, 2.8vw, 1.75rem);
+  padding-right: clamp(0.65rem, 2.8vw, 1.75rem);
   box-sizing: border-box;
 }
 
-/* Single long-form posts: use more line width, minimal horizontal gutter */
+/* Single long-form posts: same fluid shell; horizontal padding scales with viewport */
 body.anthropic-site.single #wrapper {
-  max-width: min(112rem, 100%);
-  padding-left: clamp(0px, 1.1vw, 0.45rem);
-  padding-right: clamp(0px, 1.1vw, 0.45rem);
+  max-width: 90%;
+  padding-left: clamp(0.45rem, 2.2vw, 1.35rem);
+  padding-right: clamp(0.45rem, 2.2vw, 1.35rem);
 }
 
 html {
   scroll-padding-top: 4.25rem;
+}
+
+/* Main column tracks wrapper width (grid/flex children can shrink) */
+body.anthropic-site #main {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 body.anthropic-site #main .post {
@@ -3754,6 +3762,14 @@ body.anthropic-site #main .post {
   padding: 1.75em 2em 2em 2.25em;
   margin-bottom: 2em !important;
   overflow: hidden;
+}
+
+/* Base theme header is full-bleed with fixed 3em math; anthropic posts use fluid padding — keep header in-band */
+body.anthropic-site #main article.post > header {
+  left: 0 !important;
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 body.anthropic-site #main .post:nth-child(5n + 2) {
@@ -4497,17 +4513,13 @@ body.anthropic-site.single #main .post-page-layout {
 body.anthropic-site.single #main .post-page-layout > article.post {
   position: relative;
   z-index: 3;
+  min-width: 0;
 }
 
-body.anthropic-site.single #main {
-  width: 100%;
-  max-width: none;
-}
-
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 992px) {
   body.anthropic-site.single #main .post-page-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(11rem, min(22vw, 18rem));
-    gap: clamp(0.45rem, 1.15vw, 1rem);
+    grid-template-columns: minmax(0, 1fr) minmax(10.5rem, min(32vw, 26rem));
+    gap: clamp(0.5rem, 2vw, 1.25rem);
   }
 
   body.anthropic-site.single #main .post-page-layout > .post-toc-wrap {
@@ -4529,7 +4541,7 @@ body.anthropic-site.single #main {
   }
 }
 
-@media screen and (max-width: 1099px) {
+@media screen and (max-width: 991px) {
   body.anthropic-site.single #main .post-page-layout {
     display: flex;
     flex-direction: column;
@@ -4724,6 +4736,43 @@ body.anthropic-site.single .memory-post .memory-article-body .simple-table-heade
 /* Evolution Metrics Framework tables (Agent_Self_Evolution) */
 body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap {
   margin-top: 1.15em;
+}
+
+/* Main 6-column table: fixed layout so Purpose stays slim; colgroup maps columns across rowspan rows */
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework {
+  table-layout: fixed;
+  width: 100%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-dimension {
+  width: 9%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-purpose {
+  width: 15%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-metric {
+  width: 15%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-measure {
+  width: 30%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-primary {
+  width: 10%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework col.evolution-col-supporting {
+  width: 21%;
+}
+
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework th,
+body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0.62em 0.88em;
 }
 
 body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework th[scope="row"] {
@@ -4954,9 +5003,11 @@ body.anthropic-home .anthropic-nav-links a:hover {
 }
 
 body.anthropic-home .anthropic-landing {
-  max-width: 68rem;
+  max-width: 90%;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem 5rem;
+  padding: 0 clamp(1rem, 4vw, 2.25rem) 5rem;
+  box-sizing: border-box;
 }
 
 /* Full landing column width (matches .anthropic-grid / page content), not a narrow measure */
