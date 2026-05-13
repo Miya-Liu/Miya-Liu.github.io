@@ -3727,16 +3727,16 @@ body.anthropic-site #wrapper {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(0.65rem, 2.8vw, 1.75rem);
-  padding-right: clamp(0.65rem, 2.8vw, 1.75rem);
+  padding-left: clamp(0.85rem, 3.2vw, 2.1rem);
+  padding-right: clamp(0.85rem, 3.2vw, 2.1rem);
   box-sizing: border-box;
 }
 
 /* Single long-form posts: same fluid shell; horizontal padding scales with viewport */
 body.anthropic-site.single #wrapper {
   max-width: 90%;
-  padding-left: clamp(0.45rem, 2.2vw, 1.35rem);
-  padding-right: clamp(0.45rem, 2.2vw, 1.35rem);
+  padding-left: clamp(0.75rem, 3vw, 1.85rem);
+  padding-right: clamp(0.75rem, 3vw, 1.85rem);
 }
 
 html {
@@ -4240,7 +4240,7 @@ body.anthropic-site #menu {
 }
 
 body.anthropic-site.single .post {
-  padding: clamp(1.35rem, 3.5vw, 2.5em) clamp(1rem, 3.2vw, 3em);
+  padding: clamp(1.5rem, 3.8vw, 2.65em) clamp(1.2rem, 3.6vw, 3.35em);
   background: var(--paint-cream) !important;
   border: 1px solid var(--paint-frame) !important;
   border-radius: 4px;
@@ -4248,7 +4248,7 @@ body.anthropic-site.single .post {
 }
 
 body.anthropic-site.single .post.memory-post {
-  padding: clamp(0.85rem, 1.6vw, 1.85em) clamp(0.45rem, 1.1vw, 1.15rem);
+  padding: clamp(1rem, 2.1vw, 2em) clamp(0.85rem, 2.5vw, 1.9rem);
 }
 
 body.anthropic-site.single .post p,
@@ -4386,7 +4386,7 @@ body.anthropic-site.single .post .table-wrapper table {
 body.anthropic-site.single .memory-post .table-wrapper th,
 body.anthropic-site.single .memory-post .table-wrapper td {
   font-size: 0.88rem;
-  padding: 0.55em 0.75em;
+  padding: 0.6em 0.82em;
   border: 1px solid var(--a-border);
   text-align: left;
 }
@@ -4470,6 +4470,34 @@ body.anthropic-site.single .memory-post .memory-article-body {
   position: relative;
   z-index: 0;
   margin-top: 0.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Memory long-form: base theme adds 3em horizontal padding on .title so body looked wider than the headline row; align title + meta + body to the same inner width */
+body.anthropic-site.single .post.memory-post > header .title {
+  padding-left: 0;
+  padding-right: clamp(0.75rem, 1.6vw, 1.35rem);
+}
+
+@media screen and (max-width: 980px) {
+  body.anthropic-site.single .post.memory-post > header .title {
+    padding-right: 0;
+  }
+}
+
+@media screen and (min-width: 981px) {
+  body.anthropic-site.single .post.memory-post > header .meta {
+    padding-right: clamp(0.85rem, 2.5vw, 1.9rem);
+  }
+}
+
+body.anthropic-site.single .post.memory-post .memory-article-body .table-wrapper,
+body.anthropic-site.single .post.memory-post .memory-article-body .memory-mermaid-figure,
+body.anthropic-site.single .post.memory-post .memory-article-body pre,
+body.anthropic-site.single .post.memory-post .memory-article-body figure {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Front-of-article readability polish for long TOC posts */
@@ -4502,7 +4530,7 @@ body.anthropic-site.single .memory-post .memory-article-body li > ol.numbered-li
 body.anthropic-site.single #main .post-page-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(0.45rem, 1.5vw, 1rem);
+  gap: clamp(0.65rem, 2vw, 1.35rem);
   align-items: start;
   width: 100%;
   max-width: 100%;
@@ -4519,7 +4547,7 @@ body.anthropic-site.single #main .post-page-layout > article.post {
 @media screen and (min-width: 992px) {
   body.anthropic-site.single #main .post-page-layout {
     grid-template-columns: minmax(0, 1fr) minmax(10.5rem, min(32vw, 26rem));
-    gap: clamp(0.5rem, 2vw, 1.25rem);
+    gap: clamp(0.65rem, 2.4vw, 1.5rem);
   }
 
   body.anthropic-site.single #main .post-page-layout > .post-toc-wrap {
@@ -4772,7 +4800,7 @@ body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-
 body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework-wrap > table.evolution-metrics-framework td {
   word-wrap: break-word;
   overflow-wrap: break-word;
-  padding: 0.62em 0.88em;
+  padding: 0.68em 0.95em;
 }
 
 body.anthropic-site.single .memory-post .memory-article-body .evolution-metrics-framework th[scope="row"] {
@@ -5006,7 +5034,7 @@ body.anthropic-home .anthropic-landing {
   max-width: 90%;
   width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2.25rem) 5rem;
+  padding: 0 clamp(1.15rem, 4.5vw, 2.65rem) 5rem;
   box-sizing: border-box;
 }
 

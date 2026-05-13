@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--
+  Future Imperfect by HTML5 UP html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>What if Agent trains its own model | Thought Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="AI-native model training: autonomous experiment loops over prepare.py and train.py, git-isolated branches, metrics logging, and the portable self-coaching agent skill.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="256x256">
+  <link rel="apple-touch-icon" href="../images/favicon.png" sizes="180x180">
+</head>
+<body class="single is-preload anthropic-site">
+  <div id="wrapper">
+    <header id="header">
+      <h1><a href="../index.html">Thought Recorder</a></h1>
+      <nav class="main">
+        <ul>
+          <li class="info"><a href="../index.html">Home</a></li>
+          <li class="info"><a href="../blog.html">Blog</a></li>
+          <li class="info"><a href="https://www.ecs.soton.ac.uk/people/ml3u17">About</a></li>
+          <li class="search">
+            <a class="fa-search" href="#search">Search</a>
+            <form id="search" method="get" action="#">
+              <input name="query" placeholder="Search" type="text">
+            </form>
+          </li>
+          <li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="menu">
+      <section>
+        <form class="search" method="get" action="#">
+          <input name="query" placeholder="Search" type="text">
+        </form>
+      </section>
+      <section>
+        <ul class="links">
+          <li><a href="#"><h3>Years</h3><p>2019</p></a></li>
+          <li><a href="#"><h3>Topics</h3><p>Data Marketplaces</p></a></li>
+          <li><a href="#"><h3>Publications</h3><p>Coming</p></a></li>
+          <li><a href="#"><h3>States</h3><p>Coming</p></a></li>
+        </ul>
+      </section>
+    </section>
+
+    <div id="main">
+      <div class="post-page-layout">
+        <article class="post memory-post has-toc">
+          <header>
+            <div class="title">
+              <h2><a href="What_If_Agent_Trains_Own_Model.html">What if Agent trains its own model</a></h2>
+              <p> — AI-native loops, cache gates, and git-scoped training experiments.</p>
+            </div>
+            <div class="meta">
+              <time class="published" datetime="2026-05-13">13/05/2026</time>
+              <a href="https://www.ecs.soton.ac.uk/people/ml3u17" class="author">
+                <span class="name">Miya Liu</span>
+                <img src="https://avatars.githubusercontent.com/u/41325630?v=4" alt="Miya Liu">
+              </a>
+            </div>
+          </header>
+
+          <section class="memory-article-body">
+            <p>When the agent’s job is not only to write code but to <strong>iterate on a training stack</strong>, the control flow looks less like a single chat turn and more like a staged pipeline: data preparation, baseline runs, hypothesis edits, metric parsing, and roll-forward or rollback on git. The notes below sketch that shape and point at a portable “self-coaching” skill package that encodes the same ideas.</p>
+
+            <h2 id="ai-native-model-training">AI-native Model Training</h2>
+            <p>The following sequence diagram summarizes an autonomous run pattern (for example over a vendored <code>autoresearch</code>-style repo): the agent coordinates <code>prepare.py</code>, cache state, <code>train.py</code>, logs, and branch-per-experiment isolation.</p>
+
+            <figure class="memory-mermaid-figure">
+              <div class="mermaid">
+sequenceDiagram
+    autonumber
+    participant H as Human
+    participant A as Coding Agent
+    participant P as prepare.py
+    participant T as train.py
+    participant C as "Cache (~/.cache/autoresearch)"
+    participant G as Git Branch
+    participant L as "run.log / results.tsv"
+
+    H->>A: Start autonomous run on autoresearch
+    A->>A: Read README.md + program.md + prepare.py + train.py
+
+    A->>C: Check shards + tokenizer exist
+    alt Cache missing/incomplete
+        A->>P: uv run prepare.py
+        P->>C: Download parquet shards
+        P->>C: Train/save tokenizer + token_bytes
+        P-->>A: Ready
+    else Cache ready
+        C-->>A: Data/tokenizer available
+    end
+
+    A->>G: Create/switch branch autoresearch/&lt;tag&gt;
+    A->>T: Baseline run (no edits)
+    A->>T: uv run train.py &gt; run.log 2&gt;&amp;1
+    T-->>L: Write metrics (val_bpb, peak_vram_mb, ...)
+    A->>L: Parse baseline + append results.tsv
+    A->>A: Set best-so-far score/commit
+
+    loop Experiment loop (until human stops)
+        A->>T: Apply one hypothesis (edit train.py only)
+        A->>G: Commit experiment
+        A->>T: uv run train.py &gt; run.log 2&gt;&amp;1
+
+        alt Crash / timeout / OOM
+            T-->>L: Error trace only
+            A->>L: Log status=crash
+            A->>G: Revert/discard broken idea
+        else Successful run
+            T-->>L: Final metrics summary
+            A->>L: Extract val_bpb + peak_vram_mb
+            alt val_bpb improved (lower)
+                A->>G: Keep commit, advance best-so-far
+                A->>L: Log status=keep
+            else Not improved
+                A->>G: Reset to best-so-far
+                A->>L: Log status=discard
+            end
+        end
+    end
+
+    H->>A: Stop
+    A-->>H: Return best commit + result history
+              </div>
+            </figure>
+
+            <p>In the diagram, <code>&lt;tag&gt;</code> stands for an experiment identifier on the branch name; redirects and shell details are shown as in the original export so the log path matches how you would run the trainer locally.</p>
+
+            <h2 id="self-coaching-skill">Self Coaching (skill excerpt)</h2>
+            <p>The <a href="https://github.com/Miya-Liu/self-coaching">self-coaching</a> repository describes an agent-agnostic skill: front matter and intent from the Notion source are reproduced below (pipeline names align with the sequence above and with that repo’s README and architecture docs).</p>
+
+            <pre class="code-wrap"><code>---
+name: self-coaching
+description: Agent-agnostic skill. Coaches any capable agent through Loading Gate, Performance, Data Pool, Local Model, Deploy Gate, Trainer, LOGs, and Results (experience logs); git worktrees; user-authorized merge and model/data updates.
+---</code></pre>
+
+            <h3>Intent</h3>
+            <p><strong>Portability:</strong> This package is a <strong>portable agent skill</strong>. Any system that can supply this folder to an <strong>LLM agent</strong> (API, IDE, or CLI) and allow <strong>Bash</strong> + file tools may use it. It is not specific to a single editor or “skills” store—only <code>SKILL.md</code> and the file layout below need to be visible to the model.</p>
+            <p>This skill <strong>coaches the agent</strong> to train and improve a <strong>git-backed codebase</strong>—especially the <strong>model</strong> (weights, architecture, and training loop in the repo the agent is working in). The default target here is the vendored trainer under <code>upstream/autoresearch/</code>; the same pattern applies if you point the skill at another repository.</p>
+            <p>The agent runs training experiments <strong>automatically</strong> while isolating edits in a <strong>git worktree</strong> branched from that repo. It uses <strong>git-related Bash</strong> (<code>git</code>, <code>git worktree</code>, <code>git merge</code>, etc.) as below. <strong>Do not merge back into upstream <code>main</code> until the user explicitly authorizes it.</strong></p>
+            <ul class="bulleted-list">
+              <li>Mode: <code>git worktree</code> + <code>stage-gated merge</code></li>
+              <li>Safety profile: <code>strict</code> (edits only inside the active experiment worktree during the loop)</li>
+              <li><strong>Experience</strong> (persistent logs): <code>experience/EXPERIMENT_LOG.md</code>, <code>experience/ERROR.md</code>, <code>experience/LEARNINGS.md</code> (see <strong>Experience</strong> in the skill doc)</li>
+              <li>All training stdout/stderr: redirect to <strong>log files</strong> under <code>logs/</code> (never paste full training output into chat)</li>
+            </ul>
+
+            <h3>Pipeline concepts</h3>
+            <p>These names match the <strong>sequence diagram</strong> in <code>README.md</code> and <code>docs/ARCHITECTURE.md</code> of the skill package.</p>
+            <ul class="bulleted-list">
+              <li><strong>Loading Gate</strong> — Preconditions before the first experiment: <code>uv</code> env, data/tokenizer cache (e.g. <code>uv run prepare.py</code>), and any <strong>admin-configured</strong> checkpoint or model entry point. The agent does not start the training loop until this gate is satisfied.</li>
+              <li><strong>Performance</strong> — Current model quality vs the goal, using the primary <code>metric_name</code> from <code>logs/&lt;id&gt;.log</code> and the keep/discard rules in <strong>Strict guardrails</strong>.</li>
+              <li><strong>Data Pool</strong> — All data the training pipeline is allowed to use: default prepared cache, <strong>plus</strong> any additional sources you wire in (e.g. exports from <strong>user–agent dialogue</strong>, or <strong>self-play</strong>–generated data). Keep paths and provenance explicit in <code>experience/LEARNINGS.md</code> when you add new sources.</li>
+              <li><strong>Local Model</strong> — <strong>Admin-configured</strong> starting point: which weights/checkpoint, and often which size variant (e.g. full model vs a smaller one for fast iteration). The agent reads this from your project’s config or environment; the skill does not override admin policy.</li>
+              <li><strong>Deploy Gate</strong> — Isolation and promotion: work on <code>experiment/&lt;id&gt;</code> only in <code>worktrees/&lt;id&gt;/</code>; <strong>no</strong> replace of the integrated <code>main</code> line, and no <strong>Replace local model</strong> / <strong>Update data</strong> on the canonical path, until the <strong>Human</strong> approves.</li>
+              <li><strong>LOGs</strong> — <code>logs/&lt;id&gt;.log</code> (full <code>train</code> output).</li>
+              <li><strong>Results</strong> — Durable record in <code>experience/</code> (outcomes, errors, optimization learnings), not raw log paste.</li>
+            </ul>
+
+            <aside class="memory-callout">
+              <p><strong>Acknowledgements</strong> — related projects:</p>
+              <ul class="bulleted-list">
+                <li><a href="https://github.com/karpathy/autoresearch">github.com/karpathy/autoresearch</a></li>
+                <li><a href="https://github.com/areal-project/AReaL">github.com/areal-project/AReaL</a></li>
+                <li><a href="https://github.com/Miya-Liu/self-coaching">github.com/Miya-Liu/self-coaching</a></li>
+              </ul>
+            </aside>
+          </section>
+
+          <footer>
+            <ul class="stats">
+              <li><a href="#">General</a></li>
+              <li><a href="#" class="icon fa-heart"></a></li>
+              <li><a href="#" class="icon fa-comment"></a></li>
+            </ul>
+          </footer>
+        </article>
+        <aside class="post-toc-wrap" aria-label="On this page">
+          <nav class="post-toc" id="post-toc-nav"></nav>
+        </aside>
+      </div>
+    </div>
+
+    <section id="footer">
+      <p class="pageview-stat" hidden><span id="pageview-count">—</span> views</p>
+      <p class="content-rights" role="note">Writing is for reading on this site only; please do not republish without permission. © Miya Liu.</p>
+      <ul class="icons">
+        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="../assets/js/pageviews-config.js"></script>
+  <script src="../assets/js/pageviews.js"></script>
+  <script src="../assets/js/mermaid-init.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/post-toc.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <script src="../assets/js/post-likes.js"></script>
+</body>
+</html>
