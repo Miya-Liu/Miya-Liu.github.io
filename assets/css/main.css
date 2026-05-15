@@ -4950,6 +4950,9 @@ body.anthropic-site .mermaid foreignObject div {
 /* ——— Landing page (index) ——— */
 
 body.anthropic-home {
+  /* One column: same outer width + same horizontal padding on nav / main / footer */
+  --home-col-width: min(68rem, 90%);
+  --home-pad-inline: clamp(1.15rem, 4.5vw, 2.65rem);
   margin: 0;
   min-height: 100vh;
   background-color: var(--a-bg);
@@ -4974,11 +4977,11 @@ body.anthropic-home .anthropic-nav {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  width: min(68rem, 90%);
+  width: var(--home-col-width);
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem var(--home-pad-inline);
   background: rgba(255, 254, 249, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -5036,11 +5039,11 @@ body.anthropic-home .anthropic-nav-links a:hover {
 body.anthropic-home .anthropic-landing {
   box-sizing: border-box;
   /* Explicit width so margin auto centers reliably (width:100% + max-width was shifting left in some layouts) */
-  width: min(68rem, 90%);
+  width: var(--home-col-width);
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 clamp(1.15rem, 4.5vw, 2.65rem) 5rem;
+  padding: 0 var(--home-pad-inline) 5rem;
 }
 
 /* Full landing column width (matches .anthropic-grid / page content), not a narrow measure */
@@ -5123,7 +5126,7 @@ body.anthropic-home .anthropic-hero-head .anthropic-kicker {
 body.anthropic-home .anthropic-hero h1 {
   font-family: var(--font-site-title) !important;
   font-optical-sizing: auto;
-  /* One line; size tracks content column width (container) so it fits without wrapping */
+  /* Block + full column width so the rule and type align with .anthropic-grid below */
   font-size: clamp(0.72rem, 5.4cqi + 0.2rem, 2.85rem);
   font-weight: 900;
   line-height: 1.05;
@@ -5133,11 +5136,11 @@ body.anthropic-home .anthropic-hero h1 {
   text-transform: uppercase;
   padding-bottom: 0.55rem;
   border-bottom: 4px solid var(--ref-orange-rule);
-  display: inline-block;
-  width: fit-content;
+  display: block;
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 @supports not (container-type: inline-size) {
@@ -5277,11 +5280,11 @@ body.anthropic-home .anthropic-card a:hover {
 
 body.anthropic-home .anthropic-site-footer {
   box-sizing: border-box;
-  width: min(68rem, 90%);
+  width: var(--home-col-width);
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem var(--home-pad-inline) 3rem;
   border-top: 1px solid var(--paint-frame);
   font-size: 0.85rem;
   color: var(--a-text-muted);
