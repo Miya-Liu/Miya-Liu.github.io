@@ -3772,6 +3772,71 @@ body.anthropic-site #main article.post > header {
   box-sizing: border-box;
 }
 
+/*
+  Blog index: Future Imperfect uses full-bleed header math (negative margins, 3em .title padding).
+  Anthropic cards already pad the article; reset header/title so h2, tagline p, and excerpt p share one left edge.
+*/
+body.anthropic-site.blog-page #main article.post > header {
+  margin: 0 0 1.25em 0;
+  align-items: flex-start;
+}
+
+body.anthropic-site.blog-page #main article.post > header .title {
+  padding: 0;
+  margin: 0 0 0.15em 0;
+  text-align: left;
+}
+
+body.anthropic-site.blog-page #main article.post > header .meta {
+  padding: 0 0 0 1.25em;
+  border-left: 1px solid var(--paint-frame);
+  min-width: 11.5em;
+  width: 11.5em;
+  flex-shrink: 0;
+  text-align: right;
+  align-self: stretch;
+}
+
+@media screen and (max-width: 980px) {
+  body.anthropic-site.blog-page #main article.post {
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  body.anthropic-site.blog-page #main article.post > header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 0 1.1em 0;
+    margin: 0 0 1.1em 0;
+  }
+
+  body.anthropic-site.blog-page #main article.post > header .title {
+    margin: 0 0 1rem 0;
+    text-align: left;
+  }
+
+  body.anthropic-site.blog-page #main article.post > header .meta {
+    width: 100%;
+    min-width: 0;
+    padding: 0.85rem 0 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--paint-frame);
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.65rem;
+  }
+
+  body.anthropic-site.blog-page #main article.post > header .meta > * {
+    border-left: 0 !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
 body.anthropic-site #main .post:nth-child(5n + 2) {
   border-left-color: var(--paint-green);
 }
@@ -4075,11 +4140,13 @@ body.anthropic-site .button.large {
 }
 
 body.anthropic-site .button:hover,
-body.anthropic-site .button.large:hover {
-  background: var(--rand-blue) !important;
-  color: #fffef9 !important;
+body.anthropic-site .button.large:hover,
+body.anthropic-site .button:focus-visible,
+body.anthropic-site .button.large:focus-visible {
+  background: #ebe7de !important;
+  color: var(--rand-ink) !important;
   border-color: var(--rand-ink) !important;
-  box-shadow: 4px 4px 0 var(--rand-red) !important;
+  box-shadow: 4px 4px 0 var(--rand-yellow) !important;
 }
 
 body.anthropic-site input[type="text"]:focus,
@@ -5013,7 +5080,7 @@ body.anthropic-home .anthropic-brand-with-mark::before {
 }
 
 body.anthropic-home .anthropic-brand:hover {
-  color: var(--a-accent);
+  color: var(--a-accent) !important;
 }
 
 body.anthropic-home .anthropic-nav-links {
@@ -5033,7 +5100,7 @@ body.anthropic-home .anthropic-nav-links a {
 }
 
 body.anthropic-home .anthropic-nav-links a:hover {
-  color: var(--a-accent);
+  color: var(--a-accent) !important;
 }
 
 body.anthropic-home .anthropic-landing {
@@ -5184,27 +5251,31 @@ body.anthropic-home .anthropic-btn {
 
 body.anthropic-home .anthropic-btn-primary {
   background: var(--paint-charcoal);
-  color: #fffef9;
+  /* !important beats body.anthropic-site a:hover link color */
+  color: #fffef9 !important;
   box-shadow: 4px 4px 0 var(--rand-yellow);
 }
 
-body.anthropic-home .anthropic-btn-primary:hover {
-  background: var(--rand-blue);
-  color: #fffef9;
-  box-shadow: 4px 4px 0 var(--rand-red);
+body.anthropic-home .anthropic-btn-primary:hover,
+body.anthropic-home .anthropic-btn-primary:focus-visible {
+  background: #ebe7de;
+  color: var(--rand-ink) !important;
+  border-color: var(--rand-ink);
+  box-shadow: 4px 4px 0 var(--rand-yellow);
   transform: translate(-1px, -1px);
 }
 
 body.anthropic-home .anthropic-btn-ghost {
   background: var(--paint-cream);
-  color: var(--rand-ink);
+  color: var(--rand-ink) !important;
   border-color: var(--paint-frame);
   box-shadow: 4px 4px 0 rgba(20, 20, 20, 0.08);
 }
 
-body.anthropic-home .anthropic-btn-ghost:hover {
+body.anthropic-home .anthropic-btn-ghost:hover,
+body.anthropic-home .anthropic-btn-ghost:focus-visible {
   background: var(--paint-mint);
-  color: var(--rand-ink);
+  color: var(--rand-ink) !important;
   box-shadow: 4px 4px 0 var(--rand-blue);
 }
 
@@ -5274,7 +5345,7 @@ body.anthropic-home .anthropic-card a {
 }
 
 body.anthropic-home .anthropic-card a:hover {
-  color: var(--line-taupe-deep);
+  color: var(--line-taupe-deep) !important;
   border-bottom-color: var(--line-taupe-deep);
 }
 
