@@ -4973,8 +4973,11 @@ body.anthropic-home .anthropic-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 68rem;
-  margin: 0 auto;
+  box-sizing: border-box;
+  width: min(68rem, 90%);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 1.25rem 1.5rem;
   background: rgba(255, 254, 249, 0.94);
   backdrop-filter: blur(14px);
@@ -5031,11 +5034,13 @@ body.anthropic-home .anthropic-nav-links a:hover {
 }
 
 body.anthropic-home .anthropic-landing {
-  max-width: 90%;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 clamp(1.15rem, 4.5vw, 2.65rem) 5rem;
   box-sizing: border-box;
+  /* Explicit width so margin auto centers reliably (width:100% + max-width was shifting left in some layouts) */
+  width: min(68rem, 90%);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 clamp(1.15rem, 4.5vw, 2.65rem) 5rem;
 }
 
 /* Full landing column width (matches .anthropic-grid / page content), not a narrow measure */
@@ -5271,8 +5276,11 @@ body.anthropic-home .anthropic-card a:hover {
 }
 
 body.anthropic-home .anthropic-site-footer {
-  max-width: 68rem;
-  margin: 0 auto;
+  box-sizing: border-box;
+  width: min(68rem, 90%);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 2rem 1.5rem 3rem;
   border-top: 1px solid var(--paint-frame);
   font-size: 0.85rem;
