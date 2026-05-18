@@ -1,0 +1,892 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Build a stronger ecosystem around an agent with Webhook, MCP, Plugin and skills all together. </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="364006db-a268-8088-bc52-d80499322c0a" class="page sans"><header><h1 class="page-title" dir="auto">Build a stronger ecosystem around an agent with Webhook, MCP, Plugin and skills all together. </h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time>May 18, 2026 10:08 AM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>May 18, 2026 5:32 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><p id="364006db-a268-8064-8f26-e6cb95d74801" class="">the practical way to choose between Skills, MCP, Plugins, Webhooks, Cron, direct API calls, and the Gateway/API Server<br/><br/>Short answer:<br/>- Use a Skill when the integration is mostly “instructions + API examples”.<br/>- Use MCP when you want to expose external capabilities as reusable tools, especially if an MCP server already exists.<br/>- Use a Plugin when you want a native Hermes integration: custom tools, auth, providers, gateway/platforms, or deeper behavior.<br/>- Use Webhooks when the outside world should trigger Hermes.<br/>- Use Cron when Hermes should periodically check or pull something.<br/>- Use direct terminal/curl/Python when it is a one-off or prototype.<br/>- Use Gateway/API Server when another application wants to chat with or command Hermes as an agent service.<br/><br/>Direction matters.<br/><br/>External system → Hermes:<br/><br/>- Webhook<br/>- Gateway API server<br/>- Messaging gateway<br/><br/>Hermes → External system:<br/><br/>- Skill<br/>- MCP<br/>- Plugin<br/>- Direct API/curl/Python calls<br/><br/>Time-based:<br/><br/>- Cron<br/><br/>Reusable agent knowledge:<br/><br/>- Skill<br/><br/>Reusable callable capability:<br/><br/>- MCP or Plugin<br/><br/>Durable multi-agent workflow:<br/>- Kanban</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80fb-ba0d-fb8cb57539f2" class="">
+</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="364006db-a268-80a5-a6e1-f1a2a1f986da"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="364006db-a268-80d5-9c7d-e36893371a0e" class="">Examples</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f1-b826-ec402e01dbd5" class="toggle"><li><details open=""><summary>SKILL Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-8066-9deb-e5b22c67b2da" class="">Use a Skill when the integration is mostly operational knowledge.<br/><br/>A skill is not a live connector by itself. It tells Agent how to use something using existing tools like terminal, curl, file editing, browser, Python scripts, etc.<br/><br/>Good for<br/><br/>- REST APIs that are simple<br/>- Internal runbooks<br/>- “How to use this service”<br/>- One-off or low-frequency integrations<br/>- API recipes<br/>- Human conventions<br/>- Troubleshooting steps<br/>- Prompting style for an integration<br/><br/>Bad for:<br/><br/>- Complex auth flows<br/>- Many repetitive calls<br/>- Safety-critical write operations<br/>- Large schemas<br/>- Returning structured tool results<br/>- Hiding credentials from the model<br/>- Things you want exposed as first-class tools<br/><br/>Example: Notion as a Skill<br/><br/>Hermes can use a Notion skill that says how to call the Notion API via curl with `NOTION_API_KEY`.<br/><br/>Setup:<br/><br/>1. Create a Notion integration:<br/><br/>   https://notion.so/my-integrations<br/><br/>2. Put the key in:<br/><br/>   ~/.hermes/.env<br/><br/>   Example:<br/><br/>   NOTION_API_KEY=***<br/><br/>3. Share the target Notion page/database with the integration in Notion:<br/><br/>   Page menu → Connect to → your integration.<br/><br/>4. Load the skill:<br/><br/>   In chat:<br/><br/>   /skill productivity/notion<br/><br/>   Or start Hermes with:<br/><br/>   hermes -s productivity/notion<br/><br/>Then ask:<br/><br/>“Search my Notion workspace for pages about Q4 planning.”<br/><br/>or:<br/><br/>“Create a new Notion page in database X with title Y and these notes.”<br/><br/>When to upgrade from Skill to MCP/Plugin:<br/><br/>If you start asking the same operations repeatedly, for example:<br/><br/>- create task<br/>- update status<br/>- query database<br/>- append meeting notes<br/>- sync pages<br/>- handle pagination<br/>- validate database properties<br/><br/>Then skill-only becomes fragile. Move to MCP or plugin.</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8072-9f6d-e41addbf5703" class="toggle"><li><details open=""><summary>MCP Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-801e-a5a3-f25963abb341" class="">Use MCP when you want Agent to gain external tools from an MCP server.<br/><br/>MCP is best when:<br/><br/>- An MCP server already exists for your target system.<br/>- You want the same server usable by Hermes, Claude Desktop, Cursor, other agents, etc.<br/>- You want a clean tool boundary.<br/>- You want a remote service to expose tools over HTTP.<br/>- You want to avoid modifying Hermes code.<br/>- You want tools auto-discovered at startup.<br/><br/>Good examples:<br/><br/>- Filesystem MCP<br/>- GitHub MCP<br/>- Postgres MCP<br/>- Notion MCP<br/>- Slack MCP<br/>- Browser/data API MCP<br/>- Internal company MCP server<br/><br/>Example stdio MCP server config:<br/><br/>  mcp_servers:<br/>    time:<br/>      command: &quot;uvx&quot;<br/>      args: [&quot;mcp-server-time&quot;]<br/><br/>Example Node/npm MCP server:<br/><br/>  mcp_servers:<br/>    github:<br/>      command: &quot;npx&quot;<br/>      args: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;]<br/>      env:<br/>        GITHUB_PERSONAL_ACCESS_TOKEN: &quot;ghp_xxxxxxxxx&quot;<br/><br/>Example remote HTTP MCP server:<br/><br/>  mcp_servers:<br/>    company_api:<br/>      url: &quot;https://mcp.mycompany.com/v1/mcp&quot;<br/>      headers:<br/>        Authorization: &quot;Bearer sk_xxxxxxxxx&quot;<br/>        X-Team-Id: &quot;engineering&quot;<br/>      timeout: 180<br/>      connect_timeout: 30<br/><br/>Then restart Hermes.<br/><br/>Check:<br/><br/>  hermes mcp list<br/>  hermes mcp test company_api<br/><br/>Tool naming:<br/><br/>If server name is `company_api` and tool name is `search_customers`, Hermes exposes something like:<br/><br/>  mcp_company_api_search_customers<br/><br/>MCP is especially good for remote databases.<br/><br/>Example: remote Postgres database<br/><br/>Recommended pattern:<br/><br/>  mcp_servers:<br/>    postgres_ro:<br/>      command: &quot;npx&quot;<br/>      args: [&quot;-y&quot;, &quot;some-postgres-mcp-server&quot;]<br/>      env:<br/>        DATABASE_URL: &quot;postgresql://readonly_user:***@host:5432/db&quot;<br/><br/>Important deployment advice:<br/><br/>- Use a read-only database user by default.<br/>- Create separate tools for writes; do not give arbitrary SQL write access casually.<br/>- Put secrets in env/config, not in prompts.<br/>- Prefer allowlisted queries or database views for production.<br/>- Use timeouts and row limits.<br/>- Log writes.<br/><br/>Use MCP if:<br/><br/>“Hermes should query this database as part of many tasks.”<br/><br/>Use webhook/cron instead if:<br/><br/>“The database should notify Hermes when something changes.”</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b5-a611-c9146fd9f1a5" class="toggle"><li><details open=""><summary>Plugin Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-80e7-a441-cbe4d9bdab10" class="">Use a Hermes Plugin when you want a native Hermes integration.<br/><br/>A plugin is more work than a skill or MCP config, but it is the most Hermes-native option.<br/><br/>Use a plugin when:<br/><br/>- You need custom Hermes tools.<br/>- You want a toolset like `spotify`, `notion`, `company_api`.<br/>- You need custom auth handling.<br/>- You need OAuth support.<br/>- You need structured errors/results.<br/>- You want tools to appear/disappear based on credentials.<br/>- You want to ship the integration to other Hermes users.<br/>- You need gateway/platform/provider/memory/context behavior, not just tool calls.<br/>- You want deep integration with Hermes config, auth, logs, and UI.<br/><br/>Example plugin shape:<br/><br/>  ~/.hermes/plugins/company_api/<br/>    plugin.yaml<br/>    __init__.py<br/>    tools.py<br/>    client.py<br/><br/>Example `plugin.yaml`:<br/><br/>  name: company_api<br/>  version: 1.0.0<br/>  description: &quot;Company API integration for customers, invoices, and alerts.&quot;<br/>  author: Your Name<br/>  kind: backend<br/>  provides_tools:<br/>    - company_api_customers<br/>    - company_api_invoices<br/>    - company_api_alerts<br/><br/>Example `tools.py` pattern:<br/><br/>  import os<br/>  from tools.registry import registry, tool_result, tool_error<br/><br/>  def _check_company_api_available():<br/>      return bool(os.getenv(&quot;COMPANY_API_KEY&quot;))<br/><br/>  def _handle_company_customers(args, **kw):<br/>      action = args.get(&quot;action&quot;, &quot;search&quot;)<br/>      try:<br/>          if action == &quot;search&quot;:<br/>              query = args.get(&quot;query&quot;, &quot;&quot;)<br/>              # call your API here<br/>              return tool_result({<br/>                  &quot;success&quot;: True,<br/>                  &quot;action&quot;: action,<br/>                  &quot;results&quot;: []<br/>              })<br/><br/>          return tool_error(f&quot;Unknown action: {action}&quot;)<br/>      except Exception as exc:<br/>          return tool_error(<br/>              f&quot;company_api_customers failed: {type(exc).__name__}: {exc}&quot;<br/>          )<br/><br/>  registry.register(<br/>      name=&quot;company_api_customers&quot;,<br/>      toolset=&quot;company_api&quot;,<br/>      schema={<br/>          &quot;name&quot;: &quot;company_api_customers&quot;,<br/>          &quot;description&quot;: &quot;Search and retrieve company customer records.&quot;,<br/>          &quot;parameters&quot;: {<br/>              &quot;type&quot;: &quot;object&quot;,<br/>              &quot;properties&quot;: {<br/>                  &quot;action&quot;: {<br/>                      &quot;type&quot;: &quot;string&quot;,<br/>                      &quot;enum&quot;: [&quot;search&quot;, &quot;get&quot;],<br/>                      &quot;default&quot;: &quot;search&quot;<br/>                  },<br/>                  &quot;query&quot;: {<br/>                      &quot;type&quot;: &quot;string&quot;,<br/>                      &quot;description&quot;: &quot;Search query&quot;<br/>                  },<br/>                  &quot;customer_id&quot;: {<br/>                      &quot;type&quot;: &quot;string&quot;,<br/>                      &quot;description&quot;: &quot;Customer ID for get action&quot;<br/>                  }<br/>              }<br/>          }<br/>      },<br/>      handler=_handle_company_customers,<br/>      check_fn=_check_company_api_available,<br/>      requires_env=[&quot;COMPANY_API_KEY&quot;],<br/>  )<br/><br/>Then:<br/><br/>1. Put secret in ~/.hermes/.env:<br/><br/>   COMPANY_API_KEY=***<br/><br/>2. Restart Hermes.<br/><br/>3. Enable/check tools:<br/><br/>   hermes tools list<br/>   hermes tools enable company_api<br/><br/>Use plugin instead of MCP when:<br/><br/>- The integration is Hermes-specific.<br/>- You need tight Hermes auth/profile/toolset behavior.<br/>- You want first-class UX.<br/>- You are contributing it to Hermes.<br/>- You need custom gateway behavior or model provider behavior.<br/><br/>Use MCP instead of plugin when:<br/><br/>- You want the integration to be agent-framework-agnostic.<br/>- A good MCP server already exists.<br/>- You want remote/shared tools.<br/>- You do not want to write Hermes-specific code.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8075-af7f-e9da55b0a0d2" class="">
+</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8021-bc5e-ec994d53da71" class="toggle"><li><details open=""><summary>Webhook Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-80dc-a5be-c4a148cc6bbf" class="">Use Webhook when the external system initiates the interaction.<br/><br/>This is the right model for:<br/><br/>- GitHub event → Hermes reviews/triages<br/>- Stripe event → Hermes summarizes payment issue<br/>- CI failure → Hermes investigates<br/>- Monitoring alert → Hermes suggests remediation<br/>- IoT event → Hermes reacts<br/>- External app button → POST task to Hermes<br/><br/>Setup:<br/><br/>First enable webhook platform.<br/><br/>Option A:<br/><br/>  hermes gateway setup<br/><br/>Option B: edit ~/.hermes/config.yaml:<br/><br/>  platforms:<br/>    webhook:<br/>      enabled: true<br/>      extra:<br/>        host: &quot;0.0.0.0&quot;<br/>        port: 8644<br/>        secret: &quot;generate-a-strong-secret-here&quot;<br/><br/>Start gateway:<br/><br/>  hermes gateway run<br/><br/>or service:<br/><br/>  hermes gateway install<br/>  hermes gateway start<br/><br/>Verify:<br/><br/>  curl http://localhost:8644/health<br/><br/>Create subscription:<br/><br/>  hermes webhook subscribe github-issues \<br/>    --events &quot;issues&quot; \<br/>    --prompt &quot;New GitHub issue #{issue.number}: {issue.title}<br/><br/>Action: {action}<br/>Author: {issue.user.login}<br/>Body:<br/>{issue.body}<br/><br/>Please triage this issue.&quot; \<br/>    --deliver telegram \<br/>    --deliver-chat-id &quot;-100123456789&quot;<br/><br/>For a remote API service:<br/><br/>  hermes webhook subscribe vendor-alerts \<br/>    --prompt &quot;Vendor API alert: {alert.name}<br/>Severity: {alert.severity}<br/>Message: {alert.message}<br/><br/>Analyze the likely cause and suggest next steps.&quot; \<br/>    --deliver discord \<br/>    --deliver-chat-id &quot;1234567890&quot;<br/><br/>For no-LLM direct delivery:<br/><br/>  hermes webhook subscribe deploy-events \<br/>    --deliver telegram \<br/>    --deliver-chat-id &quot;123456789&quot; \<br/>    --deliver-only \<br/>    --prompt &quot;Deployment {service} version {version}: {status}&quot;<br/><br/>Use webhook if:<br/><br/>“When X happens outside Hermes, run Hermes.”<br/><br/>Do not use webhook if:<br/><br/>“Hermes needs to call X on demand.”<br/><br/>For that, use Skill/MCP/Plugin.</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8096-8448-d56aa4fca4fb" class="toggle"><li><details open=""><summary>Corn Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-8014-b74e-f433693b4584" class="">Use Cron when there is no external event, but you want Hermes to check periodically.<br/><br/>Good for:<br/><br/>- Polling APIs<br/>- Daily summaries<br/>- Monitoring dashboards<br/>- Database checks<br/>- Report generation<br/>- “Every hour check for failed jobs”<br/>- “Every morning summarize Notion tasks”<br/><br/>Example: daily Notion task summary<br/><br/>  hermes cron create &quot;0 9 * * *&quot;<br/><br/>Prompt:<br/><br/>  Use the productivity/notion skill. Query my Notion Tasks database for items where Status is not Done and Due Date is today. Summarize the top priorities and deliver a concise morning plan.<br/><br/>If using the cron tool from chat, equivalent fields would be:<br/><br/>  schedule: &quot;0 9 * * *&quot;<br/>  skills: [&quot;productivity/notion&quot;]<br/>  prompt: &quot;Query my Notion Tasks database...&quot;<br/><br/>Example: remote API polling<br/><br/>“Every 30 minutes, call the vendor status API. If there are incidents affecting our services, summarize impact and recommended action. If nothing changed, stay silent.”<br/><br/>For pure script watchdogs, use no-agent mode:<br/><br/>- Script prints a message only when alert condition is met.<br/>- Empty stdout means no notification.<br/>- No LLM cost.<br/><br/>Use cron if:<br/><br/>“Hermes should check on a schedule.”<br/><br/>Use webhook if:<br/><br/>“The service can push events to Hermes.”</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8024-9186-dfaf761a165d" class="toggle"><li><details open=""><summary>Direct API/curl/Python SDK Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-80c6-a69f-d9ec3dbe54b0" class="">Use this for prototypes and one-off tasks.<br/><br/>Example:<br/><br/>“Call this API once and summarize the result.”<br/><br/>Hermes can use terminal/curl/Python directly if credentials are available. This is fastest, but least productized.<br/><br/>Good for:<br/><br/>- Testing API access<br/>- Exploring payloads<br/>- One-time migration<br/>- Debugging<br/>- Building a future skill/plugin/MCP server<br/><br/>Bad for:<br/><br/>- Repeated production use<br/>- Complex auth<br/>- Safety-critical writes<br/>- Sharing with others<br/>- Stable UX<br/><br/>Upgrade path:<br/><br/>  direct curl → skill → MCP/plugin</p></div></details></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8003-acae-d05108606a7f" class="toggle"><li><details open=""><summary>Gateway/API Server Approach</summary><div style="display:contents" dir="auto"><p id="364006db-a268-80b4-8854-cd0d61fb875d" class="">Use this when an outside application wants to talk to Hermes as an agent.<br/><br/>This is different from “integrating a service as a tool”.<br/><br/>Examples:<br/><br/>- Your web app has an “Ask Hermes” button.<br/>- Your internal dashboard sends support tickets to Hermes.<br/>- Another backend service asks Hermes to analyze logs.<br/>- A mobile app uses Hermes as its agent backend.<br/><br/>Options:<br/><br/>- Webhook: simple one-way event/task submission.<br/>- API Server gateway: more application-like API integration.<br/>- Messaging gateway: Telegram/Discord/Slack/etc. as the user-facing surface.<br/><br/>Use webhook when:<br/><br/>“POST event, get processing/delivery.”<br/><br/>Use API server when:<br/><br/>“My app wants a general agent API.”</p></div></details></li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="364006db-a268-80f1-9950-e935541bf28c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-808f-b280-c553c1ccb4f8" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8045-85fb-e3146fd65864" class="">turn the following into a table:</p></div><div style="display:contents" dir="ltr"><table id="364006db-a268-8091-81a0-d5c3488b344e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="364006db-a268-8044-ab4b-ced4e0c6a19d"><th id="&lt;cib" class="simple-table-header-color simple-table-header" style="width:468.99998474121094px">Need</th><th id="u}H|" class="simple-table-header-color simple-table-header" style="width:396.99998474121094px">Best approach</th><th id="crBA" class="simple-table-header-color simple-table-header" style="width:497.99998474121094px">Why</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="364006db-a268-80f4-99d7-d4b3ec0c3daf"><td id="&lt;cib" class="" style="width:468.99998474121094px">“When GitHub issue opens, ask Hermes to triage it”</td><td id="u}H|" class="" style="width:396.99998474121094px">Webhook</td><td id="crBA" class="" style="width:497.99998474121094px">External event triggers Hermes</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80cb-a1f7-e2c753d4515c"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Every morning summarize new rows in a DB”</td><td id="u}H|" class="" style="width:396.99998474121094px">Cron + DB/API access</td><td id="crBA" class="" style="width:497.99998474121094px">Time-based pull</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-808e-aeba-c5312222ba62"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Let Hermes query Notion occasionally”</td><td id="u}H|" class="" style="width:396.99998474121094px">Skill</td><td id="crBA" class="" style="width:497.99998474121094px">Curl/API instructions are enough</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80d7-bcac-ccb77ee2a205"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Let Hermes manage Notion pages often with safe structured actions”</td><td id="u}H|" class="" style="width:396.99998474121094px">MCP or Plugin</td><td id="crBA" class="" style="width:497.99998474121094px">Real tools are better than ad-hoc curl</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-805c-bbbd-cfcedc253839"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Expose Postgres query tool to Hermes”</td><td id="u}H|" class="" style="width:396.99998474121094px">MCP</td><td id="crBA" class="" style="width:497.99998474121094px">Common pattern; server exposes tools</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8021-9a4f-dd85e6c9b072"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Expose company-internal API as tools”</td><td id="u}H|" class="" style="width:396.99998474121094px">MCP if reusable across clients; Plugin if Hermes-native</td><td id="crBA" class="" style="width:497.99998474121094px">Depends on ownership and complexity</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80f8-9d6d-c8eeab902584"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Add Spotify-like native integration to Hermes”</td><td id="u}H|" class="" style="width:396.99998474121094px">Plugin</td><td id="crBA" class="" style="width:497.99998474121094px">Auth + multiple tools + native command surface</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80fd-ade7-eb17b2221511"><td id="&lt;cib" class="" style="width:468.99998474121094px">“An external app wants to send a task to Hermes and receive result”</td><td id="u}H|" class="" style="width:396.99998474121094px">Webhook or API server gateway</td><td id="crBA" class="" style="width:497.99998474121094px">Hermes is being called from outside</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80c1-b360-d0ea49d5892e"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Need just document the right sequence of curl calls”</td><td id="u}H|" class="" style="width:396.99998474121094px">Skill</td><td id="crBA" class="" style="width:497.99998474121094px">Cheapest, fastest, no code</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80c2-b9ad-c2d966b3175c"><td id="&lt;cib" class="" style="width:468.99998474121094px">“Need reliable auth, validation, retries, schemas, least privilege”</td><td id="u}H|" class="" style="width:396.99998474121094px">Plugin or MCP</td><td id="crBA" class="" style="width:497.99998474121094px">Better control and safer execution</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="364006db-a268-80fb-852b-f13b16f1a6f1" class="">A good practical rule:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8088-90ea-d67625bad530" class="bulleted-list"><li style="list-style-type:disc">Skill = “Hermes, here is how to do it.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8029-9fca-d62a3c8cda29" class="bulleted-list"><li style="list-style-type:disc">MCP = “Hermes, here are new tools you can call.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-808a-9237-d0f26dce2f0b" class="bulleted-list"><li style="list-style-type:disc">Plugin = “Hermes, this is a native integration.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801b-8221-cf7ad17a7eff" class="bulleted-list"><li style="list-style-type:disc">Webhook = “External system, wake Hermes up when something happens.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ac-9cfd-c29ff85cfdf8" class="bulleted-list"><li style="list-style-type:disc">Cron = “Hermes, check this periodically.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b2-bb04-f832b3b32e39" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server = “External app, talk to Hermes as an agent service.”</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8093-821e-f1049a746ca4" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="364006db-a268-804e-a999-ea23042fcb98" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart TB
+  subgraph extN[&quot;External environment (sources &amp; callers)&quot;]
+    N1[SaaS · APIs · DBs · GitHub · monitoring · IoT · backends]
+  end
+
+  subgraph inbound[&quot;Gateway: External → Agent&quot;]
+    WH[Webhook]
+    MSG[Messaging gateway]
+  end
+
+  CRON[[&quot;Cron (schedule)&quot;]]
+
+  subgraph agent[&quot;Agent Loop&quot;]
+    CORE[[&quot;Tools· Memory&quot;]]
+    subgraph knowledge[&quot;In-agent&quot;]
+      SK[&quot;Skills&lt;br&gt; Instructions · API Recipes · Runbooks&quot;]
+    end
+    subgraph tools[&quot;Callable Capabilities&quot;]
+      MCP[&quot;MCP&lt;br&gt;tools from MCP servers&quot;]
+      PL[&quot;Plugins&lt;br&gt;Native Tools &amp; Skills &amp; SubAgents&quot;]
+      DIR[&quot;Direct&lt;br&gt;Terminal · curl · Python&quot;]
+    end
+  end
+
+  subgraph extS[&quot;External environment (targets of calls)&quot;]
+    S1[Databases · REST/GraphQL · cloud · internal services]
+  end
+
+  N1 --&gt; WH
+  N1 --&gt; GAPI
+  N1 --&gt; MSG
+  WH --&gt; CORE
+  GAPI --&gt; CORE
+  MSG --&gt; CORE
+  CRON --&gt;|&quot;tick / job&quot;| CORE
+
+  CORE --- SK
+  CORE --- MCP
+  CORE --- PL
+  CORE --- DIR
+
+  SK -.-&gt;|&quot;guides&quot;| MCP
+  SK -.-&gt;|&quot;guides&quot;| PL
+  SK -.-&gt;|&quot;guides&quot;| DIR
+
+  MCP --&gt; S1
+  PL --&gt; S1
+  DIR --&gt; S1
+
+
+  classDef ext fill:#1e293b,stroke:#64748b,color:#cbd5e1
+  classDef inb fill:#3f1d25,stroke:#fb7185,color:#fecdd3
+  classDef ag fill:#0f172a,stroke:#38bdf8,color:#bae6fd
+  classDef time fill:#422006,stroke:#fbbf24,color:#fde68a
+  classDef kan fill:#2e1065,stroke:#a78bfa,color:#e9d5ff
+
+  class N1,S1 ext
+  class WH,GAPI,MSG inb
+  class SK,MCP,PL,DIR,CORE ag
+  class extN,extS ext
+  class inbound inb
+  class CRON time
+</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ab-98be-f5d4212704bf" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="364006db-a268-8029-8c0e-d3f1baf28bf6" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart TD
+  Q1{Who initiates?}
+  Q1 --&gt;|External event / app| IN[Webhook or gateway API or messaging]
+  Q1 --&gt;|Clock| CR[Cron]
+  Q1 --&gt;|Hermes| QH{One-off or prototype?}
+
+  QH --&gt;|Yes| DIR[Direct curl / Python]
+  QH --&gt;|No / repeated work| Q2{Need new callable tools?}
+
+  Q2 --&gt;|No| SK[Skill]
+  Q2 --&gt;|Yes| Q3{MCP server exists?}
+  Q3 --&gt;|Yes| MC[MCP]
+  Q3 --&gt;|No| Q4{Hermes-native only?}
+  Q4 --&gt;|Yes| PLG[Plugin]
+  Q4 --&gt;|No / share across agents| MC2[Prefer MCP when possible]
+
+  Q5{High-risk writes / strong safety?}
+  DIR --&gt; Q5
+  SK --&gt; Q5
+  MC --&gt; Q5
+  PLG --&gt; Q5
+  MC2 --&gt; Q5
+
+  Q5 --&gt;|Yes| SAFE[Narrow tool schemas · least privilege · no ad-hoc SQL write]
+  Q5 --&gt;|No| OK[Skill or direct may suffice]
+
+  style IN fill:#3f1d25,stroke:#fb7185,color:#fecdd3
+  style CR fill:#422006,stroke:#fbbf24,color:#fde68a
+  style SK fill:#0f172a,stroke:#64748b,color:#bae6fd
+  style MC fill:#0f172a,stroke:#34d399,color:#bbf7d0
+  style PLG fill:#0f172a,stroke:#34d399,color:#bbf7d0
+  style MC2 fill:#0f172a,stroke:#34d399,color:#bbf7d0
+  style DIR fill:#0f172a,stroke:#94a3b8,color:#e2e8f0
+  style SAFE fill:#422006,stroke:#f97316,color:#ffedd5
+  style OK fill:#14532d,stroke:#22c55e,color:#dcfce7</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a0-8dc6-c82c6c84c89b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8040-8f41-e071fd6a6a06" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="364006db-a268-80b8-a7dd-cca006084563" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart LR
+  A[&quot;Stage 1 · Direct&quot;] --&gt; B[&quot;Stage 2 · Skill&quot;]
+  B --&gt; C[&quot;Stage 3 · MCP or plugin&quot;]
+  C --&gt; D[&quot;Stage 4 · Webhook / Cron&quot;]</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-8037-ab6e-c2d95fa7b34e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80db-812d-f69c70b3a2c0" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="364006db-a268-8074-ab9b-fd30fd067ef2" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart TB
+  MON[Monitoring] --&gt;|alert HTTP| WH[Webhook → Hermes]
+  WH --&gt; INV[Investigation turn]
+
+  subgraph invoke[&quot;Hermes → external&quot;]
+    LOGS[MCP / plugin · logs]
+    RO[(DB · read-only via MCP/plugin)]
+  end
+
+  SK[Skill · incident runbook] -. guides .-&gt; INV
+  INV --&gt; LOGS
+  INV --&gt; RO
+  INV --&gt; SL[Messaging · Slack delivery]
+
+  CR[Cron optional] --&gt;|unresolved sweep| INV
+
+  style WH fill:#3f1d25,stroke:#fb7185,color:#fecdd3
+  style SK fill:#0f172a,stroke:#64748b,color:#cbd5e1
+  style LOGS fill:#14532d,stroke:#34d399,color:#bbf7d0
+  style RO fill:#14532d,stroke:#34d399,color:#bbf7d0
+  style SL fill:#3f1d25,stroke:#fb7185,color:#fecdd3
+  style CR fill:#422006,stroke:#fbbf24,color:#fde68a</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ad-b138-e931753de224" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c5-b8b0-f623feb16f74" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80b4-b597-f4a9e5b38133" class="numbered-list" start="1"><li>Skill: A Skill is a reusable instruction/runbook/prompt/API recipe. It tells the agent how to use existing tools: terminal, curl, Python, browser, file tools, etc.</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-809a-85e9-e17d57340821" class="">Example:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b9-8b78-fd049f45ff6b" class="">“Use the internal analytics API. Auth is via <code>ANALYTICS_API_KEY</code>. Endpoint is <code>/v1/query</code>. Use this curl pattern. For errors, retry this way.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8002-b2dd-fe8e44cd425d" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-805f-b093-d9ac0d6747ea" class="">You need at least one of these to be true:</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8028-a0c8-dd0005b10e2c" class="numbered-list" start="1"><li>The needed CLI/package is already installed in the agent environment.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8087-9e45-fd6444fedcf7" class="numbered-list" start="2"><li>The skill includes install/setup instructions and the agent is allowed to install it.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8056-b8b9-f46590968a2f" class="numbered-list" start="3"><li>The capability is reachable through HTTP/curl and needs no local dependency.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80bf-ae3b-dde893dba17b" class="numbered-list" start="4"><li>The dependency lives behind a remote API/service.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8029-a63b-d7dc3e67ac22" class="numbered-list" start="5"><li>The user manually prepared the environment before using the skill.</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-8043-aadb-ec4011fd309d" class="">The dependency does not have to be open-source.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8074-b5be-d6469b725e5e" class="">It can be:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c9-b347-c0747a7a157d" class="bulleted-list"><li style="list-style-type:disc">public open-source package</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80bf-88a3-fbf2fa02ed7d" class="bulleted-list"><li style="list-style-type:disc">private Python package</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f8-9b61-d3dc40141865" class="bulleted-list"><li style="list-style-type:disc">internal CLI</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a5-9fa5-ed648313ea27" class="bulleted-list"><li style="list-style-type:disc">licensed commercial SDK</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fe-b52c-c1c58e27797d" class="bulleted-list"><li style="list-style-type:disc">Dockerized tool</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80cb-a8ad-c2bda9cda1bd" class="bulleted-list"><li style="list-style-type:disc">remote API</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803e-b490-c28256a5ed92" class="bulleted-list"><li style="list-style-type:disc">SaaS service</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f6-b5ac-ee1a23527eba" class="bulleted-list"><li style="list-style-type:disc">binary executable</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-803a-98f8-ed9115e4d225" class="">But the agent must be able to access it.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c8-9ea0-df6309f30aca" class="">Common Skill constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8031-9ce0-c30ddd2a7ae8" class="bulleted-list"><li style="list-style-type:disc">No first-class tool schema.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803b-8f55-cd9be1af82d7" class="bulleted-list"><li style="list-style-type:disc">Less reliable than MCP/plugin for repeated actions.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ef-be16-cf6a9ecbf3b4" class="bulleted-list"><li style="list-style-type:disc">The model must read and follow instructions correctly.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8004-a20b-d0114fe24837" class="bulleted-list"><li style="list-style-type:disc">Dependency installation may fail across OSes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805a-b3d0-db5504a4517c" class="bulleted-list"><li style="list-style-type:disc">Harder to validate inputs/outputs.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c8-bde6-d7c5c04922e3" class="bulleted-list"><li style="list-style-type:disc">Harder to hide secrets from the model.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800e-83d1-fe80ef1b1d9a" class="bulleted-list"><li style="list-style-type:disc">Harder to enforce least privilege.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fa-a2ad-cc8dceb9dad5" class="bulleted-list"><li style="list-style-type:disc">Not ideal for complex write operations.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8031-b9f7-edc3e8eba817" class="bulleted-list"><li style="list-style-type:disc">Not ideal when many users/environments need identical behavior.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803e-9708-e4782a057598" class="bulleted-list"><li style="list-style-type:disc">Not ideal when the integration requires OAuth or refresh tokens.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d3-a16c-f97ffb39ece9" class="bulleted-list"><li style="list-style-type:disc">The skill itself cannot run code automatically; it only guides the agent.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b8-b9e1-f2a8b182bfbb" class="">When Skill is good:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8003-8939-e7bd80616859" class="bulleted-list"><li style="list-style-type:disc">Simple REST API</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806f-b8ac-e0e5e566c193" class="bulleted-list"><li style="list-style-type:disc">Internal runbook</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f2-9748-cd60aa49be01" class="bulleted-list"><li style="list-style-type:disc">Low-frequency workflow</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f1-9c5f-fdc8e172a27b" class="bulleted-list"><li style="list-style-type:disc">Human-readable operational procedure</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8059-9faf-f6bf1966666b" class="bulleted-list"><li style="list-style-type:disc">“Here is how to call this service”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806f-b9b7-e80bc71a664e" class="bulleted-list"><li style="list-style-type:disc">Prototype before turning into MCP/plugin</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809d-bab4-edc93e3f8deb" class="bulleted-list"><li style="list-style-type:disc">Integration mostly involves curl/Python commands</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-801a-8eb7-fc0f7de7a1e8" class="">When Skill is bad:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809f-8fac-fde32688952b" class="bulleted-list"><li style="list-style-type:disc">Safety-critical writes</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803c-beb2-da5402b4aa44" class="bulleted-list"><li style="list-style-type:disc">Complex auth</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a9-b240-e475f65f3586" class="bulleted-list"><li style="list-style-type:disc">Many endpoints</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b8-b70f-dd3bbfc88127" class="bulleted-list"><li style="list-style-type:disc">High reliability requirement</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c1-8124-f8eb1ce7598d" class="bulleted-list"><li style="list-style-type:disc">Need structured input/output validation</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b5-aa11-e454b45dad14" class="bulleted-list"><li style="list-style-type:disc">Need stable tool names</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8017-a31b-d4c684b83900" class="bulleted-list"><li style="list-style-type:disc">Need reusable tool calls across agents/apps</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8033-8b26-ed21632a5f28" class="bulleted-list"><li style="list-style-type:disc">Need to hide credentials from the LLM</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b6-9664-cecb8ec7a706" class="bulleted-list"><li style="list-style-type:disc">Need deployment across many machines</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b2-9b2b-c62018ecce99" class="">If your skill depends on <code>some_private_sdk</code>, then yes, that SDK must be available wherever the agent executes the skill’s commands. But it does not need to be open-source. It just needs to be installable/usable under your license and runtime constraints.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-808e-abf9-d55f0235a553" class="">Even better: avoid local packages if a stable HTTP API exists. A curl-based skill is more portable than a Python-SDK-based skill.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-807d-bc04-e7a2f2b5ee2c" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8067-a930-d5ed0d18986c" class="numbered-list" start="1"><li>MCP: MCP exposes external capabilities as tools. Hermes connects to an MCP server, discovers its tools, and the agent calls them like native tools.</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-8041-99ed-df00f5aa5817" class="">Example:</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" integrity="sha512-6O/PZimM3TD1NN3yrazePA4AbZrPcwt1QCGJrVY7WoHDJROZFc9TlBvIKMe+QfqgcslW4lQeBzNJEJvIMC8WhA==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="364006db-a268-80bc-b40f-f618dc7c994a" class="code code-wrap"><code class="language-yaml" style="white-space:pre-wrap;word-break:break-all">mcp_servers:
+  company_api:
+    url: &quot;&lt;https://mcp.company.com/mcp&gt;&quot;
+    headers:
+      Authorization: &quot;Bearer ...&quot;</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-80df-b7ce-f3a83b0d09e0" class="">or local:</p></div><div style="display:contents" dir="auto"><pre id="364006db-a268-8014-be57-e9c0874e0048" class="code code-wrap"><code class="language-yaml" style="white-space:pre-wrap;word-break:break-all">mcp_servers:
+  github:
+    command: &quot;npx&quot;
+    args: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: &quot;...&quot;</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-808a-adbe-e0491509b4a9" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c9-9200-c87bfca154a8" class="bulleted-list"><li style="list-style-type:disc">MCP has two main deployment modes.<div style="display:contents" dir="auto"><ul id="364006db-a268-8049-9bfd-fe8484f96ee0" class="bulleted-list"><li style="list-style-type:circle">Local stdio MCP server: Hermes launches a local process like <code>npx ...</code>, <code>uvx ...</code>, or your own binary.<div style="display:contents" dir="auto"><p id="364006db-a268-8057-b2e4-f638f445e1c8" class="">Constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8075-a4a6-c569350e89c7" class="bulleted-list"><li style="list-style-type:square">The command must be installed or installable.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8025-93a7-e49d43f74744" class="bulleted-list"><li style="list-style-type:square">Node/uv/Python may be required.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b9-96d8-cdbc62288beb" class="bulleted-list"><li style="list-style-type:square">Server package must work on the agent’s OS.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-807b-a499-f2a532d39c4b" class="bulleted-list"><li style="list-style-type:square">Local credentials must be configured.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8035-9705-d9f2c5cf3fba" class="bulleted-list"><li style="list-style-type:square">Hermes must restart to add/remove servers.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c3-8318-e93a8d39fe3b" class="bulleted-list"><li style="list-style-type:square">The MCP server process must be trusted enough to receive any env vars you pass.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-802b-bd95-cc77b270a18a" class="">Hermes filters environment variables for stdio MCP servers. It does not pass all your API keys by default. You explicitly pass secrets in <code>env</code>.</p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d3-9efd-eb5c10c5214a" class="bulleted-list"><li style="list-style-type:circle">Remote HTTP MCP server: Hermes connects to a remote server.<div style="display:contents" dir="auto"><p id="364006db-a268-804a-98e6-e0706ab1723d" class="">Constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fc-8cd0-d61f3af54872" class="bulleted-list"><li style="list-style-type:square">Network access required.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8005-8e1c-db2433e0c2ca" class="bulleted-list"><li style="list-style-type:square">Server must be available and authenticated.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a3-996e-e775f9b87351" class="bulleted-list"><li style="list-style-type:square">You need TLS/auth/rate limits.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806c-a68d-db06098f5433" class="bulleted-list"><li style="list-style-type:square">You operate or trust the remote MCP service.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a0-839e-d0fdacb1128a" class="bulleted-list"><li style="list-style-type:square">Latency may be higher.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-807d-8ce2-e10e83d2f67b" class="bulleted-list"><li style="list-style-type:square">Tool behavior depends on remote server uptime/version.</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8077-8b82-d2f5c1c2cbf1" class="">MCP advantages:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80de-b853-ec982ce1aec0" class="bulleted-list"><li style="list-style-type:disc">First-class structured tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ee-b474-e74862928b82" class="bulleted-list"><li style="list-style-type:disc">Clear schemas.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80e0-9cbc-d4bf3e7b98eb" class="bulleted-list"><li style="list-style-type:disc">Reusable across multiple AI clients.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80e5-8214-d3b07b267d7e" class="bulleted-list"><li style="list-style-type:disc">Better boundary than skills.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d5-8b2a-d39d258b82bd" class="bulleted-list"><li style="list-style-type:disc">Can centralize auth and business logic.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800b-8c6d-dec6566e6e6f" class="bulleted-list"><li style="list-style-type:disc">Good for databases, GitHub, SaaS APIs, internal APIs.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805b-b0c7-e658231f6c49" class="bulleted-list"><li style="list-style-type:disc">Easier to make safe narrow tools like <code>create_ticket</code> instead of arbitrary curl.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8096-84ce-ea433817c5c0" class="">MCP constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803b-bf68-d1578e0b823a" class="bulleted-list"><li style="list-style-type:disc">Need an MCP server.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806e-a07d-ec8fd9f43e4a" class="bulleted-list"><li style="list-style-type:disc">Local MCP may require Node/Python/uv/package install.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805f-a1b1-c65ded1ff4e5" class="bulleted-list"><li style="list-style-type:disc">Remote MCP requires hosting.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80dd-8c13-c7363977b393" class="bulleted-list"><li style="list-style-type:disc">Tool quality depends on server implementation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8080-862a-df5246c21de4" class="bulleted-list"><li style="list-style-type:disc">Less Hermes-native than plugin.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8028-8d01-e7e2b8687350" class="bulleted-list"><li style="list-style-type:disc">Debugging crosses process/service boundary.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800f-8619-ff0e69707257" class="bulleted-list"><li style="list-style-type:disc">Trust boundary matters: untrusted MCP servers should receive minimal credentials.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80af-9ab2-e5d0f7c37698" class="bulleted-list"><li style="list-style-type:disc">Adding/removing servers usually needs restart.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8082-9258-d02886e0c64b" class="">When MCP is good:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8093-a887-cad0e27cae0d" class="bulleted-list"><li style="list-style-type:disc">You need reusable tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fa-ae87-f2406c30cb8b" class="bulleted-list"><li style="list-style-type:disc">Other clients may also use the integration.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8057-bf6a-c4d1d9c02ae0" class="bulleted-list"><li style="list-style-type:disc">There is already an MCP server.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805b-a5fe-e89256ca9e07" class="bulleted-list"><li style="list-style-type:disc">You want clean tool schemas.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d4-aa3c-e7ef4cb39b55" class="bulleted-list"><li style="list-style-type:disc">You want to avoid modifying Hermes core.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8026-acca-cbcd704a2728" class="bulleted-list"><li style="list-style-type:disc">You want database/API access with safer structured operations.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8001-9699-dd6c924b5a0d" class="">When MCP is bad:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806e-9eee-df06c913274a" class="bulleted-list"><li style="list-style-type:disc">You only need a simple one-off runbook.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8074-86b7-e1b35de1176f" class="bulleted-list"><li style="list-style-type:disc">You need very Hermes-specific behavior/UI/config.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801d-b09d-dcbc8742c91c" class="bulleted-list"><li style="list-style-type:disc">You cannot host or run the MCP server reliably.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806d-8839-c09b8bfcb546" class="bulleted-list"><li style="list-style-type:disc">The dependency chain is too heavy for local setup.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8042-999a-d7bf3049e766" class="numbered-list" start="1"><li>Plugin</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-803b-90a0-f1558f171184" class="">What it is:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8005-9d1b-c68720246407" class="">A Hermes plugin is a native extension. It can add tools, providers, memory backends, gateway platforms, auth logic, or deeper Hermes behavior.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8052-9f21-ccec3e097bb3" class="">Example:</p></div><div style="display:contents" dir="auto"><pre id="364006db-a268-803d-b783-e6369c8e8e26" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">~/.hermes/plugins/company_api/
+  plugin.yaml
+  __init__.py
+  tools.py
+  client.py</code></pre></div><div style="display:contents" dir="auto"><p id="364006db-a268-80cf-97d3-c94b52d53c54" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800c-8b83-c0780d514f1b" class="bulleted-list"><li style="list-style-type:disc">Plugin code runs inside Hermes’s Python runtime.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fd-80a1-d025eb50a6b5" class="bulleted-list"><li style="list-style-type:disc">Python dependencies must be installed in the Hermes environment or lazily installed.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-807b-9e4a-e28c97cac433" class="bulleted-list"><li style="list-style-type:disc">Must be compatible with Hermes’s Python version and OS.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8060-9ec4-f1d4171f68ae" class="bulleted-list"><li style="list-style-type:disc">You need to maintain plugin code.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fc-8bd6-f12878a4eb6f" class="bulleted-list"><li style="list-style-type:disc">You need to design schemas, handlers, errors, auth, config.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-807e-9bed-e56e23e3662a" class="bulleted-list"><li style="list-style-type:disc">If distributing, dependency pinning and supply-chain security matter.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a0-8c06-e677b36ab32f" class="bulleted-list"><li style="list-style-type:disc">Bad plugin code can affect the agent process directly.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-800c-989f-f7a77cacfe4d" class="">Plugin advantages:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c9-9422-ffdd1389e225" class="bulleted-list"><li style="list-style-type:disc">Most native Hermes integration.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f5-b241-f3653a71b8f7" class="bulleted-list"><li style="list-style-type:disc">First-class toolsets.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8069-aee1-d01944e9b22e" class="bulleted-list"><li style="list-style-type:disc">Can use Hermes config/profile/logging conventions.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805b-8d1b-d2c71479242f" class="bulleted-list"><li style="list-style-type:disc">Can conditionally expose tools based on credentials.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80e7-a7c8-deae959e382e" class="bulleted-list"><li style="list-style-type:disc">Better error handling.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8047-949b-ece994af6973" class="bulleted-list"><li style="list-style-type:disc">Better auth integration.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8040-8dd1-e8ddc3ee2db7" class="bulleted-list"><li style="list-style-type:disc">Good for OAuth, token refresh, provider plugins, gateway/platform integrations.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803a-a17e-c91ecd6bcc43" class="bulleted-list"><li style="list-style-type:disc">Good for team-shared production integrations.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8000-829e-c3a4d4d17c7c" class="">Plugin constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809d-b0a4-ff7fb1caa8da" class="bulleted-list"><li style="list-style-type:disc">More engineering work.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8042-a01c-ddc9bc1f7b0b" class="bulleted-list"><li style="list-style-type:disc">Tighter coupling to Hermes internals.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a4-966f-d75738b4968b" class="bulleted-list"><li style="list-style-type:disc">Needs tests and versioning.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8016-801a-e949c13e54ee" class="bulleted-list"><li style="list-style-type:disc">Dependencies may bloat the environment if not handled carefully.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806f-af7a-f9505d727910" class="bulleted-list"><li style="list-style-type:disc">Higher blast radius than MCP because code runs in-process.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f3-8d87-e28c42958de9" class="bulleted-list"><li style="list-style-type:disc">Must be maintained as Hermes evolves.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a6-aa11-d0e870e4988f" class="">When Plugin is good:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806c-8c4b-ecd24f4a8fdd" class="bulleted-list"><li style="list-style-type:disc">You want a polished Hermes-native integration.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804f-b56a-fd8de639e79b" class="bulleted-list"><li style="list-style-type:disc">You need custom toolsets.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8096-bd97-c200db7237a2" class="bulleted-list"><li style="list-style-type:disc">You need OAuth or credential management.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800e-a056-d9aafd155133" class="bulleted-list"><li style="list-style-type:disc">You need robust structured behavior.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a2-88b7-cd91394baea8" class="bulleted-list"><li style="list-style-type:disc">You need custom gateway/platform/provider/memory functionality.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80cb-999e-d5e916b93a37" class="bulleted-list"><li style="list-style-type:disc">You are shipping the integration to a team or users.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80cf-9f4c-f67d3c82a926" class="">When Plugin is bad:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806e-a848-fd4a8c6a2cad" class="bulleted-list"><li style="list-style-type:disc">You only need a simple API recipe.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8094-a54e-c0c082b964ee" class="bulleted-list"><li style="list-style-type:disc">You want the integration reusable outside Hermes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8035-91cd-df85f75e123a" class="bulleted-list"><li style="list-style-type:disc">You do not want to maintain Python plugin code.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809c-acd2-e80e3746c8e4" class="bulleted-list"><li style="list-style-type:disc">You can use an existing MCP server instead.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e7-8632-e10e3e6cffcf" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80fe-894b-f1421fdd7736" class="numbered-list" start="1"><li>Webhook</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d3-8ee8-fa80f1cdaf21" class="">What it is:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-800e-a737-e054b2283666" class="">Webhook lets external systems trigger Hermes. The outside world sends POST requests to Hermes.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e9-972e-e2ee2e699b5e" class="">Example:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-809d-801a-eabaeba9952e" class="">GitHub issue opened → POST to Hermes → Hermes triages issue → comments or sends Slack message.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-807e-b7d1-f03a515f700d" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8096-9b9e-c287d43a5109" class="bulleted-list"><li style="list-style-type:disc">Hermes gateway must be running.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8016-9d5e-ec6bede1e4c8" class="bulleted-list"><li style="list-style-type:disc">Webhook endpoint must be reachable from the external system.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806b-9d43-e831bf80e00a" class="bulleted-list"><li style="list-style-type:disc">Need HMAC secret/signature validation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806d-8ef6-f031e6148f5c" class="bulleted-list"><li style="list-style-type:disc">Need firewall/NAT/tunnel setup if local.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8068-9098-ee619f3be98c" class="bulleted-list"><li style="list-style-type:disc">Payload template must match external event shape.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800d-a0e6-e639461157fd" class="bulleted-list"><li style="list-style-type:disc">You must handle retries/idempotency for production.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b2-9666-fccbd41af30a" class="bulleted-list"><li style="list-style-type:disc">Good event filtering is important to avoid spam/cost.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f3-a1c4-f03c90f9d6ab" class="bulleted-list"><li style="list-style-type:disc">The external system must support webhooks or be wrapped by something that does.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80f0-b166-ed701431c436" class="">Webhook advantages:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80bb-8f87-da3153496948" class="bulleted-list"><li style="list-style-type:disc">Best for push/event-driven automation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fb-8a07-e675e100dcb1" class="bulleted-list"><li style="list-style-type:disc">No polling.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b8-a499-c2c198d3a12d" class="bulleted-list"><li style="list-style-type:disc">External service wakes Hermes up.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8031-a627-d8a1ffa45baa" class="bulleted-list"><li style="list-style-type:disc">Can run full agent or deliver-only notification.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fd-a621-d6cdb35bd8a6" class="bulleted-list"><li style="list-style-type:disc">Good for GitHub, CI/CD, Stripe, monitoring, product events.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d9-afa0-cd453bb20d10" class="">Webhook constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804e-835e-fbcf9629ed37" class="bulleted-list"><li style="list-style-type:disc">It is a trigger, not a capability.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d0-ba39-fb66f6e309dc" class="bulleted-list"><li style="list-style-type:disc">It does not by itself give Hermes access to query/update the service.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8022-874f-c3f278048e2c" class="bulleted-list"><li style="list-style-type:disc">If Hermes needs to call the service after receiving event, you still need Skill/MCP/Plugin/API access.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a2-ae8f-e1e9f8314de7" class="bulleted-list"><li style="list-style-type:disc">Public endpoint security matters.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f8-8df6-cbaf9686abfa" class="bulleted-list"><li style="list-style-type:disc">Payloads can be untrusted.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b8-823a-f10caf174cae" class="bulleted-list"><li style="list-style-type:disc">Need rate limiting and deduplication for noisy systems.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8075-adf4-dffcbd0da62d" class="">When Webhook is good:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8025-ae69-ee8552e0718c" class="bulleted-list"><li style="list-style-type:disc">“When X happens, ask Hermes to do Y.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-808f-9e14-fcf95d1ccd3e" class="bulleted-list"><li style="list-style-type:disc">GitHub PR opened</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ac-9b76-f8435b4b636e" class="bulleted-list"><li style="list-style-type:disc">CI failed</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c1-bf64-f7016e5f6cf5" class="bulleted-list"><li style="list-style-type:disc">Stripe payment failed</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a5-b301-c1e8be7c050c" class="bulleted-list"><li style="list-style-type:disc">Monitoring alert fired</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8017-bb07-d5d466dcfb98" class="bulleted-list"><li style="list-style-type:disc">User submitted form</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ea-862a-ee45c3e7dcbc" class="bulleted-list"><li style="list-style-type:disc">Evaluation system detected performance drop</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-806d-bf9b-d2f7d846955a" class="">When Webhook is bad:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8094-b5e8-d9ebf43968ee" class="bulleted-list"><li style="list-style-type:disc">“Hermes should call this service on demand.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8072-adc7-c07bd852ef9e" class="bulleted-list"><li style="list-style-type:disc">“Hermes should query a database.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809c-945f-d07dbf542b90" class="bulleted-list"><li style="list-style-type:disc">“Hermes should manage Notion pages.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8046-a399-d0b270493a34" class="bulleted-list"><li style="list-style-type:disc">Those require Skill/MCP/Plugin/direct API.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80df-aecc-c13411763ea9" class="numbered-list" start="1"><li>Cron</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80dd-a1bd-c22d3233d66f" class="">What it is:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-808b-b6c9-cd54a68838d3" class="">Cron schedules Hermes to run periodically.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8033-ad53-d9ce0fbc371c" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8064-b4e5-f137a83dd558" class="bulleted-list"><li style="list-style-type:disc">Hermes scheduler must be running.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809f-b28f-dfde2c805b54" class="bulleted-list"><li style="list-style-type:disc">The task prompt/script must be self-contained.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a1-a775-ff6c2986402c" class="bulleted-list"><li style="list-style-type:disc">If it calls external services, credentials and dependencies must be available.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-802b-8b3d-ce10bdc75911" class="bulleted-list"><li style="list-style-type:disc">Good “silent if no changes” behavior is important.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80cf-8a94-ea301ec3c5ae" class="bulleted-list"><li style="list-style-type:disc">For no-agent scripts, stdout is the notification body and empty stdout means no message.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8037-99c8-ff71c6d9b614" class="">Cron advantages:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80bd-8c8f-c59fafb6e2c2" class="bulleted-list"><li style="list-style-type:disc">Simple for polling and scheduled reports.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80aa-9f67-f8eadbc93acd" class="bulleted-list"><li style="list-style-type:disc">No external webhook support needed.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8065-921d-c5a52a901081" class="bulleted-list"><li style="list-style-type:disc">Good for health checks, daily summaries, scheduled evaluation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f3-8087-d9f97a0cd571" class="bulleted-list"><li style="list-style-type:disc">Can pair with skills.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8029-bff1-e8803a176f50" class="">Cron constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8023-bb8c-cd2d9c711f97" class="bulleted-list"><li style="list-style-type:disc">Polling can waste resources.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c2-8a85-f787c5bdc9c9" class="bulleted-list"><li style="list-style-type:disc">Not immediate unless interval is short.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805e-a8d3-e4fca21f0894" class="bulleted-list"><li style="list-style-type:disc">Requires idempotency/watermarking.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8025-9816-f8e24b58f884" class="bulleted-list"><li style="list-style-type:disc">Same integration dependencies as the underlying action.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e5-a9ad-c6345f7dafb8" class="">When Cron is good:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8030-b5af-dd5e81e075a6" class="bulleted-list"><li style="list-style-type:disc">“Every hour check evaluation metrics.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8046-9dfa-defa1dbef3b3" class="bulleted-list"><li style="list-style-type:disc">“Every morning summarize failed jobs.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8085-b179-c520e6ea087a" class="bulleted-list"><li style="list-style-type:disc">“Every 30 minutes poll vendor incidents.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8080-97fa-fd1a249b0e90" class="bulleted-list"><li style="list-style-type:disc">“Nightly run agent benchmark.”</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8023-a537-ed60a5fab275" class="">When Cron is bad:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8069-ae40-d3d4ef97186e" class="bulleted-list"><li style="list-style-type:disc">External system can push events reliably.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800b-a891-ca02a4ba5dfb" class="bulleted-list"><li style="list-style-type:disc">You need real-time reaction.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f2-834e-e0cc92bc433f" class="bulleted-list"><li style="list-style-type:disc">You cannot afford repeated polling.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-805a-91b7-e8caad4053f6" class="numbered-list" start="1"><li>Direct terminal/curl/Python</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-8025-a85e-ef83c9dc165b" class="">What it is:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a9-bbd8-e6d387005ccc" class="">Just ask Hermes to use terminal, curl, Python, browser, etc., without packaging anything as a skill/tool.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ba-8852-cc8d84e58c3f" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80bf-9b45-d6450fc91416" class="bulleted-list"><li style="list-style-type:disc">Everything must already be installed or installable.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8023-8256-cb42706f5d73" class="bulleted-list"><li style="list-style-type:disc">Commands must be safe enough to run.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8074-9570-dcdd9c6f1d99" class="bulleted-list"><li style="list-style-type:disc">Credentials must be available.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8055-8a2d-e589051a02a4" class="bulleted-list"><li style="list-style-type:disc">No durable reusable abstraction unless you later convert into a skill.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a3-9b8a-fa0c62821ffa" class="">Advantages:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8094-9c90-e38e9090c315" class="bulleted-list"><li style="list-style-type:disc">Fastest for prototypes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-808b-8776-c5f5a0af5fca" class="bulleted-list"><li style="list-style-type:disc">No integration work.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8031-a71e-e365a24bae11" class="bulleted-list"><li style="list-style-type:disc">Good for exploration.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8073-8153-c30b16508f09" class="">Constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c6-93a3-d7b0f75be4b1" class="bulleted-list"><li style="list-style-type:disc">Not repeatable.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801b-90b0-dcf525035a47" class="bulleted-list"><li style="list-style-type:disc">Error-prone.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8048-825d-d633e19a69ee" class="bulleted-list"><li style="list-style-type:disc">Harder to share.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d7-a0be-f676247f2080" class="bulleted-list"><li style="list-style-type:disc">No stable schemas.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a8-87cc-fa633b655eea" class="bulleted-list"><li style="list-style-type:disc">Not a production integration.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80f5-baa6-cad259ae248b" class="">Use it for:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f0-84b0-fe7b18b5a303" class="bulleted-list"><li style="list-style-type:disc">First test</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8008-8295-d5ba5a5c45df" class="bulleted-list"><li style="list-style-type:disc">API exploration</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801c-b56a-e60c3bc4eb38" class="bulleted-list"><li style="list-style-type:disc">One-time migration</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8017-a7ad-caa92954f8a1" class="bulleted-list"><li style="list-style-type:disc">Debugging</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8069-8752-e087f411ab8b" class="bulleted-list"><li style="list-style-type:disc">Generating examples for a future Skill/MCP/Plugin</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80fe-9f86-d2e028c6bd2d" class="numbered-list" start="1"><li>Gateway/API server</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e6-b949-d8c2d8befd81" class="">What it is:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8073-a3f0-f2879692af69" class="">External applications talk to Hermes as an agent service.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8045-9e95-e6edc43ebca1" class="">Practical dependency constraints:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80cd-8d72-f068402d4d66" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server must be hosted and secured.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8056-bf3f-cb2b6b4821ce" class="bulleted-list"><li style="list-style-type:disc">Need auth, rate limits, tenant isolation if used by apps.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ab-a4c2-e7909c40df10" class="bulleted-list"><li style="list-style-type:disc">Need session handling and delivery semantics.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-803b-97af-e8e754a0b2f2" class="bulleted-list"><li style="list-style-type:disc">If the agent needs external capabilities, still combine with Skill/MCP/Plugin.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c5-95a8-f96061eb6d8f" class="">Use it when:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805f-805f-f47f50969b02" class="bulleted-list"><li style="list-style-type:disc">Your app wants an “Ask Hermes” button.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-808b-ab51-dc192adb6b09" class="bulleted-list"><li style="list-style-type:disc">A backend wants to submit tasks to Hermes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8076-b3e6-df2a225253c3" class="bulleted-list"><li style="list-style-type:disc">Another system wants Hermes as an agent runtime.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8084-8a5c-f5d399f856cb" class="">Do not confuse with:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8003-a833-c44c16ce4e85" class="bulleted-list"><li style="list-style-type:disc">MCP/plugin/skill, which give Hermes capabilities.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80db-bbda-dc688dfc52c2" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server lets other systems use Hermes.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8022-a3f6-d5e277a94222" class="">Practical decision matrix</p></div><div style="display:contents" dir="ltr"><table id="364006db-a268-808a-bc85-d752206c21f2" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="364006db-a268-806d-9c27-d971e64564f8"><th id="Dq^z" class="simple-table-header-color simple-table-header">Constraint / Need</th><th id="BpHd" class="simple-table-header-color simple-table-header">Skill</th><th id="RJxF" class="simple-table-header-color simple-table-header">MCP</th><th id="nyhc" class="simple-table-header-color simple-table-header">Plugin</th><th id="@`hO" class="simple-table-header-color simple-table-header">Webhook</th><th id="nPvm" class="simple-table-header-color simple-table-header">Cron</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="364006db-a268-80fd-819f-d7ee46502d6c"><td id="Dq^z" class="">Simple setup</td><td id="BpHd" class="">High</td><td id="RJxF" class="">Medium</td><td id="nyhc" class="">Low</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">High</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8016-a6ed-ecbf258af7aa"><td id="Dq^z" class="">Reusable tool schema</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Low</td><td id="nPvm" class="">Low</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8052-8df7-d3b7e55653b8"><td id="Dq^z" class="">External event trigger</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">Low</td><td id="nyhc" class="">Medium</td><td id="@`hO" class="">High</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80ac-a8e2-fbf48e063d58"><td id="Dq^z" class="">Scheduled checks</td><td id="BpHd" class="">Medium</td><td id="RJxF" class="">Medium</td><td id="nyhc" class="">Medium</td><td id="@`hO" class="">Low</td><td id="nPvm" class="">High</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8019-b6db-f117b5c0db18"><td id="Dq^z" class="">Complex auth</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">Medium/High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8034-ad6e-f07699cabe69"><td id="Dq^z" class="">Hide secrets from model</td><td id="BpHd" class="">Low/Medium</td><td id="RJxF" class="">Medium/High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8036-81ea-f4924c9f2cdd"><td id="Dq^z" class="">Production reliability</td><td id="BpHd" class="">Medium</td><td id="RJxF" class="">High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Medium/High</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80fc-a021-d6c6de39be70"><td id="Dq^z" class="">Cross-agent reuse</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">High</td><td id="nyhc" class="">Low/Medium</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80ec-9da9-f72b09061a82"><td id="Dq^z" class="">Hermes-native UX</td><td id="BpHd" class="">Medium</td><td id="RJxF" class="">Medium</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8051-a57e-c2ae9aa916ba"><td id="Dq^z" class="">Lowest engineering effort</td><td id="BpHd" class="">High</td><td id="RJxF" class="">Medium</td><td id="nyhc" class="">Low</td><td id="@`hO" class="">Medium</td><td id="nPvm" class="">High</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80d9-a770-e665b253253a"><td id="Dq^z" class="">Best for databases</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Low</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80d7-83e3-c887c0144373"><td id="Dq^z" class="">Best for internal runbooks</td><td id="BpHd" class="">High</td><td id="RJxF" class="">Medium</td><td id="nyhc" class="">Medium</td><td id="@`hO" class="">Low</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-80d6-bb95-dd720a8a222a"><td id="Dq^z" class="">Best for SaaS API with many actions</td><td id="BpHd" class="">Medium</td><td id="RJxF" class="">High</td><td id="nyhc" class="">High</td><td id="@`hO" class="">Low</td><td id="nPvm" class="">Medium</td></tr></div><div style="display:contents" dir="ltr"><tr id="364006db-a268-8036-ba65-c0dbb0ecdebe"><td id="Dq^z" class="">Best for “when X happens”</td><td id="BpHd" class="">Low</td><td id="RJxF" class="">Low</td><td id="nyhc" class="">Medium</td><td id="@`hO" class="">High</td><td id="nPvm" class="">Low</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ce-8e77-ffe90baf9bda" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-801c-b729-e9e2ec905b65" class="">These approaches overlap. The practical distinction is mostly about direction, durability, reliability, and how much structure/safety you need.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-800a-9a26-e6c602f0fca1" class="">Think of them as layers, not mutually exclusive choices:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8098-8d30-f83a7d66c36a" class="">Skill      = knowledge/instructions<br/>MCP        = external tools<br/>Plugin     = native Hermes extension<br/>Webhook    = external event trigger<br/>Cron       = time trigger<br/>Gateway    = external app talks to Hermes<br/>Direct API = prototype / one-off execution</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ed-b0bd-ed4085de50f7" class="">In real systems, you often combine them.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d5-859c-fb403422d43f" class="">Example:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80eb-8e92-d41bca0bd322" class="">“Evaluation score dropped, improve the agent.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8017-b073-ffab0ca4388f" class="">Could use:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8026-8ffc-db0a0f02d17a" class="bulleted-list"><li style="list-style-type:disc">Webhook: evaluator notifies Hermes that score dropped.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80bc-a57b-d3ae3484c730" class="bulleted-list"><li style="list-style-type:disc">Skill: tells Hermes how to interpret eval reports and run curation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f1-938d-e0cd5988c1f0" class="bulleted-list"><li style="list-style-type:disc">MCP: exposes training/evaluation/deployment services as tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8048-918d-eb79ab65f75e" class="bulleted-list"><li style="list-style-type:disc">Plugin: provides native Hermes commands/toolsets for skill/model registry updates.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80a6-ab19-e89df890d227" class="bulleted-list"><li style="list-style-type:disc">Cron: runs nightly benchmark if evaluator cannot push events.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80b4-ab2b-ea9d9de0b887" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server: lets dashboard or CI submit tasks to Hermes.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a0-b201-eeb73852e85e" class="">So the line is fuzzy.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d3-bbcf-cbe28f6d5c3a" class="">The real question is not “which one is correct?” but:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80fc-92ea-c9b65a89e61e" class="">“What role does this integration play?”</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-808a-90a6-f297ce4b2155" class="numbered-list" start="1"><li>Is it knowledge or capability?</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e4-a0cb-d412a78a3da5" class="">If it is knowledge:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8011-bded-d37370f79919" class="">“Here is the procedure.”<br/>“Here are the API endpoints.”<br/>“Here is the runbook.”<br/>“Here is how to debug this.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e5-bb28-d77702af8c05" class="">Use Skill.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b4-bb48-e748308a326f" class="">If it is capability:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c7-bf54-d8fb8b1203b9" class="">“Call this function.”<br/>“Query this database.”<br/>“Create this ticket.”<br/>“Deploy this model.”<br/>“Search this private system.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c3-9eb4-d42171e27f90" class="">Use MCP or Plugin.</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-807b-9843-c7a65826c153" class="numbered-list" start="1"><li>Is it initiated by Hermes or by the outside world?</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-8026-966f-f9f31561b4dd" class="">Hermes initiates:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8053-ae35-c36bd4832666" class="bulleted-list"><li style="list-style-type:disc">Skill</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d7-b227-ebe13173576d" class="bulleted-list"><li style="list-style-type:disc">MCP</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8024-a292-dc09ca2cba40" class="bulleted-list"><li style="list-style-type:disc">Plugin</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804b-8b2c-f076500f3b54" class="bulleted-list"><li style="list-style-type:disc">direct API/curl/Python</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e3-832d-e9e9760cfc37" class="">Outside world initiates:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c6-a506-d1441e83c5c8" class="bulleted-list"><li style="list-style-type:disc">Webhook</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800e-aac3-f48bb2d74710" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e9-b2e2-fc2d476fa5cf" class="">Time initiates:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fc-bf71-cc0a7bfa7171" class="bulleted-list"><li style="list-style-type:disc">Cron</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-803d-a432-c8e4c5688ca2" class="numbered-list" start="1"><li>Is it occasional or repeated?</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d8-8add-d054bcea8cda" class="">Occasional:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c4-bf46-e818c517fff3" class="bulleted-list"><li style="list-style-type:disc">Direct API/curl/Python</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8077-b7b3-dcf5954c6ac6" class="bulleted-list"><li style="list-style-type:disc">Skill</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8072-9cee-e0d5f2a55c6b" class="">Repeated:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8085-a1dc-e0a0bda4ea78" class="bulleted-list"><li style="list-style-type:disc">Skill if simple</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c7-910b-d57f16a818fe" class="bulleted-list"><li style="list-style-type:disc">MCP if structured</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804b-b522-cc2181b935c9" class="bulleted-list"><li style="list-style-type:disc">Plugin if Hermes-native/production-grade</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8090-8bff-fc425960c4c1" class="numbered-list" start="1"><li>Is it low-risk or high-risk?</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d8-83d0-f624be5cf503" class="">Low-risk/read-only:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d8-aaa0-d4c855f88c60" class="bulleted-list"><li style="list-style-type:disc">Skill is often enough.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8032-9714-d8322d25d9f9" class="bulleted-list"><li style="list-style-type:disc">MCP is better if repeated.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-802c-98c3-df89c86e562f" class="">High-risk/write/deploy/delete/money/customer data:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809d-a3af-efc436556193" class="bulleted-list"><li style="list-style-type:disc">Prefer MCP or Plugin.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80df-9f9e-fda7612d6edc" class="bulleted-list"><li style="list-style-type:disc">Use narrow tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8022-b3a7-e0fff8c2172e" class="bulleted-list"><li style="list-style-type:disc">Add validation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805c-b0c3-d4bcab17f980" class="bulleted-list"><li style="list-style-type:disc">Add audit logs.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801b-bc68-e17b83c9c9c7" class="bulleted-list"><li style="list-style-type:disc">Add approval gates.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-802b-913e-dc31cbc76f81" class="bulleted-list"><li style="list-style-type:disc">Avoid arbitrary shell/curl instructions.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-804d-aebb-ffae88fc6f4d" class="numbered-list" start="1"><li>Is it local or remote?</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ee-b43c-ec2cc000970d" class="">Local dependency:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8080-b445-d2d2a5304afc" class="bulleted-list"><li style="list-style-type:disc">Skill can instruct Hermes to run local CLI/Python.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801c-bd6b-f0e1a1bccb12" class="bulleted-list"><li style="list-style-type:disc">MCP can wrap local CLI/Python as a server.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8078-94cc-eb3cf78873ea" class="bulleted-list"><li style="list-style-type:disc">Plugin can call local Python code directly.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d6-aa16-cb32f788820e" class="">Remote service:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-808c-9a73-ffdead1c4fe0" class="bulleted-list"><li style="list-style-type:disc">Skill can call REST API via curl.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8058-bfff-f213e6fc0b1d" class="bulleted-list"><li style="list-style-type:disc">MCP can expose remote service tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809d-8079-d10779e7f43c" class="bulleted-list"><li style="list-style-type:disc">Plugin can implement native client.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c2-a2c2-f85450970769" class="bulleted-list"><li style="list-style-type:disc">Webhook lets remote service trigger Hermes.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-805c-8c5b-ec9c82607dca" class="">The same integration can evolve across approaches.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e4-a6f8-d3ba0d336cbf" class="">A common path:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a2-8220-e0cf3a2f411b" class="">Stage 0: Direct call</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8055-96c4-f6742e1af649" class="">“Let me try curl against this API.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c1-90fa-ef2de1a848a9" class="">Stage 1: Skill</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8081-ac42-fc77aabdaa65" class="">“Now save the working procedure as a reusable skill.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e5-9a63-ef0a4cfd15d8" class="">Stage 2: MCP</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-803d-8cf9-d698c2ef07fb" class="">“This is used often; expose stable tools with schemas.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8070-81aa-ca07f3c93b24" class="">Stage 3: Plugin</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80fd-b22e-f40c8530189b" class="">“This is important enough to be native Hermes functionality.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-804b-9648-cc5081e3c907" class="">Stage 4: Webhook/Cron</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80db-b980-d1b573f38f71" class="">“Now automate when it runs.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b9-a8bd-d76a2c895e31" class="">So it is not a decision tree with hard walls. It is a maturity ladder.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8055-aea0-edc87df43211" class="">A useful mental model:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8005-a224-f6aa6938fc26" class="">Skill vs MCP vs Plugin are mostly about “how Hermes gets capabilities.”</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f2-9d8a-f714606c4e98" class="bulleted-list"><li style="list-style-type:disc">Skill: capability is implicit through instructions and existing tools.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8099-8aeb-f35f3da0e8a2" class="bulleted-list"><li style="list-style-type:disc">MCP: capability is explicit through an external tool server.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ae-bae5-cb0e868c4fca" class="bulleted-list"><li style="list-style-type:disc">Plugin: capability is explicit inside Hermes.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8086-b4e6-cb3543166456" class="">Webhook/Cron/Gateway are mostly about “who starts the work.”</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8015-94d2-cc699034f33e" class="bulleted-list"><li style="list-style-type:disc">Webhook: an external event starts Hermes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8017-bb88-edb9d447d5bc" class="bulleted-list"><li style="list-style-type:disc">Cron: time starts Hermes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8098-bc52-ccadbe4b4130" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server: another app/user starts Hermes through an API or messaging surface.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8023-ab05-f88c88e099b0" class="">Direct API/curl/Python is the scratchpad/prototype path.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8012-8cba-c45476fea1ec" class="">Where the boundaries blur</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80b5-9975-e5d118637e55" class="numbered-list" start="1"><li>Skill can behave like a lightweight integration</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a8-a441-d8d24ac5f322" class="">If a skill says:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8041-8b70-dd0af5e75f8b" class="">“Use curl to call this API with this schema.”</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-805a-bbcb-cf70bb5f044d" class="">Then it effectively gives Hermes an integration, but not a formal tool.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80af-9303-dbf15d699df2" class="">The boundary with MCP/plugin blurs because the agent can still accomplish the same task.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8075-8d96-e74a6ac18d76" class="">Difference:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80e3-abee-cab75e66c8d7" class="bulleted-list"><li style="list-style-type:disc">Skill relies on the model following instructions.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8003-b619-e99fdedbc008" class="bulleted-list"><li style="list-style-type:disc">MCP/plugin gives structured callable tools.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-80c9-824f-d99061f48b06" class="numbered-list" start="1"><li>MCP can look like a plugin</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80dd-8f82-daf37d0ced5e" class="">If an MCP server exposes:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e2-b075-d8be5390ca16" class="">company_search_customer<br/>company_update_ticket<br/>company_create_invoice</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c0-b12d-ec2ab7c26151" class="">then from the agent’s point of view it feels like a native toolset.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80cd-b305-def0ed7aa10f" class="">Difference:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804f-af10-d8a962b2cd1f" class="bulleted-list"><li style="list-style-type:disc">MCP runs outside Hermes.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ed-b362-dda9f305a955" class="bulleted-list"><li style="list-style-type:disc">Plugin runs inside Hermes and can integrate more deeply with Hermes config/UI/auth.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8065-b747-daca5a9389f3" class="numbered-list" start="1"><li>Plugin can wrap an MCP server</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b5-8111-fa28881f99f0" class="">A plugin could manage config/auth and internally call an MCP server.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-801f-a6c3-cb0ca51863a3" class="">This is useful if you want native Hermes UX but still want a separate service boundary.</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-8047-ab72-efe678515a11" class="numbered-list" start="1"><li>Webhook can trigger a skill/MCP/plugin workflow</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ed-a60e-f2c7c00910af" class="">Webhook is not an alternative to Skill/MCP/Plugin. It often starts a workflow that uses them.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-804a-9bc6-e85c62fb1290" class="">Example:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8099-9a26-d26d487da827" class="">GitHub webhook arrives → Hermes loads <code>github-code-review</code> skill → calls GitHub MCP/plugin tools → posts review.</p></div><div style="display:contents" dir="auto"><ol type="1" id="364006db-a268-807e-804c-d3b5d1b52cf7" class="numbered-list" start="1"><li>Cron can replace webhook when push is unavailable</li></ol></div><div style="display:contents" dir="auto"><p id="364006db-a268-8073-bfd4-e311d8c15aae" class="">If a service cannot push events, Cron polls it.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d3-a409-c0f6b8916c12" class="">Example:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8011-bc85-c996a3a03ec1" class="bulleted-list"><li style="list-style-type:disc">Webhook version: “CI notifies Hermes when build fails.”</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8025-a2e5-c3d1b7fa5066" class="bulleted-list"><li style="list-style-type:disc">Cron version: “Hermes checks CI status every 10 minutes.”</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80f8-9f74-f9428b26d12b" class="">Same workflow, different trigger.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8095-b560-fe840ca421c4" class="">The best dividing line</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8027-b44d-ca218d59ba6a" class="">The closest thing to a hard line is this:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80ca-be56-e228ac69d34d" class="">Trigger vs capability.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8088-9ecb-dcd03378dfb8" class="">Triggers:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80fb-abdb-fd7e7a171697" class="bulleted-list"><li style="list-style-type:disc">Webhook</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8093-ac6c-db812bea3471" class="bulleted-list"><li style="list-style-type:disc">Cron</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8077-b7df-fe884830eebe" class="bulleted-list"><li style="list-style-type:disc">Gateway/API server</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-800a-8c76-fa9cf7e472a1" class="">Capabilities:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8051-80c2-d0e0514d1f93" class="bulleted-list"><li style="list-style-type:disc">Skill</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8059-908d-d90fdf89a9b7" class="bulleted-list"><li style="list-style-type:disc">MCP</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-801d-91c7-c6659397799e" class="bulleted-list"><li style="list-style-type:disc">Plugin</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80df-b2e7-cff83211c819" class="bulleted-list"><li style="list-style-type:disc">direct API/curl/Python</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a2-b777-c56f675ec43b" class="">Even that is not perfect, because a plugin can also add gateway/platform behavior, and a skill can describe scheduled workflows. But as a practical design rule, it is useful.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8098-a5c7-e338f62b9a34" class="">Second useful dividing line:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8002-9d11-e9bedda8883b" class="">Instruction vs tool.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8094-9e73-e10b0012154b" class="">Instruction:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80e7-8143-c2639d4899d9" class="bulleted-list"><li style="list-style-type:disc">Skill</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-809f-bbbd-c8beb9d2d70a" class="">Tool:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80de-a9bb-cbe7d49b45ab" class="bulleted-list"><li style="list-style-type:disc">MCP</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-806d-9f84-d13d71a191b2" class="bulleted-list"><li style="list-style-type:disc">Plugin</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a9-91e4-dbe765ccea81" class="">A skill tells the model what to do.<br/>A tool gives the model something it can call.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80d3-b4a6-e218d5c4a74c" class="">Third useful dividing line:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80dc-808e-e4c6d013fadc" class="">External vs native.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b3-acca-ff3423f5550a" class="">External tool boundary:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8021-b4c0-cc4e8bdde970" class="bulleted-list"><li style="list-style-type:disc">MCP</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-801b-8c8f-d700a88132c1" class="">Native Hermes extension:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ae-b5ad-cf85897d7beb" class="bulleted-list"><li style="list-style-type:disc">Plugin</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8006-b98f-c996cdbc45dd" class="">Human-readable procedure:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8068-beb4-f5d6105dc5fc" class="bulleted-list"><li style="list-style-type:disc">Skill</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-809d-8fee-f0f872d67e90" class="">Practical examples</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8059-a61d-d109acb3eeb6" class="">Example 1: Internal database</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8076-8d2a-d5c89eea7630" class="">Prototype:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8084-b354-daf225efbc5c" class="bulleted-list"><li style="list-style-type:disc">Direct Python or SQL client.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c0-9da8-c54efed42547" class="">MVP:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8018-86f1-d290e66ca4c9" class="bulleted-list"><li style="list-style-type:disc">Skill explaining read-only queries and constraints.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8010-9643-e9e8a4a43267" class="">Production:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800e-a43b-f989427706b2" class="bulleted-list"><li style="list-style-type:disc">MCP server with safe query tools.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8041-b5d3-d6203e5abcae" class="">If deeply Hermes-native:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8082-8764-c3a33f447b7e" class="bulleted-list"><li style="list-style-type:disc">Plugin with <code>company_db_query</code>, <code>company_db_lookup_customer</code>, etc.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8036-ad80-f000d7b84f84" class="">Trigger:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8033-9829-cbbbc92dd248" class="bulleted-list"><li style="list-style-type:disc">Cron checks daily anomaly report.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8093-9c33-f25a5962035e" class="bulleted-list"><li style="list-style-type:disc">Webhook reacts when upstream system detects anomaly.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8090-be02-dc8919dfdcf1" class="">Example 2: Model training pipeline</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80bf-af95-c8edd8d98d88" class="">Prototype:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c8-a0b6-d763f315921c" class="bulleted-list"><li style="list-style-type:disc">Skill tells Hermes how to run scripts.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80e7-ae5b-fa14ad4c7f86" class="">MVP:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-802a-9172-d6c7fd53ab05" class="bulleted-list"><li style="list-style-type:disc">Cron/Webhook triggers pipeline.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80cc-b49b-d10d8bfd93f2" class="bulleted-list"><li style="list-style-type:disc">Skill documents curation/training/eval procedure.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8002-a128-c35b3e80e8a6" class="">Production:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c6-8f5f-dad787751ab6" class="bulleted-list"><li style="list-style-type:disc">MCP exposes:<div style="display:contents" dir="auto"><ul id="364006db-a268-80b8-973c-f40381d61f41" class="bulleted-list"><li style="list-style-type:circle"><code>list_eval_runs</code></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8039-a4e7-f85375b4f74c" class="bulleted-list"><li style="list-style-type:circle"><code>curate_failures</code></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8019-8157-d0cf36ebb367" class="bulleted-list"><li style="list-style-type:circle"><code>start_training_job</code></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f1-860b-ee5b1181c02f" class="bulleted-list"><li style="list-style-type:circle"><code>evaluate_candidate</code></li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80c5-a849-e3fb5968ca70" class="bulleted-list"><li style="list-style-type:circle"><code>promote_model</code></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8038-bcc7-d95a14964f2c" class="">Hermes-native production:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-800c-8486-ded0cfb9bbf2" class="bulleted-list"><li style="list-style-type:disc">Plugin adds a <code>training_pipeline</code> toolset with auth, safety gates, model registry integration.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80c1-8ff3-ccebb050036c" class="">Example 3: Notion</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8082-a689-d7ed1c173708" class="">Simple:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80f5-9cf3-c7b882e2eacc" class="bulleted-list"><li style="list-style-type:disc">Skill using Notion REST API.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80b8-87bd-eec530264298" class="">Repeated structured use:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80ba-8921-cdf5c898e92c" class="bulleted-list"><li style="list-style-type:disc">MCP Notion server.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8060-995d-c08310e8a8b5" class="">Native UX:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-805b-b396-ec0ad9df4801" class="bulleted-list"><li style="list-style-type:disc">Plugin with OAuth and first-class Notion tools.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8063-95a0-dc39a9ce0872" class="">Event-driven:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8086-b492-e28a8cc50825" class="bulleted-list"><li style="list-style-type:disc">Webhook from Notion/Zapier/Make triggers Hermes.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8020-b94d-d1a0fa59c3d6" class="">Example 4: Slack alert triage</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-806f-9f7f-f74ec652b58f" class="">Trigger:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-8092-ad4a-c0abe07ca4e8" class="bulleted-list"><li style="list-style-type:disc">Webhook from monitoring system.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-8092-8ac7-d254a14943b7" class="">Capability:</p></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809d-b6f6-d8cc7c5c1d4f" class="bulleted-list"><li style="list-style-type:disc">Skill for incident runbook.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-809a-b037-ce9289b59eb0" class="bulleted-list"><li style="list-style-type:disc">MCP/plugin for log search.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-804b-b30b-de163102b427" class="bulleted-list"><li style="list-style-type:disc">MCP/plugin for ticket creation.</li></ul></div><div style="display:contents" dir="auto"><ul id="364006db-a268-80d9-92bb-d1f5ab70e095" class="bulleted-list"><li style="list-style-type:disc">Slack gateway for delivery.</li></ul></div><div style="display:contents" dir="auto"><p id="364006db-a268-80a7-85df-cbda82e5e561" class="">How I would choose in practice</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8034-817f-f07f4e398df6" class="">
+</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8014-902f-ce16f0da31e4" class="">Bottom line:</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-80bc-826c-f0ef8861b6ef" class="">There is no hard division. The approaches are composable.</p></div><div style="display:contents" dir="auto"><p id="364006db-a268-8005-ab8a-cfa8d856f66d" class="">Use Skill to teach.<br/>Use MCP to expose tools.<br/>Use Plugin to make it native.<br/>Use Webhook to react.<br/>Use Cron to poll/schedule.<br/>Use Gateway/API server to let apps talk to Hermes.<br/>Use direct calls to prototype.</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
